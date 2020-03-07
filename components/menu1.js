@@ -12,7 +12,7 @@ const Index = props => (
     
 
 
-        <div className="Categories">
+        <div className="Categories" id="menu1">
       <h1 className="font1 topicC topicColor">{props.topic}</h1>
 
     <div className=" row projects">
@@ -57,6 +57,8 @@ const Index = props => (
   
   .card:hover {
     box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transform: scale(1.05);
+    transition: 0.5s;
   }
   .card > .card-inner {
     padding:10px;
@@ -81,10 +83,6 @@ const Index = props => (
     opacity: 0.5;
     transition: 0.5s;
     
-  }
-  .card:hover {
-    transform: scale(1.05);
-    transition: 0.5s;
   }
     .projects div {
         animation-name: fade-in;

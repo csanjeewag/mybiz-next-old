@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
-import Menu1 from './../components/menu1';
-import NavBar from './../layouts/Navbar';
-import TopSlide from '../components/Topslide';
-import Footer from './../components/Footer';
-
+import Menu2 from './../components/menu2';
+import NavBar from './../layouts/SubNavbar';
 
 class Index extends Component {
 
@@ -13,29 +10,25 @@ class Index extends Component {
     
     render() { 
         
-        const Catageries = [
-            {id:1 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=1'},
-            {id:2 , topic: 'topic2', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=2'},
-            {id:3 , topic: 'topic3', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=3'},
-            {id:4 , topic: 'topic4', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=4'},
-            {id:5 , topic: 'topic5', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=5'},
-            {id:6 , topic: 'topic6', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=6'},
-            {id:7 , topic: 'topic7', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=7'},
-            {id:8 , topic: 'topic8', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=8'},
-            {id:9 , topic: 'topic9', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=9'},
-            {id:10 , topic: 'topic10', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=10'},
-            {id:11 , topic: 'topic11', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=11'}
+        const catageries = [
+            {id:1 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=1'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:2 , topic: 'topic2', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=2'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:3 , topic: 'topic3', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=3'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:4 , topic: 'topic4', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=4'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:5 , topic: 'topic5', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=5'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:6 , topic: 'topic6', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=6'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:7 , topic: 'topic7', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=7'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:8 , topic: 'topic8', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=8'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:9 , topic: 'topic9', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=9'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:10 , topic: 'topic10', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=10',discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
+            {id:11 , topic: 'topic11', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=11',discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'}
             
         ]
           return ( 
             <Layout>
-         <NavBar></NavBar>
-        <TopSlide></TopSlide>
-        
-              <Menu1 catageries={Catageries} topic="Categories" ></Menu1>
-            <Footer></Footer>
-  
-                  </Layout>
+               <NavBar></NavBar>
+                <Menu2 catageries={catageries} topic="Catageries"></Menu2>
+                   </Layout>
            );
       }
     

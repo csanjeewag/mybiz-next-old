@@ -3,7 +3,7 @@ import Layout from './../layouts/MainLayout';
 import Menu1 from './../components/menu1';
 import NavBar from './../layouts/Navbar';
 import TopSlide from '../components/Topslide';
-
+import Footer from './../components/Footer';
 
 
 class Index extends Component {
@@ -33,7 +33,9 @@ class Index extends Component {
         <TopSlide></TopSlide>
         
               <Menu1 catageries={Catageries} topic="Categories" ></Menu1>
-     
+
+
+     <Footer></Footer>
   
                   </Layout>
            );

@@ -30,6 +30,7 @@ class Index extends Component {
               else {
                   $('.navbar').removeClass('SolidNav');
               }
+             
             });
             
             function checkMobile() {
