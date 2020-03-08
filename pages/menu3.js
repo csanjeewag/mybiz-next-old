@@ -1,57 +1,58 @@
+import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
+import $ from 'jquery';
+import SideNav from './../layouts/SideNav';
 
 
-const Index = props => (
+class Index extends Component {
+
+  componentDidMount= ()=> {
+
+  }
+  showsidebar(){
+    this.refs.child.showSidebar();
+  }
 
   
+render(){
 
- <Layout>
+  const sidenavlink = [
+    {id:1,link:'/',linkname:'home'},
+    {id:1,link:'/menu',linkname:'menu'},
+    {id:1,link:'/',linkname:'menu2'},
+    {id:1,link:'/',linkname:'menu3'},
+    {id:1,link:'/',linkname:'menu4'},
+    {id:1,link:'/',linkname:'menu5'},
+  ];
+  const topic = 'Categeries';
+  return(
+<Layout>
+<SideNav ref="child" sidenavlink={sidenavlink} topic={topic} />
+
+<h1 className="font1">Catageries</h1>
+<h1 className="font2">Catageries</h1>
+<h1 className="font3">Catageries</h1>
+<h1 className="font4">Catageries</h1>
+<h1 className="font5">Catageries</h1>
+<h1 className="font6">Catageries</h1>
+<h1 className="font1 topicColor">Catageries</h1>
+<h1 className="font1 subtopicColor">Catageries</h1>
+
+<button onClick={this.showsidebar.bind(this)} > side </button>
+
+  <style jsx>
+  {`
 
 
-    <h1 className="font1">Catageries</h1>
-    <h1 className="font2">Catageries</h1>
-    <h1 className="font3">Catageries</h1>
-    <h1 className="font4">Catageries</h1>
-    <h1 className="font5">Catageries</h1>
-    <h1 className="font6">Catageries</h1>
-    <h1 className="font1 topicColor">Catageries</h1>
-    <h1 className="font1 subtopicColor">Catageries</h1>
-
-
-
-      <style jsx>
-      {`
+  `}
+  </style>
+</Layout>
+  )
+}
  
-    
-      `}
-      </style>
-  </Layout>
-);
-
-Index.getInitialProps = async function() {
+}
 
 
-  const Catageries = [
-    {id:1 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=1'},
-    {id:2 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=2'},
-    {id:3 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=3'},
-    {id:4 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=4'},
-    {id:5 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=5'},
-    {id:6 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=6'},
-    {id:7 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=7'},
-    {id:8 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=8'},
-    {id:9 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=9'},
-    {id:10 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=10'},
-    {id:11 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=11'}
-    
-]
- 
-
-  return {
-  
-    catageries : Catageries
-  };
-};
 
 export default Index;

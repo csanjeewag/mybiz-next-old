@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import Menu2 from './../components/menu2';
-import NavBar from './../layouts/SubNavbar';
-
+import SubNavBar from './../layouts/SubNavbar';
+import Slide from  './../components/Slide1';
+import Footer from './../components/Footer';
 class Index extends Component {
 
 
-
+    showsidebar(){
+        this.refs.child.showSidebar();
+      }
     
     render() { 
         
@@ -23,11 +26,26 @@ class Index extends Component {
             {id:10 , topic: 'topic10', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=10',discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'},
             {id:11 , topic: 'topic11', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=11',discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts'}
             
-        ]
+        ];
+        //side navbar link
+        const sidenavlink = [
+            {id:1,link:'/',linkname:'home'},
+            {id:1,link:'/menu',linkname:'menu'},
+            {id:1,link:'/',linkname:'menu2'},
+            {id:1,link:'/',linkname:'menu3'},
+            {id:1,link:'/',linkname:'menu4'},
+            {id:1,link:'/',linkname:'menu5'},
+          ];
+          const topic = 'Categeries';
+        //////////////
           return ( 
             <Layout>
-               <NavBar></NavBar>
+                <SubNavBar sidenavlink={sidenavlink} sidenavtopic={topic}/>
+                
+
+               <Slide ></Slide>
                 <Menu2 catageries={catageries} topic="Catageries"></Menu2>
+            <Footer/>
                    </Layout>
            );
       }

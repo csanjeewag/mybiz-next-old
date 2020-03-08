@@ -15,7 +15,10 @@ class Index extends Component {
             <Layout>
                 
                 <div className="container">
-                <h1 className="font1 topicColor">{this.props.topic}</h1>
+                <div>
+                    <h2 className="font1 topicColor menu2-topic">{this.props.topic}</h2>
+                    
+                </div>
                 <div className="menu2 row projects">
                 {this.props.catageries.map(c=>
                     
@@ -64,6 +67,9 @@ class Index extends Component {
                     }
                     .menu2{
                         margin-bottom : 20px;
+                    }
+                    .menu2-topic{
+                        padding : 20px 10px 10px 10px;
                     }
                     .card {
                         font-size: 1em;

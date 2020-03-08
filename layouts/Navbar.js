@@ -37,13 +37,13 @@ class Index extends Component {
                 var windowwidth = $(window).width();
 
                 if(windowwidth<990){
-                    $('.nav-link').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                    $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
 
                     $(window).scroll(function() {
                         if($(this).scrollTop() > $(window).height()/2) { 
-                            $('.nav-link').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
                         }else{
-                            $('.nav-link').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
                         }
                         
                       });
@@ -71,12 +71,12 @@ class Index extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                <Link href="/"><a className="nav-link active font1" >Home</a></Link>
-                <Link href="/menu2"><a className=" nav-link active font1" >menu2</a></Link>
-                <Link href="/menu1"><a className=" nav-link active font1" >menu1</a></Link>
+                <Link key={1} href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
+                <Link key={2} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
+                <Link key={2} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
                 
-                <Link href="/menu3"><a className=" nav-link active font1" >menu3</a></Link>
-                <Link href="/menu1"><a className=" nav-link active font1" >menu1</a></Link>
+                <Link key={4} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
+                <Link key={5} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
                 
                 </div>
             </div>

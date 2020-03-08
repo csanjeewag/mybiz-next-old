@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
-
+import SideNav from './../layouts/SideNav';
 
 class Index extends Component {
+
+    //side nav bar open
+    showsidebar(){
+        this.refs.child.showSidebar();
+      }
 
     componentDidMount(){
         $(document).ready(function() {
@@ -21,12 +26,36 @@ class Index extends Component {
              
             });
           
+            // Transition effect for navbar 
+            $(window).scroll(function() {
+              // checks if window is scrolled more than 500px, adds/removes solid class
+              if($(this).scrollTop() >  $(window).width()/3) { 
+                  $('.sub1nav').addClass('SolidNav').css({'opacity':'1'}).addClass('fixed-top').removeClass('sticky-top');
+                  $('.logo-link').css({'display':'none'}); $('.all-link').css({'display':'block'});
+              }
+              else {
+                  $('.sub1nav').removeClass('SolidNav').removeClass('fixed-top').addClass('sticky-top');
+                  $('.all-link').css({'display':'none'}); $('.logo-link').css({'display':'block'});
+              }
+             
+            });
             
             function checkMobile() {
                 var windowwidth = $(window).width();
 
                 if(windowwidth<990){
-                   $('.nav-link').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
+                    $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+
+                    $(window).scroll(function() {
+                        if($(this).scrollTop() > $(window).width()/3) { 
+                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
+                            
+                        }else{
+                            $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                            
+                        }
+                        
+                      });
                 }
                   
                
@@ -39,10 +68,12 @@ class Index extends Component {
         
           return ( 
             <Layout>
-            
-            <nav className="navbar sticky-top navbar-expand-lg">
-            <a className="navbar-brand font1" href="#">MYBIZ.COM</a>
-  
+            <SideNav ref="child" sidenavlink={this.props.sidenavlink} topic={this.props.sidenavtopic} />
+            <div className="subnav" >
+            <nav className="navbar sub1nav sticky-top navbar-expand-lg">
+            <a className="navbar-brand font1 logo-link" href="#">MYBIZ.COM</a>
+            <button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font3">All Catageries</button>
+ 
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>
             </button>
@@ -51,12 +82,12 @@ class Index extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                <Link href="/"><a className="nav-link active font1" >Home</a></Link>
-                <Link href="/menu2"><a className=" nav-link active font1" >menu2</a></Link>
-                <Link href="/menu1"><a className=" nav-link active font1" >menu1</a></Link>
+                <Link key={1} href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
+                <Link key={2} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
+                <Link key={2} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
                 
-                <Link href="/menu3"><a className=" nav-link active font1" >menu3</a></Link>
-                <Link href="/menu1"><a className=" nav-link active font1" >menu1</a></Link>
+                <Link key={4} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
+                <Link key={5} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
                 
                 </div>
             </div>
@@ -66,11 +97,14 @@ class Index extends Component {
 
             
               
-            
+            </div>
             
             <style jsx>
                 {`
-                
+                .subnav {
+                    z-index : 100;
+                  
+                }
                 .navbar-nav{
                     padding-left : 100px;
                 }
@@ -85,7 +119,7 @@ class Index extends Component {
                 }
                
                 .navbar {
-                   
+                    z-index : 50;
                     height: 80px;
                     background-color: darkblue;
                     border: none;
@@ -101,6 +135,15 @@ class Index extends Component {
                }
                .togglemenuC{
                 display:none
+               }
+               .sticky-top{
+                position: -webkit-sticky; /* Safari */
+                position: sticky;
+                top: 0;
+                transition: background-color 2s ease 0s;
+               }
+               .all-link{
+                   display:none;
                }
                
                 `}
