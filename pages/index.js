@@ -26,10 +26,18 @@ class Index extends Component {
             {id:10 , topic: 'topic10', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=10'},
             {id:11 , topic: 'topic11', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=11'}
             
-        ]
+        ];
+
+        const navbarlink = [
+            {id:1, link:'/',linkname:'home'},
+            {id:2, link:'/index2',linkname:'catagorires'},
+            {id:2, link:'/index3',linkname:'item'},
+            {id:2, link:'/menu2',linkname:'menu2'},
+            {id:2, link:'/menu3',linkname:'menu3'},
+        ];
           return ( 
             <Layout>
-         <NavBar></NavBar>
+         <NavBar navbarlink={navbarlink} ></NavBar>
         <TopSlide></TopSlide>
         
               <Menu1 catageries={Catageries} topic="Categories" ></Menu1>

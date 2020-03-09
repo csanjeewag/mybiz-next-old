@@ -17,10 +17,6 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/index2": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/menu2": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"

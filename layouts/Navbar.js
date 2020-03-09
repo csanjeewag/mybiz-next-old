@@ -72,11 +72,11 @@ class Index extends Component {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                 <Link key={1} href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
-                <Link key={2} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
-                <Link key={2} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
+                <Link key={2} href="/index1"><a className=" nav-link nav-link-main active font1" >index</a></Link>
+                <Link key={2} href="/index2"><a className=" nav-link nav-link-main active font1" >index2</a></Link>
                 
-                <Link key={4} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
-                <Link key={5} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
+                <Link key={4} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
+                <Link key={5} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
                 
                 </div>
             </div>

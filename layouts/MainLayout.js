@@ -58,6 +58,48 @@ const Layout = props => (
    .subtopicColor{
     color:blue;
    }
+   .fontcolorOrange{
+    color:orange;
+   }
+   .fontcolorSkyblue{
+     color : #008ACC;
+   }
+   .fontcolorpink{
+     color : #CC0047;
+   }
+   .fontcolorred{
+     color : #CC0000;
+   }
+   .fontsizeE-5 {
+    font-size : 0.5em;
+   }
+   .fontsizeE-6 {
+    font-size : 0.6em;
+   }
+   .fontsizeE-7 {
+    font-size : 0.7em;
+   }
+   .fontsizeE-8 {
+    font-size : 0.8em;
+   }
+   .fontsizeE-9 {
+    font-size : 0.9em;
+   }
+   .fontsizeE1 {
+    font-size : 1em;
+   }
+   .fontsizeE1-25 {
+    font-size : 1.25em;
+   }
+   .fontsizeE1-5 {
+    font-size : 1.5em;
+   }
+   .fontsizeE2 {
+    font-size : 2em;
+   }
+   .fontweight700 {
+    font-weight : 700
+   }
    `}
  </style>
 

@@ -46,10 +46,10 @@ render(){
   MYBIZ.COM
   </a>
 
-  <h4 className="sidenav-link-topic  font3">  &nbsp; {this.props.topic}</h4>
+  <h4 className="sidenav-link-topic  font3">  &nbsp; {this.props.sidenavconst.topic}</h4>
   <div className="sidenavbar-link">
-                {this.props.sidenavlink.map(c=>
-                <Link href={c.link} kry={c.id}><a className="nav-link font3" ><img src="https://img.icons8.com/small/25/C4FBFE/arrow.png"/> &nbsp;{c.linkname}</a></Link>
+                {this.props.sidenavconst.sidenavlink.map(c=>
+                <Link href={c.link} key={c.id}><a className="nav-link font3" ><img src="https://img.icons8.com/small/25/C4FBFE/arrow.png"/> &nbsp;{c.linkname}</a></Link>
                   )}
                 </div>
 </div>

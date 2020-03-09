@@ -68,11 +68,11 @@ class Index extends Component {
         
           return ( 
             <Layout>
-            <SideNav ref="child" sidenavlink={this.props.sidenavlink} topic={this.props.sidenavtopic} />
+            <SideNav ref="child"  sidenavconst={this.props.sidenavconst}/>
             <div className="subnav" >
             <nav className="navbar sub1nav sticky-top navbar-expand-lg">
             <a className="navbar-brand font1 logo-link" href="#">MYBIZ.COM</a>
-            <button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font3">All Catageries</button>
+            <button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font3">{this.props.sidenavconst.topiclink}</button>
  
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>
@@ -83,11 +83,11 @@ class Index extends Component {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                 <Link key={1} href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
-                <Link key={2} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
-                <Link key={2} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
+                <Link key={2} href="/index1"><a className=" nav-link nav-link-main active font1" >index</a></Link>
+                <Link key={2} href="/index2"><a className=" nav-link nav-link-main active font1" >index2</a></Link>
                 
-                <Link key={4} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
-                <Link key={5} href="/menu1"><a className=" nav-link nav-link-main active font1" >menu1</a></Link>
+                <Link key={4} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
+                <Link key={5} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
                 
                 </div>
             </div>

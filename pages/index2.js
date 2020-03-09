@@ -36,11 +36,12 @@ class Index extends Component {
             {id:1,link:'/',linkname:'menu4'},
             {id:1,link:'/',linkname:'menu5'},
           ];
-          const topic = 'Categeries';
+          
+            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink};
         //////////////
           return ( 
             <Layout>
-                <SubNavBar sidenavlink={sidenavlink} sidenavtopic={topic}/>
+                <SubNavBar sidenavconst={sidenavconst}/>
                 
 
                <Slide ></Slide>
