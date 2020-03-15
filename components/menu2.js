@@ -43,7 +43,7 @@ class Index extends Component {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <small className="font3">{c.date}</small>
+                        <small className="font3 float-left">{c.date}</small>
                          <a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/></a>
                          <a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/></a>
                        

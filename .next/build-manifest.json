@@ -4,6 +4,10 @@
     "static/development/dll/dll_88bfe47d29bf84228398.js.map"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
@@ -17,7 +21,27 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
+    "/index": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/index1": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/index3": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/index4": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/menu2": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/next/dist/pages/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

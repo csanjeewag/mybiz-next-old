@@ -1,8 +1,35 @@
+import React, { Component } from 'react';
 import Head from 'next/head'
 import Header from './Header';
+import $ from 'jquery';
 
+class Layout extends Component {
 
-const Layout = props => (
+  componentDidMount(){
+    $(document).ready(function() {
+
+      function isMobile() {
+        var windowwidth = $(window).width();
+
+        if(windowwidth<990){
+            $('.ismobile_disable').css({'display':'none'});
+            $('.isdesktop_disable').css({'display':'block'});
+        }
+        else{
+          $('.ismobile_disable').css({'display':'block'});
+          $('.isdesktop_disable').css({'display':'none'});
+        }
+          
+       
+    }
+    isMobile();
+    $(window).resize(isMobile);
+    })
+  }
+
+  render(){
+   
+    return(
   <div >
 <Head>
 <title>Agency - Start Bootstrap Theme</title>
@@ -16,7 +43,7 @@ const Layout = props => (
 
       </Head>
 
-        {props.children}
+        {this.props.children}
       
     
 
@@ -104,6 +131,8 @@ const Layout = props => (
  </style>
 
   </div>
-);
 
+)
+}
+}
 export default Layout;
