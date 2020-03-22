@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
-import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
-
+import GoogleSign from './../components/GoogleSign';
 
 class Index extends Component {
 
@@ -28,7 +27,7 @@ render(){
   const topic = 'Categeries';
   return(
 <Layout>
-<SideNav ref="child" sidenavlink={sidenavlink} topic={topic} />
+
 
 <h1 className="font1">Catageries</h1>
 <h1 className="font2">Catageries</h1>
@@ -39,14 +38,9 @@ render(){
 <h1 className="font1 topicColor">Catageries</h1>
 <h1 className="font1 subtopicColor">Catageries</h1>
 
-<button onClick={this.showsidebar.bind(this)} > side </button>
 
-  <style jsx>
-  {`
-
-
-  `}
-  </style>
+<GoogleSign></GoogleSign>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </Layout>
   )
 }

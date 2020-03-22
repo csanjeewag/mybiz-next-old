@@ -3,14 +3,19 @@ import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
+import SignUp from './../components/signup';
 
 class Index extends Component {
 
     //side nav bar open
     showsidebar(){
-        this.refs.child.showSidebar();
+        this.refs.sidenav.showSidebar();
       }
-
+    //show signup
+      showsignup(){
+        this.refs.signup.showsignup();
+      }
+    
     componentDidMount(){
         $(document).ready(function() {
 
@@ -68,7 +73,8 @@ class Index extends Component {
         
           return ( 
             <Layout>
-            <SideNav ref="child"  sidenavconst={this.props.sidenavconst}/>
+            <SideNav ref="sidenav"  sidenavconst={this.props.sidenavconst}/>
+            <SignUp ref="signup" showsignup={this.props.showsignup} />
             <div className="subnav" >
             <nav className="navbar sub1nav sticky-top navbar-expand-lg">
             <a className="navbar-brand font1 logo-link" href="#">MYBIZ.COM</a>
@@ -82,21 +88,19 @@ class Index extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                <Link key={1} href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
-                <Link key={6} href="/index1"><a className=" nav-link nav-link-main active font1" >index</a></Link>
-                <Link key={2} href="/index2"><a className=" nav-link nav-link-main active font1" >index2</a></Link>
-                <Link key={3} href="/index3"><a className=" nav-link nav-link-main active font1" >index3</a></Link>
-                <Link key={7} href="/index4"><a className=" nav-link nav-link-main active font1" >index4</a></Link>
-                <Link key={4} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
-                <Link key={5} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
-                
-                
-                </div>
-            </div>
+                <Link key="1" href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
+                <Link key="2" href="/index1"><a className=" nav-link nav-link-main active font1" >index</a></Link>
+                <Link key="3" href="/index2"><a className=" nav-link nav-link-main active font1" >index2</a></Link>
+                <Link key="4" href="/index3"><a className=" nav-link nav-link-main active font1" >index3</a></Link>
+                <Link key="5" href="/index4"><a className=" nav-link nav-link-main active font1" >index4</a></Link>
+                <Link key="6" href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
+                <Link key="7" href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
+                <Link key="8" href="#" ><a onClick={this.showsignup.bind(this)} className=" nav-link nav-link-main active font1" >SignIN</a></Link>
+                            </div>           </div>
        
             
             </nav>
-
+    
             
               
             </div>

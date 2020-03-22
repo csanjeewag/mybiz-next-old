@@ -12,6 +12,13 @@ const handle = app.getRequestHandler();
 //models
 var userRepository = require('./repository/user');
 
+//google
+const GoogleSignIn = require('google-sign-in');
+const project = new GoogleSignIn.Project('511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com');
+//facebook login
+const FacebookTokenStrategy = require('passport-facebook-token');
+const passport = require('passport');
+ 
 //database connection
 const mongoose = require('mongoose');
 var mongoDB = "mongodb+srv://atoursrilanka:Chanaka1102@cluster0-6wtzm.mongodb.net/atourlankaT?retryWrites=true&w=majority";
@@ -27,7 +34,23 @@ const server = express();
 server.use(express.static(__dirname + './../File'));
 server.use(bodypaser.urlencoded({ extended: true }));
 server.use(bodypaser.json());
-server.use(fileupload())
+server.use(fileupload());
+server.use(passport.initialize());
+server.use(passport.session());
+
+
+      // Passport session setup.
+      passport.serializeUser(function(user, done) {
+        done(null, user);
+      });
+  
+      passport.deserializeUser(function(obj, done) {
+        done(null, obj);
+      });
+
+
+
+
 
 app.prepare().then(() => {
 
@@ -36,6 +59,41 @@ app.prepare().then(() => {
     userRepository.viewall({},res);
 
   });
+
+  server.get("/g/:id", (req, res) => {
+
+    project.verifyToken(req.params.id).then((jsonData) => {
+      console.log(JSON.stringify(jsonData)); // Does not execute
+      return res.status(200).json(JSON.stringify(jsonData)); 
+  }, (error) => {
+      console.error(error.message); // Logs 'Invalid Value'
+      return res.status(200).json(JSON.stringify(error.message)); 
+
+  });
+
+  });
+
+  server.get("/f/:id", (req, res) => {
+
+    passport.use(new FacebookTokenStrategy({
+      clientID: '639750616597961',
+      clientSecret: '1113abc83cf9479611dee3fde1736fbc'
+    }, function(accessToken, refreshToken, profile, done) {
+      /*User.findOrCreate({facebookId: profile.id}, function (error, user) {
+        return done(error, user);
+      });*/
+      console.log(profile)
+    }
+  ));
+
+    passport.authenticate('facebook-token'),
+    function (req, res) {
+      // do something with req.user
+      return res.status(200).json(JSON.stringify(req.params.id)); 
+    }
+    return res.status(200).json(JSON.stringify('no')); 
+  });
+
 
   server.get('*', (req, res) => {
     return handle(req, res)
