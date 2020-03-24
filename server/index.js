@@ -21,7 +21,8 @@ const passport = require('passport');
  
 //database connection
 const mongoose = require('mongoose');
-var mongoDB = "mongodb+srv://atoursrilanka:Chanaka1102@cluster0-6wtzm.mongodb.net/atourlankaT?retryWrites=true&w=majority";
+//var mongoDB = "mongodb+srv://atoursrilanka:Chanaka1102@cluster0-6wtzm.mongodb.net/atourlankaT?retryWrites=true&w=majority";
+var mongoDB = "mongodb+srv://csanjeewag:Chanaka*1102@cluster0-pms91.mongodb.net/mybiz?retryWrites=true&w=majority"
 mongoose.connect(mongoDB,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, (error)=>{
   if(error){
       console.log(error);
@@ -54,11 +55,28 @@ server.use(passport.session());
 
 app.prepare().then(() => {
 
-  server.get("/api", (req, res) => {
+  server.get("/api/all", (req, res) => {
 
     userRepository.viewall({},res);
 
+  });  
+  
+  server.post("/api/createuser", (req, res) => {
+
+    userRepository.create(req,res);
   });
+
+  server.post("/api/signinuser", (req, res) => {
+    project.verifyToken(req.body.token).then((jsonData) => {
+      userRepository.signinuser(req,res);
+  }, (error) => {
+      console.error(error.message); // Logs 'Invalid Value'
+      return res.status(404).json(JSON.stringify(error.message)); 
+
+  });
+   
+  });
+
 
   server.get("/g/:id", (req, res) => {
 

@@ -2,8 +2,25 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import { GoogleLogin } from 'react-google-login';
 import $ from 'jquery';
+import fetch from 'isomorphic-unfetch';
 class Index extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            name: '',
+            email:'',
+            address : '',
+            contact : '',
+            imageUrl:'',
+            googleId:'',
+            givenName:'',
+            familyName:'',
+            token:''
+        };
+    }
+
+    
   componentDidMount= ()=> {
 
     $(document).ready(function() {
@@ -18,14 +35,85 @@ class Index extends Component {
 
   }
 
+  handleChange = evt => {
+    // This triggers everytime the input is changed
+        this.setState({
+            [evt.target.name]: evt.target.value,
+        });
+    };
 
   responseGoogle = (response) => {
-    console.log(response);
+
+    if(this.state.contact.length>0){
+        this.setState({
+            ...response.profileObj
+        });
+        this.handleSubmit();
+    }
+    else{
+        alert('There should be contact details.')
+    }
+
   }
+
+  responseGoogleSignIn = (response) => {
+
+        this.setState({
+            ...response.profileObj,
+            token:response.tokenId
+         
+        });
+        const datas = new FormData();
+         datas.append('jsonbody', JSON.stringify(this.state));
+         datas.append('token', response.tokenId);
+         fetch('/api/signinuser', {
+            method: 'POST',
+            headers: {
+            }, 
+            body:datas,
+        
+            }
+            
+            )
+            .then(response => {response.json(); 
+                alert(response.status)
+                console.log(response) ;})
+            .then(data => {console.log(data);})
+            .catch(error => console.log(error))
+        
+  }
+
+  handleSubmit = () => {
+  //  evt.preventDefault();
+    const datas = new FormData();
+   // datas.append('file', this.state.selectedFile);
+    datas.append('jsonbody', JSON.stringify(this.state));
+   fetch('/api/createuser', {
+    method: 'POST',
+    headers: {
+          //'Accept': 'application/json',
+         // 'Content-Type': 'application/json',
+         //'Content-Type': 'multipart/form-data'
+    }, 
+    body:datas,
+
+    }
+    
+    )
+    .then(response => {response.json(); 
+        alert(response.status)
+        console.log(response) ;})
+    .then(data => {console.log(data);})
+    .catch(error => console.log(error))
+
+
+};
+
 
   showsignup=()=>{
     $(document).ready(function() {
         $('#background-signin').css({'display':'flex'}).addClass('visual-signup');
+        $('#logreg-forms').addClass('animationSignup')
     })
   }
   
@@ -45,8 +133,8 @@ render(){
                  <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
                     buttonText="Sign in with Google+"
-                    onSuccess={this.responseGoogle}
-                    onFailure={this.responseGoogle}
+                    onSuccess={this.responseGoogleSignIn}
+                    onFailure={this.responseGoogleSignIn}
                     cookiePolicy={'single_host_origin'}
                     className="btn google-btn social-btn col-lg-6 col-sm-12"
                     isSignedIn={false}
@@ -57,16 +145,17 @@ render(){
             <hr/>
             <h3 className="h3 mb-3 font6 topicColor .fontsizeE-6" > Sign up</h3>
             <form>
+
             <div className="form-group">
                 <label for="exampleInputAddress" className="font6">address</label>
-                <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Address"/>
+                <input type="email" className="form-control" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
                 <label for="exampleInputAddress" className="font6">Contact</label>
-                <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Contact"/>
+                <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Contact" name="contact" value={this.state.contact} onChange={this.handleChange}/>
             </div>
             <div className="form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                <input type="checkbox" className="form-check-input" />
                 <label className="form-check-label" for="exampleCheck1" className="font6">Sign up as Seller</label>
             </div>
             <small id="emailHelp" className="form-text text-muted">We'll never share your details with anyone else.</small>
@@ -89,8 +178,10 @@ render(){
 <style jsx>
 {`
 
+
 .visual-signup {
-    transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+    transition: transform 1s cubic-bezier(0, 0, 0.3, 1);
+
 }
 .popup-close {
 	color: white;
@@ -109,7 +200,6 @@ render(){
 }
 #background-signin{
     width: 100%;
-    height: auto;
     background: rgba(0,0,0,0.8);
     font-family: "Robato",sans-serif;
     font-size: 17px;
@@ -120,7 +210,7 @@ render(){
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    
 
   }
   
@@ -128,7 +218,8 @@ render(){
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.12), 0 12px 40px rgba(0,0,0,0.24);
       margin:10vh auto;
       background-color: lightgray;
-     
+      overflow: auto;
+      
   }
   
   #logreg-forms form {
@@ -232,7 +323,7 @@ render(){
       #logreg-forms  .google-btn:after{
           content:'Google+';
       }
-  
+
   }
 `}
 </style>

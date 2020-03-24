@@ -4,8 +4,69 @@ import Profile from './../components/CompanyProfile';
 import SubNavBar from './../layouts/SubNavbar';
 import Slide from  './../components/Slide1';
 import Footer from './../components/Footer';
+import fetch from 'isomorphic-unfetch';
 class Index extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            firstName: '',
+            selectedFile : null
+        };
+    }
+    handleChange = evt => {
+    // This triggers everytime the input is changed
+        this.setState({
+            [evt.target.name]: evt.target.value,
+        });
+    };
+ 
+    handleSubmit = evt => {
+        evt.preventDefault();
+        //making a post request with the fetch API
+        
+        const datas = new FormData();
+        datas.append('file', this.state.selectedFile);
+        datas.append('name', JSON.stringify({firstName:this.state.firstName,lastname:'sanjeewa'}));
+        console.log(JSON.stringify({firstName:this.state.firstName,lastname:'sanjeewa'}))
+      //making a post request with the fetch API
+       fetch('/api/createuser', {
+        method: 'POST',
+        headers: {
+              //'Accept': 'application/json',
+             // 'Content-Type': 'application/json',
+             //'Content-Type': 'multipart/form-data'
+        }, 
+        body:datas,
+        /* JSON.stringify({
+             firstName:this.state.firstName,
+             file : this.state.selectedFile
+           }),*/
+
+        }
+        
+        )
+        .then(response => {response.json(); console.log(response) ;})
+        .then(data => {console.log(data);})
+        .catch(error => console.log(error))
+
+
+    };
+
+    onChangeHandler=event=>{
+
+
+        console.log(event.target.files[0])
+        this.setState({
+          selectedFile: event.target.files[0],
+
+        })
+        
+    
+    }
+
+    
+      
 
     showsidebar(){
         this.refs.child.showSidebar();
@@ -36,9 +97,25 @@ class Index extends Component {
           return ( 
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                 
-
-                <Profile catageries={items} topic="My Shops"></Profile> 
+                 <br></br>
+                <form onSubmit={this.handleSubmit} >
+                <input 
+                    name="firstName" 
+                    type="text" 
+                    id="name" 
+                    value={this.state.firstName} 
+                    onChange={this.handleChange}>
+                </input>
+                <input 
+                    name="file" 
+                    type="file" 
+                    id="name" 
+                    value={this.state.file} 
+                    onChange={this.onChangeHandler}>
+                </input>
+                <input type="submit"/>
+            </form>
+               
             <Footer/>
                    </Layout>
            );

@@ -1,9 +1,19 @@
 var mongoose = require('mongoose');
 
   var SomeModelSchema = new mongoose.Schema({
-    a_string: String,
-    a_date: Date
+    name: String,
+    email:String,
+    address : String,
+    contact : String,
+    imageUrl:String,
+    googleId:String,
+    givenName:String,
+    familyName:String,
+    role:String,
+    createDate: Date,
+    isvalid:Boolean,
+    
   });
-  var SomeModel = mongoose.model('SomeModel', SomeModelSchema );
+  var SomeModel = mongoose.model('user', SomeModelSchema );
 
   module.exports = SomeModel;

@@ -17,24 +17,49 @@ exports.viewall = function(req,res) {
    
   }
 
-  exports.create = function(){
+  exports.create = function(req,res){
 
-    let body=  { a_string: 'test' };
+    let body=  JSON.parse(req.body.jsonbody);
          
         
-        var data = new models(body);
-            data.save(function(err,result) {
-                if (err){
-                  
-                    return  res.status(404).json(result);
-                }
-                else{
+        var bodydata = new models(body);
+        models.find({email:bodydata.email},function(error,data){
+            if(!data.length){
+                bodydata.save(function(err,result) {
+                    if (err){
+                      
+                        return  res.status(400).json(result);
+                    }
+                    else{
+                        
+                    return  res.status(200).json(result);
+                    }
                     
-                return  res.status(200).json(result);
-                }
-                
-              });
-    
- 
+                  });
+            }
+            else{
+                return  res.status(401).json('you already signed');
+            }
+        })
+
   }
 
+
+  
+  exports.signinuser = function(req,res){
+
+    let body=  JSON.parse(req.body.jsonbody);
+         
+        
+        var bodydata = new models(body);
+        models.find({email:bodydata.email},function(error,data){
+            if(data.length){
+                        
+                    return  res.status(200).json(data);
+            }
+            else{
+                return  res.status(401).json('you havent account');
+            }
+        })
+
+    }
