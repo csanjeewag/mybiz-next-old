@@ -23,12 +23,32 @@ class Index extends Component {
  
     handleSubmit = evt => {
         evt.preventDefault();
+       
+        const datas = new FormData();
+        var files =  [this.state.selectedFile,this.state.selectedFile]
+    datas.append('jsonbody', JSON.stringify(this.state));
+      datas.append('file', files);
+      datas.append('file2', this.state.selectedFile);
+        fetch('/api/createshop',{
+            method: 'POST',
+            headers: {
+            },
+            body:datas
+        
+            }
+        )
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+        });
+   /*     evt.preventDefault();
         //making a post request with the fetch API
         
         const datas = new FormData();
         datas.append('file', this.state.selectedFile);
         datas.append('name', JSON.stringify({firstName:this.state.firstName,lastname:'sanjeewa'}));
-        console.log(JSON.stringify({firstName:this.state.firstName,lastname:'sanjeewa'}))
       //making a post request with the fetch API
        fetch('/api/createuser', {
         method: 'POST',
@@ -38,10 +58,6 @@ class Index extends Component {
              //'Content-Type': 'multipart/form-data'
         }, 
         body:datas,
-        /* JSON.stringify({
-             firstName:this.state.firstName,
-             file : this.state.selectedFile
-           }),*/
 
         }
         
@@ -49,7 +65,7 @@ class Index extends Component {
         .then(response => {response.json(); console.log(response) ;})
         .then(data => {console.log(data);})
         .catch(error => console.log(error))
-
+*/
 
     };
 

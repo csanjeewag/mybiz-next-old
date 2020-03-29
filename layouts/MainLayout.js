@@ -123,6 +123,9 @@ class Layout extends Component {
    .fontsizeE2 {
     font-size : 2em;
    }
+   .fontsizeE2-25 {
+    font-size : 2.25em;
+   }
    .fontweight700 {
     font-weight : 700
    }

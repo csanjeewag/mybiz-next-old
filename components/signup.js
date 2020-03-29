@@ -3,6 +3,7 @@ import Layout from './../layouts/MainLayout';
 import { GoogleLogin } from 'react-google-login';
 import $ from 'jquery';
 import fetch from 'isomorphic-unfetch';
+import Cookie from "js-cookie";
 class Index extends Component {
 
     constructor() {
@@ -19,6 +20,7 @@ class Index extends Component {
             token:''
         };
     }
+
 
     
   componentDidMount= ()=> {
@@ -46,7 +48,8 @@ class Index extends Component {
 
     if(this.state.contact.length>0){
         this.setState({
-            ...response.profileObj
+            ...response.profileObj,
+            token:response.tokenId
         });
         this.handleSubmit();
     }
@@ -57,7 +60,8 @@ class Index extends Component {
   }
 
   responseGoogleSignIn = (response) => {
-
+    this.hidesignup();  
+    var res = null;
         this.setState({
             ...response.profileObj,
             token:response.tokenId
@@ -75,15 +79,16 @@ class Index extends Component {
             }
             
             )
-            .then(response => {response.json(); 
-                alert(response.status)
-                console.log(response) ;})
-            .then(data => {console.log(data);})
+            .then(response => {return response.json(); } )
+            .then(data => { if(data != undefined){alert(data.msg); Cookie.set('user',data)}})
             .catch(error => console.log(error))
+           
+            
         
   }
 
   handleSubmit = () => {
+    this.hidesignup(); 
   //  evt.preventDefault();
     const datas = new FormData();
    // datas.append('file', this.state.selectedFile);
@@ -100,12 +105,10 @@ class Index extends Component {
     }
     
     )
-    .then(response => {response.json(); 
-        alert(response.status)
-        console.log(response) ;})
-    .then(data => {console.log(data);})
+    then(response => { return response.json(); } )
+    .then(data => { if(data){alert(data.msg); Cookie.set('user',data);  }})
     .catch(error => console.log(error))
-
+    
 
 };
 
@@ -114,6 +117,14 @@ class Index extends Component {
     $(document).ready(function() {
         $('#background-signin').css({'display':'flex'}).addClass('visual-signup');
         $('#logreg-forms').addClass('animationSignup')
+    })
+  }
+
+  hidesignup=()=>{
+
+    $(document).ready(function() {
+        $('#background-signin').css({'display':'none'}).removeClass('visual-signup');
+        
     })
   }
   

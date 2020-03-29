@@ -9,8 +9,9 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler();
 
-//models
+//repository
 var userRepository = require('./repository/user');
+var shopRepository = require('./repository/shoprepository');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -60,10 +61,34 @@ app.prepare().then(() => {
     userRepository.viewall({},res);
 
   });  
+
+  server.post("/api/all", (req, res) => {
+
+    return res.status(404).json(JSON.stringify({name:'saneewa'}));
+
+  }); 
   
   server.post("/api/createuser", (req, res) => {
 
     userRepository.create(req,res);
+  });
+
+  server.post("/api/createshop", (req, res) => {
+
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        shopRepository.create(req,res)
+    }, (error) => {
+        console.error(error.message); // Logs 'Invalid Value'
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
   });
 
   server.post("/api/signinuser", (req, res) => {
@@ -71,7 +96,7 @@ app.prepare().then(() => {
       userRepository.signinuser(req,res);
   }, (error) => {
       console.error(error.message); // Logs 'Invalid Value'
-      return res.status(404).json(JSON.stringify(error.message)); 
+      return res.status(404).json({msg:'There are some error.'}); 
 
   });
    
