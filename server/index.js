@@ -2,8 +2,6 @@ const express = require('express');
 const next = require('next');
 var bodypaser = require('body-parser');
 var fileupload = require('express-fileupload');
-const { createServer } = require('http')
-const { parse } = require('url')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -12,6 +10,8 @@ const handle = app.getRequestHandler();
 //repository
 var userRepository = require('./repository/user');
 var shopRepository = require('./repository/shoprepository');
+var itemsRepository = require('./repository/itemrepository');
+var typeRepository = require('./repository/typerepository');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -33,46 +33,61 @@ mongoose.connect(mongoDB,{useUnifiedTopology: true, useNewUrlParser: true, useCr
   })
 
 const server = express();
-server.use(express.static(__dirname + './../File'));
+server.use(express.static(__dirname + '/File'));
 server.use(bodypaser.urlencoded({ extended: true }));
 server.use(bodypaser.json());
 server.use(fileupload());
-server.use(passport.initialize());
-server.use(passport.session());
-
-
-      // Passport session setup.
-      passport.serializeUser(function(user, done) {
-        done(null, user);
-      });
-  
-      passport.deserializeUser(function(obj, done) {
-        done(null, obj);
-      });
-
-
-
 
 
 app.prepare().then(() => {
 
-  server.get("/api/all", (req, res) => {
+  /** type api */
+  server.get("/api/types", (req, res) => {
+ 
+    typeRepository.viewall({},res);
 
-    userRepository.viewall({},res);
-
-  });  
-
-  server.post("/api/all", (req, res) => {
-
-    return res.status(404).json(JSON.stringify({name:'saneewa'}));
-
-  }); 
-  
-  server.post("/api/createuser", (req, res) => {
-
-    userRepository.create(req,res);
   });
 
+
+  server.get("/api/typebyshopid/:id", (req, res) => {
+ 
+    typeRepository.viewbyshopid(req,res);
+
+  });
+
+  server.post("/api/createCatagery", (req, res) => {
+
+    typeRepository.create(req,res)
+   /* if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        typeRepository.create(req,res)
+    }, (error) => {
+        console.error(error.message); // Logs 'Invalid Value'
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    */
+    
+  });
+
+  
+  /** */
+
+  /***shop api */
+
+  //get shop details by name
+
+  server.get("/api/shop/:id", (req, res) => {
+ 
+    shopRepository.viewbyname({shopName:req.params.id.replace('-',' ')},res);
+
+  }); 
+
+  //create new shop
   server.post("/api/createshop", (req, res) => {
 
     if(req.body.user!='undefined'){
@@ -90,6 +105,48 @@ app.prepare().then(() => {
     
     
   });
+/***end shop api */
+
+/** item api */
+
+  //get shop details by name
+
+  server.get("/api/item/:id", (req, res) => {
+ 
+    itemsRepository.viewbyname({itemname:req.params.id.replace('-',' ')},res);
+
+  }); 
+
+  server.get("/api/catagerybyname/:id", (req, res) => {
+    console.log(req.params.id)
+    itemsRepository.viewall({categery:req.params.id.replace('-',' ')},res);
+
+  }); 
+
+  server.post("/api/createitem", (req, res) => {
+
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        itemsRepository.create(req,res)
+    }, (error) => {
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+/**end item api */
+
+/** user api  */
+
+server.post("/api/createuser", (req, res) => {
+
+  userRepository.create(req,res);
+});
 
   server.post("/api/signinuser", (req, res) => {
     project.verifyToken(req.body.token).then((jsonData) => {
@@ -99,43 +156,9 @@ app.prepare().then(() => {
       return res.status(404).json({msg:'There are some error.'}); 
 
   });
-   
   });
 
-
-  server.get("/g/:id", (req, res) => {
-
-    project.verifyToken(req.params.id).then((jsonData) => {
-      console.log(JSON.stringify(jsonData)); // Does not execute
-      return res.status(200).json(JSON.stringify(jsonData)); 
-  }, (error) => {
-      console.error(error.message); // Logs 'Invalid Value'
-      return res.status(200).json(JSON.stringify(error.message)); 
-
-  });
-
-  });
-
-  server.get("/f/:id", (req, res) => {
-
-    passport.use(new FacebookTokenStrategy({
-      clientID: '639750616597961',
-      clientSecret: '1113abc83cf9479611dee3fde1736fbc'
-    }, function(accessToken, refreshToken, profile, done) {
-      /*User.findOrCreate({facebookId: profile.id}, function (error, user) {
-        return done(error, user);
-      });*/
-      console.log(profile)
-    }
-  ));
-
-    passport.authenticate('facebook-token'),
-    function (req, res) {
-      // do something with req.user
-      return res.status(200).json(JSON.stringify(req.params.id)); 
-    }
-    return res.status(200).json(JSON.stringify('no')); 
-  });
+/***end user api */
 
 
   server.get('*', (req, res) => {

@@ -4,7 +4,8 @@ import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
 import SignUp from './../components/signup';
-
+import {NavLink} from './../constant/main';
+ 
 class Index extends Component {
 
     //side nav bar open
@@ -88,14 +89,9 @@ class Index extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                <Link key="1" href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
-                <Link key="2" href="/index1"><a className=" nav-link nav-link-main active font1" >index</a></Link>
-                <Link key="3" href="/index2"><a className=" nav-link nav-link-main active font1" >index2</a></Link>
-                <Link key="4" href="/index3"><a className=" nav-link nav-link-main active font1" >index3</a></Link>
-                <Link key="5" href="/index4"><a className=" nav-link nav-link-main active font1" >index4</a></Link>
-                <Link key="6" href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
-                <Link key="7" href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
-                <Link key="8" href="#" ><a onClick={this.showsignup.bind(this)} className=" nav-link nav-link-main active font1" >SignIN</a></Link>
+                {NavLink.map((x,i)=>
+                    <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
+                    )}
                             </div>           </div>
        
             

@@ -20,15 +20,15 @@ const Index = props => (
 
        <div className="col-sm-6 col-lg-4 col-xl-3"> <div className="card">
        <div className="image ">
-         <img src={c.imageUrl}  width="100%" height="200px" />
+         <img src={'http://loremflickr.com/320/150?random=1'}  width="100%" height="200px" />
        </div>
        <div className="card-inner">
          <div className="header">
-           <h3 className="font4 topicColor">{c.topic}</h3>
+           <h3 className="font4 topicColor">{c.type}</h3>
         
        </div>
        <div className="content">
-       <h4 className="font6 subtopicColor">{c.subtopic}</h4>
+       <h4 className="font6 subtopicColor">{c.name}</h4>
        </div>
          </div>
      </div></div>

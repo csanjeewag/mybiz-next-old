@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
+import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
+import  {Url,ImageUrl} from './../constant/main';
 
-const Imageside=()=> {
+const Imageside=(props)=> {
     return(
 <div className="col-lg-6 col-sm-12">
     <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
 <ol className="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+{props.shop.images.map((x,i)=>
+    <li key={i} data-target="#carouselExampleIndicators" data-slide-to={i} className={i==0?'active':'c'} ></li> 
+    )}
 </ol>
-<div className="carousel-inner">
-    <div className="carousel-item active">
-    <img className="d-block w-100 silde2image" src="./item1.jpg" alt="First slide" width="100%"/>
-    </div>
-    <div className="carousel-item ">
-    <img className="d-block w-100 silde2image" src="./item2.jpg" alt="Second slide" width="100%" />
-    </div>
-    <div className="carousel-item ">
-    <img className="d-block w-100 silde2image" src="./item3.jpg" alt="Third slide" width="100%" />
-    </div>
+<div className="carousel-inner">   
+    {props.shop.images.map((x,i)=>
+                <div key={i} className={i==0?'carousel-item active':'carousel-item'}>
+                <img className="d-block w-100 silde2image" src={ImageUrl+x} alt="first slide" width="100%" />
+                </div> 
+                )}
+    
 </div>
 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -33,7 +32,7 @@ const Imageside=()=> {
 </div>
 
         <div className="card-footer">
-            <small className="font3 card-footer-button">2020/7/05</small>
+            <small className="font3 card-footer-button">{props.shop.createDate}</small>
  
         </div>
 
@@ -57,47 +56,46 @@ const Imageside=()=> {
 }
 
 
-const Contentside=()=>{
+const Contentside=(props)=>{
     return (
         <div className="col-lg-6 col-sm-12">
 
         <div className="card">
             <div className="card-block">
             
-                <h4 className="card-title font2 topicColor">Idea Mart</h4>
+                <h4 className="card-title font2 topicColor">{props.shop.shopName}</h4>
                 <div className="meta font6 subtopicColor">
-                    <a>Elotronic items</a>
+                    <a>{props.shop.categery}</a>
                     <div className=" float-right"> 
-                    <a className="Icutprise font6">Balangoda </a> 
+                    <a className="Icutprise font6">{props.shop.district+'/'+props.shop.town} </a> 
                     </div>
                 </div>
+                
+                <div className="meta font6">
+                    <div className=" float-right"> 
+                    <a className="Icutprise font6">{props.shop.contact1+'/'+props.shop.contact2} </a>
+                    </div>
+                </div>
+
                 <div className="card-text font6">
-                The . slide class adds a CSS transition and animation effect, which makes the items slide when showing a new item. Omit this class if you do not want this effect. The data-ride="carousel" attribute tells Bootstrap to begin animating the carousel immediately when the page loads.
+                {props.shop.content1}
                 </div>
                 <div className="card-text font6">
-                The . slide class adds a CSS transition and animation effect, which makes the items slide when showing a new item. Omit this class if you do not want this effect. The data-ride="carousel" attribute tells Bootstrap to begin animating the carousel immediately when the page loads.
+                {props.shop.content2}
                 </div>
                 <div className="profile-specification">
                 <h5 className="profile-subcard-title font2 fontcolorSkyblue"> &nbsp; </h5>
                 <div className=" card-text font6">
                     <div className="row">
-                        <div className="col-lg-6 col-sm-12">
-                        <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; Delivary &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; Cash on Delivary</a>
-                        </div>
-                        <div className="col-lg-6 col-sm-12">
-                        <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; Warrenty &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; Yes</a>
-                        </div>
-                        <div className="col-lg-6 col-sm-12">
-                        <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; Fast charging &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; Yes</a>
-                        </div>
-                        <div className="col-lg-6 col-sm-12">
-                        <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; Phone Number &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; 071255565</a>
-                        </div>
-                        <div className="col-lg-6 col-sm-12">
-                        <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; Address &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; 31/A, Handagiriya, Balangoda</a>
-                        </div>
+                        {props.shop.shopDetail?props.shop.shopDetail.map((x,i)=>
+                            <div className="col-lg-6 col-sm-12" key={i}>
+                            <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+                            </div>
+                            ):null}
+                        
                     </div>
                 </div>
+                
             </div>
 
         </div>
@@ -512,6 +510,7 @@ class Index extends Component {
 
     }
 
+
     updateOrder(id,qty){
         var tempitem = this.state.items;
         var itemsIndex = tempitem.findIndex(function(c) { 
@@ -553,19 +552,18 @@ class Index extends Component {
 
     
     render() { 
-        
-        
+
           return ( 
             <Layout>
-              
+             
                 <div className="cart-menu col-lg-11 col-sm-12 mx-auto">
                 <div>
                     <h2 className="font1 topicColor profile-css-topic">{this.props.topic}</h2>
                     
                 </div>
                 <div className="row col-12">
-                <Imageside></Imageside>
-                <Contentside></Contentside>
+                <Imageside shop={this.props.shop?this.props.shop:null} ></Imageside>
+                <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
                 </div>
                 <br/>  
                 <CartList catageries={this.state.items} catagerytype="Phones" updateOrder={(id,qty)=>this.updateOrder(id,qty)}/>
@@ -576,4 +574,6 @@ class Index extends Component {
     
 }
 
-export default Index; 
+  
+  export default Index;
+  

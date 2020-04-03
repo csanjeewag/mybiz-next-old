@@ -32,16 +32,25 @@ class Index extends Component {
             const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink};
         //////////////
           return ( 
+              
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                 
-
-                <Profile catageries={items} topic="My Shops"></Profile> 
+                <Profile shop={this.props.shop} catageries={items} topic="My Shops"></Profile> 
             <Footer/>
                    </Layout>
            );
       }
     
 }
+ 
+Index.getInitialProps = async function(context) {
+    const { id } = context.query;
+    const res = await fetch(`http://localhost:8000/api/shop/idea-mart`)
+    const shop = await res.json();
+    console.log(shop)
+  
+    return { shop }
+  }
 
-export default Index; 
+  export default Index;
+

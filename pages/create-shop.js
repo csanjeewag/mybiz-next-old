@@ -5,6 +5,7 @@ import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
+import {Url} from './../constant/main';
 class Index extends Component {
 
     constructor() {
@@ -157,7 +158,7 @@ class Index extends Component {
             form.address.length <1 ?  'Address cannot be empty.':''
             break;
             case ('categery') : validation.categery = 
-            form.categery.length <1 ?  'Categery cannot be empty.':''
+            form.categery.length <2 ?  'Categery should be select.':''
             break;
             case ('contact1') : validation.contact1 = 
             form.contact1.length <1 ?  'Contact cannot be empty.':''
@@ -196,13 +197,13 @@ class Index extends Component {
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
-                    data.append('file'+i,x.selectedFile);   
+                    data.append(`image`,x.selectedFile);   
                     })
             }
         
             var jsonbody = this.state;
-            jsonbody.files = null;
-            jsonbody.defaultfilepath = null;
+           // jsonbody.files = null;
+           // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));
            // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
@@ -335,7 +336,12 @@ class Index extends Component {
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required autocomplete="off" name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform} />
+                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required autocomplete="off" name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                                    <option value="d">Default select</option>
+                                    {this.props.error?null:this.props.type.map((x,i)=>
+                                    <option value={x.type}>{x.name}</option>
+                                        )}
+                                    </select>
                                 <span className="form-error">{this.state.validation.categery}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -565,5 +571,21 @@ textarea {
       }
     
 }
+
+Index.getInitialProps = async function(context) {
+
+    
+    const res = await fetch(`${Url}types`);
+    var  type = await res.json();
+    var error = false;
+    if(res.status!=200){
+        error = true ;
+   }
+
+    return {type,error}
+
+
+  }
+
 
 export default Index; 

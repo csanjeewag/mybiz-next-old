@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
-
-
+import {NavLink} from './../constant/main';
 class Index extends Component {
 
     componentDidMount(){
@@ -71,14 +70,9 @@ class Index extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                <Link key={1} href="/"><a className="nav-link nav-link-main active font1" >Home</a></Link>
-                <Link key={6} href="/index1"><a className=" nav-link nav-link-main active font1" >index</a></Link>
-                <Link key={2} href="/index2"><a className=" nav-link nav-link-main active font1" >index2</a></Link>
-                <Link key={3} href="/index3"><a className=" nav-link nav-link-main active font1" >index3</a></Link>
-                <Link key={7} href="/index4"><a className=" nav-link nav-link-main active font1" >index4</a></Link>
-                <Link key={4} href="/menu2"><a className=" nav-link nav-link-main active font1" >menu2</a></Link>
-                <Link key={5} href="/menu3"><a className=" nav-link nav-link-main active font1" >menu3</a></Link>
-                
+                {NavLink.map((x,i)=>
+                    <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
+                    )}
                 </div>
             </div>
        

@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
             newshopdetail:String,
             shopDetail:[],
             user : {},
-            files: [],
+            images: [],
             createDate: Date,
             isvalid:Boolean,
     

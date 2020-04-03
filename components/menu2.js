@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
+import {ImageUrl} from './../constant/main'
 
 
 
@@ -20,26 +21,26 @@ class Index extends Component {
                     
                 </div>
                 <div className="menu2 row projects">
-                {this.props.catageries.map(c=>
+                {this.props.catageries.map((c,i)=>
                     
-                    <div className="col-sm-6 col-md-4 col-lg-3 mt-4">
+                    <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div className="card">
-                    <img className="card-img-top" src={c.imageUrl}/>
+                    <img className="card-img-top" src={ImageUrl+c.images[0]}/>
                     <div className="card-block">
                         <figure className="profile">
-                            <img src={c.topicImageUrl} className="profile-avatar" alt=""/>
+                            <img src={ImageUrl+c.images[1]} className="profile-avatar" alt=""/>
                         </figure>
-                        <h4 className="card-title font2 topicColor">{c.subtopic}</h4>
+                        <h4 className="card-title font2 topicColor">{c.itemname}</h4>
                         <div className="meta font6 subtopicColor">
-                            <a>{c.topic}</a>
+                            <a>{c.subcategery}</a>
                             <div className=" float-right"> 
-                            <a className="Icutprise font6"> <strike>Rs.{c.price}.00</strike>  </a> 
-                            <a className="Idiscount font6"> {c.discount}% </a>
-                            <a className="Iprise font6">&nbsp;Rs.{c.price*(100+c.discount)/100}</a>
+                            <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
+                            <a className="Idiscount font6"> {c.itemdiscount}% </a>
+                            <a className="Iprise font6">&nbsp;Rs.{/*c.itemPrice*(100+c.itemdiscount)/100*/'check'}</a>
                             </div>
                         </div>
                         <div className="card-text font6">
-                            {c.content.slice(0,150)}...
+                            {c.content1.slice(0,150)}...
                         </div>
                     </div>
                     <div className="card-footer">

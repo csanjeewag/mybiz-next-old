@@ -27,10 +27,12 @@
     "passport": "^0.4.1",
     "passport-facebook-token": "^3.3.0",
     "prop-types": "^15.7.2",
+    "randomstring": "^1.1.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.1.2",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "resize-optimize-images": "^1.1.0"
   }
 }
