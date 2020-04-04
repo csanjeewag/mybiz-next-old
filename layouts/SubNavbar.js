@@ -92,6 +92,7 @@ class Index extends Component {
                 {NavLink.map((x,i)=>
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
+                    <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>
                             </div>           </div>
        
             

@@ -5,6 +5,7 @@ import Footer from '../../components/Footer';
 import Errorpage from './../../layouts/error';
 import $ from 'jquery';
 import  {Url,ImageUrl} from './../../constant/main';
+import Link from 'next/link';
 
 const Imageside=(props)=> {
     return(
@@ -109,6 +110,8 @@ const Contentside=(props)=>{
                 
                     </div>
                 </div></div>
+                <hr/>
+                <Link href={'/myshop/'+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
                 </div>
            
         </div>

@@ -404,7 +404,7 @@ class Index extends Component {
                                 <select className={'font6 inputf1 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required autocomplete="off" name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option key='100' value="d">Default select</option>
                                     {this.props.error?null:this.props.type.subtype.map((x,i)=>
-                                        <option key={i} value={x}>{x}</option>
+                                        <option key={i} value={x.type}>{x.name}</option>
                                     )}
                                         
                                     </select>
@@ -658,7 +658,7 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200){
         error = true ;
    }
-
+   console.log(type)
     return {shopid:id,type,error}
 
 

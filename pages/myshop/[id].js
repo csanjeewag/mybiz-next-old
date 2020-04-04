@@ -39,7 +39,8 @@ class Index extends Component {
               
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                {this.props.error?<Errorpage error={this.props.shop} />:<Profile shop={this.props.shop} catageries={items} topic="My Shops"></Profile>}
+                
+                {this.props.error?<Errorpage error={this.props.shop} />:<Profile shop={this.props.shopanditems.shop} catageries={items} items={this.props.shopanditems.items} topic="My Shops"></Profile>}
                 
             <Footer/>
                    </Layout>
@@ -50,14 +51,16 @@ class Index extends Component {
  
 Index.getInitialProps = async function(context) {
     const { id } = context.query;
-    const res = await fetch(`${Url}shop/${id}`);
-     var  shop = await res.json();
+    const res = await fetch(`${Url}shopanditems/${id}`);
+ 
+     var  shopanditems = await res.json();
+
      var error = false;
      if(res.status!=200){
       error = true ;
     }
 
-    return {shop,error}
+    return {shopanditems,error}
 
 
   }

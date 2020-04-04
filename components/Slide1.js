@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
 import $ from 'jquery';
-
+import {ImageUrl} from './../constant/main';
 
 class Index extends Component {
 
@@ -32,20 +32,16 @@ class Index extends Component {
 
         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
             <ol className="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                {this.props.catagery.images.map((x,i)=>
+                <li key={i} data-target="#carouselExampleIndicators" data-slide-to={i} className={i==0?'active':'c'} ></li> 
+                )}
             </ol>
             <div className="carousel-inner">
-                <div className="carousel-item active">
-                <img className="d-block w-100 silde1image" src="./add1.jpg" alt="First slide" width="100%"/>
-                </div>
-                <div className="carousel-item ">
-                <img className="d-block w-100 silde1image" src="./add2.webp" alt="Second slide" width="100%" />
-                </div>
-                <div className="carousel-item ">
-                <img className="d-block w-100 silde1image" src="./add3.webp" alt="Third slide" width="100%" />
-                </div>
+                {this.props.catagery.images.map((x,i)=>
+                <div key={i} className={i==0?'carousel-item active':'carousel-item'}>
+                <img className="d-block w-100 silde1image" src={ImageUrl+x} alt="first slide" width="100%" />
+                </div> 
+                )}
             </div>
             <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>

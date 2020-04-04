@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import {ImageUrl} from './../constant/main'
-
+import Link from 'next/link';
 
 
 class Index extends Component {
@@ -22,7 +22,7 @@ class Index extends Component {
                 </div>
                 <div className="menu2 row projects">
                 {this.props.catageries.map((c,i)=>
-                    
+                  <Link key={i} href={'/item/'+c.itemname}>
                     <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div className="card">
                     <img className="card-img-top" src={ImageUrl+c.images[0]}/>
@@ -52,7 +52,7 @@ class Index extends Component {
                 </div>
         
                    
-                    </div>
+                    </div></Link>
                 )}
                     
                 </div>

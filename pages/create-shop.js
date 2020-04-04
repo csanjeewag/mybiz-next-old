@@ -581,7 +581,6 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200){
         error = true ;
    }
-
     return {type,error}
 
 

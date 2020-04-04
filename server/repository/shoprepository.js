@@ -1,4 +1,5 @@
 var models = require('../model/shop');
+var items = require('./../model/item');
 var imagefile = require('./../fileupload');
 var exports = module.exports = {};
 
@@ -17,6 +18,7 @@ exports.viewall = function(req,res) {
     }).sort({date:-1})
    
   }
+
 // get one by name
   exports.viewbyname = function(req,res) {
 
@@ -57,4 +59,30 @@ exports.viewall = function(req,res) {
             
           });
 
+  }
+
+
+  //get shop and items
+exports.viewshopanditems = function(req,res) {
+
+    models.find({_id:req.params.id},function(error,shopdata){
+        if(error){
+            return   res.status(404).json('error');
+            
+        }else{
+            items.find({shopid:req.params.id},function(error,data){
+                if (error){
+              
+                    return  res.status(400).json({msg:'fails.'});
+                }
+                else{
+                    //console.log(data)
+                return  res.status(200).json({items:data, shop:shopdata[0],msg:'success.'});
+                }
+            })
+              
+            
+        }
+    }).sort({date:-1})
+   
   }

@@ -3,6 +3,7 @@ import Layout from './../layouts/MainLayout';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import  {Url,ImageUrl} from './../constant/main';
+import Link from 'next/link';
 
 const Imageside=(props)=> {
     return(
@@ -95,7 +96,9 @@ const Contentside=(props)=>{
                         
                     </div>
                 </div>
-                
+                <hr/>
+                <Link href={'/create-item?id='+props.shop._id}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
+              
             </div>
 
         </div>
@@ -250,28 +253,30 @@ const CartList=(props)=>{
 
     return(
         <div>
-            <h5 className="font6 fontcolorOrange">{props.catagerytype}</h5>
-
+            <h5 className="font6 fontcolorOrange">{}</h5>
+   
         <div className=" row profile-css projects">
-        {props.catageries.map(c=>
+   
+        {props.items.map((c,i)=>
+        <Link key={i} href={'/item/'+c.itemname}>
         <div className="col-lg-6 col-sm-12">
-        <div key={c.id} className="card">
+        <div key={i} className="card">
         <div className="row col-12">
         <div className="col-lg-3">
-        <img className="f-card-img-top" src={c.imageUrl}/>
+        <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
         </div>
         <div className="col-lg-9">
-        <h4 className="card-title font2 topicColor">{c.topic}</h4>
+        <h4 className="card-title font2 topicColor">{c.itemname}</h4>
         <div className="meta font6 subtopicColor">
-            <a>{c.topic} - {c.id}</a>
+            <a>{c.categery} - {c.subcategery}</a>
             <div className=" float-right"> 
-            <a className="Icutprise font6"> <strike>Rs.{c.price}.00</strike>  </a> 
-            <a className="Idiscount font6"> {c.discount}% </a>
-            <a className="Iprise font6">&nbsp;Rs.{c.price*(100-c.discount)/100}</a>
+            <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
+            <a className="Idiscount font6"> {c.itemdiscount}% </a>
+            <a className="Iprise font6">&nbsp;Rs.{/*c.price*(100-c.discount)/100*/}</a>
             </div>
         </div>
         <div className="card-text font6">
-        {c.content.slice(0,150)}...
+        {c.content1.slice(0,150)}...
          </div>
         <div className="card-footer">
         <small className="font3 float-left">2020/25/5</small>
@@ -292,7 +297,7 @@ const CartList=(props)=>{
 </div>    
             </div>
         </div>
-   
+        </Link>
         )}
       </div>
             <style jsx>{
@@ -546,7 +551,7 @@ class Index extends Component {
             $(window).resize(checkWidth);
     });
     this.setState({
-        items : this.props.catageries
+        items : this.props.items
     })
     }
 
@@ -566,7 +571,7 @@ class Index extends Component {
                 <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
                 </div>
                 <br/>  
-                <CartList catageries={this.state.items} catagerytype="Phones" updateOrder={(id,qty)=>this.updateOrder(id,qty)}/>
+                <CartList items={this.state.items} catagerytype="Phones" updateOrder={(id,qty)=>this.updateOrder(id,qty)}/>
                 </div>  
                   </Layout>
            );

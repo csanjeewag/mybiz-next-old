@@ -36,7 +36,7 @@ exports.viewall = function(req,res) {
   exports.create = function(req,res){
 
    var sh = JSON.parse(req.body.shop)
-    shop.find({_id:sh.shopid,'user._id':sh.userid},function(error,data){
+    shop.find({_id:sh.shopid,'user._id':sh.userid},function(error,shopdata){
 if(error){
     //if not valid
     return  res.status(400).json({msg:'new items create in fails. your account is not valid.'});
@@ -56,6 +56,7 @@ else{
         var bodydata = new models(body);
         bodydata.images = image_url;
         bodydata.shop = {...JSON.parse(req.body.shop)};
+        bodydata.shopid = JSON.parse(req.body.shop).shopid;
         bodydata.user = {...user._id,...user.name,...user.email,...user.imageUrl};
         bodydata.save(function(err,data) {
             if (err){

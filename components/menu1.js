@@ -1,6 +1,6 @@
 import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
-
+import {ImageUrl} from './../constant/main';
 
 const Index = props => (
 
@@ -17,10 +17,10 @@ const Index = props => (
 
     <div className=" row projects">
       {props.catageries.map(c => (
-
+        <Link href={`/catagery/${c.name}`} > 
        <div className="col-sm-6 col-lg-4 col-xl-3"> <div className="card">
        <div className="image ">
-         <img src={'http://loremflickr.com/320/150?random=1'}  width="100%" height="200px" />
+         <img src={ImageUrl+c.mainimage}  width="100%" height="200px" />
        </div>
        <div className="card-inner">
          <div className="header">
@@ -33,9 +33,11 @@ const Index = props => (
          </div>
      </div></div>
      
-     
-      ))}
+     </Link>
+      ))
+      }
    </div>
+   
 </div>
       <style jsx>
       {`

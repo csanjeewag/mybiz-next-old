@@ -48,6 +48,11 @@ app.prepare().then(() => {
 
   });
 
+  server.get("/api/typebyname/:id", (req, res) => {
+ 
+    typeRepository.viewall({name:req.params.id.replace('-',' ')},res);
+
+  });
 
   server.get("/api/typebyshopid/:id", (req, res) => {
  
@@ -86,7 +91,17 @@ app.prepare().then(() => {
     shopRepository.viewbyname({shopName:req.params.id.replace('-',' ')},res);
 
   }); 
+  server.get("/api/shopid/:id", (req, res) => {
+ 
+    shopRepository.viewbyname({_id:req.params.id},res);
 
+  }); 
+
+  server.get("/api/shopanditems/:id", (req, res) => {
+ 
+    shopRepository.viewshopanditems(req,res);
+
+  }); 
   //create new shop
   server.post("/api/createshop", (req, res) => {
 
@@ -118,10 +133,17 @@ app.prepare().then(() => {
   }); 
 
   server.get("/api/catagerybyname/:id", (req, res) => {
-    console.log(req.params.id)
+
     itemsRepository.viewall({categery:req.params.id.replace('-',' ')},res);
 
   }); 
+
+  server.get("/api/itemsbyshopid/:id", (req, res) => {
+
+    itemsRepository.viewall({'shopid':req.params.id},res);
+
+  }); 
+  
 
   server.post("/api/createitem", (req, res) => {
 

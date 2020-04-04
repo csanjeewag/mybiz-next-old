@@ -5,6 +5,7 @@ import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
 import {Url} from './../../constant/main';
+
 class Index extends Component {
 
     constructor() {
@@ -37,7 +38,7 @@ class Index extends Component {
                 <SubNavBar sidenavconst={sidenavconst}/>
                 
 
-             <Slide></Slide>
+             <Slide catagery={this.props.catagery[0]} ></Slide>
                 <Menu2  catageries={this.props.items} topic={this.props.itemname}></Menu2>
             <Footer/>
                    </Layout>
@@ -50,13 +51,15 @@ Index.getInitialProps = async function(context) {
     const { id } = context.query;
     
     const res = await fetch(`${Url}catagerybyname/${id}`);
+    const rescatagery = await fetch(`${Url}typebyname/${id}`);
+    
     var  items = await res.json();
+    var catagery = await rescatagery.json();
     var error = false;
-    if(res.status!=200){
+    if(res.status!=200||rescatagery.status!=200 ){
         error = true ;
    }
-    console.log(items)
-    return {itemname:id,items,error}
+    return {itemname:id,items,catagery,error}
 
 
   }
