@@ -23,7 +23,7 @@ class Index extends Component {
             // Transition effect for navbar 
             $(window).scroll(function() {
               // checks if window is scrolled more than 500px, adds/removes solid class
-              if($(this).scrollTop() > $(window).height()/2) { 
+              if($(this).scrollTop() > $(window).height()/3) { 
                   $('.navbar').addClass('SolidNav');
               }
               else {
@@ -39,7 +39,7 @@ class Index extends Component {
                     $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
 
                     $(window).scroll(function() {
-                        if($(this).scrollTop() > $(window).height()/2) { 
+                        if($(this).scrollTop() > $(window).height()/4) { 
                             $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
                         }else{
                             $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
@@ -60,7 +60,7 @@ class Index extends Component {
             <Layout>
             <div className="mainnav" >
             <nav className="navbar fixed-top navbar-expand-lg">
-            <a className="navbar-brand font1" href="#">MYBIZ.COM</a>
+            <a className="navbar-brand font7" href="#">MYBIZ.COM</a>
   
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>
@@ -104,7 +104,7 @@ class Index extends Component {
                
                 .navbar {
                     z-index : 100;
-                    height: 80px;
+                    height: 50px;
                     background-color: transparent;
                     border: none;
                     color: white;

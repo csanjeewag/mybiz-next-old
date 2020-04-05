@@ -247,8 +247,9 @@ class Index extends Component {
                     data.append(`image`,x.selectedFile);   
                     })
             }
-        
+            
             var jsonbody = this.state;
+            jsonbody.itemlongname = jsonbody.itemlongname+' by '+this.props.shopname;
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));
@@ -343,14 +344,7 @@ class Index extends Component {
     
     render() { 
         
-        const items = [
-            {id:1 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=1'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:2 , topic: 'topic2', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=2'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:3 , topic: 'topic3', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=3'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:4 , topic: 'topic4', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=4'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:5 , topic: 'topic5', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=5'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-         
-        ];
+ 
         //side navbar link
         const sidenavlink = [
             {id:1,link:'/',linkname:'home'},
@@ -378,18 +372,18 @@ class Index extends Component {
                         <div className="row">
                             <div className="field-wrap  col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Item Name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '+(this.state.validation.itemname!=''?'input-error':'')} type="text" required autocomplete="off" name="itemname" value={this.state.itemname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input  className={'font6 inputf1 '+(this.state.validation.itemname!=''?'input-error':'')} type="text" required  name="itemname" value={this.state.itemname} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemname}</span>
                             </div>
                             <div className="field-wrap  col-lg-8 col-md-8 col-sm-12">
                                 <label  className="font2 labelf1">Item long Name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required autocomplete="off" name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemlongname}</span>
                             </div>
                             
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required autocomplete="off" name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option key='1' value="d">Default select</option>
                                     {this.props.error?null:
                                         <option key='2' value={this.props.type.type}>{this.props.type.name}</option>
@@ -401,7 +395,7 @@ class Index extends Component {
 
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
                                 <label  className="font2 labelf1">Sub Categery Name<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required autocomplete="off" name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
+                                <select className={'font6 inputf1 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option key='100' value="d">Default select</option>
                                     {this.props.error?null:this.props.type.subtype.map((x,i)=>
                                         <option key={i} value={x.type}>{x.name}</option>
@@ -413,22 +407,22 @@ class Index extends Component {
                             
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-6">
                                 <label  className="font2 labelf1">item price<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.itemPrice!=''?'input-error':'')} type="text" required autocomplete="off" name="itemPrice" value={this.state.itemPrice} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.itemPrice!=''?'input-error':'')} type="number" required  name="itemPrice" value={this.state.itemPrice} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemPrice}</span>
                             </div>
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-6">
                                 <label  className="font2 labelf1">item discount<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="text" required autocomplete="off" name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="number" required  name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemdiscount}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 1<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required autocomplete="off" name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 2<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required autocomplete="off" name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content2}</span>
                             </div>
                            
@@ -444,7 +438,7 @@ class Index extends Component {
                           <div className="imageupload d-flex justify-content-center">
                           <div className="popup-close-2" onClick={()=>this.deleteFiles(x.selectedfilepath)}>x</div>
                           <img className="align-self-center" width={x.selectedfilepath!=this.state.defaultfilepath?'100%':null} src={x.selectedfilepath}/>
-                          <input className="imageupload-input" type="file" required autocomplete="off" value={x.file} onChange={this.fileChangeHandler} />
+                          <input className="imageupload-input" type="file" required  value={x.file} onChange={this.fileChangeHandler} />
                           </div>
                         </div>  
                         ))}
@@ -458,8 +452,8 @@ class Index extends Component {
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required autocomplete="off" name="newitemSpecification" value={this.state.newitemSpecification} onChange={this.handleChange} onBlur={this.validationform}/>       
-                                <button type="button" className="font6  btn btn-addnewshop"  required autocomplete="off" name="newitemSpecification" onClick={this.addnewitemSpecifications} > new+ </button>
+                                <input type="text" className='font6 inputf1 '  required  name="newitemSpecification" value={this.state.newitemSpecification} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newitemSpecification" onClick={this.addnewitemSpecifications} > new+ </button>
                                 </div>
                         </div>
                         <span>If you need add more field as your item details </span>
@@ -469,7 +463,7 @@ class Index extends Component {
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
                             <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required autocomplete="off" name={x.name} value={x.value} onChange={this.handleChangedetails} />
+                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
                         </div>
                         )
 
@@ -483,8 +477,8 @@ class Index extends Component {
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required autocomplete="off" name="newstockdetail" value={this.state.newstockdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
-                                <button type="button" className="font6  btn btn-addnewshop"  required autocomplete="off" name="newstockdetail" onClick={this.addnewstockDetails} > new+ </button>
+                                <input type="text" className='font6 inputf1 '  required  name="newstockdetail" value={this.state.newstockdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newstockdetail" onClick={this.addnewstockDetails} > new+ </button>
                                 </div>
                         </div>
                         <span>If you need add more field stock details</span>
@@ -494,7 +488,7 @@ class Index extends Component {
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deletestockDetails(x.name)} display='none' >x</div>
                             <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required autocomplete="off" name={x.name} value={x.value} onChange={this.handleChangestockdetails} />
+                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangestockdetails} />
                         </div>
                         )
 
@@ -507,7 +501,7 @@ class Index extends Component {
                     </div>
 
                     <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required autocomplete="off" name="newitemSpecification" onClick={this.handleSubmit} > Submit </button>
+                    <button type="button" className="font6  btn btn-submit "  required  name="newitemSpecification" onClick={this.handleSubmit} > Submit </button>
                     </div>
                     </form>
                 </div>
@@ -650,7 +644,7 @@ textarea {
 }
 
 Index.getInitialProps = async function(context) {
-    const { id } = context.query;
+    const { id,shopname } = context.query;
     
     const res = await fetch(`${Url}typebyshopid/${id}`);
     var  type = await res.json();
@@ -658,8 +652,8 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200){
         error = true ;
    }
-   console.log(type)
-    return {shopid:id,type,error}
+   console.log(shopname)
+    return {shopid:id,type,error,shopname:shopname}
 
 
   }

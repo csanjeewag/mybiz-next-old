@@ -4,6 +4,8 @@ import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import  {Url,ImageUrl} from './../constant/main';
 import Link from 'next/link';
+import Cookie from "js-cookie";
+
 
 const Imageside=(props)=> {
     return(
@@ -58,6 +60,9 @@ const Imageside=(props)=> {
 
 
 const Contentside=(props)=>{
+
+
+
     return (
         <div className="col-lg-6 col-sm-12">
 
@@ -97,7 +102,7 @@ const Contentside=(props)=>{
                     </div>
                 </div>
                 <hr/>
-                <Link href={'/create-item?id='+props.shop._id}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
+                <Link href={'/create-item?id='+props.shop._id+'&shopname='+props.shop.shopName}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
               
             </div>
 
@@ -251,6 +256,7 @@ const Contentside=(props)=>{
 const CartList=(props)=>{
 
 
+
     return(
         <div>
             <h5 className="font6 fontcolorOrange">{}</h5>
@@ -258,13 +264,15 @@ const CartList=(props)=>{
         <div className=" row profile-css projects">
    
         {props.items.map((c,i)=>
-        <Link key={i} href={'/item/'+c.itemname}>
-        <div className="col-lg-6 col-sm-12">
-        <div key={i} className="card">
+        
+        <div key={i} className="col-lg-6 col-sm-12">
+        <div  className="card">
         <div className="row col-12">
+        <Link href={'/item/'+c.itemlongname}>
         <div className="col-lg-3">
         <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
         </div>
+        </Link>
         <div className="col-lg-9">
         <h4 className="card-title font2 topicColor">{c.itemname}</h4>
         <div className="meta font6 subtopicColor">
@@ -278,15 +286,14 @@ const CartList=(props)=>{
         <div className="card-text font6">
         {c.content1.slice(0,150)}...
          </div>
+        
         <div className="card-footer">
         <small className="font3 float-left">2020/25/5</small>
         
         <div className="card-footer">
            
-              <a href="#" className="btn btn-danger float-right btn-sm ismobile_disable"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp;Add to Cart</a>
-             <a href="#" className="btn btn-primary float-right btn-sm ismobile_disable"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp; Order Now</a>
-             <a href="#" className="btn btn-danger float-right btn-sm isdesktop_disable"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/></a>
-             <a href="#" className="btn btn-primary float-right btn-sm isdesktop_disable"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> </a>
+              <a onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-danger float-right btn-sm ismobile_disable"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp;Add to Cart</a>
+             <a onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-primary float-right btn-sm ismobile_disable"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp; Order Now</a>
            
         </div>
         
@@ -297,7 +304,7 @@ const CartList=(props)=>{
 </div>    
             </div>
         </div>
-        </Link>
+
         )}
       </div>
             <style jsx>{
@@ -515,22 +522,27 @@ class Index extends Component {
 
     }
 
-
-    updateOrder(id,qty){
-        var tempitem = this.state.items;
-        var itemsIndex = tempitem.findIndex(function(c) { 
-            return c.id == id; 
-        });
-
-        tempitem[itemsIndex].qty = tempitem[itemsIndex].qty+qty;
-        if(tempitem[itemsIndex].qty>=0){
-            this.setState({
-                items : [...tempitem],
-    
-            })
+    addtocart(itemid,name){
+        var data = Cookie.getJSON('faverite-item');
+        var jsonarray = []
+        
+        if(data){
+            if(!data.includes(itemid))
+            {jsonarray = [...data,itemid]
+            Cookie.set('faverite-item',jsonarray);
+            alert(`add ${name} to cart.`)
+            }else{
+            alert(`already added ${name} to cart.`) 
+            }
+        }else{
+            jsonarray = [itemid]
+            Cookie.set('faverite-item',jsonarray);
+            alert(`add ${name} to cart.`)
         }
-     
+  
+        
     }
+
 
     componentDidMount(){
         $(document).ready(function() {
@@ -571,7 +583,7 @@ class Index extends Component {
                 <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
                 </div>
                 <br/>  
-                <CartList items={this.state.items} catagerytype="Phones" updateOrder={(id,qty)=>this.updateOrder(id,qty)}/>
+                <CartList items={this.state.items} catagerytype="Phones" addtocart ={(id,name)=>this.addtocart(id,name)} />
                 </div>  
                   </Layout>
            );

@@ -7,11 +7,12 @@ exports.viewall = function(req,res) {
 
     models.find(req,function(error,data){
         if(error){
-            return   res.status(404).json('error');
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested page fail!'};
+            return   res.status(404).json(error);
             
         }else{
             
-              var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
+              var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
@@ -22,14 +23,15 @@ exports.viewall = function(req,res) {
   exports.viewbyshopid = function(req,res) {
 
     shop.find({_id:req.params.id},function(error,data){
-        if(!data){
+        if(error){
             var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
                     return   res.status(201).send(error);
         }
         else{
         models.find({type:data[0].categery},function(error,data){
             if(error){
-                return   res.status(404).send({msg:'there is a error'});
+                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
+                return   res.status(404).send(error);
                 
             }else{
                 var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
@@ -60,8 +62,8 @@ exports.create = function(req,res){
         bodydata.mainimage = mainimage_url;
         bodydata.save(function(err,data) {
             if (err){
-              
-                return  res.status(400).json({msg:'catagery create in fails.'});
+                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
+                return  res.status(400).json(error);
             }
             else{
                 //console.log(data)

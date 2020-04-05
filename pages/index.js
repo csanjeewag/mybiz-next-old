@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
-import Menu1 from './../components/menu1';
+import Allcatagery from './../components/Allcatagery';
 import NavBar from './../layouts/Navbar';
 import TopSlide from '../components/Topslide';
 import Footer from './../components/Footer';
@@ -15,11 +15,11 @@ class Index extends Component {
         
 
           return ( 
-            <Layout>
+           <Layout>
          <NavBar ></NavBar>
         <TopSlide></TopSlide>
         
-              <Menu1 catageries={this.props.types} topic="Categories" ></Menu1>
+              <Allcatagery catageries={this.props.types} topic="categories" ></Allcatagery>
 
 
      <Footer></Footer>

@@ -35,7 +35,7 @@ class Index extends Component {
             // Transition effect for navbar 
             $(window).scroll(function() {
               // checks if window is scrolled more than 500px, adds/removes solid class
-              if($(this).scrollTop() >  $(window).width()/3) { 
+              if($(this).scrollTop() >  $(window).width()/4) { 
                   $('.sub1nav').addClass('SolidNav').css({'opacity':'1'}).addClass('fixed-top').removeClass('sticky-top');
                   $('.logo-link').css({'display':'none'}); $('.all-link').css({'display':'block'});
               }
@@ -78,8 +78,8 @@ class Index extends Component {
             <SignUp ref="signup" showsignup={this.props.showsignup} />
             <div className="subnav" >
             <nav className="navbar sub1nav sticky-top navbar-expand-lg">
-            <a className="navbar-brand font1 logo-link" href="#">MYBIZ.COM</a>
-            <button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font3">{this.props.sidenavconst.topiclink}</button>
+            <a className="navbar-brand font7 logo-link" href="#">MYBIZ.COM</a>
+            <button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font1">{this.props.sidenavconst.topiclink}</button>
  
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>
@@ -123,7 +123,7 @@ class Index extends Component {
                
                 .navbar {
                     z-index : 50;
-                    height: 80px;
+                    height: 60px;
                     background-color: darkblue;
                     border: none;
                     color: white;
@@ -135,6 +135,7 @@ class Index extends Component {
                     transition: background-color 2s ease 0s;
                     box-shadow: 0 0 4px grey;
                     color: white;
+                    height:50px;
                }
                .togglemenuC{
                 display:none

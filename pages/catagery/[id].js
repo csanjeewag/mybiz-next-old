@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './../../layouts/MainLayout';
-import Menu2 from './../../components/menu2';
+import Categeryitem from '../../components/Categeryitem';
 import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
@@ -39,7 +39,7 @@ class Index extends Component {
                 
 
              <Slide catagery={this.props.catagery[0]} ></Slide>
-                <Menu2  catageries={this.props.items} topic={this.props.itemname}></Menu2>
+                <Categeryitem  catageries={this.props.items} topic={this.props.itemname}></Categeryitem>
             <Footer/>
                    </Layout>
            );
@@ -59,6 +59,7 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200||rescatagery.status!=200 ){
         error = true ;
    }
+
     return {itemname:id,items,catagery,error}
 
 

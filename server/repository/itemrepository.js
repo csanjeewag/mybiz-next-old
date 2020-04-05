@@ -20,14 +20,23 @@ exports.viewall = function(req,res) {
   }
 
   exports.viewbyname = function(req,res) {
-
-    models.find(req,function(error,data){
+    console.log(req.query.ide)
+    models.find({itemlongname:req.params.id},function(error,data){
         if(error){
             return   res.status(404).send({msg:'there is a error'});
             
         }else{
             var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
+            if(data.length>1)
+            {
+              var index =  data.findIndex(function(e){
+                    return e._id == req.query.ide
+                })
+                return   data[index]?res.status(200).send(data[index]):res.status(200).send(data[0]);
+            }else{
                 return   data[0]?res.status(200).send(data[0]):res.status(201).send(error);
+            }
+                
         }
     })
    
@@ -77,3 +86,19 @@ else{
   }
 
 
+//for favorite
+exports.viewforfavorite = function(req,res) {
+    var fav = req.query.fav.split(',');
+    models.find({'_id': { $in: fav}},function(error,data){
+        if(error){
+            return   res.status(404).json('error');
+            
+        }else{
+            
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
+           // return   data.length>0?res.status(200).send(data):res.status(201).send(error);
+            return res.status(200).send(data)
+        }
+    }).sort({date:-1})
+   
+  }

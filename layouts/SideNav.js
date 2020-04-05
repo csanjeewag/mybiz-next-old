@@ -41,15 +41,15 @@ render(){
 <div className="js-side-nav-container side-nav-container sidenavbar">
 <div className="js-side-nav side-nav">
   
-  <a href="#0" className="js-menu-close menu-close navbar-brand font1">&nbsp;
+  <a href="#" className="js-menu-close menu-close navbar-brand font7">&nbsp;
   <img src="https://img.icons8.com/windows/25/FF8C8C/delete-slide.png"/>&nbsp;
   MYBIZ.COM
   </a>
 
-  <h4 className="sidenav-link-topic  font3">  &nbsp; {this.props.sidenavconst.topic}</h4>
+  <h4 className="sidenav-link-topic  font1">  &nbsp; {this.props.sidenavconst.topic}</h4>
   <div className="sidenavbar-link">
-                {this.props.sidenavconst.sidenavlink.map(c=>
-                <Link href={c.link} key={c.id}><a className="nav-link font3" ><img src="https://img.icons8.com/small/25/C4FBFE/arrow.png"/> &nbsp;{c.linkname}</a></Link>
+                {this.props.sidenavconst.sidenavlink.map((c,i)=>
+                <Link key={i} href={c.link} ><a className="nav-link font1" ><i className="fa fa-telegram" aria-hidden="true"></i> &nbsp;{c.linkname}</a></Link>
                   )}
                 </div>
 </div>
@@ -133,7 +133,7 @@ opacity: 1;
 }
 .sidenavbar-link a{
     color: #C4FBFE ;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25) ;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5) ;
 }
 .sidenavbar-link a:hover{
   transform: scale(1.01);

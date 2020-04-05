@@ -50,7 +50,7 @@ app.prepare().then(() => {
 
   server.get("/api/typebyname/:id", (req, res) => {
  
-    typeRepository.viewall({name:req.params.id.replace('-',' ')},res);
+    typeRepository.viewall({type:req.params.id},res);
 
   });
 
@@ -128,13 +128,20 @@ app.prepare().then(() => {
 
   server.get("/api/item/:id", (req, res) => {
  
-    itemsRepository.viewbyname({itemname:req.params.id.replace('-',' ')},res);
+    itemsRepository.viewbyname(req,res);
+
+  }); 
+
+  server.get("/api/itemforfavorite", (req, res) => {
+ 
+    itemsRepository.viewforfavorite(req,res);
 
   }); 
 
   server.get("/api/catagerybyname/:id", (req, res) => {
+    
 
-    itemsRepository.viewall({categery:req.params.id.replace('-',' ')},res);
+    itemsRepository.viewall({categery:req.params.id},res);
 
   }); 
 

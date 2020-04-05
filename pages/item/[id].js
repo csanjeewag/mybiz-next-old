@@ -383,8 +383,8 @@ class Index extends Component {
 }
 
 Index.getInitialProps = async function(context) {
-    const { id } = context.query;
-    const res = await fetch(`${Url}item/${id}`);
+    const { id,ide } = context.query;
+    const res = await fetch(`${Url}item/${id}?ide=${ide}`);
    
      var  item = await res.json();
      var error = false;

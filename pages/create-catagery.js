@@ -17,7 +17,7 @@ class Index extends Component {
             newsubtype:'',
             mainfile:null,
             mainfilepath:'https://img.icons8.com/ios/50/01567e/image.png',
-            subtype:[{name:'tghc',type:'oiko'}],
+            subtype:[],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -97,13 +97,11 @@ class Index extends Component {
     addnewSubtypes = evt =>{
         if(this.state.newsubtype != ''){
             var shopd = this.state.subtype;
-            alert(this.state.newsubtype)
             shopd.push({name:this.state.newsubtype,type:''});
             this.setState({
                 subtype : shopd,
                 newsubtype : ''
             })
-            alert(' added new details!');
             this.componentDidMount();
         }
      
@@ -204,10 +202,13 @@ class Index extends Component {
     };
 
     mainfileChangeHandler=event=>{
-        this.setState({
-            mainfile : event.target.files[0],
-            mainfilepath : URL.createObjectURL(event.target.files[0])
-        })
+        if(event.target.files[0]){
+            this.setState({
+                mainfile : event.target.files[0],
+                mainfilepath : URL.createObjectURL(event.target.files[0])
+            })
+        }
+
 
     }
 
@@ -282,22 +283,10 @@ class Index extends Component {
     
     render() { 
         
-        const items = [
-            {id:1 , topic: 'topic1', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=1'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:2 , topic: 'topic2', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=2'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:3 , topic: 'topic3', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=3'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:4 , topic: 'topic4', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=4'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-            {id:5 , topic: 'topic5', subtopic:'subtopic1',imageUrl:'http://loremflickr.com/320/150?random=5'   ,discount:5,date:'2020/4/5',price:150,topicImageUrl:'https://img.icons8.com/ios/50/000000/contract-job.png',content:'In publishing, art, and communication, content is the information and experiences that are directed toward an end-user or audience. Content is "something that is to be expressed through some medium, as speech, writing or any of various arts',qty:0,seller:'idea mart'},
-         
-        ];
+
         //side navbar link
         const sidenavlink = [
             {id:1,link:'/',linkname:'home'},
-            {id:1,link:'/menu',linkname:'menu'},
-            {id:1,link:'/',linkname:'menu2'},
-            {id:1,link:'/',linkname:'menu3'},
-            {id:1,link:'/',linkname:'menu4'},
-            {id:1,link:'/',linkname:'menu5'},
           ];
           
             const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink};
@@ -317,17 +306,17 @@ class Index extends Component {
                         <div className="row">
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">name<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.name!=''?'input-error':'')} type="text" required autocomplete="off" name="name" value={this.state.name} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.name!=''?'input-error':'')} type="text" required  name="name" value={this.state.name} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.name}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">type<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.type!=''?'input-error':'')} type="text" required autocomplete="off" name="type" value={this.state.type} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.type!=''?'input-error':'')} type="text" required  name="type" value={this.state.type} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.type}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">details<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required autocomplete="off" name="content1" type={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" type={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
                            
@@ -342,8 +331,8 @@ class Index extends Component {
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required autocomplete="off" name="newsubtype" value={this.state.newsubtype} onChange={this.handleChange} onBlur={this.validationform}/>       
-                                <button type="button" className="font6  btn btn-addnewshop"  required autocomplete="off" name="newsubtype" onClick={this.addnewSubtypes} > new+ </button>
+                                <input type="text" className='font6 inputf1 '  required  name="newsubtype" value={this.state.newsubtype} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newsubtype" onClick={this.addnewSubtypes} > new+ </button>
                                 </div>
                         </div>
                         <span>If you need add more field as your details of subtype</span>
@@ -353,7 +342,7 @@ class Index extends Component {
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
                             <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required autocomplete="off" name={x.name} value={x.type} onChange={this.handleChangedetails} />
+                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.type} onChange={this.handleChangedetails} />
                         </div>
                         )
 
@@ -370,7 +359,7 @@ class Index extends Component {
                           <div className="imageupload d-flex justify-content-center">
                           <div className="popup-close-2">x</div>
                           <img className="align-self-center" width={this.state.mainfilepath!=this.state.defaultfilepath?'100%':null} src={this.state.mainfilepath}/>
-                          <input className="imageupload-input" type="file" required autocomplete="off"  onChange={this.mainfileChangeHandler} />
+                          <input className="imageupload-input" type="file" required   onChange={this.mainfileChangeHandler} />
                           </div>
                         </div>  
                    
@@ -388,7 +377,7 @@ class Index extends Component {
                           <div className="imageupload d-flex justify-content-center">
                           <div className="popup-close-2" onClick={()=>this.deleteFiles(x.selectedfilepath)}>x</div>
                           <img className="align-self-center" width={x.selectedfilepath!=this.state.defaultfilepath?'100%':null} src={x.selectedfilepath}/>
-                          <input className="imageupload-input" type="file" required autocomplete="off" value={x.file} onChange={this.fileChangeHandler} />
+                          <input className="imageupload-input" type="file" required  value={x.file} onChange={this.fileChangeHandler} />
                           </div>
                         </div>  
                         ))}
@@ -400,7 +389,7 @@ class Index extends Component {
                     </div>
 
                     <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required autocomplete="off" name="newsubtype" onClick={this.handleSubmit} > Submit </button>
+                    <button type="button" className="font6  btn btn-submit "  required  name="newsubtype" onClick={this.handleSubmit} > Submit </button>
                     </div>
                     </form>
                 </div>

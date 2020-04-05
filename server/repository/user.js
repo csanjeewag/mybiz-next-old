@@ -6,6 +6,7 @@ exports.viewall = function(req,res) {
 
     models.find(req,function(error,data){
         if(error){
+            
             return   res.status(404).json('error');
             
         }else{

@@ -34,7 +34,7 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
-                <SubNavBar sidenavconst={sidenavconst}/>
+                
                 
 
                 <Menu3 catageries={items} topic="Items"></Menu3>

@@ -10,36 +10,74 @@ class Index extends Component {
 
 <section id="footer">
 	<div className="container">
-		<div className="row text-center text-xs-center text-sm-left text-md-left">
+		<div className="row">
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5>Quick links</h5>
-				<ul className="list-unstyled quick-links">
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>Home</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>About</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>Videos</a></li>
-				</ul>
+				<h5 className="info-topic">CONTACT US</h5>
+				<table className="contact-info">
+					<tbody >
+						<tr>
+						<td><i className="fa fa-map-marker icon"></i></td>
+						<td > Smart Mobile Nugegoda.<br/>
+					281/1A, Stanly Thilakarathna Mawatha,<br/>
+					Nugegoda</td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-phone icon"></i></td>
+						<td>0767 568 568, 0772 337 148,<br/>0114 546 614 </td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-envelope-o icon"></i></td>
+						<td><a href="mailto:info@smartmobile.lk">info@smartmobile.lk</a></td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-globe icon"></i></td>
+						<td><a href="https://www.smartmobile.lk"> www.smartmobile.lk</a></td>
+					</tr>
+					</tbody></table>
 			</div>
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5>Quick links</h5>
-				<ul className="list-unstyled quick-links">
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>Home</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>About</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
-					<li><a href="javascript:void();"><i className="fa fa-angle-double-right"></i>Videos</a></li>
-				</ul>
+				<h5 className="info-topic">INFORMATION</h5>
+				<table className="contact-info">
+					<tbody >
+						<tr>
+						<td><i className="fa fa-info icon"></i></td>
+						<td > About Us</td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-info icon"></i></td>
+						<td>Delivery Information </td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-info icon"></i></td>
+						<td>Privacy Policy </td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-info icon"></i></td>
+						<td>Terms & Conditions</td>
+					</tr>
+					</tbody></table>
 			</div>
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				
-				<ul className="list-unstyled list-inline social text-center">
-					<li className="list-inline-item"><a href="javascript:void();"><i className="fa fa-facebook"></i></a></li>
-					<li className="list-inline-item"><a href="javascript:void();"><i className="fa fa-twitter"></i></a></li>
-					<li className="list-inline-item"><a href="javascript:void();"><i className="fa fa-instagram"></i></a></li>
-					<li className="list-inline-item"><a href="javascript:void();"><i className="fa fa-google-plus"></i></a></li>
-					<li className="list-inline-item"><a href="javascript:void();" target="_blank"><i className="fa fa-envelope"></i></a></li>
-				</ul>
+				<h5 className="info-topic">FOLLOW US</h5>
+				<table className="contact-info">
+					<tbody >
+						<tr>
+						<td><i className="fa fa-facebook icon"></i></td>
+						<td > facebook</td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-twitter icon"></i></td>
+						<td>twitter </td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-instagram icon"></i></td>
+						<td>instagram </td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-google-plus icon"></i></td>
+						<td>google plus</td>
+					</tr>
+					</tbody></table>
 			</div>
 		</div>
 			
@@ -76,13 +114,7 @@ section .section-title {
 #footer {
     background: darkblue !important;
 }
-#footer h5{
-	padding-left: 10px;
-    border-left: 3px solid #eeeeee;
-    padding-bottom: 6px;
-    margin-bottom: 20px;
-    color:#ffffff;
-}
+
 #footer a {
     color: #ffffff;
     text-decoration: none !important;
@@ -127,6 +159,24 @@ section .section-title {
 #footer ul.quick-links li:hover a i {
     font-weight: 700;
 }
+.info-topic {
+	color:white;
+	margin: 20px 0;
+}
+.contact-info{
+	color:white;
+	font-family: 'Titillium Web', sans-serif;
+}
+.contact-info .icon{
+	color:yellow;
+	padding-right:20px;
+   
+}
+tr {
+	vertical-align: top;
+	padding-bottom:200px;
+	font-family: 'Titillium Web', sans-serif;
+  }
 
 @media (max-width:767px){
 	#footer h5 {

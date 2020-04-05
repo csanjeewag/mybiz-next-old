@@ -1,1 +1,1 @@
-{"/_app":"static/development/pages/_app.js","/_document":"static/development/pages/_document.js","/_error":"static/development/pages/_error.js","/item/[id]":"static/development/pages/item/[id].js","/myshop/[id]":"static/development/pages/myshop/[id].js"}
+{"/_app":"static/development/pages/_app.js","/_document":"static/development/pages/_document.js","/_error":"static/development/pages/_error.js","/create-item":"static/development/pages/create-item.js","/index":"static/development/pages/index.js","/":"static/development/pages/index.js"}

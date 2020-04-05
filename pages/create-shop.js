@@ -331,12 +331,12 @@ class Index extends Component {
                         <div className="row">
                             <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">Shop Name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required autocomplete="off" name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input  className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.shopName}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required autocomplete="off" name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option value="d">Default select</option>
                                     {this.props.error?null:this.props.type.map((x,i)=>
                                     <option value={x.type}>{x.name}</option>
@@ -346,37 +346,37 @@ class Index extends Component {
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">District<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required autocomplete="off" name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.district}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Town<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required autocomplete="off" name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.town}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Address<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.address!=''?'input-error':'')} type="text" required autocomplete="off" name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.address!=''?'input-error':'')} type="text" required  name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.address}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">contact 1<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required autocomplete="off" name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.contact1}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">contact 2<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required autocomplete="off" name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <input className={'font6 inputf1 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required  name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.contact2}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 1<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required autocomplete="off" name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 2<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required autocomplete="off" name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content2}</span>
                             </div>
                            
@@ -392,7 +392,7 @@ class Index extends Component {
                           <div className="imageupload d-flex justify-content-center">
                           <div className="popup-close-2" onClick={()=>this.deleteFiles(x.selectedfilepath)}>x</div>
                           <img className="align-self-center" width={x.selectedfilepath!=this.state.defaultfilepath?'100%':null} src={x.selectedfilepath}/>
-                          <input className="imageupload-input" type="file" required autocomplete="off" value={x.file} onChange={this.fileChangeHandler} />
+                          <input className="imageupload-input" type="file" required  value={x.file} onChange={this.fileChangeHandler} />
                           </div>
                         </div>  
                         ))}
@@ -406,8 +406,8 @@ class Index extends Component {
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required autocomplete="off" name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
-                                <button type="button" className="font6  btn btn-addnewshop"  required autocomplete="off" name="newshopdetail" onClick={this.addnewShopDetails} > new+ </button>
+                                <input type="text" className='font6 inputf1 '  required  name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newshopdetail" onClick={this.addnewShopDetails} > new+ </button>
                                 </div>
                         </div>
                         <span>If you need add more field as your details of shop</span>
@@ -417,7 +417,7 @@ class Index extends Component {
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
                             <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required autocomplete="off" name={x.name} value={x.value} onChange={this.handleChangedetails} />
+                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
                         </div>
                         )
 
@@ -430,7 +430,7 @@ class Index extends Component {
                     </div>
 
                     <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required autocomplete="off" name="newshopdetail" onClick={this.handleSubmit} > Submit </button>
+                    <button type="button" className="font6  btn btn-submit "  required  name="newshopdetail" onClick={this.handleSubmit} > Submit </button>
                     </div>
                     </form>
                 </div>

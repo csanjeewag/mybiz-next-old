@@ -24,7 +24,8 @@ exports.viewall = function(req,res) {
 
     models.find(req,function(error,data){
         if(error){
-            return   res.status(404).send('error');
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return   res.status(404).send(error);
             
         }else{
             var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
@@ -49,8 +50,8 @@ exports.viewall = function(req,res) {
         bodydata.images = image_url;
         bodydata.save(function(err,data) {
             if (err){
-              
-                return  res.status(400).json({msg:'shop create in fails.'});
+                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                return  res.status(400).json(error);
             }
             else{
                 //console.log(data)
@@ -72,8 +73,8 @@ exports.viewshopanditems = function(req,res) {
         }else{
             items.find({shopid:req.params.id},function(error,data){
                 if (error){
-              
-                    return  res.status(400).json({msg:'fails.'});
+                    var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                    return  res.status(400).json(error);
                 }
                 else{
                     //console.log(data)

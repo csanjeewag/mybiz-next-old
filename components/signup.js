@@ -139,7 +139,7 @@ render(){
     <div id="logreg-forms" className="col-lg-4 col-md-8 col-sm-12">
     <div className="popup-close">x</div>
             <br/>
-            <h3 className="h3 mb-3 font6 topicColor .fontsizeE-6" > Sign in</h3>
+            <h3 className="h3 mb-3 font1 topicColor .fontsizeE-6" > Sign in</h3>
             <div className="social-login row col-12">
                  <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
@@ -154,20 +154,20 @@ render(){
               
             </div>
             <hr/>
-            <h3 className="h3 mb-3 font6 topicColor .fontsizeE-6" > Sign up</h3>
+            <h3 className="h3 mb-3 font1 topicColor .fontsizeE-6" > Sign up</h3>
             <form>
 
             <div className="form-group">
-                <label for="exampleInputAddress" className="font6">address</label>
+                <label  className="font1">address</label>
                 <input type="email" className="form-control" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label for="exampleInputAddress" className="font6">Contact</label>
+                <label  className="font1">Contact</label>
                 <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Contact" name="contact" value={this.state.contact} onChange={this.handleChange}/>
             </div>
             <div className="form-check">
                 <input type="checkbox" className="form-check-input" />
-                <label className="form-check-label" for="exampleCheck1" className="font6">Sign up as Seller</label>
+                <label className="form-check-label"  className="font1">Sign up as Seller</label>
             </div>
             <small id="emailHelp" className="form-text text-muted">We'll never share your details with anyone else.</small>
             <div className="social-login row col-12">
