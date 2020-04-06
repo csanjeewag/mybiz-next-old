@@ -12,6 +12,8 @@ var userRepository = require('./repository/user');
 var shopRepository = require('./repository/shoprepository');
 var itemsRepository = require('./repository/itemrepository');
 var typeRepository = require('./repository/typerepository');
+var questionRepository = require('./repository/questionrepository');
+var reviewrepository = require('./repository/reviewrepository');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -41,6 +43,88 @@ server.use(fileupload());
 
 app.prepare().then(() => {
 
+  /**reviews */
+  server.get("/api/reviews/:id", (req, res) => {
+ 
+    reviewrepository.viewall({itemid:req.params.id},res);
+
+  });
+
+  server.post("/api/reviewcreate", (req, res) => {
+
+  
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        reviewrepository.create(req,res)
+    }, (error) => {
+  
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+
+
+  /********* */
+
+  /**question */
+  server.get("/api/questions/:id", (req, res) => {
+ 
+    questionRepository.viewall({itemid:req.params.id},res);
+
+  });
+
+  server.put("/api/removeansewer/:id", (req, res) => {
+ 
+    questionRepository.removeansewer(req,res);
+
+  });
+
+  server.post("/api/questioncreate", (req, res) => {
+
+  
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          questionRepository.create(req,res)
+    }, (error) => {
+  
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+
+  server.post("/api/answertoqestion/:id", (req, res) => {
+
+  
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          questionRepository.answertoqestion(req,res);
+    }, (error) => {
+
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+
+  /************** */
+
   /** type api */
   server.get("/api/types", (req, res) => {
  
@@ -62,10 +146,10 @@ app.prepare().then(() => {
 
   server.post("/api/createCatagery", (req, res) => {
 
-    typeRepository.create(req,res)
-   /* if(req.body.user!='undefined'){
+   
+    if(req.body.user!='undefined'){
       project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
-        typeRepository.create(req,res)
+         typeRepository.create(req,res)
     }, (error) => {
         console.error(error.message); // Logs 'Invalid Value'
         return res.status(404).json({msg:'you are signout please sign in.'}); 
@@ -75,7 +159,7 @@ app.prepare().then(() => {
     else{
       return res.status(404).json({msg:'check your account again.'}); 
     }
-    */
+  
     
   });
 
@@ -109,7 +193,7 @@ app.prepare().then(() => {
       project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
         shopRepository.create(req,res)
     }, (error) => {
-        console.error(error.message); // Logs 'Invalid Value'
+
         return res.status(404).json({msg:'you are signout please sign in.'}); 
   
     });
@@ -181,7 +265,7 @@ server.post("/api/createuser", (req, res) => {
     project.verifyToken(req.body.token).then((jsonData) => {
       userRepository.signinuser(req,res);
   }, (error) => {
-      console.error(error.message); // Logs 'Invalid Value'
+  
       return res.status(404).json({msg:'There are some error.'}); 
 
   });
@@ -197,32 +281,5 @@ server.post("/api/createuser", (req, res) => {
   server.listen(8000,function(){
   })
 
-/*
-  createServer((req, res) => {
-    // Be sure to pass `true` as the second argument to `url.parse`.
-    // This tells it to parse the query portion of the URL.
-    const parsedUrl = parse(req.url, true)
-    const { pathname, query } = parsedUrl
-    
-    if (pathname === '/a') {
-      
-       userRepository.create();
-      app.render(req, res, '/', query)
 
-    } else if (pathname === '/b') {
-     
-       userRepository.viewallusers({},res);
-
-      app.render(req, res, '/', query)
-    }else if(pathname === '/api/'){
-     // userRepository.viewallusers({},res);
-      res.status(200).json({ name: 'Next.js' })
-    }
-     else {
-      handle(req, res, parsedUrl)
-    }
-  }).listen(3000, err => {
-    if (err) throw err
-    console.log('> Ready on http://localhost:3000')
-  })*/
 })

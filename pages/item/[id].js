@@ -6,6 +6,7 @@ import Errorpage from './../../layouts/error';
 import $ from 'jquery';
 import  {Url,ImageUrl} from './../../constant/main';
 import Link from 'next/link';
+import Cookie from "js-cookie";
 
 const Imageside=(props)=> {
     return(
@@ -257,24 +258,40 @@ const Contentside=(props)=>{
     )
 }
 
-const QuestionSide = ()=>{
+const QuestionSide = (props)=>{
     return(
-        <div className="menu2-quations">
+        <div className="menu2-quations col-12">
         <hr/>
-        <div className="menu2-quaction">
-        <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; What is this? <br/> <spam className="spam-text font3 fontsizeE-8"> -Chanaka Sampath- on 25/02/2020</spam></p>
-        <p href="#" className="font3 fontsizeE-9"><img src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp;How to add/update an attribute to an HTML element using JavaScript? How to create a pop-up to print dialog box using JavaScript?  ES6 | Animation · How to ...</p>
+        {props.questiondata.map((x,i)=>
+            <div key={i} className="menu2-question">
+            <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; {x.question}<br/> <span className="spam-text font3 fontsizeE-8"> -{x.a_user.name}- on {x.a_Date}</span></p>
+            <p  className="font3 fontsizeE-9"><img src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp;{x.answer?x.answer:'pending answer..'}</p>
+            {!x.answer?<div>
+            <input className="inputf2" type="text" name="question" id={'input-'+x._id} /><br/>
+            <button onClick={props.handlegiveanswer.bind(this,x._id)} type="button" className="btn btn-primary btn-sm"><i className="fa fa-bullhorn" aria-hidden="true"></i>&nbsp; keep a answer </button>
+        
+            </div>:null}
+            <button onClick={props.removeansewer.bind(this,x._id)}>x</button>
+            <hr/>
+            </div>  
+            )}
+      
+
+        <div className="menu2-question">
+        <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/>
+        <input className="inputf2" type="text" name="question" value={props.question}  onChange={props.handleChange} /><br/>
+        <button onClick={props.handleaskquestion} type="button" className="btn btn-primary btn-sm"><i className="fa fa-quora" aria-hidden="true"></i>&nbsp; Ask a question </button>
+        
         <hr/>
         </div>
 
-       <div className="menu2-quaction">
-        <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; How to add/update an attribute to an HTML element using JavaScript?  <br/> <spam className="spam-text font3 fontsizeE-8"> -Chanaka Sampath- on 25/02/2020</spam></p>
-        <p href="#" className="font3 fontsizeE-9"><img src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp; How to create a pop-up to print dialog box using JavaScript?  ES6 | Animation · How to ...</p>
-        <hr/>
-        </div>
        <style jsx >
        {`.spam-text{
            color:gray
+       }
+       .inputf2{
+        width: 80%;
+        color: darkblue;
        }
        `}
        </style>
@@ -282,23 +299,24 @@ const QuestionSide = ()=>{
     )
 }
 
-const ReviewSide = ()=>{
+const ReviewSide = (props)=>{
     return(
-        <div className="menu2-reviews">
+        <div className="menu2-reviews col-12">
         <h5 className="menu2-subcard-title font2 fontcolorOrange">Reviews from customer</h5>
         <hr/>
-        <div className="menu2-reviews">
-        <img className="float-left avatar" src="./item1.jpg"/><p href="#" className="font6 fontsizeE-9">&nbsp; Chanaka Sanjeewa <br/> <spam className="spam-text font3 fontsizeE-8"> -25/02/2020-</spam></p>
-        <p href="#" className="font5 fontweight700 fontsizeE-9">&nbsp;&nbsp;&nbsp;How to add/update an attribute to an HTML element using JavaScript? How to create a pop-up to print dialog box using JavaScript?  ES6  Animation · How to </p>
-        <hr/>
+        {props.reviewsdata.map((x,i)=>
+           <div key={i} className="menu2-reviews">
+           <img className="float-left avatar" src={x.user.imageUrl} /><p  className="font6 fontsizeE-9">&nbsp; {x.user.name} <br/> <spam className="spam-text font3 fontsizeE-8"> -{x.createDate}-</spam></p>
+           <p  className="font5 fontweight700 fontsizeE-9">&nbsp;&nbsp;&nbsp;{x.review} </p>
+           <hr/>
+           </div>   
+            )}
+      
+      <div className="menu2-question col-12">
+        <img className="float-left" src="https://img.icons8.com/ios/40/000000/edit-chat-history.png"/>
+        <input className="inputf2" type="text" name="review" value={props.review}  onChange={props.handleChange} /><br/>
+        <button onClick={props.handlereviews} type="button" className="btn btn-danger btn-sm"><i className="fa fa-comments" aria-hidden="true"></i>&nbsp; keep a review </button>
         </div>
-
-         <div className="menu2-reviews">
-        <img className="float-left avatar" src="./item1.jpg"/><p href="#" className="font6 fontsizeE-9">&nbsp; Mayuni Achinthika <br/> <spam className="spam-text font3 fontsizeE-8"> -25/02/2020-</spam></p>
-        <p href="#" className="font5 fontweight700 fontsizeE-9">&nbsp;&nbsp;&nbsp;How to add/update an attribute to an HTML element using JavaScript? How to create a pop-up to print dialog box using JavaScript?  ES6  Animation · How to How to add/update an attribute to an HTML element using JavaScript? How to create a pop-up to print dialog box using JavaScript?  ES6  Animation · How to </p>
-        <hr/>
-        </div>
-
        
        <style jsx >
        {`.spam-text{
@@ -310,13 +328,116 @@ const ReviewSide = ()=>{
         height: 40px;
         border-radius: 50%;
       }
+      .inputf2{
+        width: 80%;
+        color: darkblue;
+       }
        `}
        </style>
         </div>
     )
 }
 class Index extends Component {
+    constructor() {
+        super();
+        this.state = {
+            itemid:'',
+            question: '',
+            answer: '',
+            questiondata:[],
+            review:'',
+            reviewsdata:[],
+    }
 
+    
+    
+    }
+
+    handleChange = evt => {
+        // This triggers everytime the input is changed
+            this.setState({
+                [evt.target.name]: evt.target.value,
+            });
+            
+        };
+
+    
+    handlereviews=()=>{
+        const data = new FormData();
+        data.append('user', JSON.stringify(Cookie.getJSON('user')));
+        data.append('jsonbody', JSON.stringify(this.state));
+  
+        fetch('/api/reviewcreate',{
+            method: 'POST',
+            headers: {
+            },
+            body:data
+        
+            }
+        )
+        .then(response => {this.componentDidMount(); return response.json(); } )
+        .then(data => { if(data!=undefined){this.setState({review:''});alert(data.msg);}})
+        .catch(error => console.log(error))
+    }
+     //ask question
+    handleaskquestion=()=>{
+        const data = new FormData();
+        data.append('user', JSON.stringify(Cookie.getJSON('user')));
+        data.append('jsonbody', JSON.stringify(this.state));
+  
+        fetch('/api/questioncreate',{
+            method: 'POST',
+            headers: {
+            },
+            body:data
+        
+            }
+        )
+        .then(response => {this.componentDidMount(); return response.json(); } )
+        .then(data => { if(data!=undefined){ this.setState({question:''}); alert(data.msg);}})
+        .catch(error => console.log(error))
+
+       
+    }
+    //delete answer
+    removeansewer=(id)=>{
+        const data = new FormData();
+  
+        fetch('/api/removeansewer/'+id,{
+            method: 'PUT',
+            headers: {
+            },
+            body:data
+        
+            }
+        )
+        .then(response => {this.componentDidMount(); return response.json(); } )
+        .then(data => { if(data!=undefined){this.setState({review:''});alert(data.msg);}})
+        .catch(error => console.log(error))
+    }
+    //give answer
+    handlegiveanswer=(id)=>{
+        var state =  {
+            answer: $(`#input-${id}`).val(),
+        }
+            const data = new FormData();
+            data.append('user', JSON.stringify(Cookie.getJSON('user')));
+            data.append('jsonbody', JSON.stringify(state));
+    
+            fetch(`/api/answertoqestion/${id}`,{
+                method: 'POST',
+                headers: {
+                },
+                body:data
+            
+                }
+            )
+            .then(response => {this.componentDidMount(); return response.json(); } )
+            .then(data => { })
+            .catch(error => console.log(error))
+
+       
+    }
     /**side navbar */
     showsidebar(){
         this.refs.child.showSidebar();
@@ -339,7 +460,24 @@ class Index extends Component {
             checkWidth();
             // Bind event listener
             $(window).resize(checkWidth);
+
     });
+        
+        fetch(`${Url}questions/${this.props.item._id}`)
+        .then(res=>{ return res.json();})
+        .then(data=>{
+            this.setState({
+                itemid:this.props.item._id?this.props.item._id:'',
+                questiondata : data
+            })
+        })
+        fetch(`${Url}reviews/${this.props.item._id}`)
+        .then(res=>{ return res.json();})
+        .then(data=>{
+            this.setState({
+                reviewsdata : data
+            })
+        })
     }
     
    
@@ -369,12 +507,12 @@ class Index extends Component {
                 <div className="row">
                 <Imageside item={this.props.item}></Imageside>
                 <Contentside item={this.props.item} ></Contentside>
-                <QuestionSide></QuestionSide>
-                <ReviewSide/>
+                <QuestionSide removeansewer={(id)=>this.removeansewer(id)} questiondata={this.state.questiondata} question={this.state.question} answer={this.state.answer} handleaskquestion={this.handleaskquestion} handleChange={this.handleChange} handlegiveanswer={(id)=>this.handlegiveanswer(id)}></QuestionSide>
+                <ReviewSide reviewsdata={this.state.reviewsdata} review={this.state.review} handleChange={this.handleChange} handlereviews={this.handlereviews} />
                 
                 </div></div>}
                 
-
+                <br/>
                 <Footer/>
                    </Layout>
            );
@@ -385,7 +523,6 @@ class Index extends Component {
 Index.getInitialProps = async function(context) {
     const { id,ide } = context.query;
     const res = await fetch(`${Url}item/${id}?ide=${ide}`);
-   
      var  item = await res.json();
      var error = false;
      if(res.status!=200){
