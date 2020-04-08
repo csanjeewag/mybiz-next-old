@@ -8,11 +8,13 @@ exports.viewall = function(req,res) {
 
     models.find(req,function(error,data){
         if(error){
-            return   res.status(404).json('error');
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return   res.status(404).send(error);
             
         }else{
             
-              return   res.status(200).json(data);
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
+            return   data.length>0?res.status(200).send(data):res.status(201).send(error);
             
         }
     }).sort({date:-1})

@@ -35,7 +35,7 @@ class Index extends Component {
             // Transition effect for navbar 
             $(window).scroll(function() {
               // checks if window is scrolled more than 500px, adds/removes solid class
-              if($(this).scrollTop() >  $(window).width()/4) { 
+              if($(this).scrollTop() >  $(window).width()/6) { 
                   $('.sub1nav').addClass('SolidNav').css({'opacity':'1'}).addClass('fixed-top').removeClass('sticky-top');
                   $('.logo-link').css({'display':'none'}); $('.all-link').css({'display':'block'});
               }
@@ -50,14 +50,14 @@ class Index extends Component {
                 var windowwidth = $(window).width();
 
                 if(windowwidth<990){
-                    $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                    $('.nav-link-main').css({'background-color':'black','opacity':'0.6','padding-left':'20px'});
 
                     $(window).scroll(function() {
-                        if($(this).scrollTop() > $(window).width()/3) { 
-                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
+                        if($(this).scrollTop() > $(window).width()/4) { 
+                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.6','padding-left':'20px'});
                             
                         }else{
-                            $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'black','opacity':'0.6','padding-left':'20px'});
                             
                         }
                         

@@ -20,6 +20,7 @@ exports.viewall = function(req,res) {
    
   }
 
+  //get sub catagory by shop id
   exports.viewbyshopid = function(req,res) {
 
     shop.find({_id:req.params.id},function(error,data){

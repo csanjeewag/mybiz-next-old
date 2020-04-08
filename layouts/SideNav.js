@@ -41,15 +41,21 @@ render(){
 <div className="js-side-nav-container side-nav-container sidenavbar">
 <div className="js-side-nav side-nav">
   
-  <a href="#" className="js-menu-close menu-close navbar-brand font7">&nbsp;
+  <a  className="js-menu-close menu-close navbar-brand font7">&nbsp;
   <img src="https://img.icons8.com/windows/25/FF8C8C/delete-slide.png"/>&nbsp;
   MYBIZ.COM
   </a>
 
   <h4 className="sidenav-link-topic  font1">  &nbsp; {this.props.sidenavconst.topic}</h4>
-  <div className="sidenavbar-link">
+  <div className="sidenavbar-link pointer">
                 {this.props.sidenavconst.sidenavlink.map((c,i)=>
-                <Link key={i} href={c.link} ><a className="nav-link font1" ><i className="fa fa-telegram" aria-hidden="true"></i> &nbsp;{c.linkname}</a></Link>
+                <Link key={i} href={c.suburl+c.type?c.type:c.itemlongname?c.itemlongname+'?ide='+c._id:c.district} >
+                <div>
+             
+                <a className="nav-link font1" ><i className="fa fa-telegram" aria-hidden="true"></i> &nbsp;{c.name?c.name:c.itemname?c.itemname:c.district}</a>
+                
+                </div>
+                </Link>
                   )}
                 </div>
 </div>

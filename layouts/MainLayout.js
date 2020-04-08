@@ -132,6 +132,9 @@ class Layout extends Component {
    .fontweight700 {
     font-weight : 700
    }
+
+   .pointer {cursor: pointer;}
+  .progress {cursor: progress;}
    `}
  </style>
 

@@ -257,7 +257,7 @@ const Contentside=(props)=>{
         
     )
 }
-
+/****************************************************QuestionSide******************************************* */
 const QuestionSide = (props)=>{
     return(
         <div className="menu2-quations col-12">
@@ -271,7 +271,7 @@ const QuestionSide = (props)=>{
             <button onClick={props.handlegiveanswer.bind(this,x._id)} type="button" className="btn btn-primary btn-sm"><i className="fa fa-bullhorn" aria-hidden="true"></i>&nbsp; keep a answer </button>
         
             </div>:null}
-            <button onClick={props.removeansewer.bind(this,x._id)}>x</button>
+            <button className="popup-close-question" onClick={props.removeansewer.bind(this,x._id)}>x</button>
             <hr/>
             </div>  
             )}
@@ -293,12 +293,26 @@ const QuestionSide = (props)=>{
         width: 80%;
         color: darkblue;
        }
+       .popup-close-question {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #01567e;
+        cursor: pointer;
+        font-size: 0.6rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        top: 1rem;
+        right: 1rem;
+        position: absolute;
+        border:none;
        `}
        </style>
         </div>
     )
 }
-
+/*************************************************************Review side************************************************** */
 const ReviewSide = (props)=>{
     return(
         <div className="menu2-reviews col-12">
@@ -341,12 +355,14 @@ class Index extends Component {
     constructor() {
         super();
         this.state = {
+            item:{},
             itemid:'',
             question: '',
             answer: '',
             questiondata:[],
             review:'',
             reviewsdata:[],
+            allitems:[]
     }
 
     
@@ -433,7 +449,7 @@ class Index extends Component {
                 }
             )
             .then(response => {this.componentDidMount(); return response.json(); } )
-            .then(data => { })
+            .then(data => {if(data!=undefined){this.setState({review:''});alert(data.msg);}})
             .catch(error => console.log(error))
 
        
@@ -467,6 +483,7 @@ class Index extends Component {
         .then(res=>{ return res.json();})
         .then(data=>{
             this.setState({
+                item:this.props.item,
                 itemid:this.props.item._id?this.props.item._id:'',
                 questiondata : data
             })
@@ -478,22 +495,21 @@ class Index extends Component {
                 reviewsdata : data
             })
         })
+        fetch(`${Url}catagerybyname/${this.props.item.categery}`)
+        .then(res=>{ return res.json();})
+        .then(data=>{
+            this.setState({
+                allitems : data
+            })
+        })
+
     }
     
    
     render() { 
 
-  //side navbar link
-  const sidenavlink = [
-    {id:1,link:'/',linkname:'home'},
-    {id:1,link:'/menu',linkname:'menu'},
-    {id:1,link:'/',linkname:'newmenu2'},
-    {id:1,link:'/',linkname:'newmenu3'},
-    {id:1,link:'/',linkname:'newmenu4'},
-    {id:1,link:'/',linkname:'newmenu5'},
-  ];
   
-    const sidenavconst = {topic : 'Items',topiclink:'All Items',sidenavlink:sidenavlink};
+    const sidenavconst = {topic : 'Items',topiclink:'All Items',sidenavlink:this.state.allitems,visible:true, name:'name', value:'itemname', suburl:'item'};
 //////////////
 
           return ( 
@@ -523,6 +539,7 @@ class Index extends Component {
 Index.getInitialProps = async function(context) {
     const { id,ide } = context.query;
     const res = await fetch(`${Url}item/${id}?ide=${ide}`);
+
      var  item = await res.json();
      var error = false;
      if(res.status!=200){

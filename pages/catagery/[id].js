@@ -13,6 +13,12 @@ class Index extends Component {
         this.state = {
             catageries : []
         }
+
+    }
+    componentDidMount(){
+        this.setState({
+            catageries:this.props.allcatagery
+        })
     }
 
     showsidebar(){
@@ -31,7 +37,7 @@ class Index extends Component {
             {id:1,link:'/',linkname:'menu5'},
           ];
           
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink};
+            const sidenavconst = {topic : 'Categeries',topiclink:'all categories',suburl:'/catagery/', sidenavlink:this.props.allcatagery,visible:true};
         //////////////
           return ( 
             <Layout>
@@ -52,15 +58,18 @@ Index.getInitialProps = async function(context) {
     
     const res = await fetch(`${Url}catagerybyname/${id}`);
     const rescatagery = await fetch(`${Url}typebyname/${id}`);
-    
+    const resallcatageries = await fetch(`${Url}types`);
+
     var  items = await res.json();
     var catagery = await rescatagery.json();
+    var allcatagery = await resallcatageries.json();
+
     var error = false;
     if(res.status!=200||rescatagery.status!=200 ){
         error = true ;
    }
 
-    return {itemname:id,items,catagery,error}
+    return {itemname:id,items,catagery,allcatagery,error}
 
 
   }

@@ -14,6 +14,7 @@ var itemsRepository = require('./repository/itemrepository');
 var typeRepository = require('./repository/typerepository');
 var questionRepository = require('./repository/questionrepository');
 var reviewrepository = require('./repository/reviewrepository');
+var locationrepository = require('./repository/locationrepository');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -43,6 +44,17 @@ server.use(fileupload());
 
 app.prepare().then(() => {
 
+/********* */
+server.get("/api/locations", (req, res) => {
+ 
+  locationrepository.viewall({},res);
+
+});
+server.get("/api/location/id", (req, res) => {
+ 
+  locationrepository.viewall({district:req.params.id},res);
+
+});
   /**reviews */
   server.get("/api/reviews/:id", (req, res) => {
  
@@ -137,7 +149,7 @@ app.prepare().then(() => {
     typeRepository.viewall({type:req.params.id},res);
 
   });
-
+  //get sub catagories by item id
   server.get("/api/typebyshopid/:id", (req, res) => {
  
     typeRepository.viewbyshopid(req,res);
@@ -169,6 +181,17 @@ app.prepare().then(() => {
   /***shop api */
 
   //get shop details by name
+
+  server.get("/api/allshop/:id", (req, res) => {
+ 
+    if(req.params.id=='All-island'){
+      shopRepository.viewall({},res); 
+    }else{
+      shopRepository.viewall({district:req.params.id},res);
+    }
+    
+
+  }); 
 
   server.get("/api/shop/:id", (req, res) => {
  

@@ -36,13 +36,13 @@ class Index extends Component {
                 var windowwidth = $(window).width();
 
                 if(windowwidth<990){
-                    $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                    $('.nav-link-main').css({'background-color':'black','opacity':'0.6','padding-left':'20px'});
 
                     $(window).scroll(function() {
                         if($(this).scrollTop() > $(window).height()/4) { 
-                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.5','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.6','padding-left':'20px'});
                         }else{
-                            $('.nav-link-main').css({'background-color':'black','opacity':'0.5','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'black','opacity':'0.6','padding-left':'20px'});
                         }
                         
                       });
