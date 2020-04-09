@@ -289,7 +289,7 @@ class Index extends Component {
             {id:1,link:'/',linkname:'home'},
           ];
           
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink};
+            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink,visible:false };
         //////////////
           return ( 
             <Layout>

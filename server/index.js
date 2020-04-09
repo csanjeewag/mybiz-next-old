@@ -227,6 +227,25 @@ server.get("/api/location/id", (req, res) => {
     
     
   });
+
+    //update shop
+    server.put("/api/updateshop/:id", (req, res) => {
+
+      if(req.body.user!='undefined'){
+        project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          shopRepository.update(req,res)
+      }, (error) => {
+  
+          return res.status(404).json({msg:'you are signout please sign in.'}); 
+    
+      });
+      }
+      else{
+        return res.status(404).json({msg:'check your account again.'}); 
+      }
+      
+      
+    });
 /***end shop api */
 
 /** item api */

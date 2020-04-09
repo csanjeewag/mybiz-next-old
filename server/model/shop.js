@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
   var SomeModelSchema = new mongoose.Schema({
             shopName: String,
+            shoplongName:String,
             categery :String,
             district:String,
             town:String,

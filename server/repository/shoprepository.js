@@ -89,3 +89,36 @@ exports.viewshopanditems = function(req,res) {
     }).sort({date:-1})
    
   }
+
+  //update shop details
+  exports.update = function(req,res){
+   /* var image_url = [];
+    if(req.files){
+
+         image_url = imagefile.imageuploads(req.files);
+
+    }*/
+
+
+    let body=  JSON.parse(req.body.jsonbody);
+    var removeimages = {
+        files:req.files,
+        deleteimages:body.deleteimages
+    }
+ 
+   var image_url = imagefile.deleteimage(removeimages);
+    body.images = [...body.images,...image_url ]
+     body.user =  JSON.parse(req.body.user);  
+        models.findByIdAndUpdate(req.params.id,body, function(error,data){
+            if(error){
+                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                return  res.status(400).json(error);
+            }
+            else{
+                return  res.status(200).json({msg:'create in success.'});
+            }
+
+        })
+
+  }
+

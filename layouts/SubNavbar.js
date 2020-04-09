@@ -74,12 +74,14 @@ class Index extends Component {
         
           return ( 
             <Layout>
-            <SideNav ref="sidenav"  sidenavconst={this.props.sidenavconst}/>
+            {this.props.sidenavconst.visible ?<SideNav ref="sidenav"  sidenavconst={this.props.sidenavconst}/>:null}
+
             <SignUp ref="signup" showsignup={this.props.showsignup} />
             <div className="subnav" >
             <nav className="navbar sub1nav sticky-top navbar-expand-lg">
             <a className="navbar-brand font7 logo-link" href="#">MYBIZ.COM</a>
-            <button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font1">{this.props.sidenavconst.topiclink}</button>
+            
+            {this.props.sidenavconst.visible?<button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font1">{this.props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 all-link" href="#">MYBIZ.COM</a>}
  
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>

@@ -12,6 +12,7 @@ class Index extends Component {
         super();
         this.state = {
             shopName: '',
+            shoplongName: '',
             categery :'',
             district:'',
             town:'',
@@ -202,6 +203,7 @@ class Index extends Component {
             }
         
             var jsonbody = this.state;
+            jsonbody.shoplongName = this.state.shopName+' in '+this.state.town;
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));
@@ -314,7 +316,7 @@ class Index extends Component {
             {id:1,link:'/',linkname:'menu5'},
           ];
           
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink};
+            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink,visible:false };
         //////////////
           return ( 
             <Layout>
