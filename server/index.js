@@ -34,7 +34,8 @@ mongoose.connect(mongoDB,{useUnifiedTopology: true, useNewUrlParser: true, useCr
       console.log('connection ok user')
   }
   })
-
+  mongoose.set('useFindAndModify', false);
+  
 const server = express();
 server.use(express.static(__dirname + '/File'));
 server.use(bodypaser.urlencoded({ extended: true }));

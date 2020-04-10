@@ -103,13 +103,15 @@ exports.viewshopanditems = function(req,res) {
     let body=  JSON.parse(req.body.jsonbody);
     var removeimages = {
         files:req.files,
-        deleteimages:body.deleteimages
+        deleteimages:body.deleteimages,
+        images : body.images
     }
  
    var image_url = imagefile.deleteimage(removeimages);
-    body.images = [...body.images,...image_url ]
+
+    body.images = [...image_url ]
      body.user =  JSON.parse(req.body.user);  
-        models.findByIdAndUpdate(req.params.id,body, function(error,data){
+        models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
             if(error){
                 var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                 return  res.status(400).json(error);

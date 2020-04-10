@@ -74,28 +74,49 @@ exports.imageupload = function(req,res) {
   
     var files = req.files;
     var deleteimages = req.deleteimages;
-    var id = 0;
-    var image_url = [];
-   // this.imageuploadbyname({file:req.files.image[0],name:deleteimages[0]});
-    console.log(deleteimages,req.files)
-    while(true){
-        if(req.files!=undefined&&req.files.image[id]&&deleteimages!=undefined&&deleteimages[id]){
+    var images = req.images;
 
-            this.imageuploadbyname({file:req.files.image[id],name:deleteimages[id]})
-          }
-          else if(req.files!=undefined&&req.files.image[id]){
-            image_url.push(this.imageupload(req.files.image[id]))
-          }
-          else if(deleteimages!=undefined&&deleteimages[id]&&id>0){
-            console.log(deleteimages[id])
-          }
-          else{
-      
-            req.files.image[0]?null:this.imageuploadbyname({file:req.files.image,name:deleteimages[id]});
-              break;
-          }
-          id = id+1;
+    var image_url = [...images];
+    var newimageurl = [];
+    if(req.files)
+    {newimageurl = this.imageuploads(req.files);}
+   
+
+    deleteimages.forEach(element => {
+            try{fs.unlinkSync('server/File/Images/'+element);}
+            catch(err){console.log('error delete')}
+            image_url.splice(image_url.findIndex(e=>e==element),1);
+    });
+
+    image_url = [...image_url,...newimageurl]
+
+
+    if(deleteimages&&deleteimages.includes(images[0])){
+        console.log(image_url[0],images[0])
+        try{fs.renameSync('server/File/Images/'+image_url[0], 'server/File/Images/ba.jpg');}
+        catch(err){console.log('err')}
+        image_url[0] = images[0];
     }
+
+ 
+var deletearray = image_url.slice(3,image_url.length);
+var imageurl = image_url.slice(0,3);
+image_url = imageurl;
+
+deletearray.forEach(element => {
+   /* fs.unlink('server/File/Images/'+element, (err) => {
+        if (err) {
+          console.error('err')
+          return
+        }
+      })*/
+      try{
+        fs.unlinkSync('server/File/Images/'+element)
+      }catch(e){
+
+      }
+     
+});
     
     return image_url;
 }
