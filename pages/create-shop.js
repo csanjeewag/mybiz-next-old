@@ -11,6 +11,7 @@ class Index extends Component {
     constructor() {
         super();
         this.state = {
+            urlname:'',
             shopName: '',
             shoplongName: '',
             categery :'',
@@ -203,7 +204,7 @@ class Index extends Component {
             }
         
             var jsonbody = this.state;
-            jsonbody.shoplongName = this.state.shopName+' in '+this.state.town;
+            jsonbody.urlname = this.state.shopName+' in '+this.state.town;
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));

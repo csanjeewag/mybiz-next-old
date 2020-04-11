@@ -92,8 +92,7 @@ exports.imageupload = function(req,res) {
 
 
     if(deleteimages&&deleteimages.includes(images[0])){
-        console.log(image_url[0],images[0])
-        try{fs.renameSync('server/File/Images/'+image_url[0], 'server/File/Images/ba.jpg');}
+        try{fs.renameSync('server/File/Images/'+image_url[0], 'server/File/Images/'+images[0]);}
         catch(err){console.log('err')}
         image_url[0] = images[0];
     }
@@ -103,13 +102,9 @@ var deletearray = image_url.slice(3,image_url.length);
 var imageurl = image_url.slice(0,3);
 image_url = imageurl;
 
+
 deletearray.forEach(element => {
-   /* fs.unlink('server/File/Images/'+element, (err) => {
-        if (err) {
-          console.error('err')
-          return
-        }
-      })*/
+
       try{
         fs.unlinkSync('server/File/Images/'+element)
       }catch(e){
@@ -120,6 +115,8 @@ deletearray.forEach(element => {
     
     return image_url;
 }
+
+
 
 exports.imageuploadbyname = function(req,res) {
     
@@ -158,3 +155,5 @@ exports.imageuploadbyname = function(req,res) {
         return filename;
    
   }
+
+ 

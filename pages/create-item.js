@@ -11,6 +11,7 @@ class Index extends Component {
     constructor() {
         super();
         this.state = {
+            urlname:'',
             itemname: '',
             itemlongname: '',
             categery :'',
@@ -249,7 +250,7 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-            jsonbody.itemlongname = jsonbody.itemlongname+' by '+this.props.shopname;
+            jsonbody.urlname = jsonbody.itemlongname+' by '+this.props.shopname;
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));
@@ -652,7 +653,7 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200){
         error = true ;
    }
-   console.log(shopname)
+
     return {shopid:id,type,error,shopname:shopname}
 
 

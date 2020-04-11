@@ -61,7 +61,7 @@ const Imageside=(props)=> {
     )
 }
 
-
+/*****************************************Content side********************************************** */
 const Contentside=(props)=>{
     return (
         <div className="col-lg-6 col-sm-12">
@@ -113,6 +113,7 @@ const Contentside=(props)=>{
                 </div></div>
                 <hr/>
                 <Link href={'/myshop/'+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
+                <Link href={'/update-item/'+props.item._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;update item</a></Link>
                 </div>
            
         </div>

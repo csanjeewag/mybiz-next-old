@@ -47,7 +47,7 @@ class Index extends Component {
         this.setState({
             ...shop
         })
-        console.log(shop);
+        
 
         $(document).ready(function() {
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
@@ -432,8 +432,8 @@ class Index extends Component {
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">what should be removed</h3>
                         <div className=" row col-12">
                         {this.state.images.map((x,i)=>(
-                          <div key={i} className={'field-wrap col-lg-4 col-md-4 col-sm-12 deletefile'}>
-                          <div  className={'imageupload d-flex justify-content-center'}>
+                          <div key={i} className={'field-wrap col-lg-4 col-md-4 col-sm-12'}>
+                          <div  className={this.state.deleteimages.includes(x)?'imageupload d-flex justify-content-center remove-image':'imageupload d-flex justify-content-center'}>
 
                           {!this.state.deleteimages.includes(x)?
                           <div className="popup-close-3" onClick={()=>this.deleteImagesinDB(x)}> remove</div>:
@@ -626,6 +626,9 @@ textarea {
     font-size : 0.8rem;
 }
 .input-error{
+    border-color: red;
+}
+.remove-image{
     border-color: red;
 }
 `}

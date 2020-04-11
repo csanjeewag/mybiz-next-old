@@ -106,7 +106,21 @@ exports.viewshopanditems = function(req,res) {
         deleteimages:body.deleteimages,
         images : body.images
     }
- 
+    //get file count
+    var filecount = 0 
+    while(removeimages.files){
+        if(removeimages.files.image[filecount]){
+            filecount=filecount+1;
+        }else{
+            filecount =filecount>0?filecount:1;
+            break;
+        }
+    }
+    if((filecount+removeimages.images.length-removeimages.deleteimages.length)>3){
+      
+        return  res.status(201).json({msg:'your submition fail !, because total file count than three(3). please remove some file.'});
+    } 
+    //
    var image_url = imagefile.deleteimage(removeimages);
 
     body.images = [...image_url ]

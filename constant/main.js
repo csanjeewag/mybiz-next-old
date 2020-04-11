@@ -7,7 +7,5 @@ export const NavLink = [
     {url:'/create-shop', urlname:'create-shop'},
     {url:'/create-item', urlname:'create-item'},
     {url:'/create-catagery', urlname:'create-catagery'},
-    {url:'/index2', urlname:'index2'},
     {url:'/myorder', urlname:'my-order'},
-    {url:'/index4', urlname:'index4'},
 ]

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
   var SomeModelSchema = new mongoose.Schema({
+            urlname : String,
             itemname: String,
             itemlongname: String,
             categery :String,
@@ -8,6 +9,7 @@ var mongoose = require('mongoose');
             itemPrice: Number,
             itemdiscount:Number,
             content1:String,
+            content2:String,
             newitemSpecification:String,
             itemSpecification:[],
             newstockdetail:String,
