@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
 import Cookie from "js-cookie";
-import {Url,ImageUrl} from './../constant/main';
+import Link from 'next/link';
+import {Url,ImageUrl,itemUrl} from './../constant/main';
 
 
 const CartList=(props)=>{
@@ -31,9 +32,11 @@ const CartList=(props)=>{
         <div key={i} className="card">
         <div className="popup-close-cartitem" onClick={()=>deletefavItems(c._id)} >x</div>
         <div className="row col-12">
+        <Link href={itemUrl+c.urlname}>
         <div className="col-lg-3">
         <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
         </div>
+        </Link>
         <div className="col-lg-9">
         <h4 className="card-title font2 topicColor">{c.itemlongname}</h4>
         <div className="meta font6 subtopicColor">

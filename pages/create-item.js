@@ -250,7 +250,7 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-            jsonbody.urlname = jsonbody.itemlongname+' by '+this.props.shopname;
+            jsonbody.urlname = jsonbody.subcategery+'-'+jsonbody.itemlongname+'-by-'+this.props.shopname;
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));

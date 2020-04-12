@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
-import {ImageUrl} from '../constant/main'
+import {ImageUrl,myshopmUrl} from '../constant/main'
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -25,9 +25,9 @@ class Index extends Component {
                   
                     <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div className="card">
-                <Link key={i} href={'/item/'+c.shopName+'?ide='+c._id}>
+                <Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
                     <div className="card-img-top-div">
-                    <img className="card-img-top" src={ImageUrl+c.images[0]} height="200px" />
+                    <img className="card-img-top" src={ImageUrl+c.images[0]} height="150px" />
                     </div>
                     </Link> 
                     <div className="card-block">

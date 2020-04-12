@@ -321,6 +321,14 @@ class Index extends Component {
 
     }
     
+         //select town 
+    gettows=(district)=>{
+
+        var id = this.props.location.findIndex(e=>e.district==district);
+        var index = id>0?id:0;
+        
+       return district.length>2?this.props.location[index].town:[];
+    }
       
 
     showsidebar(){
@@ -372,12 +380,22 @@ class Index extends Component {
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">District<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <select className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
+                                <option value="d">Default select</option>
+                                    {this.props.error?null:this.props.location.map((x,i)=>
+                                    <option key={i} value={x.district}>{x.district}</option>
+                                        )}
+                                    </select>
                                 <span className="form-error">{this.state.validation.district}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Town<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <select className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
+                                <option value="d">Default select</option>
+                                    {this.props.error?null:this.gettows(this.state.district).map((x,i)=>
+                                    <option key={i} value={x}>{x}</option>
+                                        )}
+                                    </select>
                                 <span className="form-error">{this.state.validation.town}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -644,16 +662,19 @@ textarea {
 Index.getInitialProps = async function(context) {
 
     var {id} = context.query;
+
     const resshop = await fetch(`${Url}shopid/${id}`);
     const res = await fetch(`${Url}types`);
+    const reslocation = await fetch(`${Url}locations`);
 
     var shop = await resshop.json();
     var  type = await res.json();
+    var  location = await reslocation.json();
     var error = false;
-    if(res.status!=200||resshop.status!=200){
+    if(res.status!=200||resshop.status!=200||reslocation.status!=200){
         error = true ;
    }
-    return {shopid:id,type,shop,error};
+    return {location,shopid:id,type,shop,error};
   }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
-import {ImageUrl} from '../constant/main'
+import {ImageUrl,itemUrl} from '../constant/main'
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -44,7 +44,7 @@ class Index extends Component {
                   
                     <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div className="card">
-                <Link key={i} href={'/item/'+c.itemlongname+'?ide='+c._id}>
+                <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
                     <div className="card-img-top-div">
                     <img className="card-img-top" src={ImageUrl+c.images[0]} height="200px" />
                     </div>
@@ -59,7 +59,7 @@ class Index extends Component {
                             <div className=" float-right"> 
                             <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
                             <a className="Idiscount font6"> {c.itemdiscount}% </a>
-                            <a className="Iprise font6">&nbsp;Rs.{/*c.itemPrice*(100+c.itemdiscount)/100*/'check'}</a>
+                            <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
                             </div>
                         </div>
                         <div className="card-text font6">

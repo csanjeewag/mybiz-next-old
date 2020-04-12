@@ -4,7 +4,7 @@ import SubNavbar from '../../layouts/SubNavbar';
 import Footer from '../../components/Footer';
 import Errorpage from './../../layouts/error';
 import $ from 'jquery';
-import  {Url,ImageUrl} from './../../constant/main';
+import  {Url,ImageUrl,myshopmUrl,updateshopUrl} from './../../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -112,8 +112,8 @@ const Contentside=(props)=>{
                     </div>
                 </div></div>
                 <hr/>
-                <Link href={'/myshop/'+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
-                <Link href={'/update-item/'+props.item._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;update item</a></Link>
+                <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
+                <Link href={updateshopUrl+props.item._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;update item</a></Link>
                 </div>
            
         </div>

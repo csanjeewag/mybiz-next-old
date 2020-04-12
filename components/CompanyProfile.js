@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
-import  {Url,ImageUrl} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -102,8 +102,8 @@ const Contentside=(props)=>{
                     </div>
                 </div>
                 <hr/>
-                <Link href={'/create-item?id='+props.shop._id+'&shopname='+props.shop.shopName}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
-                <Link href={'/update-shop/'+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;update shop</a></Link>
+                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
+                <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;update shop</a></Link>
               
             </div>
 
@@ -269,7 +269,7 @@ const CartList=(props)=>{
         <div key={i} className="col-lg-6 col-sm-12">
         <div  className="card">
         <div className="row col-12">
-        <Link href={'/item/'+c.itemlongname}>
+        <Link href={itemUrl+c.urlname}>
         <div className="col-lg-3">
         <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
         </div>

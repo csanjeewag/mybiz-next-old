@@ -4,7 +4,7 @@ import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
 import SignUp from './../components/signup';
-import {NavLink} from './../constant/main';
+import {NavLink,wesitename} from './../constant/main';
  
 class Index extends Component {
 
@@ -79,7 +79,7 @@ class Index extends Component {
             <SignUp ref="signup" showsignup={this.props.showsignup} />
             <div className="subnav" >
             <nav className="navbar sub1nav sticky-top navbar-expand-lg">
-            <a className="navbar-brand font7 logo-link" href="#">MYBIZ.COM</a>
+            <a className="navbar-brand font7 logo-link" href="#">{wesitename}</a>
             
             {this.props.sidenavconst.visible?<button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font1">{this.props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 all-link" href="#">MYBIZ.COM</a>}
  

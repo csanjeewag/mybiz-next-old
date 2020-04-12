@@ -45,7 +45,7 @@ server.use(fileupload());
 
 app.prepare().then(() => {
 
-/********* */
+/********************* location***************** */
 server.get("/api/locations", (req, res) => {
  
   locationrepository.viewall({},res);
@@ -196,7 +196,7 @@ server.get("/api/location/id", (req, res) => {
 
   server.get("/api/shop/:id", (req, res) => {
  
-    shopRepository.viewbyname({shopName:req.params.id.replace('-',' ')},res);
+    shopRepository.viewbyname({urlname:req.params.id.replace('-',' ')},res);
 
   }); 
   server.get("/api/shopid/:id", (req, res) => {
@@ -210,6 +210,7 @@ server.get("/api/location/id", (req, res) => {
     shopRepository.viewshopanditems(req,res);
 
   }); 
+
   //create new shop
   server.post("/api/createshop", (req, res) => {
 
@@ -257,7 +258,7 @@ server.get("/api/itembyid/:id", (req, res) => {
 
 });
 
-  //get shop details by name
+  //get item details by name
 
   server.get("/api/item/:id", (req, res) => {
  

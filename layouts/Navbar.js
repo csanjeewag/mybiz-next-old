@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
-import {NavLink} from './../constant/main';
+import SignUp from './../components/signup';
+import {NavLink,wesitename} from './../constant/main';
 class Index extends Component {
+
+        //show signup
+        showsignup(){
+            this.refs.signup.showsignup();
+          }
 
     componentDidMount(){
         $(document).ready(function() {
@@ -59,8 +65,9 @@ class Index extends Component {
           return ( 
             <Layout>
             <div className="mainnav" >
+            <SignUp ref="signup" showsignup={this.props.showsignup} />
             <nav className="navbar fixed-top navbar-expand-lg">
-            <a className="navbar-brand font7" href="#">MYBIZ.COM</a>
+            <a className="navbar-brand font7" href="#">{wesitename}</a>
   
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>
@@ -73,6 +80,7 @@ class Index extends Component {
                 {NavLink.map((x,i)=>
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
+                {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
                 </div>
             </div>
        

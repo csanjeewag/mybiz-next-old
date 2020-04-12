@@ -27,16 +27,6 @@ class Index extends Component {
     
     render() { 
         
-        //side navbar link
-        const sidenavlink = [
-            {id:1,link:'/',linkname:'home'},
-            {id:1,link:'/menu',linkname:'menu'},
-            {id:1,link:'/',linkname:'menu2'},
-            {id:1,link:'/',linkname:'menu3'},
-            {id:1,link:'/',linkname:'menu4'},
-            {id:1,link:'/',linkname:'menu5'},
-          ];
-          
             const sidenavconst = {topic : 'Categeries',topiclink:'all categories',suburl:'/catagery/', sidenavlink:this.props.allcatagery,visible:true};
         //////////////
           return ( 

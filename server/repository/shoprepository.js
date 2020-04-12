@@ -1,6 +1,7 @@
 var models = require('../model/shop');
 var items = require('./../model/item');
 var imagefile = require('./../fileupload');
+var mongoose = require('mongoose');
 var exports = module.exports = {};
 
 //get all
@@ -65,15 +66,43 @@ exports.viewall = function(req,res) {
   }
 
 
-  //get shop and items
+  //get shop and items by shop id
 exports.viewshopanditems = function(req,res) {
 
     models.find({_id:req.params.id},function(error,shopdata){
         if(error){
-            return   res.status(404).json('error');
+            /*** if there non id */
+            models.find({urlname:req.params.id},function(error,shopdata){
+                if(error){
+        
+                    var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                    return  res.status(404).json(error);
+                    
+                }else{
+                    
+                    //check is there more url name
+                            var index =  shopdata.findIndex(function(e){
+                                    return e._id == req.query.ide
+                                })
+                            index = index>0?index:0;
+                    items.find({shopid:shopdata[index]._id},function(error,data){
+                        if (error){
+                            var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                            return  res.status(400).json(error);
+                        }
+                        else{
+                            //console.log(data)
+                        return  res.status(200).json({items:data, shop:shopdata[index],msg:'success.'});
+                        }
+                    })
+                      
+                    
+                }
+            }).sort({date:-1})
             
         }else{
-            items.find({shopid:req.params.id},function(error,data){
+            
+            items.find({shopid:shopdata[0]._id},function(error,data){
                 if (error){
                     var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                     return  res.status(400).json(error);
@@ -90,14 +119,11 @@ exports.viewshopanditems = function(req,res) {
    
   }
 
+
+
   //update shop details
   exports.update = function(req,res){
-   /* var image_url = [];
-    if(req.files){
 
-         image_url = imagefile.imageuploads(req.files);
-
-    }*/
 
 
     let body=  JSON.parse(req.body.jsonbody);

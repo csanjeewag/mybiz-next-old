@@ -20,8 +20,8 @@ exports.viewall = function(req,res) {
   }
 
   exports.viewbyname = function(req,res) {
-    console.log(req.query.ide)
-    models.find({itemlongname:req.params.id},function(error,data){
+    
+    models.find({urlname:req.params.id},function(error,data){
         if(error){
             return   res.status(404).send({msg:'there is a error'});
             
