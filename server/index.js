@@ -15,6 +15,7 @@ var typeRepository = require('./repository/typerepository');
 var questionRepository = require('./repository/questionrepository');
 var reviewrepository = require('./repository/reviewrepository');
 var locationrepository = require('./repository/locationrepository');
+var orderRepository = require('./repository/orderRepository');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -342,6 +343,34 @@ server.post("/api/createuser", (req, res) => {
 
 /***end user api */
 
+
+/********************order ******************************** */
+
+server.get("/api/orderbyshopid/:id", (req, res) => {
+
+  orderRepository.viewall({shopid:req.params.id},res);
+
+}); 
+
+  //create new order
+  server.post("/api/createorder", (req, res) => {
+
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        orderRepository.create(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+/********************************************************* */
 
   server.get('*', (req, res) => {
     return handle(req, res)

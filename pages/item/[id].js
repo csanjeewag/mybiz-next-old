@@ -73,9 +73,10 @@ const Contentside=(props)=>{
                 <div className="meta font6 subtopicColor">
                     <a>{props.item.categery}</a>
                     <div className=" float-right"> 
-                    <a className="Icutprise font6"> <strike>{props.item.itemPrice}</strike>  </a> 
-                    <a className="Idiscount font6"> 33% </a>
-                    <a className="Iprise font6">&nbsp;Rs.451.25</a>
+                    <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
+                    <a className="Idiscount font6"> {c.itemdiscount}% </a>
+                    <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
+                    
                     </div>
                 </div>
                 <div className="card-text font6">

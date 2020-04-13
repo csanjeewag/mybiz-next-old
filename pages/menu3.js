@@ -3,8 +3,23 @@ import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
 import GoogleSign from './../components/GoogleSign';
+import ReactCrop from 'react-image-crop';
 
 class Index extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      crop: {
+        unit: 'px', // default, can be 'px' or '%'
+        x: 130,
+        y: 50,
+        width: 200,
+        height: 200
+      }
+    }
+
+  }
 
   componentDidMount= ()=> {
 
@@ -13,6 +28,14 @@ class Index extends Component {
     this.refs.child.showSidebar();
   }
 
+  CropDemo({ src }) {
+    const [crop, setCrop] = useState({ aspect: 16 / 9 });
+    return <ReactCrop src={src} crop={crop} onChange={newCrop => setCrop(newCrop)} />;
+  }
+
+  onChange = crop => {
+    this.setState({ crop });
+  };
   
 render(){
 
@@ -40,7 +63,10 @@ render(){
 
 
 <GoogleSign></GoogleSign>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<div className="col-3">
+
+</div>
 </Layout>
   )
 }

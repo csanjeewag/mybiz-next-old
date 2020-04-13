@@ -24,3 +24,7 @@ export const shopmUrl = '/shop/';
 export const updateshopUrl = '/update-shop/';
 export const createshopUrl = '/create-shop';
 
+
+export const cartitemMSG = 'if you request item, you can keep massage to seller.';
+export const cartUserdetails = 'here your details that you provided, if you need to change you can change above details.'
+export const cartUserNotlogin= 'you are not sign in, please sign in before request.';

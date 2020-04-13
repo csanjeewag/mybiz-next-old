@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
 import Cookie from "js-cookie";
 import Link from 'next/link';
-import {Url,ImageUrl,itemUrl} from './../constant/main';
+import fetch from 'isomorphic-unfetch';
+import {Url,ImageUrl,itemUrl,cartitemMSG,cartUserNotlogin,cartUserdetails} from './../constant/main';
 
 
 const CartList=(props)=>{
@@ -310,9 +311,9 @@ const OrderSide=(props)=>{
             </tr>
           </thead>
           <tbody >
-              {props.cartItems.map(c=>
+              {props.cartItems.map((c,i)=>
                     (c.qty > 0)?
-                  <tr key={c.id}  className="subtopicColor">
+                  <tr key={i}  className="subtopicColor">
                   <td>{c.itemlongname}</td>
                   <td>{c.categery}-{c.subcategery}</td>
                   <td>{c.itemdiscount}%</td>
@@ -348,21 +349,185 @@ const OrderSide=(props)=>{
     )
 }
 
+const SendorderSide=(props)=>{
+
+    return(
+        <div>
+        <h4 className="font4 fontsizeE1-25 fontcolorSkyblue">Your Details</h4>
+        {props.user?
+        <div className="user">
+        <label  className="font2 fontsizeE1 topicColor">Hi {props.user.name}</label>
+        <div className="field-wrap col-lg-12 col-sm-12">
+         <label  className="font2 labelf1">Contact</label>
+         <input className={'font6 inputf1 '} onChange={props.handleChangeUserDetails}  name='contact' value={props.user.contact}  />
+         <span className="form-error">{''}</span>
+         </div>
+
+         <div className="field-wrap col-lg-12 col-sm-12">
+         <label  className="font2 labelf1">Address</label>
+         <input className={'font6 inputf1 '}  onChange={props.handleChangeUserDetails}  name='address' value={props.user.address}  />
+         <span className="form-error">{''}</span>
+         </div> 
+         <p className="massage-cart">
+            {cartUserdetails}
+        </p>
+        </div>:<p className="massage-cart">
+            {cartUserNotlogin}
+        </p>
+        }
+         <h4 className="font4 fontsizeE1-25 fontcolorSkyblue">Special massage</h4>
+        <p className="massage-cart">{cartitemMSG}</p>
+        {props.cartItems.map((x,i)=>
+        (x.qty > 0)?
+        
+         <div key={i} className="field-wrap col-lg-12 col-sm-12">
+         <label  className="font2 labelf1">{x.itemlongname}</label>
+         <textarea className={'font6 inputf1 '}  rows="2" required  name={x._id} value={x.msg} onChange={props.handleChangeSpecialMSG} />
+         <span className="form-error">{''}</span>
+         </div>:null  
+            )}
+          
+          <div className="d-flex justify-content-end">
+            <button type="button" className="font6  btn btn-submit "  required  onClick={props.handleSubmit} > Submit </button>
+        </div>
+        <style jsx>{
+            `
+            .labelf1 {
+                position: relative;
+                transform: translateY(5px);
+                left: 5px;
+                color: #01567e;
+                transition: all 0.25s ease;
+                -webkit-backface-visibility: hidden;
+                pointer-events: none;
+                font-size: 18px;
+            }
+            .labelf1 .req {
+                margin: 2px;
+                color: #01567e;
+            }
+            .labelf1.active {
+                left: 13px;
+                transform: translateY(10px);
+                font-size: 15px;
+            }
+            .labelf1.active .req {
+                opacity: 0;
+            }
+            .labelf1.highlight {
+                color: #023957;
+            }
+            .inputf1 {
+                font-size: 15px;
+                display: block;
+                width: 100%;
+                padding: 5px 10px;
+                background: #e9e9e97d;
+                background-image: none;
+                border: none;
+                border: 1.5px solid #01567e;
+                color: darkblue;
+                border-radius: 0;
+                transition: border-color 0.5s ease;
+            }
+            .inputf1:focus, textarea:focus {
+                outline: 0;
+                border-color: #023957;
+            }
+            textarea {
+                resize: vertical;
+            }
+            .field-wrap {
+                position: relative;
+            
+            }
+            .btn-addnewshop{
+                background: #01567e;
+                color:white; 
+            }
+            .btn-submit{
+                background: #01567e;
+                color:white; 
+                width:100%;
+                margin-top: 3rem;
+            }
+            .form-error{
+                color : red;
+                font-size : 0.8rem;
+            }
+            .input-error{
+                border-color: red;
+            }
+            .massage-cart{
+                padding:2px;
+                left: 13px;
+                font-size : 0.8rem;
+                color : #c41b00;
+
+            }
+            `
+        }</style>
+        </div>
+
+    )
+
+}
+
 class Index extends Component {
 
 
     state = {
         name : 'chanaka',
         items : [],
+        user:{},
         totalprice : 0,
 
+
     }
+
+    handleChangeSpecialMSG= evt =>{
+
+        var items = this.state.items;
+        items.find(function(e){
+             if(e._id == evt.target.name){
+                 e.msg = evt.target.value;
+             }
+        });
+
+        this.setState({
+            items : items,
+
+        })
+  
+    }
+
+    handleChangeUserDetails= evt =>{
+
+        var user = this.state.user;
+            if(evt.target.name=='contact'){
+            user.contact = evt.target.value
+            }
+            else if(evt.target.name=='address'){
+                user.address = evt.target.value 
+            }
+        this.setState({
+            user : user,
+
+        })
+  
+    }
+
+
     componentDidMount(){
 
      
         fetch(`${Url}itemforfavorite?fav=${Cookie.getJSON('faverite-item')}`)
         .then(res=>{ return res.status==200?res.json():null})
         .then(data=>{this.setState({items:data});})
+
+        this.setState({
+            user : Cookie.getJSON('user')
+        })
     }
 
     updateOrder(id,qty){
@@ -372,7 +537,7 @@ class Index extends Component {
             return c._id == id; 
         });
 
-        tempitem[itemsIndex] = tempitem[itemsIndex].qty?tempitem[itemsIndex]:{...tempitem[itemsIndex],qty:0}
+        tempitem[itemsIndex] = tempitem[itemsIndex].qty?tempitem[itemsIndex]:{...tempitem[itemsIndex],qty:0,msg:''}
         tempitem[itemsIndex].qty = tempitem[itemsIndex].qty+qty;
 
         if(tempitem[itemsIndex].qty>=0){
@@ -392,6 +557,34 @@ class Index extends Component {
         });
         return total;
     }
+
+    handleSubmit = evt => {
+        evt.preventDefault();
+
+        var items = this.state.items.filter(e=>e.qty>0);
+        var user  = Cookie.getJSON('user');
+        user.contact = this.state.user.contact;
+        user.address = this.state.user.address;
+
+        const data = new FormData();
+        data.append('jsonbody', JSON.stringify(items));
+        data.append('user', JSON.stringify(user));
+    
+            fetch('/api/createorder',{
+                method: 'POST',
+                headers: {
+                },
+                body:data
+            
+                }
+            )
+            .then(response => { return response.json(); } )
+            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .catch(error => console.log(error))
+
+    
+    };
+
     
     render() { 
     
@@ -413,6 +606,9 @@ class Index extends Component {
                  
                     <div className="col-lg-6 col-sm-12">
                     <OrderSide  cartItems={this.state.items} totalprice={this.state.totalprice} />
+                    {this.state.totalprice>0?
+                    <SendorderSide user={this.state.user} handleChangeUserDetails={this.handleChangeUserDetails} cartItems={this.state.items} handleChangeSpecialMSG={this.handleChangeSpecialMSG} handleSubmit={this.handleSubmit} />:null
+                    }
                     </div>
                 </div>
                  :<div className="d-flex justify-content-center"><h4 className="card-title font2 topicColor">Your cart is empty.</h4></div>}
