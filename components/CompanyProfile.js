@@ -517,7 +517,6 @@ class Index extends Component {
 
 
     state = {
-        name : 'chanaka',
         items : [],
         totalprice : 0,
 

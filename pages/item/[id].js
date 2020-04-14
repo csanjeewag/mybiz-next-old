@@ -73,9 +73,9 @@ const Contentside=(props)=>{
                 <div className="meta font6 subtopicColor">
                     <a>{props.item.categery}</a>
                     <div className=" float-right"> 
-                    <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
-                    <a className="Idiscount font6"> {c.itemdiscount}% </a>
-                    <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
+                    <a className="Icutprise font6"> <strike>Rs.{props.item.itemPrice}.00</strike>  </a> 
+                    <a className="Idiscount font6"> {props.item.itemdiscount}% </a>
+                    <a className="Iprise font6">&nbsp;Rs.{props.item.itemPrice*(100-props.item.itemdiscount)/100}</a>
                     
                     </div>
                 </div>
@@ -393,7 +393,7 @@ class Index extends Component {
         
             }
         )
-        .then(response => {this.componentDidMount(); return response.json(); } )
+        .then(response => {this.loadreviews(); return response.json(); } )
         .then(data => { if(data!=undefined){this.setState({review:''});alert(data.msg);}})
         .catch(error => console.log(error))
     }
@@ -411,7 +411,7 @@ class Index extends Component {
         
             }
         )
-        .then(response => {this.componentDidMount(); return response.json(); } )
+        .then(response => {this.loadquestions(); return response.json(); } )
         .then(data => { if(data!=undefined){ this.setState({question:''}); alert(data.msg);}})
         .catch(error => console.log(error))
 
@@ -429,7 +429,7 @@ class Index extends Component {
         
             }
         )
-        .then(response => {this.componentDidMount(); return response.json(); } )
+        .then(response => {this.loadquestions(); return response.json(); } )
         .then(data => { if(data!=undefined){this.setState({review:''});alert(data.msg);}})
         .catch(error => console.log(error))
     }
@@ -450,7 +450,7 @@ class Index extends Component {
             
                 }
             )
-            .then(response => {this.componentDidMount(); return response.json(); } )
+            .then(response => {this.loadquestions(); return response.json(); } )
             .then(data => {if(data!=undefined){this.setState({review:''});alert(data.msg);}})
             .catch(error => console.log(error))
 
@@ -481,6 +481,13 @@ class Index extends Component {
 
     });
         
+        this.loadquestions();
+        this.loadreviews();
+        this.loadCatagorybyname();
+
+    }
+    
+    loadquestions(){
         fetch(`${Url}questions/${this.props.item._id}`)
         .then(res=>{ return res.json();})
         .then(data=>{
@@ -490,6 +497,8 @@ class Index extends Component {
                 questiondata : data
             })
         })
+    }
+    loadreviews(){
         fetch(`${Url}reviews/${this.props.item._id}`)
         .then(res=>{ return res.json();})
         .then(data=>{
@@ -497,6 +506,8 @@ class Index extends Component {
                 reviewsdata : data
             })
         })
+    }
+    loadCatagorybyname(){
         fetch(`${Url}catagerybyname/${this.props.item.categery}`)
         .then(res=>{ return res.json();})
         .then(data=>{
@@ -504,9 +515,7 @@ class Index extends Component {
                 allitems : data
             })
         })
-
     }
-    
    
     render() { 
 

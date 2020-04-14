@@ -348,7 +348,7 @@ server.post("/api/createuser", (req, res) => {
 
 server.get("/api/orderbyshopid/:id", (req, res) => {
 
-  orderRepository.viewall({shopid:req.params.id},res);
+  orderRepository.viewallbystate(req,res);
 
 }); 
 
@@ -358,6 +358,24 @@ server.get("/api/orderbyshopid/:id", (req, res) => {
     if(req.body.user!='undefined'){
       project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
         orderRepository.create(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+
+  server.put("/api/updateorder/:id", (req, res) => {
+
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        orderRepository.update(req,res)
     }, (error) => {
 
         return res.status(404).json({msg:'you are signout please sign in.'}); 

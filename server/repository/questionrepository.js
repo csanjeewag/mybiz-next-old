@@ -57,20 +57,6 @@ exports.viewall = function(req,res) {
         var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                 return  res.status(400).json(error);
     });
-       /* var bodydata = new models(body);
-            bodydata.a_user = user;
-            bodydata.a_Date =  Date.now();
-        bodydata.save(function(err,data) {
-            if (err){
-                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
-                return  res.status(400).json(error);
-            }
-            else{
-                //console.log(data)
-            return  res.status(200).json({...data, token:body.token,msg:'create in success.'});
-            }
-            
-          }); */
 
        
   }

@@ -39469,48 +39469,256 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _layouts_MainLayout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../layouts/MainLayout */ "./layouts/MainLayout.js");
-/* harmony import */ var _components_Cartitem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Cartitem */ "./components/Cartitem.js");
-/* harmony import */ var _layouts_SubNavbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../layouts/SubNavbar */ "./layouts/SubNavbar.js");
-/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Footer */ "./components/Footer.js");
-/* harmony import */ var _constant_main__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../constant/main */ "./constant/main.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-jsx/style */ "./node_modules/styled-jsx/style.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _layouts_MainLayout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../layouts/MainLayout */ "./layouts/MainLayout.js");
+/* harmony import */ var _components_Cartitem__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Cartitem */ "./components/Cartitem.js");
+/* harmony import */ var _layouts_SubNavbar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../layouts/SubNavbar */ "./layouts/SubNavbar.js");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/Footer */ "./components/Footer.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _constant_main__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./../constant/main */ "./constant/main.js");
 
 
 
 
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
+
+
+
+var _this = undefined;
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 
 
 
 
 
+
+
+var OrderTable = function OrderTable(props) {
+  return __jsx("div", {
+    className: "jsx-1722122627" + " " + "order-table"
+  }, __jsx("div", {
+    role: "group",
+    "aria-label": "Basic example",
+    className: "jsx-1722122627" + " " + "btn-group btn-group-sm col-12"
+  }, __jsx("button", {
+    onClick: props.getorderbystate.bind(_this, 'all'),
+    type: "button",
+    className: "jsx-1722122627" + " " + "btn btn-secondary"
+  }, __jsx("img", {
+    src: "https://img.icons8.com/ios/20/ffffff/show-all-views.png",
+    className: "jsx-1722122627"
+  }), " All"), __jsx("button", {
+    onClick: props.getorderbystate.bind(_this, 'new'),
+    type: "button",
+    className: "jsx-1722122627" + " " + "btn btn-secondary"
+  }, __jsx("img", {
+    src: "https://img.icons8.com/ios/20/ffffff/new.png",
+    className: "jsx-1722122627"
+  }), " new"), __jsx("button", {
+    onClick: props.getorderbystate.bind(_this, 'mail'),
+    type: "button",
+    className: "jsx-1722122627" + " " + "btn btn-secondary"
+  }, __jsx("img", {
+    src: "https://img.icons8.com/ios/20/ffffff/upload-mail.png",
+    className: "jsx-1722122627"
+  }), " email"), __jsx("button", {
+    onClick: props.getorderbystate.bind(_this, 'confirm'),
+    type: "button",
+    className: "jsx-1722122627" + " " + "btn btn-secondary"
+  }, __jsx("img", {
+    src: "https://img.icons8.com/ios/20/ffffff/checked-checkbox.png",
+    className: "jsx-1722122627"
+  }), " confirm"), __jsx("button", {
+    onClick: props.getorderbystate.bind(_this, 'remove'),
+    type: "button",
+    className: "jsx-1722122627" + " " + "btn btn-secondary"
+  }, " ", __jsx("img", {
+    src: "https://img.icons8.com/ios/20/ffffff/trash.png",
+    className: "jsx-1722122627"
+  }), " removes")), __jsx("table", {
+    className: "jsx-1722122627" + " " + "table table-striped"
+  }, __jsx("thead", {
+    className: "jsx-1722122627"
+  }, __jsx("tr", {
+    className: "jsx-1722122627"
+  }, __jsx("th", {
+    scope: "col",
+    className: "jsx-1722122627"
+  }), __jsx("th", {
+    scope: "col",
+    className: "jsx-1722122627"
+  }, "state"), __jsx("th", {
+    scope: "col",
+    className: "jsx-1722122627"
+  }, "Item Details"), __jsx("th", {
+    scope: "col",
+    className: "jsx-1722122627"
+  }, "Price"), __jsx("th", {
+    scope: "col",
+    className: "jsx-1722122627"
+  }, "User details"))), __jsx("tbody", {
+    className: "jsx-1722122627"
+  }, props.orders.map(function (x, i) {
+    return __jsx("tr", {
+      key: i,
+      className: "jsx-1722122627"
+    }, __jsx("th", {
+      className: "jsx-1722122627"
+    }, __jsx("div", {
+      className: "jsx-1722122627"
+    }, __jsx("img", {
+      width: "50px",
+      src: _constant_main__WEBPACK_IMPORTED_MODULE_14__["ImageUrl"] + x.item.images[0],
+      className: "jsx-1722122627"
+    }), __jsx("p", {
+      className: "jsx-1722122627" + " " + "fontsizeE-8"
+    }, x.createDate)), " "), __jsx("td", {
+      className: "jsx-1722122627"
+    }, __jsx("div", {
+      className: "jsx-1722122627" + " " + "item-details font6"
+    }, __jsx("p", {
+      className: "jsx-1722122627" + " " + "topicColor"
+    }, x.state, " "), __jsx("p", {
+      className: "jsx-1722122627"
+    }, __jsx("img", {
+      onClick: props.updateorder.bind(_this, x._id, 'new'),
+      src: "https://img.icons8.com/ios/25/000000/new.png",
+      className: "jsx-1722122627"
+    }), __jsx("img", {
+      onClick: props.updateorder.bind(_this, x._id, 'mail'),
+      src: "https://img.icons8.com/ios/25/000000/upload-mail.png",
+      className: "jsx-1722122627"
+    }), __jsx("img", {
+      onClick: props.updateorder.bind(_this, x._id, 'confirm'),
+      src: "https://img.icons8.com/ios/25/000000/checked-checkbox.png",
+      className: "jsx-1722122627"
+    }), __jsx("img", {
+      onClick: props.updateorder.bind(_this, x._id, 'remove'),
+      src: "https://img.icons8.com/ios/25/000000/trash.png",
+      className: "jsx-1722122627"
+    }), " "))), __jsx("td", {
+      className: "jsx-1722122627"
+    }, __jsx("div", {
+      className: "jsx-1722122627" + " " + "item-details font6"
+    }, __jsx("p", {
+      className: "jsx-1722122627" + " " + "topicColor"
+    }, x.item.itemlongname, " "), __jsx("p", {
+      className: "jsx-1722122627"
+    }, x.item.categery, "/", x.item.subcategery, " "))), __jsx("td", {
+      className: "jsx-1722122627"
+    }, __jsx("div", {
+      className: "jsx-1722122627" + " " + "item-details font6"
+    }, __jsx("p", {
+      className: "jsx-1722122627" + " " + "topicColor"
+    }, "Rs.", x.item.itemPrice * (100 - x.item.itemdiscount) / 100, " x ", x.item.qty, " = Rs.", x.item.itemPrice * (100 - x.item.itemdiscount) / 100 * x.item.qty, " "), __jsx("p", {
+      className: "jsx-1722122627"
+    }, " ", __jsx("strike", {
+      className: "jsx-1722122627" + " " + "fontsizeE-8"
+    }, "Rs.", x.item.itemPrice, ".00"), " ", __jsx("span", {
+      className: "jsx-1722122627" + " " + "fontcolorOrange fontsizeE-8"
+    }, x.item.itemdiscount, "% "), "  Rs.", x.item.itemPrice * (100 - x.item.itemdiscount) / 100, " "))), __jsx("td", {
+      className: "jsx-1722122627" + " " + "user-details font6"
+    }, __jsx("div", {
+      className: "jsx-1722122627" + " " + "item-details font6"
+    }, __jsx("p", {
+      className: "jsx-1722122627" + " " + "topicColor"
+    }, x.user.name), __jsx("p", {
+      className: "jsx-1722122627"
+    }, " ", x.user.email, " - ", x.user.contact, " "))));
+  }))), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    id: "1722122627"
+  }, ".order-table.jsx-1722122627{overflow :auto;}.item-details.jsx-1722122627 p.jsx-1722122627{margin-top:0;margin-bottom:0;}.item-details.jsx-1722122627 img.jsx-1722122627{cursor:pointer;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkQ6XFxXZWItcHJvamVjdFxcbXlhcHBcXHBhZ2VzXFxteW9yZGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlFRyxBQUdvQixBQUdGLEFBSUUsYUFIQyxFQUhsQixBQU9BLGNBSEEiLCJmaWxlIjoiRDpcXFdlYi1wcm9qZWN0XFxteWFwcFxccGFnZXNcXG15b3JkZXIuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgQ29tcG9uZW50IH0gZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgTGF5b3V0IGZyb20gJy4uL2xheW91dHMvTWFpbkxheW91dCc7XHJcbmltcG9ydCBDYXJ0aXRlbSBmcm9tICcuLi9jb21wb25lbnRzL0NhcnRpdGVtJztcclxuaW1wb3J0IFN1Yk5hdkJhciBmcm9tICcuLi9sYXlvdXRzL1N1Yk5hdmJhcic7XHJcbmltcG9ydCBGb290ZXIgZnJvbSAnLi4vY29tcG9uZW50cy9Gb290ZXInO1xyXG5pbXBvcnQgQ29va2llIGZyb20gXCJqcy1jb29raWVcIjtcclxuaW1wb3J0IHtVcmwsSW1hZ2VVcmx9IGZyb20gJy4vLi4vY29uc3RhbnQvbWFpbic7XHJcblxyXG5jb25zdCBPcmRlclRhYmxlPShwcm9wcyk9PntcclxuXHJcbiAgcmV0dXJuKFxyXG4gICAgPGRpdiBjbGFzc05hbWU9XCJvcmRlci10YWJsZVwiPlxyXG5cclxuICA8ZGl2IGNsYXNzTmFtZT1cImJ0bi1ncm91cCBidG4tZ3JvdXAtc20gY29sLTEyXCIgcm9sZT1cImdyb3VwXCIgYXJpYS1sYWJlbD1cIkJhc2ljIGV4YW1wbGVcIj5cclxuICAgIDxidXR0b24gb25DbGljaz17cHJvcHMuZ2V0b3JkZXJieXN0YXRlLmJpbmQodGhpcywnYWxsJyl9IHR5cGU9XCJidXR0b25cIiBjbGFzc05hbWU9XCJidG4gYnRuLXNlY29uZGFyeVwiPjxpbWcgc3JjPVwiaHR0cHM6Ly9pbWcuaWNvbnM4LmNvbS9pb3MvMjAvZmZmZmZmL3Nob3ctYWxsLXZpZXdzLnBuZ1wiLz4gQWxsPC9idXR0b24+XHJcbiAgICA8YnV0dG9uIG9uQ2xpY2s9e3Byb3BzLmdldG9yZGVyYnlzdGF0ZS5iaW5kKHRoaXMsJ25ldycpfSB0eXBlPVwiYnV0dG9uXCIgY2xhc3NOYW1lPVwiYnRuIGJ0bi1zZWNvbmRhcnlcIj48aW1nIHNyYz1cImh0dHBzOi8vaW1nLmljb25zOC5jb20vaW9zLzIwL2ZmZmZmZi9uZXcucG5nXCIvPiBuZXc8L2J1dHRvbj5cclxuICAgIDxidXR0b24gb25DbGljaz17cHJvcHMuZ2V0b3JkZXJieXN0YXRlLmJpbmQodGhpcywnbWFpbCcpfSB0eXBlPVwiYnV0dG9uXCIgY2xhc3NOYW1lPVwiYnRuIGJ0bi1zZWNvbmRhcnlcIj48aW1nIHNyYz1cImh0dHBzOi8vaW1nLmljb25zOC5jb20vaW9zLzIwL2ZmZmZmZi91cGxvYWQtbWFpbC5wbmdcIi8+IGVtYWlsPC9idXR0b24+XHJcbiAgICA8YnV0dG9uIG9uQ2xpY2s9e3Byb3BzLmdldG9yZGVyYnlzdGF0ZS5iaW5kKHRoaXMsJ2NvbmZpcm0nKX0gdHlwZT1cImJ1dHRvblwiIGNsYXNzTmFtZT1cImJ0biBidG4tc2Vjb25kYXJ5XCI+PGltZyBzcmM9XCJodHRwczovL2ltZy5pY29uczguY29tL2lvcy8yMC9mZmZmZmYvY2hlY2tlZC1jaGVja2JveC5wbmdcIi8+IGNvbmZpcm08L2J1dHRvbj5cclxuICAgIDxidXR0b24gb25DbGljaz17cHJvcHMuZ2V0b3JkZXJieXN0YXRlLmJpbmQodGhpcywncmVtb3ZlJyl9IHR5cGU9XCJidXR0b25cIiBjbGFzc05hbWU9XCJidG4gYnRuLXNlY29uZGFyeVwiPiA8aW1nIHNyYz1cImh0dHBzOi8vaW1nLmljb25zOC5jb20vaW9zLzIwL2ZmZmZmZi90cmFzaC5wbmdcIi8+IHJlbW92ZXM8L2J1dHRvbj5cclxuICA8L2Rpdj5cclxuXHJcbiAgPHRhYmxlIGNsYXNzTmFtZT1cInRhYmxlIHRhYmxlLXN0cmlwZWRcIj5cclxuICAgIDx0aGVhZD5cclxuICAgICAgPHRyPlxyXG4gICAgICAgIDx0aCBzY29wZT1cImNvbFwiPjwvdGg+XHJcbiAgICAgICAgPHRoIHNjb3BlPVwiY29sXCI+c3RhdGU8L3RoPlxyXG4gICAgICAgIDx0aCBzY29wZT1cImNvbFwiPkl0ZW0gRGV0YWlsczwvdGg+XHJcbiAgICAgICAgPHRoIHNjb3BlPVwiY29sXCI+UHJpY2U8L3RoPlxyXG4gICAgICAgIDx0aCBzY29wZT1cImNvbFwiPlVzZXIgZGV0YWlsczwvdGg+XHJcbiAgICAgIDwvdHI+XHJcbiAgICA8L3RoZWFkPlxyXG4gICAgPHRib2R5PlxyXG4gIFxyXG4gIHtwcm9wcy5vcmRlcnMubWFwKCh4LGkpPT5cclxuICAgICAgPHRyIGtleT17aX0+XHJcbiAgICAgIDx0aD48ZGl2PjxpbWcgd2lkdGg9XCI1MHB4XCIgc3JjPXtJbWFnZVVybCt4Lml0ZW0uaW1hZ2VzWzBdfSAvPlxyXG4gICAgICAgPHAgY2xhc3NOYW1lPVwiZm9udHNpemVFLThcIj57eC5jcmVhdGVEYXRlfTwvcD5cclxuICAgICAgIDwvZGl2PiA8L3RoPlxyXG4gICAgICA8dGQ+IFxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpdGVtLWRldGFpbHMgZm9udDZcIj4gXHJcbiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidG9waWNDb2xvclwiPnt4LnN0YXRlfSA8L3A+XHJcbiAgICAgICAgICAgICAgPHA+XHJcbiAgICAgICAgICAgICAgPGltZyBvbkNsaWNrPXtwcm9wcy51cGRhdGVvcmRlci5iaW5kKHRoaXMseC5faWQsJ25ldycpfSBzcmM9XCJodHRwczovL2ltZy5pY29uczguY29tL2lvcy8yNS8wMDAwMDAvbmV3LnBuZ1wiLz4gXHJcbiAgICAgICAgICAgICAgPGltZyBvbkNsaWNrPXtwcm9wcy51cGRhdGVvcmRlci5iaW5kKHRoaXMseC5faWQsJ21haWwnKX0gc3JjPVwiaHR0cHM6Ly9pbWcuaWNvbnM4LmNvbS9pb3MvMjUvMDAwMDAwL3VwbG9hZC1tYWlsLnBuZ1wiLz4gXHJcbiAgICAgICAgICAgICAgPGltZyBvbkNsaWNrPXtwcm9wcy51cGRhdGVvcmRlci5iaW5kKHRoaXMseC5faWQsJ2NvbmZpcm0nKX0gc3JjPVwiaHR0cHM6Ly9pbWcuaWNvbnM4LmNvbS9pb3MvMjUvMDAwMDAwL2NoZWNrZWQtY2hlY2tib3gucG5nXCIvPlxyXG4gICAgICAgICAgICAgIDxpbWcgb25DbGljaz17cHJvcHMudXBkYXRlb3JkZXIuYmluZCh0aGlzLHguX2lkLCdyZW1vdmUnKX0gc3JjPVwiaHR0cHM6Ly9pbWcuaWNvbnM4LmNvbS9pb3MvMjUvMDAwMDAwL3RyYXNoLnBuZ1wiLz4gPC9wPlxyXG4gICAgICAgICAgPC9kaXY+IFxyXG4gICAgICA8L3RkPlxyXG4gICAgICA8dGQ+IFxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpdGVtLWRldGFpbHMgZm9udDZcIj4gXHJcbiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidG9waWNDb2xvclwiPnt4Lml0ZW0uaXRlbWxvbmduYW1lfSA8L3A+XHJcbiAgICAgICAgICAgICAgPHA+e3guaXRlbS5jYXRlZ2VyeX0ve3guaXRlbS5zdWJjYXRlZ2VyeX0gPC9wPlxyXG4gICAgICAgICAgPC9kaXY+IFxyXG4gICAgICA8L3RkPlxyXG4gICAgICA8dGQ+XHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIml0ZW0tZGV0YWlscyBmb250NlwiPiBcclxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRvcGljQ29sb3JcIj5Scy57eC5pdGVtLml0ZW1QcmljZSooMTAwLXguaXRlbS5pdGVtZGlzY291bnQpLzEwMH0geCB7eC5pdGVtLnF0eX0gPSBScy57eC5pdGVtLml0ZW1QcmljZSooMTAwLXguaXRlbS5pdGVtZGlzY291bnQpLzEwMCp4Lml0ZW0ucXR5fSA8L3A+XHJcbiAgICAgICAgICA8cCA+IDxzdHJpa2UgY2xhc3NOYW1lPVwiZm9udHNpemVFLThcIj5Scy57eC5pdGVtLml0ZW1QcmljZX0uMDA8L3N0cmlrZT4gPHNwYW4gY2xhc3NOYW1lPVwiZm9udGNvbG9yT3JhbmdlIGZvbnRzaXplRS04XCI+e3guaXRlbS5pdGVtZGlzY291bnR9JSA8L3NwYW4+ICBScy57eC5pdGVtLml0ZW1QcmljZSooMTAwLXguaXRlbS5pdGVtZGlzY291bnQpLzEwMH0gPC9wPlxyXG4gICAgICAgICAgPC9kaXY+IFxyXG4gICAgICA8L3RkPlxyXG4gICAgICA8dGQgY2xhc3NOYW1lPVwidXNlci1kZXRhaWxzIGZvbnQ2XCI+XHJcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaXRlbS1kZXRhaWxzIGZvbnQ2XCI+IFxyXG4gICAgICAgICAgPHAgY2xhc3NOYW1lPVwidG9waWNDb2xvclwiPnt4LnVzZXIubmFtZX08L3A+XHJcbiAgICAgICAgICA8cCA+IHt4LnVzZXIuZW1haWx9IC0ge3gudXNlci5jb250YWN0fSA8L3A+XHJcbiAgICAgICAgPC9kaXY+IFxyXG4gICAgICBcclxuICAgICAgPC90ZD5cclxuICAgICAgPC90cj5cclxuICAgICAgKX1cclxuICBcclxuICAgIDwvdGJvZHk+XHJcbiAgPC90YWJsZT5cclxuICA8c3R5bGUganN4PlxyXG4gIHtgXHJcbiAgLm9yZGVyLXRhYmxle1xyXG4gICAgb3ZlcmZsb3cgOiBhdXRvO1xyXG4gIH1cclxuICAuaXRlbS1kZXRhaWxzIHB7XHJcbiAgICBtYXJnaW4tdG9wOiAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMDtcclxuICB9XHJcbiAgLml0ZW0tZGV0YWlscyBpbWd7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgfVxyXG4gIGB9XHJcbiAgPC9zdHlsZT5cclxuICA8L2Rpdj5cclxuICBcclxuICApXHJcbiAgfVxyXG4gIFxyXG5cclxuXHJcbmNsYXNzIEluZGV4IGV4dGVuZHMgQ29tcG9uZW50IHtcclxuXHJcbiAgY29uc3RydWN0b3IoKSB7XHJcblx0XHRzdXBlcigpO1xyXG5cdFx0dGhpcy5zdGF0ZSA9IHtcclxuICAgICAgdG90YWxwcmljZSA6IDAsXHJcbiAgICAgIG9yZGVyczpbXVxyXG5cclxuICB9XHJcblx0fVxyXG5cclxuXHJcbiAgICBnZXRvcmRlcmJ5c3RhdGUoc3RhdGUpe1xyXG5cclxuICAgICAgZmV0Y2goYCR7VXJsfW9yZGVyYnlzaG9waWQvNWU4ODg5YTQzODc0NzkzNjU4MGQ4NWM4P3N0YXRlPSR7c3RhdGV9YClcclxuICAgICAgLnRoZW4ocmVzPT57IHJldHVybiByZXMuanNvbigpfSlcclxuICAgICAgLnRoZW4oZGF0YSA9PiB7IHRoaXMuc2V0U3RhdGUoe29yZGVyczpkYXRhfSl9KVxyXG4gICAgXHJcbiAgICB9XHJcblxyXG4gICAgdXBkYXRlb3JkZXIoaWQsc3RhdGUpe1xyXG5cclxuICAgICAgY29uc3QgZGF0YSA9IG5ldyBGb3JtRGF0YSgpO1xyXG4gICAgICB2YXIganNvbmJvZHkgPSB7c3RhdGU6c3RhdGV9XHJcbiAgICAgIGRhdGEuYXBwZW5kKCdqc29uYm9keScsIEpTT04uc3RyaW5naWZ5KGpzb25ib2R5KSk7XHJcbiAgICAgIGRhdGEuYXBwZW5kKCd1c2VyJywgSlNPTi5zdHJpbmdpZnkoQ29va2llLmdldEpTT04oJ3VzZXInKSkpO1xyXG4gICAgICBmZXRjaCgnL2FwaS91cGRhdGVvcmRlci8nK2lkLHtcclxuICAgICAgICAgIG1ldGhvZDogJ1BVVCcsXHJcbiAgICAgICAgICBoZWFkZXJzOiB7XHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgICAgYm9keTpkYXRhXHJcbiAgICAgIFxyXG4gICAgICAgICAgfVxyXG4gICAgICApXHJcbiAgICAgIC50aGVuKHJlc3BvbnNlID0+IHt0aGlzLmdldG9yZGVyYnlzdGF0ZShzdGF0ZSk7IHJldHVybiByZXNwb25zZS5qc29uKCk7IH0gKVxyXG4gICAgICAudGhlbihkYXRhID0+IHsgaWYoZGF0YSE9dW5kZWZpbmVkKXthbGVydChkYXRhLm1zZyk7fX0pXHJcbiAgICAgIC5jYXRjaChlcnJvciA9PiBjb25zb2xlLmxvZyhlcnJvcikpXHJcbiAgICB9XHJcbiAgIFxyXG5cclxuICAgIHNob3dzaWRlYmFyKCl7XHJcbiAgICAgICAgdGhpcy5yZWZzLmNoaWxkLnNob3dTaWRlYmFyKCk7XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIGNvbXBvbmVudERpZE1vdW50KCl7XHJcbiAgICB0aGlzLnNldFN0YXRlKHtcclxuICAgICAgICBvcmRlcnM6dGhpcy5wcm9wcy5vcmRlcnNcclxuICAgIH0pXHJcbiAgICB9XHJcbiAgICBcclxuICAgIHJlbmRlcigpIHsgXHJcbiAgICAgICAgXHJcbiAgICAgICAgLy9zaWRlIG5hdmJhciBsaW5rXHJcbiAgICAgICAgY29uc3Qgc2lkZW5hdmxpbmsgPSBbXHJcbiAgICAgICAgICAgIHtpZDoxLGxpbms6Jy8nLGxpbmtuYW1lOidob21lJ30sXHJcbiAgICAgICAgICAgIHtpZDoxLGxpbms6Jy9tZW51JyxsaW5rbmFtZTonbWVudSd9LFxyXG4gICAgICAgICAgICB7aWQ6MSxsaW5rOicvJyxsaW5rbmFtZTonbWVudTInfSxcclxuICAgICAgICAgICAge2lkOjEsbGluazonLycsbGlua25hbWU6J21lbnUzJ30sXHJcbiAgICAgICAgICAgIHtpZDoxLGxpbms6Jy8nLGxpbmtuYW1lOidtZW51NCd9LFxyXG4gICAgICAgICAgICB7aWQ6MSxsaW5rOicvJyxsaW5rbmFtZTonbWVudTUnfSxcclxuICAgICAgICAgIF07XHJcbiAgICAgICAgICBcclxuICAgICAgICAgICAgY29uc3Qgc2lkZW5hdmNvbnN0ID0ge3RvcGljIDogJ0NhdGVnZXJpZXMnLHRvcGljbGluazonQWxsIENhdGVnZXJpZXNzJyxzaWRlbmF2bGluazpzaWRlbmF2bGluaywgdmlzaWJsZTpmYWxzZSB9O1xyXG4gICAgICAgIC8vLy8vLy8vLy8vLy8vXHJcbiAgICAgICAgICByZXR1cm4gKCBcclxuICAgICAgICAgICAgPExheW91dD5cclxuICAgICAgICAgICAgICAgICA8U3ViTmF2QmFyIHNpZGVuYXZjb25zdD17c2lkZW5hdmNvbnN0fS8+IFxyXG5cclxuICAgICAgICAgICAgICAgIDxDYXJ0aXRlbSAgdG9waWM9XCJNeSBmYXZvcml0ZXNcIj48L0NhcnRpdGVtPlxyXG4gICAgICAgICAgICAgICAgPE9yZGVyVGFibGUgb3JkZXJzPXt0aGlzLnN0YXRlLm9yZGVyc30gdXBkYXRlb3JkZXI9eyhpZCxzdGF0ZSk9PnRoaXMudXBkYXRlb3JkZXIoaWQsc3RhdGUpfSBnZXRvcmRlcmJ5c3RhdGU9eyhzdGF0ZSk9PnRoaXMuZ2V0b3JkZXJieXN0YXRlKHN0YXRlKX0gLz5cclxuICAgICAgICAgICAgPEZvb3Rlci8+XHJcbiAgICAgICAgICAgICAgICAgICA8L0xheW91dD5cclxuICAgICAgICAgICApO1xyXG4gICAgICB9XHJcbiAgICBcclxufVxyXG5cclxuSW5kZXguZ2V0SW5pdGlhbFByb3BzID0gYXN5bmMgZnVuY3Rpb24oY29udGV4dCkge1xyXG4gIGNvbnN0IHsgaWQgfSA9IGNvbnRleHQucXVlcnk7XHJcblxyXG4gIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKGAke1VybH1vcmRlcmJ5c2hvcGlkLzVlODg4OWE0Mzg3NDc5MzY1ODBkODVjOD9zdGF0ZT1uZXdgKTtcclxuXHJcbiAgdmFyICBvcmRlcnMgPSBhd2FpdCByZXMuanNvbigpO1xyXG5cclxuICB2YXIgZXJyb3IgPSBmYWxzZTtcclxuICBpZihyZXMuc3RhdHVzIT0yMDApe1xyXG4gICAgICBlcnJvciA9IHRydWUgO1xyXG4gfVxyXG4gIHJldHVybiB7b3JkZXJzOm9yZGVycyxlcnJvcn1cclxuXHJcblxyXG59XHJcblxyXG5cclxuZXhwb3J0IGRlZmF1bHQgSW5kZXg7IFxyXG4iXX0= */\n/*@ sourceURL=D:\\\\Web-project\\\\myapp\\\\pages\\\\myorder.js */"));
+};
 
 var Index = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(Index, _Component);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(Index, _Component);
 
   function Index() {
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Index);
+    var _this2;
 
-    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Index).apply(this, arguments));
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Index);
+
+    _this2 = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Index).call(this));
+    _this2.state = {
+      totalprice: 0,
+      orders: []
+    };
+    return _this2;
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Index, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Index, [{
+    key: "getorderbystate",
+    value: function getorderbystate(state) {
+      var _this3 = this;
+
+      fetch("".concat(_constant_main__WEBPACK_IMPORTED_MODULE_14__["Url"], "orderbyshopid/5e8889a438747936580d85c8?state=").concat(state)).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this3.setState({
+          orders: data
+        });
+      });
+    }
+  }, {
+    key: "updateorder",
+    value: function updateorder(id, state) {
+      var _this4 = this;
+
+      var data = new FormData();
+      var jsonbody = {
+        state: state
+      };
+      data.append('jsonbody', _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(jsonbody));
+      data.append('user', _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(js_cookie__WEBPACK_IMPORTED_MODULE_13___default.a.getJSON('user')));
+      fetch('/api/updateorder/' + id, {
+        method: 'PUT',
+        headers: {},
+        body: data
+      }).then(function (response) {
+        _this4.getorderbystate(state);
+
+        return response.json();
+      }).then(function (data) {
+        if (data != undefined) {
+          alert(data.msg);
+        }
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    }
+  }, {
     key: "showsidebar",
     value: function showsidebar() {
       this.refs.child.showSidebar();
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        orders: this.props.orders
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this5 = this;
+
       //side navbar link
       var sidenavlink = [{
         id: 1,
@@ -39544,16 +39752,60 @@ var Index = /*#__PURE__*/function (_Component) {
         visible: false
       }; //////////////
 
-      return __jsx(_layouts_MainLayout__WEBPACK_IMPORTED_MODULE_6__["default"], null, __jsx(_layouts_SubNavbar__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      return __jsx(_layouts_MainLayout__WEBPACK_IMPORTED_MODULE_9__["default"], null, __jsx(_layouts_SubNavbar__WEBPACK_IMPORTED_MODULE_11__["default"], {
         sidenavconst: sidenavconst
-      }), __jsx(_components_Cartitem__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }), __jsx(_components_Cartitem__WEBPACK_IMPORTED_MODULE_10__["default"], {
         topic: "My favorites"
-      }), __jsx(_components_Footer__WEBPACK_IMPORTED_MODULE_9__["default"], null));
+      }), __jsx(OrderTable, {
+        orders: this.state.orders,
+        updateorder: function updateorder(id, state) {
+          return _this5.updateorder(id, state);
+        },
+        getorderbystate: function getorderbystate(state) {
+          return _this5.getorderbystate(state);
+        }
+      }), __jsx(_components_Footer__WEBPACK_IMPORTED_MODULE_12__["default"], null));
     }
   }]);
 
   return Index;
-}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
+
+Index.getInitialProps = function _callee(context) {
+  var id, res, orders, error;
+  return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          id = context.query.id;
+          _context.next = 3;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch("".concat(_constant_main__WEBPACK_IMPORTED_MODULE_14__["Url"], "orderbyshopid/5e8889a438747936580d85c8?state=new")));
+
+        case 3:
+          res = _context.sent;
+          _context.next = 6;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res.json());
+
+        case 6:
+          orders = _context.sent;
+          error = false;
+
+          if (res.status != 200) {
+            error = true;
+          }
+
+          return _context.abrupt("return", {
+            orders: orders,
+            error: error
+          });
+
+        case 10:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 
