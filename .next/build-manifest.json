@@ -20,6 +20,10 @@
     "/myorder": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/orders": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

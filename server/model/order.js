@@ -7,9 +7,12 @@ var mongoose = require('mongoose');
             shopid:String,
             item:{},
             user:{},
+            shop:{},
             createDate: Date,
             isvalid:Boolean,
             state:String,
+            userMsg : String,
+            sellerMsg : String
 
   });
   var SomeModel = mongoose.model('order', SomeModelSchema );

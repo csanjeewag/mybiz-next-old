@@ -534,9 +534,10 @@ const OrderTable=(props)=>{
         <th scope="col">Item Details</th>
         <th scope="col">Price</th>
         <th scope="col">User details</th>
+        <th scope="col">Massages</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className="projects">
   
   {props.orders.map((x,i)=>
       <tr key={i}>
@@ -572,6 +573,14 @@ const OrderTable=(props)=>{
         </div> 
       
       </td>
+      <td className="user-details font6">
+      <div className="item-details font6"> 
+          <p className="topicColor">cus: {x.userMsg?x.userMsg:'--'}</p>
+          <p >you: {x.sellerMsg?x.sellerMsg:'--'}</p>
+          <button className="btn btn-sm btn-danger" onClick={props.sellerMassege.bind(this,x._id,x.state)}>send msg</button>
+        </div> 
+      
+      </td>
       </tr>
       )}
   
@@ -603,7 +612,8 @@ class Index extends Component {
 		super();
 		this.state = {
       totalprice : 0,
-      orders:[]
+      orders:[],
+      istable:false
 
   }
 	}
@@ -635,6 +645,28 @@ class Index extends Component {
       .then(data => { if(data!=undefined){alert(data.msg);}})
       .catch(error => console.log(error))
     }
+    sellerMassege(id,state){
+        var send = prompt("enter your message.", "");
+        if(send!=null){
+            const data = new FormData();
+            var jsonbody = {sellerMsg:send}
+            //var jsonbody = {state:'new'}
+            data.append('jsonbody', JSON.stringify(jsonbody));
+            data.append('user', JSON.stringify(Cookie.getJSON('user')));
+            fetch('/api/updateorder/'+id,{
+                method: 'PUT',
+                headers: {
+                },
+                body:data
+            
+                }
+            )
+            .then(response => {this.getorderbystate(state); return response.json(); } )
+            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .catch(error => console.log(error))
+        }
+      
+      }
 
     addtocart(itemid,name){
         var data = Cookie.getJSON('faverite-item');
@@ -681,6 +713,11 @@ class Index extends Component {
     })
     }
 
+    chnagetab=(istable)=>{
+        this.setState({
+            istable:istable
+        })
+    }
     
     render() { 
 
@@ -698,9 +735,18 @@ class Index extends Component {
                 <Imageside shop={this.props.shop?this.props.shop:null} ></Imageside>
                 <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
                 </div>
-                <br/>  
-                <OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} />
-          {/*<CartList items={this.state.items} catagerytype="Phones" addtocart ={(id,name)=>this.addtocart(id,name)} />*/}
+            <ul className="nav nav-tabs">
+            <li className="nav-item pointer">
+                <a onClick={this.chnagetab.bind(this,false)} className= {this.state.istable?"nav-link":"nav-link active"} >Items List</a>
+            </li>
+            <li className="nav-item pointer">
+                <a onClick={this.chnagetab.bind(this,true)}  className={this.state.istable?"nav-link active":"nav-link"}>Order List</a>
+            </li>
+
+            </ul>
+                <br/>
+                {this.state.istable?<OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} sellerMassege={(id,state)=>this.sellerMassege(id,state)}/>
+                :<CartList items={this.props.items} catagerytype="Phones" addtocart ={(id,name)=>this.addtocart(id,name)} />}
                 </div>
                 <Footer/>
                   </Layout>
@@ -713,15 +759,16 @@ class Index extends Component {
     const { id } = context.query;
 
     const res = await fetch(`${Url}orderbyshopid/5e8889a438747936580d85c8?state=new`);
-    const resshop = await fetch(`${Url}shopid/5e8889a438747936580d85c8`);
+  //  const resshop = await fetch(`${Url}shopid/5e8889a438747936580d85c8`);
+    const resshop = await fetch(`${Url}shopanditems/shb?ide=5e8889a438747936580d85c8`);
 
     var  orders = await res.json();
-    var  shop = await resshop.json();
+    var  shopanditems = await resshop.json();
     var error = false;
     if(res.status!=200||resshop.status!=200){
         error = true ;
    }
-    return {orders:orders,shop:shop,error}
+    return {orders:orders,shop:shopanditems.shop,items:shopanditems.items,error}
 
 
   }

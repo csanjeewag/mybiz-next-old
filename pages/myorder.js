@@ -26,7 +26,8 @@ const OrderTable=(props)=>{
         <th scope="col">state</th>
         <th scope="col">Item Details</th>
         <th scope="col">Price</th>
-        <th scope="col">User details</th>
+        <th scope="col">Shop details</th>
+        <th scope="col">massage</th>
       </tr>
     </thead>
     <tbody>
@@ -60,8 +61,17 @@ const OrderTable=(props)=>{
       </td>
       <td className="user-details font6">
       <div className="item-details font6"> 
-          <p className="topicColor">{x.user.name}</p>
-          <p > {x.user.email} - {x.user.contact} </p>
+          <p className="topicColor">{x.shop.shopName}</p>
+          <p > {x.shop.district} - {x.shop.town} </p>
+          <p > {x.shop.contact1} </p>
+        </div> 
+      
+      </td>
+      <td className="user-details font6">
+      <div className="item-details font6"> 
+          <p className="topicColor">you: {x.userMsg?x.userMsg:'--'}</p>
+          <p >shop: {x.sellerMsg?x.sellerMsg:'--'}</p>
+          <button onClick={props.userMassage.bind(this,x._id,x.state)} className="btn btn-sm btn-danger">send msg</button>
         </div> 
       
       </td>
@@ -135,6 +145,28 @@ class Index extends Component {
         this.refs.child.showSidebar();
       }
 
+      userMassage(id,state){
+        var send = prompt("enter your message.", "");
+        if(send!=null){
+        const data = new FormData();
+        var jsonbody = {userMsg:send}
+        //var jsonbody = {state:'new'}
+        data.append('jsonbody', JSON.stringify(jsonbody));
+        data.append('user', JSON.stringify(Cookie.getJSON('user')));
+        fetch('/api/updateorder/'+id,{
+            method: 'PUT',
+            headers: {
+            },
+            body:data
+        
+            }
+        )
+        .then(response => {this.getorderbystate(state); return response.json(); } )
+        .then(data => { if(data!=undefined){alert(data.msg);}})
+        .catch(error => console.log(error))
+      }
+    }
+
       componentDidMount(){
     this.setState({
         orders:this.props.orders
@@ -142,25 +174,16 @@ class Index extends Component {
     }
     
     render() { 
-        
-        //side navbar link
-        const sidenavlink = [
-            {id:1,link:'/',linkname:'home'},
-            {id:1,link:'/menu',linkname:'menu'},
-            {id:1,link:'/',linkname:'menu2'},
-            {id:1,link:'/',linkname:'menu3'},
-            {id:1,link:'/',linkname:'menu4'},
-            {id:1,link:'/',linkname:'menu5'},
-          ];
+      
           
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink, visible:false };
+            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:'sidenavlink', visible:false };
         //////////////
           return ( 
             <Layout>
                  <SubNavBar sidenavconst={sidenavconst}/> 
 
                 <Cartitem  topic="My favorites"></Cartitem>
-                <OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} />
+                <OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} userMassage={(id,state)=>this.userMassage(id,state)} />
             <Footer/>
                    </Layout>
            );

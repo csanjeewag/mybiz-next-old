@@ -490,7 +490,7 @@ class Index extends Component {
         var items = this.state.items;
         items.find(function(e){
              if(e._id == evt.target.name){
-                 e.msg = evt.target.value;
+                 e.userMsg = evt.target.value;
              }
         });
 
@@ -537,7 +537,7 @@ class Index extends Component {
             return c._id == id; 
         });
 
-        tempitem[itemsIndex] = tempitem[itemsIndex].qty?tempitem[itemsIndex]:{...tempitem[itemsIndex],qty:0,msg:''}
+        tempitem[itemsIndex] = tempitem[itemsIndex].qty?tempitem[itemsIndex]:{...tempitem[itemsIndex],qty:0,userMsg:''}
         tempitem[itemsIndex].qty = tempitem[itemsIndex].qty+qty;
 
         if(tempitem[itemsIndex].qty>=0){

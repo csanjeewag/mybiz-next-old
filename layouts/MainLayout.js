@@ -54,7 +54,64 @@ class Layout extends Component {
  <style global jsx>
    {`
    
-   
+   .projects div {
+    animation-name: fade-in;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+}
+.projects div:nth-of-type(1) {
+    animation-delay: 0.6s;
+}
+.projects div:nth-of-type(2) {
+    animation-delay: 0.8s;
+}
+.projects div:nth-of-type(3) {
+    animation-delay: 1.0s;
+}
+.projects div:nth-of-type(4) {
+    animation-delay: 1.2s;
+}
+.projects div:nth-of-type(5) {
+    animation-delay: 1.4s;
+}
+.projects div:nth-of-type(6) {
+    animation-delay: 1.6s;
+}
+.projects div:nth-of-type(7) {
+    animation-delay: 1.8s;
+}
+.projects div:nth-of-type(8) {
+    animation-delay: 2.0s;
+}
+.projects div:nth-of-type(9) {
+    animation-delay: 2.2s;
+}
+.projects div:nth-of-type(10) {
+    animation-delay: 2.4s;
+}
+.projects div:nth-of-type(11) {
+    animation-delay: 2.6s;
+}
+.projects div:nth-of-type(12) {
+    animation-delay: 2.8s;
+}
+.projects div:nth-of-type(13) {
+    animation-delay: 3.0s;
+}
+.projects div:nth-of-type(14) {
+    animation-delay: 3.2s;
+}
+.projects div:nth-of-type(15) {
+    animation-delay: 3.4;
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+   }
+    100% {
+        opacity: 1;
+   }
+}
   
    
    
