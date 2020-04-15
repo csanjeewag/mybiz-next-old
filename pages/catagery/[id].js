@@ -5,6 +5,7 @@ import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
 import {Url} from './../../constant/main';
+import Errorpage from './../../layouts/error';
 
 class Index extends Component {
 
@@ -27,15 +28,16 @@ class Index extends Component {
     
     render() { 
         
-            const sidenavconst = {topic : 'Categeries',topiclink:'all categories',suburl:'/catagery/', sidenavlink:this.props.allcatagery,visible:true};
+            const sidenavconst = {topic : 'Categeries',topiclink:'all categories',suburl:'/catagery/', sidenavlink:this.props.allcatagery,visible:this.props.error?false:true};
         //////////////
           return ( 
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                
-
+                {this.props.error?<Errorpage error={this.props.item} />:
+            <div>
              <Slide catagery={this.props.catagery[0]} ></Slide>
                 <Categeryitem  catageries={this.props.items} topic={this.props.itemname}></Categeryitem>
+            </div>}
             <Footer/>
                    </Layout>
            );

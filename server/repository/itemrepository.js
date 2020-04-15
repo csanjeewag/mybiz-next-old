@@ -11,9 +11,8 @@ exports.viewall = function(req,res) {
             
         }else{
             
-            var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
-           // return   data.length>0?res.status(200).send(data):res.status(201).send(error);
-            return res.status(200).send(data)
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
+            return   data.length>0?res.status(200).send(data):res.status(201).send(error);
         }
     }).sort({date:-1})
    

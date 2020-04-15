@@ -6,6 +6,7 @@ import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 import {Url,ImageUrl} from './../../constant/main';
+import Errorpage from './../../layouts/error';
 class Index extends Component {
 
     constructor() {
@@ -41,11 +42,14 @@ class Index extends Component {
         };
     }
     componentDidMount(){
-        var item = this.props.item;
-        item.user = null;
-        this.setState({
-            ...item
-        })
+        if(this.props.item){
+            var item = this.props.item;
+            item.user = null;
+            this.setState({
+                ...item
+            })
+        }
+        
         $(document).ready(function() {
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
@@ -391,7 +395,7 @@ class Index extends Component {
           return ( 
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-
+                {this.props.error?<Errorpage error={this.props.item} />:
             <div className="form-create-shop">
 
                 <div className="container" >
@@ -557,7 +561,7 @@ class Index extends Component {
                 </div>
 
             </div>
-
+                }
 <style jsx>
 {`
 .imageupload{
@@ -716,9 +720,9 @@ Index.getInitialProps = async function(context) {
     const res = await fetch(`${Url}itembyid/${id}`);
     var  item = await res.json();
     var error = false;
- //   if(res.status!=200){
+    if(res.status!=200){
         error = true ;
-  // }
+   }
 
     return {itemid:id,item:item[0],error,shopname:shopname}
 

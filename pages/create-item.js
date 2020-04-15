@@ -11,6 +11,8 @@ class Index extends Component {
     constructor() {
         super();
         this.state = {
+            shopid:'',
+            shopname:'',
             urlname:'',
             itemname: '',
             itemlongname: '',
@@ -40,6 +42,10 @@ class Index extends Component {
         };
     }
     componentDidMount(){
+        this.setState({
+            shopname : this.props.shopname,
+            shopid : this.props.shopid
+        })
         $(document).ready(function() {
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
@@ -241,6 +247,9 @@ class Index extends Component {
         {
             alert('Sorry, cannot Submit form, check again form!.');
         }
+        else if (!Cookie.getJSON('user')){
+            alert('Sorry, you are not sign in.');
+        }
         else{
             const data = new FormData();
             if(this.state.files!=undefined){
@@ -250,7 +259,7 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-            jsonbody.urlname = jsonbody.subcategery+'-'+jsonbody.itemlongname+'-by-'+this.props.shopname;
+            jsonbody.urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shopname;
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));

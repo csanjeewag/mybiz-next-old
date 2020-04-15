@@ -18,7 +18,6 @@ const OrderTable=(props)=>{
     <button onClick={props.getorderbystate.bind(this,'confirm')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
     <button onClick={props.getorderbystate.bind(this,'remove')} type="button" className="btn btn-secondary"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
   </div>
-
   <table className="table table-striped">
     <thead>
       <tr>
@@ -31,7 +30,6 @@ const OrderTable=(props)=>{
       </tr>
     </thead>
     <tbody>
-  
   {props.orders.map((x,i)=>
       <tr key={i}>
       <th><div><img width="50px" src={ImageUrl+x.item.images[0]} />
@@ -80,6 +78,8 @@ const OrderTable=(props)=>{
   
     </tbody>
   </table>
+  {!props.orders[0]?<div className="d-flex justify-content-center"><br/><h6 className="card-title font2 topicColor">Your selected area is empty.</h6><br/></div>:null}
+  
   <style jsx>
   {`
   .order-table{
@@ -115,10 +115,12 @@ class Index extends Component {
 
     getorderbystate(state){
 
-      fetch(`${Url}orderbyshopid/5e8889a438747936580d85c8?state=${state}`)
-      .then(res=>{ return res.json()})
-      .then(data => { this.setState({orders:data})})
-    
+      var user = Cookie.getJSON('user');
+      if(user&&user._id){
+      fetch(`${Url}orderbyuserid/${user._id}?state=${state}`)
+      .then(res=>{return res.json();})
+      .then(data=>{ this.setState({orders:data})})
+      }
     }
 
     updateorder(id,state){
@@ -168,9 +170,14 @@ class Index extends Component {
     }
 
       componentDidMount(){
-    this.setState({
-        orders:this.props.orders
-    })
+        var user = Cookie.getJSON('user');
+        if(user&&user._id){
+          fetch(`${Url}orderbyuserid/${user._id}?state=new`)
+          .then(res=>{return res.json();})
+          .then(data=>{ this.setState({orders:data})})
+        }
+       
+
     }
     
     render() { 
@@ -191,21 +198,7 @@ class Index extends Component {
     
 }
 
-Index.getInitialProps = async function(context) {
-  const { id } = context.query;
 
-  const res = await fetch(`${Url}orderbyshopid/5e8889a438747936580d85c8?state=new`);
-
-  var  orders = await res.json();
-
-  var error = false;
-  if(res.status!=200){
-      error = true ;
- }
-  return {orders:orders,error}
-
-
-}
 
 
 export default Index; 

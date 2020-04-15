@@ -6,6 +6,8 @@ import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 import {Url,ImageUrl} from './../../constant/main';
+import Errorpage from './../../layouts/error';
+
 class Index extends Component {
 
     constructor() {
@@ -41,13 +43,14 @@ class Index extends Component {
         };
     }
     componentDidMount(){
+        if(this.props.shop){
         var shop = this.props.shop;
         shop.user = null;
 
         this.setState({
             ...shop
         })
-        
+    }
 
         $(document).ready(function() {
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
@@ -353,7 +356,7 @@ class Index extends Component {
           return ( 
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-
+                {this.props.error?<Errorpage error={this.props.item} />:
             <div className="form-create-shop">
 
                 <div className="container" >
@@ -503,7 +506,7 @@ class Index extends Component {
                 </div>
 
             </div>
-
+                }
 <style jsx>
 {`
 .imageupload{

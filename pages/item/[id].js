@@ -513,19 +513,19 @@ class Index extends Component {
         .then(data=>{
             this.setState({
                 allitems : data
-            })
+            });
         })
     }
    
     render() { 
 
   
-    const sidenavconst = {topic : 'Items',topiclink:'All Items',sidenavlink:this.state.allitems,visible:true, name:'name', value:'itemname', suburl:'item'};
+    const sidenavconst = {topic : 'Items',topiclink:'All Items',sidenavlink:this.state.allitems,visible:this.props.error?false:true, suburl:'item'};
 //////////////
 
           return ( 
             <Layout> 
-                <SubNavbar sidenavconst={sidenavconst}/>
+                 <SubNavbar sidenavconst={sidenavconst}/>
                 <br/>
                 {this.props.error?<Errorpage error={this.props.item} />:
                 

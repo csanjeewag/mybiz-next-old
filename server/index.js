@@ -212,6 +212,12 @@ server.get("/api/location/id", (req, res) => {
 
   }); 
 
+  server.get("/api/viewbyusername/:id", (req, res) => {
+ 
+    shopRepository.viewbyusername(req,res);
+
+  }); 
+
   //create new shop
   server.post("/api/createshop", (req, res) => {
 
@@ -349,6 +355,12 @@ server.post("/api/createuser", (req, res) => {
 server.get("/api/orderbyshopid/:id", (req, res) => {
 
   orderRepository.viewallbystate(req,res);
+
+}); 
+
+server.get("/api/orderbyuserid/:id", (req, res) => {
+
+  orderRepository.viewallbyuserid(req,res);
 
 }); 
 

@@ -38,6 +38,22 @@ exports.viewall = function(req,res) {
    
   }
 
+  // get shop belog to user
+  exports.viewbyusername = function(req,res) {
+
+    models.find({'user._id': req.params.id},function(error,data){
+        if(error){
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return   res.status(404).send(error);
+            
+        }else{
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
+                return   data?res.status(200).send(data):res.status(201).send(error);
+        }
+    }).sort({date:-1})
+   
+  }
+
 //create new
   exports.create = function(req,res){
     var image_url = [];
@@ -66,7 +82,7 @@ exports.viewall = function(req,res) {
   }
 
 
-  //get shop and items by shop id
+  //get shop and items by shop id or url name
 exports.viewshopanditems = function(req,res) {
 
     models.find({_id:req.params.id},function(error,shopdata){
@@ -80,6 +96,7 @@ exports.viewshopanditems = function(req,res) {
                     
                 }else{
                     
+                    if(shopdata[0]){
                     //check is there more url name
                             var index =  shopdata.findIndex(function(e){
                                     return e._id == req.query.ide
@@ -95,13 +112,16 @@ exports.viewshopanditems = function(req,res) {
                         return  res.status(200).json({items:data, shop:shopdata[index],msg:'success.'});
                         }
                     })
-                      
+                    }else{
+                        var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                        return  res.status(201).json(error);   
+                    }
                     
                 }
             }).sort({date:-1})
             
         }else{
-            
+            if(shopdata[0]){
             items.find({shopid:shopdata[0]._id},function(error,data){
                 if (error){
                     var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
@@ -112,7 +132,10 @@ exports.viewshopanditems = function(req,res) {
                 return  res.status(200).json({items:data, shop:shopdata[0],msg:'success.'});
                 }
             })
-              
+            }else{
+                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                return  res.status(201).json(error);
+            }
             
         }
     }).sort({date:-1})

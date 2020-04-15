@@ -17,7 +17,7 @@ const Index = props => (
 
     <div className=" row projects">
       {props.catageries.map((c,i) => (
-        <Link key={i} href={`${categoryUrl+c.type}`} > 
+        <Link key={i} href={`${categoryUrl+c.type}?=ide${c._id}`} > 
        <div key={i} className="col-sm-6 col-lg-4 col-xl-3"> <div className="card">
        <div className="image ">
          <img src={ImageUrl+c.mainimage}  width="100%" height="200px" />

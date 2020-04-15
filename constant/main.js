@@ -14,6 +14,7 @@ export const homeUrl = '/';
 export const myoderUrl = '/myorder';
 export const createcategorUrl = '/create-catagery';
 export const categoryUrl = '/catagery/';
+export const myProfileUrl = '/myprofile';
 
 export const itemUrl = '/item/';
 export const createitemUrl = '/create-item';

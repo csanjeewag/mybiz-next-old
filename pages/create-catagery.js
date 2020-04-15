@@ -169,6 +169,9 @@ class Index extends Component {
         {
             alert('Sorry, cannot Submit form, check again form!.');
         }
+        else if (!Cookie.getJSON('user')){
+            alert('Sorry, you are not sign in.');
+        }
         else{
             const data = new FormData();
             if(this.state.files!=undefined){
