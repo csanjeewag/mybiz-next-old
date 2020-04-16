@@ -4,6 +4,7 @@ import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
 import GoogleSign from './../components/GoogleSign';
 import ReactCrop from 'react-image-crop';
+import Router from 'next/router';
 
 class Index extends Component {
 
@@ -28,14 +29,18 @@ class Index extends Component {
     this.refs.child.showSidebar();
   }
 
-  CropDemo({ src }) {
-    const [crop, setCrop] = useState({ aspect: 16 / 9 });
-    return <ReactCrop src={src} crop={crop} onChange={newCrop => setCrop(newCrop)} />;
+  onClickhh=()=>{
+alert('ghh');
+
+  $('button').attr("disabled", true);
+
+
+   //Router.push('/hello-nextjs')
+
+
   }
 
-  onChange = crop => {
-    this.setState({ crop });
-  };
+  
   
 render(){
 
@@ -65,7 +70,7 @@ render(){
 <GoogleSign></GoogleSign>
 
 <div className="col-3">
-
+<button onClick={this.onClickhh} >click</button>
 </div>
 </Layout>
   )

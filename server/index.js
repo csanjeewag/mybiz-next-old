@@ -197,7 +197,7 @@ server.get("/api/location/id", (req, res) => {
 
   server.get("/api/shop/:id", (req, res) => {
  
-    shopRepository.viewbyname({urlname:req.params.id.replace('-',' ')},res);
+    shopRepository.viewbyname({urlname:req.params.id},res);
 
   }); 
   server.get("/api/shopid/:id", (req, res) => {
@@ -206,11 +206,20 @@ server.get("/api/location/id", (req, res) => {
 
   }); 
 
+  //shop and items by shop id
   server.get("/api/shopanditems/:id", (req, res) => {
  
     shopRepository.viewshopanditems(req,res);
 
   }); 
+
+   //shop and items by user id
+   server.get("/api/viewshopanditemsuserid/:id", (req, res) => {
+ 
+    shopRepository.viewshopanditemsuserid(req,res);
+
+  }); 
+
 
   server.get("/api/viewbyusername/:id", (req, res) => {
  

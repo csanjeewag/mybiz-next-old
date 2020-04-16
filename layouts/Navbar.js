@@ -4,6 +4,8 @@ import Link from 'next/link';
 import $ from 'jquery';
 import SignUp from './../components/signup';
 import {NavLink,wesitename} from './../constant/main';
+import Cookie from "js-cookie";
+
 class Index extends Component {
 
         //show signup
@@ -81,6 +83,9 @@ class Index extends Component {
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
+                {
+                    Cookie.getJSON('user')?<Link key='100' href={`/myprofile?id=${Cookie.getJSON('user')._id}`}><a className="nav-link nav-link-main active font1"  >my-profile</a></Link>:null
+                    }
                 </div>
             </div>
        

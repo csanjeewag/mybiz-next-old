@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,myProfileUrl} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import Footer from './../components/Footer';
@@ -105,7 +105,7 @@ const Contentside=(props)=>{
                     </div>
                 </div>
                 <hr/>
-                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
+                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
                 <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;update shop</a></Link>
               
             </div>
@@ -279,17 +279,19 @@ const CartList=(props)=>{
               <th scope="col">state</th>
               <th scope="col">Item Details</th>
               <th scope="col">Price</th>
-              <th scope="col">User details</th>
-              <th scope="col">Massages</th>
+              <th scope="col">Update</th>
+              
             </tr>
           </thead>
           <tbody className="projects">
         
         {props.items.map((x,i)=>
             <tr key={i}>
-            <th><div><img width="50px" src={ImageUrl+x.images[0]} />
+            <th>
+                <div className="pointer">
+                    <Link href={itemUrl+x.urlname}><img width="50px" src={ImageUrl+x.images[0]} /></Link>
              <p className="fontsizeE-8">{x.createDate}</p>
-             </div> </th>
+             </div></th>
             <td> 
                 <div className="item-details font6"> 
                     <p className="topicColor">{x.state} </p>
@@ -313,13 +315,8 @@ const CartList=(props)=>{
             </td>
             <td className="user-details font6">
             <div className="item-details font6"> 
-           
+            <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm"><img src="https://img.icons8.com/ios-glyphs/20/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
               </div> 
-            
-            </td>
-            <td className="user-details font6">
-            <div className="item-details font6"> 
-             </div> 
             
             </td>
             </tr>
@@ -455,7 +452,7 @@ class Index extends Component {
 
     getorderbystate(state){
 
-      fetch(`${Url}orderbyshopid/5e8889a438747936580d85c8?state=${state}`)
+      fetch(`${Url}orderbyshopid/${this.props.shop._id}?state=${state}`)
       .then(res=>{ return res.json()})
       .then(data => { this.setState({orders:data})})
     
@@ -479,6 +476,7 @@ class Index extends Component {
       .then(data => { if(data!=undefined){alert(data.msg);}})
       .catch(error => console.log(error))
     }
+
     sellerMassege(id,state){
         var send = prompt("enter your message.", "");
         if(send!=null){
@@ -505,9 +503,17 @@ class Index extends Component {
 
     componentDidMount(){
 
-        fetch(`${Url}viewbyusername/${Cookie.getJSON('user')._id}`)
-        .then(res=>{return res.json()})
-        .then(data=>{this.setState({myshops:data})})
+        if(Cookie.getJSON('user')){
+            fetch(`${Url}viewbyusername/${Cookie.getJSON('user')._id}`)
+            .then(res=>{return res.json()})
+            .then(data=>{this.setState({myshops:data})})
+        }
+        if(this.props.shop){
+            fetch(`${Url}orderbyshopid/${this.props.shop._id}?state=new`)
+            .then(res=>{return res.json()})
+            .then(data=>{this.setState({orders:data})})
+        }
+     
 
         $(document).ready(function() {
            
@@ -526,12 +532,12 @@ class Index extends Component {
             // Bind event listener
             $(window).resize(checkWidth);
     });
-    this.setState({
-        orders:this.props.orders
-    })
     }
 
     chnagetab=(istable)=>{
+        if(istable){
+            this.getorderbystate('new')
+        }
         this.setState({
             istable:istable
         })
@@ -552,7 +558,7 @@ class Index extends Component {
              <ul className="nav nav-tabs nav-tabs-myshop">
              {this.state.myshops.map((x,i)=>
               <li key={i} className="nav-item pointer">
-              <Link href={myProfileUrl+'?id='+x._id}><a className= {this.props.shop._id==x._id?"nav-link active font1":"nav-link font1"} >{x.shopName}</a></Link>
+              <Link href={`${myProfileUrl}?id=${Cookie.getJSON('user')._id}&shopindex=${i}`}><a className= {this.props.shop._id==x._id?"nav-link active font1":"nav-link font1"} >{x.shopName}</a></Link>
             </li>   
                 )}
         
@@ -592,19 +598,19 @@ class Index extends Component {
 
   Index.getInitialProps = async function(context) {
  
-    const { id } = context.query;
+    const { id,shopindex } = context.query;
+
     if(id){
-        const res = await fetch(`${Url}orderbyshopid/${id}?state=new`);
-        //  const resshop = await fetch(`${Url}shopid/5e8889a438747936580d85c8`);
-          const resshop = await fetch(`${Url}shopanditems/${id}`);
-      
-          var  orders = await res.json();
-          var  shopanditems = await resshop.json();
+       var index= shopindex>0?shopindex:0;
+      const resshop = await fetch(`${Url}viewshopanditemsuserid/${id}?shopindex=${index}`);
+   
+        var  shopanditems = await resshop.json();
+
           var error = false;
-          if(res.status!=200||resshop.status!=200){
+          if(resshop.status!=200){
               error = true ;
          }
-          return {orders:orders,shop:shopanditems.shop,items:shopanditems.items,error};
+          return {shop:shopanditems.shop,items:shopanditems.items,error};
 
     }else{
         return {error:true};

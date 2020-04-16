@@ -5,14 +5,15 @@ import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl} from './../../constant/main';
+import {Url,ImageUrl,myshopmUrl} from './../../constant/main';
 import Errorpage from './../../layouts/error';
-
+import Router from 'next/router';
 class Index extends Component {
 
     constructor() {
         super();
         this.state = {
+            urlname:'',
             shopName: '',
             categery :'',
             district:'',
@@ -206,7 +207,12 @@ class Index extends Component {
         {
             alert('Sorry, cannot Submit form, check again form!.');
         }
+        else if (!Cookie.getJSON('user')){
+            alert('Sorry, you are not sign in.');
+        }
+       
         else{
+            $('button').attr("disabled", true);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -218,6 +224,8 @@ class Index extends Component {
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));
+            var urlname = this.state.categery+'-'+this.state.shopName+'-in-'+this.state.town;
+            jsonbody.urlname = urlname.split(" ").join("-");
            // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
@@ -230,7 +238,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .then(data => { if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);alert(data.msg);}else{alert(data.msg);} $('button').attr("disabled", false);})
             .catch(error => console.log(error))
     
         }

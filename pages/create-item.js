@@ -5,7 +5,9 @@ import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Subtype,Url,GetSubtype} from './../constant/main';
+import {Url,itemUrl} from './../constant/main';
+import Router from 'next/router';
+
 class Index extends Component {
 
     constructor() {
@@ -21,6 +23,7 @@ class Index extends Component {
             itemPrice:'',
             itemdiscount:'',
             content1:'',
+            shoplocation:'',
             newitemSpecification:'',
             itemSpecification:[{name:'cash on delivery',value:''}],
             newstockdetail:'',
@@ -43,7 +46,7 @@ class Index extends Component {
     }
     componentDidMount(){
         this.setState({
-            shopname : this.props.shopname,
+            shoplocation : this.props.shoplocation,
             shopid : this.props.shopid
         })
         $(document).ready(function() {
@@ -241,6 +244,7 @@ class Index extends Component {
           return count;
     }
     handleSubmit = evt => {
+
         evt.preventDefault();
        //check validations
         if(this.beforesubmit()>0)
@@ -250,7 +254,11 @@ class Index extends Component {
         else if (!Cookie.getJSON('user')){
             alert('Sorry, you are not sign in.');
         }
+        else if(this.state.files[0].selectedFile==null){
+            alert('Sorry, cannot Submit form, add atleast one image.');
+        }
         else{
+            $('button').attr("disabled", true);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -259,11 +267,11 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-            jsonbody.urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shopname;
-           // jsonbody.files = null;
-           // jsonbody.defaultfilepath = null;
+            var urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
+            jsonbody.urlname = urlname.split(" ").join("-");
+           console.log(this.props.shoplocation)
             data.append('jsonbody', JSON.stringify(jsonbody));
-            data.append('shop', JSON.stringify({shopid:this.props.shopid,userid:Cookie.getJSON('user')._id}));
+            data.append('shop', JSON.stringify({shopid:this.props.shopid,userid:Cookie.getJSON('user')._id,...this.state.shoplocation}));
            // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
@@ -276,7 +284,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{alert(data.msg);}})
             .catch(error => console.log(error))
     
         }
@@ -654,8 +662,9 @@ textarea {
 }
 
 Index.getInitialProps = async function(context) {
-    const { id,shopname } = context.query;
-    
+    const { id,shopname,shopDistrict,shopTown } = context.query;
+    var shoplocation= {}
+    shoplocation = {shopName:shopname,district:shopDistrict,town:shopTown}
     const res = await fetch(`${Url}typebyshopid/${id}`);
     var  type = await res.json();
     var error = false;
@@ -663,7 +672,7 @@ Index.getInitialProps = async function(context) {
         error = true ;
    }
 
-    return {shopid:id,type,error,shopname:shopname}
+    return {shoplocation,shopid:id,type,error}
 
 
   }

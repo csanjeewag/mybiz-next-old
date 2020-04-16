@@ -5,7 +5,8 @@ import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url} from './../constant/main';
+import {Url,myshopmUrl} from './../constant/main';
+import Router from 'next/router';
 class Index extends Component {
 
     constructor() {
@@ -198,7 +199,11 @@ class Index extends Component {
         else if (!Cookie.getJSON('user')){
             alert('Sorry, you are not sign in.');
         }
+        else if(this.state.files[0].selectedFile==null){
+            alert('Sorry, cannot Submit form, add atleast one image.');
+        }
         else{
+            $('button').attr("disabled", true);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -207,7 +212,8 @@ class Index extends Component {
             }
         
             var jsonbody = this.state;
-            jsonbody.urlname = this.state.shopName+'-in-'+this.state.town;
+            var urlname = this.state.categery+'-'+this.state.shopName+'-in-'+this.state.town;
+            jsonbody.urlname = urlname.split(" ").join("-");
            // jsonbody.files = null;
            // jsonbody.defaultfilepath = null;
             data.append('jsonbody', JSON.stringify(jsonbody));
@@ -223,7 +229,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .then(data => {alert(data.msg); if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);}$('button').attr("disabled", false);})
             .catch(error => console.log(error))
     
         }

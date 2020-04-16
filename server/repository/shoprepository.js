@@ -67,14 +67,16 @@ exports.viewall = function(req,res) {
      body.user =  JSON.parse(req.body.user);  
         var bodydata = new models(body);
         bodydata.images = image_url;
+        bodydata.createDate = Date.now();
+        bodydata.isvalid = true;
         bodydata.save(function(err,data) {
             if (err){
-                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
                 return  res.status(400).json(error);
             }
             else{
                 //console.log(data)
-            return  res.status(200).json({...data, token:body.token,msg:'create in success.'});
+            return  res.status(200).json({...data, status:200, token:body.token,msg:'create in success.'});
             }
             
           });
@@ -142,6 +144,39 @@ exports.viewshopanditems = function(req,res) {
    
   }
 
+  // get shop and item userid
+  exports.viewshopanditemsuserid = function(req,res) {
+
+    models.find({'user._id': req.params.id},function(error,shopdata){
+        if(error){
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return   res.status(404).send(error);
+            
+        }else{
+            var shopindex = req.query.shopindex;
+            if(shopdata[shopindex]){
+                
+                items.find({shopid:shopdata[shopindex]._id},function(error,data){
+                    if (error){
+                        var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                        return  res.status(400).json(error);
+                    }
+                    else{
+                        //console.log(data)
+                    return  res.status(200).json({items:data, shop:shopdata[shopindex],msg:'success.'});
+                    }
+                })
+            }else{
+                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                return  res.status(400).json(error);
+            }
+         
+            
+        }
+    }).sort({date:-1})
+
+  }
+
 
 
   //update shop details
@@ -167,7 +202,7 @@ exports.viewshopanditems = function(req,res) {
     }
     if((filecount+removeimages.images.length-removeimages.deleteimages.length)>3){
       
-        return  res.status(201).json({msg:'your submition fail !, because total file count than three(3). please remove some file.'});
+        return  res.status(201).json({status:200, msg:'your submition fail !, because total file count than three(3). please remove some file.'});
     } 
     //
    var image_url = imagefile.deleteimage(removeimages);
@@ -176,11 +211,11 @@ exports.viewshopanditems = function(req,res) {
      body.user =  JSON.parse(req.body.user);  
         models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
             if(error){
-                var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                 return  res.status(400).json(error);
             }
             else{
-                return  res.status(200).json({msg:'create in success.'});
+                return  res.status(200).json({status:200,msg:'create in success.'});
             }
 
         })

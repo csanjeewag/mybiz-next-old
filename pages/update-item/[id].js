@@ -5,13 +5,15 @@ import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl} from './../../constant/main';
+import {Url,ImageUrl,itemUrl} from './../../constant/main';
 import Errorpage from './../../layouts/error';
+import Router from 'next/router';
 class Index extends Component {
 
     constructor() {
         super();
         this.state = {
+            urlname:'',
             itemname: '',
             itemlongname: '',
             categery :'',
@@ -252,6 +254,7 @@ class Index extends Component {
             alert('Sorry, cannot Submit form, check again form!.');
         }
         else{
+            $('button').attr("disabled", true);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -260,10 +263,9 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-           // jsonbody.files = null;
-           // jsonbody.defaultfilepath = null;
+           // var urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
+           // jsonbody.urlname = urlname.split(" ").join("-");
             data.append('jsonbody', JSON.stringify(jsonbody));
-          //  data.append('shop', JSON.stringify({shopid:this.props.shopid,userid:Cookie.getJSON('user')._id}));
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
             fetch('/api/updateitem/'+this.props.itemid,{
@@ -275,7 +277,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+this.state.urlname) }else{alert(data.msg);}})
             .catch(error => console.log(error))
     
         }

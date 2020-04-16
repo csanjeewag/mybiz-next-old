@@ -65,15 +65,17 @@ else{
         bodydata.images = image_url;
         bodydata.shop = {...JSON.parse(req.body.shop)};
         bodydata.shopid = JSON.parse(req.body.shop).shopid;
-        bodydata.user = {...user._id,...user.name,...user.email,...user.imageUrl};
+        bodydata.user = user;
+        bodydata.createDate = Date.now();
+        bodydata.isvalid = true;
         bodydata.save(function(err,data) {
             if (err){
               
-                return  res.status(400).json({msg:'new items create in fails.'});
+                return  res.status(400).json({msg:'new items create in fails.',status:400});
             }
             else{
                 //console.log(data)
-            return  res.status(200).json({...data, token:body.token,msg:'item create in success.'});
+            return  res.status(200).json({...data, status:200, token:body.token,msg:'item create in success.'});
             }
             
           });
@@ -123,7 +125,7 @@ exports.viewforfavorite = function(req,res) {
      }
      if((filecount+removeimages.images.length-removeimages.deleteimages.length)>3){
        
-         return  res.status(201).json({msg:'your submition fail !, because total file count than three(3). please remove some file.'});
+         return  res.status(201).json({status:201,msg:'your submition fail !, because total file count than three(3). please remove some file.'});
      } 
      //
     var image_url = imagefile.deleteimage(removeimages);
@@ -132,11 +134,11 @@ exports.viewforfavorite = function(req,res) {
       body.user =  JSON.parse(req.body.user);  
          models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
              if(error){
-                 var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                 var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                  return  res.status(400).json(error);
              }
              else{
-                 return  res.status(200).json({msg:'create in success.'});
+                 return  res.status(200).json({status:200,msg:'create in success.'});
              }
  
          })

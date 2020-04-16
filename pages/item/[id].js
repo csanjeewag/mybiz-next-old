@@ -37,8 +37,8 @@ const Imageside=(props)=> {
 
         <div className="card-footer">
             <small className="font3 card-footer-button">{props.item.createDate}</small>
-              <a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp; Add to Cart</a>
-             <a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp;Order Now</a>
+              <a href="#" onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp; Add to Cart</a>
+             <a href="#" onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp;Order Now</a>
            
         </div>
 
@@ -114,7 +114,6 @@ const Contentside=(props)=>{
                 </div></div>
                 <hr/>
                 <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
-                <Link href={updateshopUrl+props.item._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;update item</a></Link>
                 </div>
            
         </div>
@@ -265,7 +264,8 @@ const QuestionSide = (props)=>{
         <div className="menu2-quations col-12">
         <hr/>
         {props.questiondata.map((x,i)=>
-            <div key={i} className="menu2-question">
+            <div key={i} className="menu2-question ">
+            <button className="popup-close-question" onClick={props.removeansewer.bind(this,x._id)}>x</button>
             <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; {x.question}<br/> <span className="spam-text font3 fontsizeE-8"> -{x.a_user.name}- on {x.a_Date}</span></p>
             <p  className="font3 fontsizeE-9"><img src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp;{x.answer?x.answer:'pending answer..'}</p>
             {!x.answer?<div>
@@ -273,7 +273,7 @@ const QuestionSide = (props)=>{
             <button onClick={props.handlegiveanswer.bind(this,x._id)} type="button" className="btn btn-primary btn-sm"><i className="fa fa-bullhorn" aria-hidden="true"></i>&nbsp; keep a answer </button>
         
             </div>:null}
-            <button className="popup-close-question" onClick={props.removeansewer.bind(this,x._id)}>x</button>
+            
             <hr/>
             </div>  
             )}
@@ -296,6 +296,9 @@ const QuestionSide = (props)=>{
         color: darkblue;
        }
        .popup-close-question {
+        position: relative;
+        top: -1rem;
+        right: 0rem;
         color: white;
         display: flex;
         align-items: center;
@@ -305,9 +308,6 @@ const QuestionSide = (props)=>{
         font-size: 0.6rem;
         width: 1.2rem;
         height: 1.2rem;
-        top: 1rem;
-        right: 1rem;
-        position: absolute;
         border:none;
        `}
        </style>
@@ -322,7 +322,7 @@ const ReviewSide = (props)=>{
         <hr/>
         {props.reviewsdata.map((x,i)=>
            <div key={i} className="menu2-reviews">
-           <img className="float-left avatar" src={x.user.imageUrl} /><p  className="font6 fontsizeE-9">&nbsp; {x.user.name} <br/> <spam className="spam-text font3 fontsizeE-8"> -{x.createDate}-</spam></p>
+           <img className="float-left avatar" src={x.user.imageUrl} /><p  className="font6 fontsizeE-9">&nbsp; {x.user.name} <br/> <span className="spam-text font3 fontsizeE-8"> -{x.createDate}-</span></p>
            <p  className="font5 fontweight700 fontsizeE-9">&nbsp;&nbsp;&nbsp;{x.review} </p>
            <hr/>
            </div>   
@@ -369,6 +369,27 @@ class Index extends Component {
 
     
     
+    }
+
+    addtocart=(itemid,name)=>{
+        var data = Cookie.getJSON('faverite-item');
+        var jsonarray = []
+        
+        if(data){
+            if(!data.includes(itemid))
+            {jsonarray = [...data,itemid]
+            Cookie.set('faverite-item',jsonarray);
+            alert(`add ${name} to cart.`)
+            }else{
+            alert(`already added ${name} to cart.`) 
+            }
+        }else{
+            jsonarray = [itemid]
+            Cookie.set('faverite-item',jsonarray);
+            alert(`add ${name} to cart.`)
+        }
+    
+     
     }
 
     handleChange = evt => {
@@ -532,7 +553,7 @@ class Index extends Component {
                 
                 <div className="container">
                 <div className="row">
-                <Imageside item={this.props.item}></Imageside>
+                <Imageside item={this.props.item} addtocart={(itemid,name)=>this.addtocart(itemid,name)}></Imageside>
                 <Contentside item={this.props.item} ></Contentside>
                 <QuestionSide removeansewer={(id)=>this.removeansewer(id)} questiondata={this.state.questiondata} question={this.state.question} answer={this.state.answer} handleaskquestion={this.handleaskquestion} handleChange={this.handleChange} handlegiveanswer={(id)=>this.handlegiveanswer(id)}></QuestionSide>
                 <ReviewSide reviewsdata={this.state.reviewsdata} review={this.state.review} handleChange={this.handleChange} handlereviews={this.handlereviews} />
