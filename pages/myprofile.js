@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Cookie from "js-cookie";
 import Footer from './../components/Footer';
 import ErrorPage from './../layouts/error';
-
+import Router from 'next/router';
 
 const Imageside=(props)=> {
     return(
@@ -263,19 +263,11 @@ const CartList=(props)=>{
 
     return(
         <div className="order-table">
-
-        <div className="btn-group btn-group-sm col-12" role="group" aria-label="Basic example">
-          <button  type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/show-all-views.png"/> All</button>
-          <button  type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/new.png"/> new</button>
-          <button  type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>
-          <button  type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
-          <button  type="button" className="btn btn-secondary"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
-        </div>
       
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col"></th>
+              <th scope="col">item</th>
               <th scope="col">state</th>
               <th scope="col">Item Details</th>
               <th scope="col">Price</th>
@@ -294,12 +286,12 @@ const CartList=(props)=>{
              </div></th>
             <td> 
                 <div className="item-details font6"> 
-                    <p className="topicColor">{x.state} </p>
-                    <p>
-                    <img  src="https://img.icons8.com/ios/25/000000/new.png"/> 
-                    <img  src="https://img.icons8.com/ios/25/000000/upload-mail.png"/> 
-                    <img src="https://img.icons8.com/ios/25/000000/checked-checkbox.png"/>
-                    <img  src="https://img.icons8.com/ios/25/000000/trash.png"/> </p>
+                    <p className="topicColor">{x.isvalid?'valid':'removed'} </p>
+                    <p >
+                    <img onClick={props.updateitem.bind(this,x._id,{isvalid:true})}  src="https://img.icons8.com/cute-clipart/30/000000/save-close.png"/>
+                    <img onClick={props.updateitem.bind(this,x._id,{isvalid:false})} src="https://img.icons8.com/color/30/000000/close-window.png"/>
+          
+                    </p>
                 </div> 
             </td>
             <td> 
@@ -311,6 +303,11 @@ const CartList=(props)=>{
             <td>
                 <div className="item-details font6"> 
                <p className="topicColor" > <strike className="fontsizeE-8">Rs.{x.itemPrice}.00</strike> <span className="fontcolorOrange fontsizeE-8">{x.itemdiscount}% </span>  Rs.{x.itemPrice*(100-x.itemdiscount)/100} </p>
+                </div> 
+                <div className="item-details font6 btn-group btn-group-sm">
+                <button onClick={props.loadpromt.bind(this,x._id,'price')}  className="btn btn-primary float-left btn-sm"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;price</button>
+                <button onClick={props.loadpromt.bind(this,x._id,'discount')}  className="btn btn-dark float-left btn-sm"><img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp; discount</button>
+               
                 </div> 
             </td>
             <td className="user-details font6">
@@ -444,10 +441,56 @@ class Index extends Component {
       totalprice : 0,
       orders:[],
       myshops:[],
-      istable:false
+      istable:false,
+      querys:{}
 
   }
 	}
+
+
+    //update item
+    updateitem=(id,update)=>{
+
+        $('img').attr("disabled", true);
+        const data = new FormData();
+        
+        var jsonbody = update;
+        data.append('jsonbody', JSON.stringify(jsonbody));
+       data.append('user', JSON.stringify(Cookie.getJSON('user')));
+
+        fetch('/api/updateitemDetails/'+id,{
+            method: 'PUT',
+            headers: {
+            },
+            body:data
+        
+            }
+        )
+        .then(response => { return response.json(); } )
+        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.push(myProfileUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
+        .catch(error => console.log(error))
+    }
+
+    loadpromt=(id,name)=>{
+        if(name=='price'){
+            var data = parseInt(prompt("eneter new price.", "0"));
+            if(data>0){
+                
+              this.updateitem(id,{itemPrice:data})
+            }else{
+                alert('wrong format.')
+            }
+        }
+        if(name=='discount'){
+            var data = parseInt(prompt("eneter new discount.", "0"));
+            if(data>0){
+                
+              this.updateitem(id,{itemdiscount:data})
+            }else{
+                alert('wrong format.')
+            }
+        }
+    }
 
 
     getorderbystate(state){
@@ -513,7 +556,9 @@ class Index extends Component {
             .then(res=>{return res.json()})
             .then(data=>{this.setState({orders:data})})
         }
-     
+        this.setState({
+            querys:this.props.querys
+        })
 
         $(document).ready(function() {
            
@@ -585,11 +630,10 @@ class Index extends Component {
             </ul>
                 <br/>
                 {this.state.istable?<OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} sellerMassege={(id,state)=>this.sellerMassege(id,state)}/>
-                :<CartList items={this.props.items} catagerytype="Phones"  />}
+                :<CartList loadpromt={this.loadpromt} updateitem={this.updateitem} items={this.props.items} catagerytype="Phones"  />}
              </div>
              </div> }
              <Footer/> 
-   
                   </Layout>
            );
       }
@@ -610,7 +654,7 @@ class Index extends Component {
           if(resshop.status!=200){
               error = true ;
          }
-          return {shop:shopanditems.shop,items:shopanditems.items,error};
+          return {shop:shopanditems.shop,items:shopanditems.items,error,querys:{shopindex:index,id:id}};
 
     }else{
         return {error:true};

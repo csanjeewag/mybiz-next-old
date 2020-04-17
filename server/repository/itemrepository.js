@@ -138,10 +138,26 @@ exports.viewforfavorite = function(req,res) {
                  return  res.status(400).json(error);
              }
              else{
-                 return  res.status(200).json({status:200,msg:'create in success.'});
+                 return  res.status(200).json({status:200,msg:'update in success.'});
              }
  
          })
  
    }
  
+   exports.updateDetails = function(req,res){
+
+    let body=  JSON.parse(req.body.jsonbody);
+    models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+        if(error){
+            var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return  res.status(400).json(error);
+        }
+        else{
+            return  res.status(200).json({status:200,msg:'update in success.'});
+        }
+
+    })
+
+   }
+   

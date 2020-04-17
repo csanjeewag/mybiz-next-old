@@ -95,10 +95,10 @@ class Index extends Component {
                 {NavLink.map((x,i)=>
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
-                    <Link key='100'  href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>
-                    {
-                    Cookie.getJSON('user')?<Link key='101' href={`/myprofile?id=${Cookie.getJSON('user')._id}`}><a className="nav-link nav-link-main active font1"  >my-profile</a></Link>:null
-                    }
+                    <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>
+                    
+                    <Link key='101' href={`/myprofile?id=${Cookie.getJSON('user')?Cookie.getJSON('user')._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
+                    
                             </div>           </div>
        
             

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Head from 'next/head'
 import Header from './Header';
 import $ from 'jquery';
+import Cookie from "js-cookie";
+
 
 class Layout extends Component {
 
@@ -25,6 +27,12 @@ class Layout extends Component {
     isMobile();
     $(window).resize(isMobile);
     })
+    if(Cookie.get('user')){
+        $('.isuserlogin').show();
+    }else{
+        $('.isuserlogin').hide();
+    }
+   
   }
 
   render(){
@@ -192,6 +200,9 @@ class Layout extends Component {
 
    .pointer {cursor: pointer;}
   .progress {cursor: progress;}
+
+   .isuserlogin{}
+
    `}
  </style>
 

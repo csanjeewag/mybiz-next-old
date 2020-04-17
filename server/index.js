@@ -337,6 +337,25 @@ server.get("/api/itembyid/:id", (req, res) => {
         
         
       });
+
+  //update details only
+      server.put("/api/updateitemDetails/:id", (req, res) => {
+
+        if(req.body.user!='undefined'){
+          project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+            itemsRepository.updateDetails(req,res)
+        }, (error) => {
+    
+            return res.status(404).json({msg:'you are signout please sign in.'}); 
+      
+        });
+        }
+        else{
+          return res.status(404).json({msg:'check your account again.'}); 
+        }
+        
+        
+      });
 /**end item api */
 
 /** user api  */
