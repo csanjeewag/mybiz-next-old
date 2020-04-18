@@ -162,8 +162,8 @@ render(){
                 <input type="email" className="form-control" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label  className="font1">Contact</label>
-                <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Contact" name="contact" value={this.state.contact} onChange={this.handleChange}/>
+                <label  className="font1">Contact *</label>
+                <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Contact *" name="contact" value={this.state.contact} onChange={this.handleChange}/>
             </div>
             <div className="form-check">
                 <input type="checkbox" className="form-check-input" />

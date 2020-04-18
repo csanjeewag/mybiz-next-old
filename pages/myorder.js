@@ -84,6 +84,7 @@ const OrderTable=(props)=>{
   {`
   .order-table{
     overflow : auto;
+    transition: 2s;
   }
   .item-details p{
     margin-top: 0;

@@ -6,8 +6,17 @@ import SideNav from './../layouts/SideNav';
 import SignUp from './../components/signup';
 import {NavLink,wesitename} from './../constant/main';
 import Cookie from "js-cookie";
+import Filter from './filterItem'
  
 class Index extends Component {
+    constructor() {
+		super();
+		this.state = {
+        isuserlogin:false,
+        user:{}
+
+  }
+	}
 
     //side nav bar open
     showsidebar(){
@@ -17,8 +26,25 @@ class Index extends Component {
       showsignup(){
         this.refs.signup.showsignup();
       }
+
+    //showfilter
+    showfilter(){
+        if($('.filter-item').is(":visible")){
+            $('.filter-item').hide(1000) 
+        }
+        else{
+          
+            $('.filter-item').show(1000)  
+        }
+    }
     
     componentDidMount(){
+        
+        this.setState({
+            user : Cookie.getJSON('user'),
+            isuserlogin : Cookie.getJSON('user')?true:false
+        })
+
         $(document).ready(function() {
 
             $('.togglemenuC').click(function(){
@@ -80,8 +106,11 @@ class Index extends Component {
             <SignUp ref="signup" showsignup={this.props.showsignup} />
             <div className="subnav" >
             <nav className="navbar sub1nav sticky-top navbar-expand-lg">
-            <a className="navbar-brand font7 logo-link" href="#">{wesitename}</a>
-            
+            {this.state.isuserlogin?<img className="float-left avatar" src={this.state.user.imageUrl} />:null}
+            {this.state.isuserlogin? <a className="logo-link nav-link nav-link-main active font1" href="#">{this.state.user.givenName} </a>:
+            <a className="navbar-brand font7 all-link" href="#">{wesitename}</a>
+           }
+           
             {this.props.sidenavconst.visible?<button onClick={this.showsidebar.bind(this)} type="button" className="btn btn-primary all-link font1">{this.props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 all-link" href="#">{wesitename}</a>}
  
             <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,21 +124,37 @@ class Index extends Component {
                 {NavLink.map((x,i)=>
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
-                    <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>
+                    <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
+                    <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in</a></Link>
+                    <a className="nav-link nav-link-main active font1" onClick={this.showfilter.bind(this)} >filter</a>
                     
-                    <Link key='101' href={`/myprofile?id=${Cookie.getJSON('user')?Cookie.getJSON('user')._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
-                    
-                            </div>           </div>
-       
+             </div> </div>
+             {/*
+            <form className="form-inline my-2 my-lg-0 ismobile_disable">
+            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>*/
+            }
+            
             
             </nav>
     
             
               
             </div>
+            <div className="filter-item" display="none">
+            <Filter/>
+            </div>
+           
             
             <style jsx>
                 {`
+                  .avatar {
+                    vertical-align: middle;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                  }
                 .subnav {
                     z-index : 100;
                   

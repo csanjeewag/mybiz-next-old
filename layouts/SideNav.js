@@ -86,7 +86,7 @@ max-width: 200px;
 box-shadow: 0 5px 6px 4px rgba(0, 0, 0, .2);
 transform: translateX(-102%);
 will-change: transform;
-
+overflow: auto;
 flex-direction: column;
 }
 .side-nav-container {
@@ -135,7 +135,6 @@ opacity: 1;
 }
 .sidenavbar-link{
     padding:10%;
-    overflow: auto;
 }
 .sidenavbar-link a{
     color: #C4FBFE ;

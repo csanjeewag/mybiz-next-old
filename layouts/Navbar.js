@@ -8,12 +8,24 @@ import Cookie from "js-cookie";
 
 class Index extends Component {
 
+    constructor() {
+		super();
+		this.state = {
+        isuserlogin:false,
+        user:{}
+
+  }
+	}
         //show signup
         showsignup(){
             this.refs.signup.showsignup();
           }
 
     componentDidMount(){
+        this.setState({
+            user : Cookie.getJSON('user'),
+            isuserlogin : Cookie.getJSON('user')?true:false
+        })
         $(document).ready(function() {
 
             $('.togglemenuC').click(function(){
@@ -83,10 +95,12 @@ class Index extends Component {
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
-                <Link key='101' href={`/myprofile?id=${Cookie.getJSON('user')?Cookie.getJSON('user')._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
-                    
+                <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
+                <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in</a></Link>
+                       
                      </div>
             </div>
+          
        
             
             </nav>

@@ -13,7 +13,7 @@ class Layout extends Component {
       function isMobile() {
         var windowwidth = $(window).width();
 
-        if(windowwidth<990){
+        if(windowwidth<600){
             $('.ismobile_disable').css({'display':'none'});
             $('.isdesktop_disable').css({'display':'block'});
         }

@@ -267,9 +267,8 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-            var urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
+            var urlname = this.state.categery+'-'+this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
             jsonbody.urlname = urlname.split(" ").join("-");
-           console.log(this.props.shoplocation)
             data.append('jsonbody', JSON.stringify(jsonbody));
             data.append('shop', JSON.stringify({shopid:this.props.shopid,userid:Cookie.getJSON('user')._id,...this.state.shoplocation}));
            // data.append('files',this.state.files);

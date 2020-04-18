@@ -66,6 +66,7 @@ else{
         bodydata.shop = {...JSON.parse(req.body.shop)};
         bodydata.shopid = JSON.parse(req.body.shop).shopid;
         bodydata.user = user;
+        bodydata.user.token = null;
         bodydata.createDate = Date.now();
         bodydata.isvalid = true;
         bodydata.save(function(err,data) {
@@ -161,3 +162,69 @@ exports.viewforfavorite = function(req,res) {
 
    }
    
+
+   //filter
+   exports.viewallfilter = function(req,res) {
+
+    var request = {};
+    var towns = [];
+    if(req.query.category&&req.query.category.length>2){
+        request = {...request,categery:req.query.category};
+    }
+    if(req.query.subcategory&&req.query.subcategory.length>2){
+        request = {...request,subcategery:req.query.subcategory};
+    }
+    if(req.query.upperprice&&req.query.upperprice.length>0){
+        var upperPrice = parseInt(req.query.upperprice);
+        request = {...request,itemPrice:{ $lte: upperPrice}  };
+    }
+    if(req.query.lowerprice&&req.query.lowerprice.length>0){
+        var lowerPrice = parseInt(req.query.lowerprice);
+        request = {...request,itemPrice:{ $gte: lowerPrice}  };
+    }
+    if(req.query.district&&req.query.district.length>2){
+        request = {...request,'shop.district':req.query.district };
+    }
+    if(req.query.town&&req.query.town.length>2){
+        towns = req.query.town.trim().split(',');
+        request = {...request,'shop.town':{ $in: towns} };
+    }
+
+   
+    models.find(request,function(error,data){
+        if(error){
+            return   res.status(404).json('error');
+            
+        }else{
+            var dataarray = data;
+            var searchname = req.query.search?req.query.search:'';
+            var searchnamearray = searchname.trim().split(/\s+|[-]+/).filter(x=>(x!='of'&&x!='at'&&x!='in'&&x!='for'&&x!='by'&&x!='under'&&x!='on'&&x!='top'));
+
+            searchnamearray.forEach(element => {
+
+                dataarray = dataarray.filter(x=>{
+                    var regex = new RegExp( '.*'+element+'.*','i' );
+                    if(x.urlname.match(regex)!=null){
+                        return true
+                    }
+                })
+            });
+
+            if(dataarray.length==0){
+                
+                var regexpatten = searchnamearray.join('.*|.*');
+                dataarray = data.filter(x=>{
+                    var regex = new RegExp( '.*'+regexpatten+'.*','i' );
+                    if(x.urlname.match(regex)!=null){
+                        return true
+                    }
+                })
+                
+            }
+            
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
+            return   res.status(200).send(dataarray)
+        }
+    }).sort({date:-1})
+   
+  }

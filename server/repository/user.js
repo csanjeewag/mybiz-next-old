@@ -24,6 +24,8 @@ exports.viewall = function(req,res) {
          
         
         var bodydata = new models(body);
+        bodydata.createDate=Date.now(),
+        bodydata.isvalid = true,
         models.find({email:bodydata.email},function(error,data){
             if(!data.length){
                 bodydata.save(function(err,data) {

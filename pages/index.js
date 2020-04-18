@@ -3,6 +3,7 @@ import Layout from './../layouts/MainLayout';
 import Allcatagery from './../components/Allcatagery';
 import NavBar from './../layouts/Navbar';
 import TopSlide from '../components/Topslide';
+import FilterItem from './../layouts/filterItem';
 import Footer from './../components/Footer';
 import {Url} from './../constant/main';
 import fetch from 'isomorphic-unfetch';
@@ -18,7 +19,7 @@ class Index extends Component {
            <Layout>
          <NavBar ></NavBar>
         <TopSlide></TopSlide>
-        
+        <FilterItem></FilterItem>
               <Allcatagery catageries={this.props.types} topic="categories" ></Allcatagery>
 
 

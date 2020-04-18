@@ -27,7 +27,7 @@ const passport = require('passport');
 //database connection
 const mongoose = require('mongoose');
 //var mongoDB = "mongodb+srv://atoursrilanka:Chanaka1102@cluster0-6wtzm.mongodb.net/atourlankaT?retryWrites=true&w=majority";
-var mongoDB = "mongodb+srv://csanjeewag:Chanaka*1102@cluster0-pms91.mongodb.net/mybiz?retryWrites=true&w=majority"
+var mongoDB = "mongodb+srv://csanjeewag:Chanaka*1102@cluster0-pms91.mongodb.net/onshop?retryWrites=true&w=majority"
 mongoose.connect(mongoDB,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, (error)=>{
   if(error){
       console.log(error);
@@ -300,7 +300,12 @@ server.get("/api/itembyid/:id", (req, res) => {
     itemsRepository.viewall({'shopid':req.params.id},res);
 
   }); 
-  
+  //filter items
+  server.get("/api/itemfilter", (req, res) => {
+
+    itemsRepository.viewallfilter(req,res);
+
+  }); 
 
   server.post("/api/createitem", (req, res) => {
 
@@ -358,8 +363,8 @@ server.get("/api/itembyid/:id", (req, res) => {
       });
 /**end item api */
 
-/** user api  */
-
+/******************************************************* user api  ***************************************************/
+//create new user
 server.post("/api/createuser", (req, res) => {
 
   userRepository.create(req,res);
@@ -375,7 +380,7 @@ server.post("/api/createuser", (req, res) => {
   });
   });
 
-/***end user api */
+/**************************************************************************************************************************** */
 
 
 /********************order ******************************** */

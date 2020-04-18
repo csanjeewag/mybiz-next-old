@@ -64,11 +64,13 @@ exports.viewall = function(req,res) {
     }
 
     let body=  JSON.parse(req.body.jsonbody);
-     body.user =  JSON.parse(req.body.user);  
+
         var bodydata = new models(body);
+        bodydata.user = JSON.parse(req.body.user); 
+        bodydata.user.token = null;
         bodydata.images = image_url;
         bodydata.createDate = Date.now();
-        bodydata.isvalid = true;
+        bodydata.isvalid = false;
         bodydata.save(function(err,data) {
             if (err){
                 var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
