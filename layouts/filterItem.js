@@ -133,7 +133,7 @@ class Index extends Component {
                 <div className="field-wrap  col-lg-5 col-md-5 col-sm-12">
                 <label  className="font1 labelf1">Search</label>
                 <input  className={'font1 inputf1 '} type="text" required  name="search" value={this.state.search} onChange={this.handleChange} placeholder="what do you find?" />
-                <button onClick={this.handlesubmit.bind(this)} className="btn btn-submit">search</button>
+                <button onClick={this.handlesubmit.bind(this)} className="btn btn-sm btn-submit">search</button>
                 </div>
                 </div>
                 <br></br>
@@ -152,10 +152,10 @@ class Index extends Component {
                 transition: all 0.25s ease;
                 -webkit-backface-visibility: hidden;
                 pointer-events: none;
-                font-size: 15px;
+                font-size: 0.9em;
             }
             .inputf1 {
-                font-size: 15px;
+                font-size: 0.9em;
                 display: block;
                 width: 100%;
                 padding: 5px 5px;
@@ -176,6 +176,7 @@ class Index extends Component {
                 background: #01567e;
                 color:white; 
                 width:100%;
+                font-size: 0.9em;
             }
             `}
             </style>

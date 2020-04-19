@@ -29,7 +29,10 @@ class Index extends Component {
 
   
         $('.popup-close').click(function(){
-          $('#background-signin').css({'display':'none'}).removeClass('visual-signup');
+
+         $('#logreg-forms').slideUp(1000,function(){
+            $('#background-signin').hide(); 
+         });
         })
 
   
@@ -114,18 +117,17 @@ class Index extends Component {
 
 
   showsignup=()=>{
-    $(document).ready(function() {
-        $('#background-signin').css({'display':'flex'}).addClass('visual-signup');
-        $('#logreg-forms').addClass('animationSignup')
-    })
+    $('#background-signin').show();
+    $('#logreg-forms').hide();
+    $('#logreg-forms').slideDown(1000);
+
   }
 
   hidesignup=()=>{
-
-    $(document).ready(function() {
-        $('#background-signin').css({'display':'none'}).removeClass('visual-signup');
+    $('#logreg-forms').slideUp(1000,function(){
+        $('#background-signin').hide(); 
+     });
         
-    })
   }
   
 render(){
@@ -139,8 +141,8 @@ render(){
     <div id="logreg-forms" className="col-lg-4 col-md-8 col-sm-12">
     <div className="popup-close">x</div>
             <br/>
-            <h3 className="h3 mb-3 font1 topicColor .fontsizeE-6" > Sign in</h3>
-            <div className="social-login row col-12">
+            <h3 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign in</h3>
+            <div className="social-login row col-12 fontsizeE-9">
                  <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
                     buttonText="Sign in with Google+"
@@ -150,27 +152,27 @@ render(){
                     className="btn google-btn social-btn col-lg-6 col-sm-12"
                     isSignedIn={false}
                     />
-                     <button className="btn facebook-btn social-btn col-lg-6 col-sm-12" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                     <button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
               
             </div>
             <hr/>
-            <h3 className="h3 mb-3 font1 topicColor .fontsizeE-6" > Sign up</h3>
+            <h3 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign up</h3>
             <form>
 
             <div className="form-group">
-                <label  className="font1">address</label>
-                <input type="email" className="form-control" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
+                <label  className="font1 fontsizeE1">address</label>
+                <input type="email" className="form-control fontsizeE1" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label  className="font1">Contact *</label>
-                <input type="email" className="form-control" id="exampleInputAddress" placeholder="Enter Contact *" name="contact" value={this.state.contact} onChange={this.handleChange}/>
+                <label  className="font1 fontsizeE1">Contact *</label>
+                <input type="email" className="form-control fontsizeE1" id="exampleInputAddress" placeholder="Enter Contact *" name="contact" value={this.state.contact} onChange={this.handleChange}/>
             </div>
             <div className="form-check">
                 <input type="checkbox" className="form-check-input" />
-                <label className="form-check-label"  className="font1">Sign up as Seller</label>
+                <label className="form-check-label"  className="font1 fontsizeE-9">Sign up as Seller</label>
             </div>
-            <small id="emailHelp" className="form-text text-muted">We'll never share your details with anyone else.</small>
-            <div className="social-login row col-12">
+            <small id="emailHelp" className="form-text text-muted fontsizeE-7">We'll never share your details with anyone else.</small>
+            <div className="social-login row col-12 fontsizeE-9">
                   <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
                     buttonText="Sign in with Google+"
@@ -180,7 +182,7 @@ render(){
                     className="btn google-btn social-btn col-lg-6 col-sm-12"
                     isSignedIn={false}
                     />
-                     <button className="btn facebook-btn social-btn col-lg-6 col-sm-12" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                     <button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
               
             </div>
             </form>
@@ -213,7 +215,7 @@ render(){
     width: 100%;
     background: rgba(0,0,0,0.8);
     font-family: "Robato",sans-serif;
-    font-size: 17px;
+    font-size: 1.1em;
     display:none;
     z-index:100;
     position: fixed;
@@ -244,7 +246,7 @@ render(){
       box-sizing: border-box;
       height: auto;
       padding: 10px;
-      font-size: 16px;
+      font-size: 1.1em;
   }
   #logreg-forms .form-control:focus { z-index: 2; }
   #logreg-forms .form-signin input[type="email"] {

@@ -24,11 +24,11 @@ const Index = props => (
        </div>
        <div className="card-inner">
          <div className="header">
-           <h3 className="font4 topicColor fontsizeE2">{c.type}</h3>
+           <h3 className="font4 topicColor fontsizeE1-5">{c.type}</h3>
         
        </div>
        <div className="content">
-       <h4 className="font6 subtopicColor fontsizeE1-5">{c.name}</h4>
+       <h4 className="font6 subtopicColor fontsizeE1">{c.name}</h4>
        </div>
          </div>
      </div></div>
@@ -55,6 +55,7 @@ const Index = props => (
     margin-top:10px;
     margin-bottom:10px;
     background-color:#FFF;
+    font-size:0.9em;
   }
   
   .card:hover {

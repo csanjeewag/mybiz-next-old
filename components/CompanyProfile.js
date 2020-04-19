@@ -172,7 +172,7 @@ const Contentside=(props)=>{
                     clear: both;
                     margin-top: .5em;
                     color: rgba(0, 0, 0, .68);
-                    font-size : 15px;
+                    font-size : 0.9em;
                 }
                 
                 .card-footer {
@@ -269,7 +269,7 @@ const CartList=(props)=>{
         <div className="row col-12">
         <Link href={itemUrl+c.urlname}>
         <div className="col-lg-3">
-        <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
+        <img className="f-card-img-top " src={ImageUrl+c.images[0]}/>
         </div>
         </Link>
         <div className="col-lg-9">
@@ -279,7 +279,7 @@ const CartList=(props)=>{
             <div className=" float-right"> 
             <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
             <a className="Idiscount font6"> {c.itemdiscount}% </a>
-            <a className="Iprise font6">&nbsp;Rs.{/*c.price*(100-c.discount)/100*/}</a>
+            <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
             </div>
         </div>
         <div className="card-text font6">
@@ -291,8 +291,8 @@ const CartList=(props)=>{
         
         <div className="card-footer">
            
-              <a onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-danger float-right btn-sm ismobile_disable"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp;Add to Cart</a>
-             <a onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-primary float-right btn-sm ismobile_disable"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp; Order Now</a>
+              <button onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-danger float-right btn-sm ismobile_disable fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp;Add to Cart</button>
+             <button onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-primary float-right btn-sm ismobile_disable fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp; Order Now</button>
            
         </div>
         
@@ -352,6 +352,7 @@ const CartList=(props)=>{
                         display: block;
                         width: 100%;
                         height: 200;
+
                      
                     }
                     
@@ -367,7 +368,7 @@ const CartList=(props)=>{
                         clear: both;
                         margin-top: .5em;
                         color: rgba(0, 0, 0, .68);
-                        font-size : 12px;
+                        font-size : 0.9em;
                     }
                     
                     .card-footer {
@@ -573,7 +574,7 @@ class Index extends Component {
              
                 <div className="cart-menu col-lg-11 col-sm-12 mx-auto">
                 <div>
-                    <h2 className="font1 topicColor profile-css-topic">{this.props.topic}</h2>
+                    <h2 className="font1 topicColor profile-css-topic fontsizeE2-25">{this.props.topic}</h2>
                     
                 </div>
                 <div className="row col-12">

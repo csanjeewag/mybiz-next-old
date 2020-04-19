@@ -39,9 +39,9 @@ class Index extends Component {
               
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                
+               
                 {this.props.error?<Errorpage error={this.props.shop} />:<Profile shop={this.props.shopanditems.shop} catageries={items} items={this.props.shopanditems.items} topic="My Shops"></Profile>}
-                
+             
             <Footer/>
                    </Layout>
            );

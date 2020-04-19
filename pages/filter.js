@@ -5,6 +5,7 @@ import SubNavBar from './../layouts/SubNavbar';
 import TopSlide from '../components/Topslide';
 import FilterItem from './../layouts/filterItem';
 import Footer from './../components/Footer';
+import Categeryitem from '../components/Categeryitem';
 import {Url} from './../constant/main';
 import fetch from 'isomorphic-unfetch';
 
@@ -32,11 +33,8 @@ class Index extends Component {
            <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
        
-        
-        {this.props.items.map((x,i)=>
-            <p key={i}>{x.urlname}</p>
-            )}
     
+    <Categeryitem  catageries={this.props.items} topic={'your choice items'}></Categeryitem>
      <Footer></Footer>
   
                   </Layout>

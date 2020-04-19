@@ -10,9 +10,9 @@ class Index extends Component {
 
 <section id="footer">
 	<div className="container">
-		<div className="row">
-			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5 className="info-topic">CONTACT US</h5>
+		<div className="row fontsizeE1">
+			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+				<h5 className="info-topic fontsizeE1-25">CONTACT US</h5>
 				<table className="contact-info">
 					<tbody >
 						<tr>
@@ -36,7 +36,7 @@ class Index extends Component {
 					</tbody></table>
 			</div>
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5 className="info-topic">INFORMATION</h5>
+				<h5 className="info-topic fontsizeE1-25">INFORMATION</h5>
 				<table className="contact-info">
 					<tbody >
 						<tr>
@@ -58,7 +58,7 @@ class Index extends Component {
 					</tbody></table>
 			</div>
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5 className="info-topic">FOLLOW US</h5>
+				<h5 className="info-topic fontsizeE1-25">FOLLOW US</h5>
 				<table className="contact-info">
 					<tbody >
 						<tr>
@@ -132,7 +132,6 @@ section .section-title {
 	transition: .5s all ease;
 }
 #footer ul.social li:hover a i {
-	font-size:30px;
 	margin-top:-10px;
 }
 #footer ul.social li a,
@@ -151,13 +150,9 @@ section .section-title {
 #footer ul.quick-links li:hover{
 	padding: 3px 0;
 	margin-left:5px;
-	font-weight:700;
 }
 #footer ul.quick-links li a i{
 	margin-right: 5px;
-}
-#footer ul.quick-links li:hover a i {
-    font-weight: 700;
 }
 .info-topic {
 	color:white;

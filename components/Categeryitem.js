@@ -36,7 +36,7 @@ class Index extends Component {
                 
                 <div className="container">
                 <div>
-                    <h2 className="font1 topicColor menu2-topic">{this.props.topic}</h2>
+                    <h2 className="font1 topicColor menu2-topic fontsizeE2-25">{this.props.topic}</h2>
                     
                 </div>
                 <div className="menu2 row projects">
@@ -142,7 +142,7 @@ class Index extends Component {
                         clear: both;
                         margin-top: .5em;
                         color: rgba(0, 0, 0, .68);
-                        font-size : 12px;
+                        font-size : 0.9em;
                     }
                     
                     .card-footer {

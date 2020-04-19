@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
-
+import {wesitename} from './../constant/main';
 
 class Index extends Component {
 
@@ -43,16 +43,16 @@ render(){
   
   <a  className="js-menu-close menu-close navbar-brand font7">&nbsp;
   <img src="https://img.icons8.com/windows/25/FF8C8C/delete-slide.png"/>&nbsp;
-  MYBIZ.COM
+  {wesitename}
   </a>
 
-  <h4 className="sidenav-link-topic  font1">  &nbsp; {this.props.sidenavconst.topic}</h4>
+  <h4 className="sidenav-link-topic  font1 fontsizeE2">  &nbsp; {this.props.sidenavconst.topic}</h4>
   <div className="sidenavbar-link pointer">
                 {this.props.sidenavconst.sidenavlink.map((c,i)=>
                 <Link key={i} href={c.suburl+c.type?c.type:(c.urlname?c.urlname+'?ide='+c._id:c.district)} >
                 <div>
              
-                <a className="nav-link font1" ><i className="fa fa-telegram" aria-hidden="true"></i> &nbsp;{c.name?c.name:c.itemname?c.itemname:c.district}</a>
+                <a className="nav-link font1 fontsizeE1" ><i className="fa fa-telegram" aria-hidden="true"></i> &nbsp;{c.name?c.name:c.itemname?c.itemname:c.district}</a>
                 
                 </div>
                 </Link>
@@ -71,7 +71,7 @@ render(){
 
 .menu-close{
 color: rgb(61, 228, 246);
-font-size: 20px;
+font-size: 1.5em;
 padding: 20px 10px 20px 10px;
 background: rgba(7, 36, 159 );
 }

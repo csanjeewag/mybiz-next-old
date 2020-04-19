@@ -17,7 +17,7 @@ class Index extends Component {
                 
                 <div className="container">
                 <div>
-                    <h2 className="font1 topicColor menu2-topic">{this.props.topic}</h2>
+                    <h2 className="font1 topicColor menu2-topic fontsizeE2-25">{this.props.topic}</h2>
                     
                 </div>
                 <div className="menu2 row projects">
@@ -41,7 +41,7 @@ class Index extends Component {
                             <a className="Catagory-style font6">&nbsp;{c.categery}</a>
                             </div>
                         </div>
-                        <div className="card-text font6">
+                        <div className="card-text font6 ">
                             {c.content1.slice(0,150)}...
                         </div>
                     </div>
@@ -82,6 +82,7 @@ class Index extends Component {
                         border-radius: .28571429rem;
                         box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
                         transition: 0.5s;
+                        font-size: 0.9em;
                     }
                     .card:hover{
                         box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -120,7 +121,7 @@ class Index extends Component {
                         clear: both;
                         margin-top: .5em;
                         color: rgba(0, 0, 0, .68);
-                        font-size : 12px;
+                        font-size : 0.9em;
                     }
                     
                     .card-footer {

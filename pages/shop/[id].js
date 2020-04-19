@@ -46,16 +46,15 @@ class Index extends Component {
                 <SubNavBar sidenavconst={sidenavconst}/>
                 {this.props.error?<Errorpage error={this.props.allshops} />:
                 
-        <div>
+                <div>
                 <br/>
                 <div className="d-flex flex-wrap justify-content-around bd-highlight catagoryname">
                 {this.props.allcatagery.map((c,i)=> 
                 <div key={i} className="p-2 bd-highlight "><Link href={'#'+c.type+'-catogery'} ><p className="font1" > {/*i!=0?'||':null*/} {c.name}</p></Link></div>
                 
                   )}
-                
-               
                 </div>
+                
               
                
                

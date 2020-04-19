@@ -37,8 +37,8 @@ const Imageside=(props)=> {
 
         <div className="card-footer">
             <small className="font3 card-footer-button">{props.item.createDate}</small>
-              <a href="#" onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp; Add to Cart</a>
-             <a href="#" onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp;Order Now</a>
+              <button onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp; Add to Cart</button>
+             <button onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp;Order Now</button>
            
         </div>
 
@@ -69,10 +69,10 @@ const Contentside=(props)=>{
         <div className="card">
             <div className="card-block">
             
-                <h4 className="card-title font2 topicColor">{props.item.itemlongname}</h4>
+                <h4 className="card-title font2 topicColor fontsizeE2-25">{props.item.itemlongname}</h4>
                 <div className="meta font6 subtopicColor">
-                    <a>{props.item.categery}</a>
-                    <div className=" float-right"> 
+                    <a className="fontsizeE-9" >{props.item.categery}/{props.item.subcategery}</a>
+                    <div className=" float-right fontsizeE-9"> 
                     <a className="Icutprise font6"> <strike>Rs.{props.item.itemPrice}.00</strike>  </a> 
                     <a className="Idiscount font6"> {props.item.itemdiscount}% </a>
                     <a className="Iprise font6">&nbsp;Rs.{props.item.itemPrice*(100-props.item.itemdiscount)/100}</a>
@@ -86,7 +86,7 @@ const Contentside=(props)=>{
                 {props.item.content2}
                 </div>
                 <div className="menu2-specification">
-                <h5 className="menu2-subcard-title font2 fontcolorSkyblue">Specification</h5>
+                <h5 className="menu2-subcard-title font2 fontcolorSkyblue fontsizeE1">Specification</h5>
                 <div className=" card-text font6">
                     <div className="row">
                         {props.item.itemSpecification?props.item.itemSpecification.map((x,i)=>
@@ -99,7 +99,7 @@ const Contentside=(props)=>{
                     </div>
                 </div></div>
                 <div className="menu2-stock-details">
-                <h5 className="menu2-subcard-title font2 fontcolorSkyblue">Stock Details</h5>
+                <h5 className="menu2-subcard-title font2 fontcolorSkyblue fontsizeE1">Stock Details</h5>
                 <div className=" card-text font6">
                     <div className="row">
                     {props.item.stockDetail?props.item.stockDetail.map((x,i)=>
@@ -113,7 +113,7 @@ const Contentside=(props)=>{
                     </div>
                 </div></div>
                 <hr/>
-                <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
+                <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
                 </div>
            
         </div>
@@ -181,7 +181,7 @@ const Contentside=(props)=>{
                     clear: both;
                     margin-top: .5em;
                     color: rgba(0, 0, 0, .68);
-                    font-size : 15px;
+                    font-size : 0.9em;
                 }
                 
                 .card-footer {
@@ -282,7 +282,7 @@ const QuestionSide = (props)=>{
         <div className="menu2-question">
         <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/>
         <input className="inputf2" type="text" name="question" value={props.question}  onChange={props.handleChange} /><br/>
-        <button onClick={props.handleaskquestion} type="button" className="btn btn-primary btn-sm"><i className="fa fa-quora" aria-hidden="true"></i>&nbsp; Ask a question </button>
+        <button onClick={props.handleaskquestion} type="button" className="btn btn-primary btn-sm fontsizeE1"><i className="fa fa-quora" aria-hidden="true"></i>&nbsp; Ask a question </button>
         
         <hr/>
         </div>
@@ -318,7 +318,7 @@ const QuestionSide = (props)=>{
 const ReviewSide = (props)=>{
     return(
         <div className="menu2-reviews col-12">
-        <h5 className="menu2-subcard-title font2 fontcolorOrange">Reviews from customer</h5>
+        <h5 className="menu2-subcard-title font2 fontcolorOrange fontsizeE1">Reviews from customer</h5>
         <hr/>
         {props.reviewsdata.map((x,i)=>
            <div key={i} className="menu2-reviews">
@@ -331,7 +331,7 @@ const ReviewSide = (props)=>{
       <div className="menu2-question col-12">
         <img className="float-left" src="https://img.icons8.com/ios/40/000000/edit-chat-history.png"/>
         <input className="inputf2" type="text" name="review" value={props.review}  onChange={props.handleChange} /><br/>
-        <button onClick={props.handlereviews} type="button" className="btn btn-danger btn-sm"><i className="fa fa-comments" aria-hidden="true"></i>&nbsp; keep a review </button>
+        <button onClick={props.handlereviews} type="button" className="btn btn-danger btn-sm fontsizeE-9"><i className="fa fa-comments" aria-hidden="true"></i>&nbsp; keep a review </button>
         </div>
        
        <style jsx >

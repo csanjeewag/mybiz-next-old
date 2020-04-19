@@ -146,7 +146,7 @@ const CartList=(props)=>{
                         clear: both;
                         margin-top: .5em;
                         color: rgba(0, 0, 0, .68);
-                        font-size : 12px;
+                        font-size : 0.9em;
                     }
                     
                     .card-footer {
@@ -368,15 +368,15 @@ const SendorderSide=(props)=>{
          <input className={'font6 inputf1 '}  onChange={props.handleChangeUserDetails}  name='address' value={props.user.address}  />
          <span className="form-error">{''}</span>
          </div> 
-         <p className="massage-cart">
+         <p className="massage-cart fontsizeE-7">
             {cartUserdetails}
         </p>
-        </div>:<p className="massage-cart">
+        </div>:<p className="massage-cart fontsizeE-7">
             {cartUserNotlogin}
         </p>
         }
          <h4 className="font4 fontsizeE1-25 fontcolorSkyblue">Special massage</h4>
-        <p className="massage-cart">{cartitemMSG}</p>
+        <p className="massage-cart fontsizeE-7">{cartitemMSG}</p>
         {props.cartItems.map((x,i)=>
         (x.qty > 0)?
         
@@ -400,7 +400,7 @@ const SendorderSide=(props)=>{
                 transition: all 0.25s ease;
                 -webkit-backface-visibility: hidden;
                 pointer-events: none;
-                font-size: 18px;
+                font-size: 1em;
             }
             .labelf1 .req {
                 margin: 2px;
@@ -409,7 +409,7 @@ const SendorderSide=(props)=>{
             .labelf1.active {
                 left: 13px;
                 transform: translateY(10px);
-                font-size: 15px;
+                font-size: 0.9em;
             }
             .labelf1.active .req {
                 opacity: 0;
@@ -418,7 +418,7 @@ const SendorderSide=(props)=>{
                 color: #023957;
             }
             .inputf1 {
-                font-size: 15px;
+                font-size: 0.9em;
                 display: block;
                 width: 100%;
                 padding: 5px 10px;
@@ -594,7 +594,7 @@ class Index extends Component {
               
                 <div className="cart-menu">
                 <div>
-                    <h2 className="font1 topicColor menu2-topic">{this.props.topic}</h2>
+                    <h2 className="font1 topicColor menu2-topic fontsizeE2-25">{this.props.topic}</h2>
                     
                 </div>
                 {this.state.items? 

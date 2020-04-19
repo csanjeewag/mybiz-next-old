@@ -591,7 +591,7 @@ class Index extends Component {
 .labelf1 {
     position: relative;
     transform: translateY(40px);
-    left: 13px;
+    left: 1em;
     color: #01567e;
     transition: all 0.25s ease;
     -webkit-backface-visibility: hidden;
@@ -605,7 +605,7 @@ class Index extends Component {
 .labelf1.active {
     left: 13px;
     transform: translateY(10px);
-    font-size: 15px;
+    font-size: 1em;
 }
 .labelf1.active .req {
     opacity: 0;
@@ -614,7 +614,7 @@ class Index extends Component {
     color: #023957;
 }
 .inputf1 {
-    font-size: 18px;
+    font-size: 1.1em;
     display: block;
     width: 100%;
     padding: 5px 10px;

@@ -105,8 +105,8 @@ const Contentside=(props)=>{
                     </div>
                 </div>
                 <hr/>
-                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town}><a href="#" className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
-                <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;update shop</a></Link>
+                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
+                <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update shop</a></Link>
               
             </div>
 
@@ -177,7 +177,7 @@ const Contentside=(props)=>{
                     clear: both;
                     margin-top: .5em;
                     color: rgba(0, 0, 0, .68);
-                    font-size : 15px;
+                    font-size : 0.9em;
                 }
                 
                 .card-footer {
@@ -305,14 +305,14 @@ const CartList=(props)=>{
                <p className="topicColor" > <strike className="fontsizeE-8">Rs.{x.itemPrice}.00</strike> <span className="fontcolorOrange fontsizeE-8">{x.itemdiscount}% </span>  Rs.{x.itemPrice*(100-x.itemdiscount)/100} </p>
                 </div> 
                 <div className="item-details font6 btn-group btn-group-sm">
-                <button onClick={props.loadpromt.bind(this,x._id,'price')}  className="btn btn-primary float-left btn-sm"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;price</button>
-                <button onClick={props.loadpromt.bind(this,x._id,'discount')}  className="btn btn-dark float-left btn-sm"><img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp; discount</button>
+                <button onClick={props.loadpromt.bind(this,x._id,'price')}  className="btn btn-primary float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;price</button>
+                <button onClick={props.loadpromt.bind(this,x._id,'discount')}  className="btn btn-dark float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp; discount</button>
                
                 </div> 
             </td>
             <td className="user-details font6">
             <div className="item-details font6"> 
-            <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm"><img src="https://img.icons8.com/ios-glyphs/20/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
+            <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios-glyphs/20/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
               </div> 
             
             </td>

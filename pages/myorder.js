@@ -11,12 +11,12 @@ const OrderTable=(props)=>{
   return(
     <div className="order-table">
 
-  <div className="btn-group btn-group-sm col-12" role="group" aria-label="Basic example">
-    <button onClick={props.getorderbystate.bind(this,'all')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/show-all-views.png"/> All</button>
-    <button onClick={props.getorderbystate.bind(this,'new')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/new.png"/> new</button>
-    <button onClick={props.getorderbystate.bind(this,'mail')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>
-    <button onClick={props.getorderbystate.bind(this,'confirm')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
-    <button onClick={props.getorderbystate.bind(this,'remove')} type="button" className="btn btn-secondary"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
+  <div className="btn-group btn-group-sm col-12 " role="group" aria-label="Basic example">
+    <button onClick={props.getorderbystate.bind(this,'all')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/show-all-views.png"/>  All</button>
+    <button onClick={props.getorderbystate.bind(this,'new')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/new.png"/> new</button>
+    <button onClick={props.getorderbystate.bind(this,'mail')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>
+    <button onClick={props.getorderbystate.bind(this,'confirm')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
+    <button onClick={props.getorderbystate.bind(this,'remove')} type="button" className="btn btn-secondary fontsizeE1"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
   </div>
   <table className="table table-striped">
     <thead>
@@ -67,9 +67,9 @@ const OrderTable=(props)=>{
       </td>
       <td className="user-details font6">
       <div className="item-details font6"> 
-          <p className="topicColor">you: {x.userMsg?x.userMsg:'--'}</p>
+          <p className="topicColor ">you: {x.userMsg?x.userMsg:'--'}</p>
           <p >shop: {x.sellerMsg?x.sellerMsg:'--'}</p>
-          <button onClick={props.userMassage.bind(this,x._id,x.state)} className="btn btn-sm btn-danger">send msg</button>
+          <button onClick={props.userMassage.bind(this,x._id,x.state)} className="btn btn-sm btn-danger fontsizeE-9">send msg</button>
         </div> 
       
       </td>
@@ -78,7 +78,7 @@ const OrderTable=(props)=>{
   
     </tbody>
   </table>
-  {!props.orders[0]?<div className="d-flex justify-content-center"><br/><h6 className="card-title font2 topicColor">Your selected area is empty.</h6><br/></div>:null}
+  {!props.orders[0]?<div className="d-flex justify-content-center"><br/><h6 className="card-title font2 topicColor fontsizeE1">Your selected area is empty.</h6><br/></div>:null}
   
   <style jsx>
   {`

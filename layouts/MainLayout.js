@@ -50,9 +50,9 @@ class Layout extends Component {
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>
 
       </Head>
-
+        <div className="fontsizeE-9">
         {this.props.children}
-      
+        </div>
     
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossOrigin="anonymous"></script>
@@ -121,7 +121,9 @@ class Layout extends Component {
    }
 }
   
-   
+   .btn{
+    font-size : 0.9rem;
+   }
    
    
    .font1 {

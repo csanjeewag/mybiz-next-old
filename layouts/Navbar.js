@@ -44,10 +44,10 @@ class Index extends Component {
             $(window).scroll(function() {
               // checks if window is scrolled more than 500px, adds/removes solid class
               if($(this).scrollTop() > $(window).height()/3) { 
-                  $('.navbar').addClass('SolidNav');
+                  $('.navbar').addClass('SolidNav').removeClass('navbar-bar');
               }
               else {
-                  $('.navbar').removeClass('SolidNav');
+                  $('.navbar').removeClass('SolidNav').addClass('navbar-bar');
               }
              
             });
@@ -55,14 +55,14 @@ class Index extends Component {
             function checkMobile() {
                 var windowwidth = $(window).width();
 
-                if(windowwidth<990){
-                    $('.nav-link-main').css({'background-color':'black','opacity':'0.6','padding-left':'20px'});
+                if(windowwidth<600){
+                    $('.nav-link-main').css({'background-color':'black','opacity':'0.9','padding-left':'20px'});
 
                     $(window).scroll(function() {
                         if($(this).scrollTop() > $(window).height()/4) { 
-                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.6','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.9','padding-left':'20px'});
                         }else{
-                            $('.nav-link-main').css({'background-color':'black','opacity':'0.6','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'black','opacity':'0.9','padding-left':'20px'});
                         }
                         
                       });
@@ -74,22 +74,28 @@ class Index extends Component {
             $(window).resize(checkMobile);
     });
     }
+
+    show(){
+        if($('#collapsibleNavbar').is(":visible")){
+            $('#collapsibleNavbar').slideUp(500);
+        }else{
+            $('#collapsibleNavbar').slideDown(500);
+        }
+    }
+
     render() { 
         
           return ( 
             <Layout>
             <div className="mainnav" >
             <SignUp ref="signup" showsignup={this.props.showsignup} />
-            <nav className="navbar fixed-top navbar-expand-lg">
+            <nav className="navbar-bar navbar fixed navbar-expand-md">
             <a className="navbar-brand font7" href="#">{wesitename}</a>
   
-            <button className="navbar-toggler togglemenuO menuOpen" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <img src="https://img.icons8.com/ios/30/ffffff/menu.png"/>
+            <button onClick={this.show}  className="navbar-toggler" type="button" data-toggle="collapse" >
+            <img src="https://img.icons8.com/ios/20/ffffff/menu.png"/>
             </button>
-            <button className=" navbar-toggler togglemenuC menuClose" type="button">
-            <img src="https://img.icons8.com/ios/25/ffffff/delete-sign.png"/>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="collapse navbar-collapse" id="collapsibleNavbar">
                 <div className="navbar-nav">
                 {NavLink.map((x,i)=>
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
@@ -115,37 +121,47 @@ class Index extends Component {
                     z-index : 100;
                   
                 }
-                .navbar-nav{
+                .navbar-nava{
                     padding-left : 100px;
                 }
               
-                .navbar-nav a {
+                .navbar-nava a {
                     color : white;
                     
                 }
-                .navbar-nav a:hover {
+                .navbar-nava a:hover {
                     color : gray;
                     
                 }
-               
-                .navbar {
+                .nav-link{
+                    color:white;
+                }
+                .navbar-bar {
                     z-index : 100;
-                    height: 50px;
-                    background-color: transparent;
+                    height: 80px;
+                    background-image: linear-gradient( black,transparent);
                     border: none;
                     color: white;
-                    transition: background-color 2s ease 0s;
+                    transition: background-color,height 2s ease 0s;
                }
-              
-                .navbar.SolidNav {
+                .SolidNav {
+                    z-index : 100;
+                    height: 50px;
                     background-color: darkblue;
-                    transition: background-color 2s ease 0s;
-                    box-shadow: 0 0 4px grey;
+                    border: none;
                     color: white;
+                    transition: background-color,height 2s ease 0s;
                }
                .togglemenuC{
                 display:none
                }
+               .fixed {
+                position: -webkit-sticky;
+                width :100%;
+                position: fixed;
+                top: 0;
+                z-index:50;
+              }
                
                 `}
             </style>
