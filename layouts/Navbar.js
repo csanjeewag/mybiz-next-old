@@ -121,7 +121,7 @@ class Index extends Component {
                     z-index : 100;
                   
                 }
-                .navbar-nava{
+                .navbar-nav{
                     padding-left : 100px;
                 }
               

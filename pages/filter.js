@@ -34,7 +34,7 @@ class Index extends Component {
                 <SubNavBar sidenavconst={sidenavconst}/>
        
     
-    <Categeryitem  catageries={this.props.items} topic={'your choice items'}></Categeryitem>
+    <Categeryitem  catageries={this.props.items} topic={'filter items'}></Categeryitem>
      <Footer></Footer>
   
                   </Layout>

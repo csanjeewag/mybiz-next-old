@@ -16,10 +16,13 @@ class Layout extends Component {
         if(windowwidth<600){
             $('.ismobile_disable').css({'display':'none'});
             $('.isdesktop_disable').css({'display':'block'});
+            $('.desktopmobile').addClass('fontsizeE-9').removeClass('fontsizeE1');
+
         }
         else{
           $('.ismobile_disable').css({'display':'block'});
           $('.isdesktop_disable').css({'display':'none'});
+          $('.desktopmobile').addClass('fontsizeE1').removeClass('fontsizeE-9')
         }
           
        
@@ -50,7 +53,7 @@ class Layout extends Component {
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>
 
       </Head>
-        <div className="fontsizeE-9">
+        <div className="desktopmobile">
         {this.props.children}
         </div>
     
@@ -185,7 +188,7 @@ class Layout extends Component {
     font-size : 1em;
    }
    .fontsizeE1-25 {
-    font-size : 1.25em;
+    font-size : 1.1em;
    }
    .fontsizeE1-5 {
     font-size : 1.5em;

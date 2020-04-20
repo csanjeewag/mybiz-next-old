@@ -18,7 +18,7 @@ exports.viewall = function(req,res) {
             return   data.length>0?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }
 
@@ -34,7 +34,7 @@ exports.viewall = function(req,res) {
             var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
                 return   data[0]?res.status(200).send(data[0]):res.status(201).send(error);
         }
-    }).sort({date:-1})
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }
 
@@ -50,7 +50,7 @@ exports.viewall = function(req,res) {
             var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
                 return   data?res.status(200).send(data):res.status(201).send(error);
         }
-    }).sort({date:-1})
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }
 
@@ -115,7 +115,7 @@ exports.viewshopanditems = function(req,res) {
                             //console.log(data)
                         return  res.status(200).json({items:data, shop:shopdata[index],msg:'success.'});
                         }
-                    })
+                    }).sort({mIndex:1, sIndex:1,createDate:-1});
                     }else{
                         var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                         return  res.status(201).json(error);   
@@ -135,7 +135,7 @@ exports.viewshopanditems = function(req,res) {
                     //console.log(data)
                 return  res.status(200).json({items:data, shop:shopdata[0],msg:'success.'});
                 }
-            })
+            }).sort({mIndex:1, sIndex:1,createDate:-1});
             }else{
                 var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                 return  res.status(201).json(error);
@@ -167,7 +167,7 @@ exports.viewshopanditems = function(req,res) {
                         //console.log(data)
                     return  res.status(200).json({items:data, shop:shopdata[shopindex],msg:'success.'});
                     }
-                })
+                }).sort({mIndex:1, sIndex:1,createDate:-1});
             }else{
                 var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                 return  res.status(400).json(error);
@@ -224,3 +224,20 @@ exports.viewshopanditems = function(req,res) {
 
   }
 
+
+  exports.updateDetails = function(req,res){
+
+    let body=  JSON.parse(req.body.jsonbody);
+    console.log(body,req.params.id)
+    models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+        if(error){
+            var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return  res.status(400).json(error);
+        }
+        else{
+            return  res.status(200).json({status:200,msg:'update in success.'});
+        }
+
+    })
+
+   }

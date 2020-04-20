@@ -14,7 +14,7 @@ exports.viewall = function(req,res) {
             var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
             return   data.length>0?res.status(200).send(data):res.status(201).send(error);
         }
-    }).sort({date:-1})
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }
 
@@ -37,7 +37,7 @@ exports.viewall = function(req,res) {
             }
                 
         }
-    })
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }
 
@@ -69,6 +69,8 @@ else{
         bodydata.user.token = null;
         bodydata.createDate = Date.now();
         bodydata.isvalid = true;
+        bodydata.sIndex = 100,
+        bodydata.mIndex = 10000,
         bodydata.save(function(err,data) {
             if (err){
               
@@ -101,7 +103,7 @@ exports.viewforfavorite = function(req,res) {
            // return   data.length>0?res.status(200).send(data):res.status(201).send(error);
             return res.status(200).send(data)
         }
-    }).sort({date:-1})
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }
 
@@ -225,6 +227,6 @@ exports.viewforfavorite = function(req,res) {
             var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
             return   res.status(200).send(dataarray)
         }
-    }).sort({date:-1})
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
    
   }

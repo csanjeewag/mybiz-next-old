@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Layout from './../../layouts/MainLayout';
-import Allcatagery from '../../components/Allshops';
+import AllShops from '../../components/Allshops';
 import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
 import {Url} from './../../constant/main';
 import Link from 'next/link';
 import Errorpage from './../../layouts/error';
+import $ from 'jquery';
 
 class Index extends Component {
 
@@ -19,6 +20,7 @@ class Index extends Component {
 
     }
     componentDidMount(){
+
         this.setState({
             catageries:this.props.allcatagery,
             allshops: this.props.allshops
@@ -37,6 +39,16 @@ class Index extends Component {
         return x;
     }
 
+    showCategory(){
+        
+        if($('#panel').is(":visible")){
+            $('#panel').slideUp(500);
+        }else{
+            $('#panel').slideDown(500);
+        }
+  
+    }
+
     render() { 
         
         const sidenavconst = {topic : 'location',topiclink:'All Location',sidenavlink:this.props.alllocations,visible:true, suburl:'shop'};  
@@ -48,18 +60,21 @@ class Index extends Component {
                 
                 <div>
                 <br/>
-                <div className="d-flex flex-wrap justify-content-around bd-highlight catagoryname">
+        <button onClick={this.showCategory} type="button" className="font6  btn btn-category category btn-sm catagoryname fontsizeE1"  required  name="newsubtype" data-toggle="collapse" > catageries </button>
+        <div id="panel" className="ismobile_disable">
+        <div className="catagoryname row" >
                 {this.props.allcatagery.map((c,i)=> 
-                <div key={i} className="p-2 bd-highlight "><Link href={'#'+c.type+'-catogery'} ><p className="font1" > {/*i!=0?'||':null*/} {c.name}</p></Link></div>
+
+                <div key={i} className="col-lg-1 col-md-2 col-sm-6 category"><Link href={'#'+c.type+'-catogery'} ><p className="font1 fontsizeE-9" > {/*i!=0?'||':null*/} {c.name}</p></Link></div>
                 
                   )}
-                </div>
-                
-              
-               
-               
+            
+        </div> 
+
+        </div>
+
                 {this.props.allcatagery.map((c,i)=>
-                 this.filterarray(c.type).length>0?<div key={i} id={c.type+'-catogery'} >{i!=0?<div><br/><br/><br/><br/></div>:null}<Allcatagery  allshops={this.filterarray(c.type)} topic={c.name} type={c.type}></Allcatagery></div>:null
+                 this.filterarray(c.type).length>0?<div key={i} id={c.type+'-catogery'} >{i!=0?<div><br/><br/><br/><br/></div>:null}<AllShops  allshops={this.filterarray(c.type)} topic={c.name} type={c.type}></AllShops></div>:null
                     )}
                 
         </div>}
@@ -71,7 +86,13 @@ class Index extends Component {
                     color:#ffa445;
                     background-image: linear-gradient(darkblue, #4084d9);
                     cursor: pointer;
-                    padding:0;
+                    padding: 0.5em;
+                }
+                .btn-category{
+                    width:100%;
+                }
+                .category:hover{
+                    color:white;
                 }
                 `}
             </style>

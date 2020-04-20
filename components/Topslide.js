@@ -29,7 +29,6 @@ class Index extends Component {
         
           return ( 
             <Layout>
-         <NavBar></NavBar>
          <div className="div1"  >
          <h1 className="topic font1"  >MYBIZ.COM</h1>
          

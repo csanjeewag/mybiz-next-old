@@ -270,6 +270,7 @@ const CartList=(props)=>{
               <th scope="col">item</th>
               <th scope="col">state</th>
               <th scope="col">Item Details</th>
+              <th scope="col">Index</th>
               <th scope="col">Price</th>
               <th scope="col">Update</th>
               
@@ -298,6 +299,15 @@ const CartList=(props)=>{
                 <div className="item-details font6"> 
                     <p className="topicColor">{x.itemlongname} </p>
                     <p>{x.categery}/{x.subcategery} </p>
+                </div> 
+            </td>
+            <td>
+                <div className="item-details font6"> 
+               <p className="topicColor" >{x.sIndex} </p>
+                </div> 
+                <div className="item-details font6 btn-group btn-group-sm">
+                <button onClick={props.loadpromt.bind(this,x._id,'sIndex')}  className="btn btn-primary float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;Index</button>
+               
                 </div> 
             </td>
             <td>
@@ -490,6 +500,15 @@ class Index extends Component {
                 alert('wrong format.')
             }
         }
+        if(name=='sIndex'){
+            var data = parseInt(prompt("change Index.", "100"));
+            if(data>0){
+                
+              this.updateitem(id,{sIndex:data})
+            }else{
+                alert('wrong format.')
+            }
+        }
     }
 
 
@@ -595,7 +614,7 @@ class Index extends Component {
           return ( 
             <Layout>
              <SubNavBar sidenavconst={sidenavconst}/> 
-{this.props.error?<ErrorPage/>:
+        {this.props.error?<ErrorPage/>:
     <div>
              <div className="col-lg-11 col-sm-12 mx-auto">
              {/*<h3 className="font1 topicColor profile-css-topic">My Shops</h3>*/}

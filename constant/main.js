@@ -5,8 +5,8 @@ export const ImageUrl= 'http://localhost:8000/Images/';
 export const NavLink = [
     {url:'/', urlname:'home'},
     {url:'/shop/All-island', urlname:'all-shop'},
-    {url:'/create-shop', urlname:'create-shop'},
-    {url:'/create-catagery', urlname:'create-catagery'},
+    {url:'/filter', urlname:'filter-items'},
+    {url:'/about', urlname:'about-us'},
     {url:'/myorder', urlname:'my-order'},
 ]
 
@@ -16,6 +16,7 @@ export const createcategorUrl = '/create-catagery';
 export const categoryUrl = '/catagery/';
 export const myProfileUrl = '/myprofile';
 export const filteritemUrl = '/filter';
+export const adminUrl = '/admin';
 
 export const itemUrl = '/item/';
 export const createitemUrl = '/create-item';

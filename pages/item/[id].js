@@ -265,10 +265,10 @@ const QuestionSide = (props)=>{
         <hr/>
         {props.questiondata.map((x,i)=>
             <div key={i} className="menu2-question ">
-            <button className="popup-close-question" onClick={props.removeansewer.bind(this,x._id)}>x</button>
+            {(x.answer&&Cookie.getJSON('user')&&Cookie.getJSON('user')._id==props.shopUserid)?<button className="popup-close-question" onClick={props.removeansewer.bind(this,x._id)}>x</button>:null}
             <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; {x.question}<br/> <span className="spam-text font3 fontsizeE-8"> -{x.a_user.name}- on {x.a_Date}</span></p>
             <p  className="font3 fontsizeE-9"><img src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp;{x.answer?x.answer:'pending answer..'}</p>
-            {!x.answer?<div>
+            {(!x.answer&&Cookie.getJSON('user')&&Cookie.getJSON('user')._id==props.shopUserid)?<div>
             <input className="inputf2" type="text" name="question" id={'input-'+x._id} /><br/>
             <button onClick={props.handlegiveanswer.bind(this,x._id)} type="button" className="btn btn-primary btn-sm"><i className="fa fa-bullhorn" aria-hidden="true"></i>&nbsp; keep a answer </button>
         
@@ -555,7 +555,7 @@ class Index extends Component {
                 <div className="row">
                 <Imageside item={this.props.item} addtocart={(itemid,name)=>this.addtocart(itemid,name)}></Imageside>
                 <Contentside item={this.props.item} ></Contentside>
-                <QuestionSide removeansewer={(id)=>this.removeansewer(id)} questiondata={this.state.questiondata} question={this.state.question} answer={this.state.answer} handleaskquestion={this.handleaskquestion} handleChange={this.handleChange} handlegiveanswer={(id)=>this.handlegiveanswer(id)}></QuestionSide>
+                <QuestionSide shopUserid={this.props.item.user._id} removeansewer={(id)=>this.removeansewer(id)} questiondata={this.state.questiondata} question={this.state.question} answer={this.state.answer} handleaskquestion={this.handleaskquestion} handleChange={this.handleChange} handlegiveanswer={(id)=>this.handlegiveanswer(id)}></QuestionSide>
                 <ReviewSide reviewsdata={this.state.reviewsdata} review={this.state.review} handleChange={this.handleChange} handlereviews={this.handlereviews} />
                 
                 </div></div>}

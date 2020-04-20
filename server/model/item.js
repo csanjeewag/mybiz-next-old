@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
   var SomeModelSchema = new mongoose.Schema({
             urlname : String,
+            sIndex : Number,
+            mIndex:Number,
             itemname: String,
             itemlongname: String,
             categery :String,
