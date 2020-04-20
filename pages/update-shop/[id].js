@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Layout from './../../layouts/MainLayout';
 import SubNavBar from './../../layouts/SubNavbar';
 import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl,myshopmUrl} from './../../constant/main';
+import {Url,ImageUrl,myshopmUrl,web} from './../../constant/main';
 import Errorpage from './../../layouts/error';
 import Router from 'next/router';
 class Index extends Component {
@@ -364,6 +365,10 @@ class Index extends Component {
           return ( 
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
+                <Head>
+                <title> {web.wetopic}</title>
+  
+                </Head>
                 {this.props.error?<Errorpage error={this.props.item} />:
             <div className="form-create-shop">
 

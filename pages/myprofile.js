@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl,web,WebUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import Footer from './../components/Footer';
@@ -613,6 +614,10 @@ class Index extends Component {
  
           return ( 
             <Layout>
+                <Head>
+                <title> {web.wetopic}</title>
+              
+                </Head>
              <SubNavBar sidenavconst={sidenavconst}/> 
         {this.props.error?<ErrorPage/>:
     <div>

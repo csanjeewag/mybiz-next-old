@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
+import Head from 'next/head';
 import Layout from './../../layouts/MainLayout';
 import SubNavBar from './../../layouts/SubNavbar';
 import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl,itemUrl} from './../../constant/main';
+import {Url,ImageUrl,itemUrl,web} from './../../constant/main';
 import Errorpage from './../../layouts/error';
-import Router from 'next/router';
 class Index extends Component {
 
     constructor() {
@@ -399,6 +400,19 @@ class Index extends Component {
                 <SubNavBar sidenavconst={sidenavconst}/>
                 {this.props.error?<Errorpage error={this.props.item} />:
             <div className="form-create-shop">
+
+                <Head>
+                <title> {web.wetopic}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={wesitename+','+web.wetopic} />
+                <meta property="og:description"   content={web.webContent} />
+                <meta property="og:image"         content={web.webImage}/>
+                
+                <meta name="keywords" content={web.webKeyword}></meta>
+                <meta name="description" content={web.webContent}></meta>
+                </Head>
+
 
                 <div className="container" >
                     <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Update item</h1>

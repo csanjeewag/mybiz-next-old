@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import SubNavBar from './../layouts/SubNavbar';
 import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,itemUrl} from './../constant/main';
+import {Url,itemUrl,web} from './../constant/main';
 import Router from 'next/router';
 
 class Index extends Component {
@@ -376,6 +377,10 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
+                      <Head>
+                <title> {web.wetopic}</title>
+    
+                </Head>
                 <SubNavBar sidenavconst={sidenavconst}/>
 
             <div className="form-create-shop">

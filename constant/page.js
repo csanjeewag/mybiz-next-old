@@ -14,7 +14,7 @@ export const about = {
     topic3:'Great support',
     content3:'Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in',
     btn3:'create shop',
-    link3:'/create-shop/'
+    link3:'/create-shop'
 
 
 }

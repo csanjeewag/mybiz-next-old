@@ -72,6 +72,60 @@ render(){
 <div className="col-3">
 <button onClick={this.onClickhh} >click</button>
 </div>
+
+
+<div className="col-sm-6 col-md-4 col-lg-3 mt-4">
+<div className="row">
+
+<div className="col-4 m-image">
+<img className="card-img-top" src={'./form2.jpg'} />
+</div>
+
+<div className="col-4 m-content">
+
+<div>
+<h4 className="font1 subtopicColor fontsizeE1-5 m-content">Idea mart</h4>
+<p className="font1 subtopicColor fontsizeE-9 m-content">Samsung</p>
+<p className="font1 subtopicColor fontsizeE-9 m-content">Electronic-device</p>
+</div>
+                        
+</div>
+
+
+</div>
+
+</div>
+
+
+<span className=" float-right fontsizeE-9">
+<p className="Iprise font6 float-right">&nbsp;Rs.2250.00</p>
+<a className="Icutprise font6 float-right"> <strike>Rs 2500.00</strike>  </a> 
+<a className="Idiscount font6 float-right"> 10% </a>
+</span>
+        
+         
+
+
+
+<br/><br/>
+        <style jsx>{
+                    `
+
+                    .m-image{
+                      width: 100%;
+                      padding: 2px;
+                    }
+                    .m-content{
+                      padding: 2px;
+                    }
+
+                    
+                    `
+                }</style>
+                  
+              
+             
+
 </Layout>
   )
 }

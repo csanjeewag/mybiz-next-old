@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router';
+import Head from 'next/head';
 import Router from "next/router";
 import Layout from './../../layouts/MainLayout';
 import Profile from './../../components/CompanyProfile';
 import SubNavBar from './../../layouts/SubNavbar';
 import Footer from './../../components/Footer';
 import Errorpage from './../../layouts/error';
-import  {Url,ImageUrl} from './../../constant/main';
+import  {Url,ImageUrl,WebUrl,wesitename} from './../../constant/main';
 class Index extends Component {
 
 
@@ -40,7 +40,23 @@ class Index extends Component {
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
                
-                {this.props.error?<Errorpage error={this.props.shop} />:<Profile shop={this.props.shopanditems.shop} catageries={items} items={this.props.shopanditems.items} topic="My Shops"></Profile>}
+                {this.props.error?<Errorpage error={this.props.shop} />:<div>
+
+                  <Head>
+                <title> {wesitename+' '+this.props.shopanditems.shop.shopName+' '+this.props.shopanditems.shop.shopName+' '+this.props.shopanditems.shop.town}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={wesitename+' '+this.props.shopanditems.shop.shopName+' in '+this.props.shopanditems.shop.town} />
+                <meta property="og:description"   content={this.props.shopanditems.shop.content1} />
+                <meta property="og:image"         content={ImageUrl+this.props.shopanditems.shop.images[0]}/>
+                
+                <meta name="keywords" content={this.props.shopanditems.shop.urlname.split('-').join(',')+',sri lanka'}></meta>
+                <meta name="description" content={this.props.shopanditems.shop.content1}></meta>
+                </Head>
+
+                <Profile shop={this.props.shopanditems.shop} catageries={items} items={this.props.shopanditems.items} topic="My Shops"></Profile>
+                </div>
+                }
              
             <Footer/>
                    </Layout>

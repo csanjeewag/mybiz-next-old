@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Head from 'next/head'
 import Layout from './../../layouts/MainLayout';
 import Categeryitem from '../../components/Categeryitem';
 import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
-import {Url} from './../../constant/main';
+import {Url,ImageUrl,wesitename,WebUrl} from './../../constant/main';
 import Errorpage from './../../layouts/error';
 
 class Index extends Component {
@@ -32,9 +33,22 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
+                
                 <SubNavBar sidenavconst={sidenavconst}/>
                 {this.props.error?<Errorpage error={this.props.item} />:
             <div>
+                <Head>
+                <title> {wesitename+' '+this.props.itemname}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={wesitename+' '+this.props.itemname} />
+                <meta property="og:description"   content={this.props.catagery[0].content1} />
+                <meta property="og:image"         content={ImageUrl+this.props.catagery[0].images[0]}/>
+                
+                <meta name="keywords" content={this.props.itemname.split('-').join(',')+',sri lanka'}></meta>
+                <meta name="description" content={this.props.catagery[0].content1}></meta>
+                </Head>
+
              <Slide catagery={this.props.catagery[0]} ></Slide>
                 <Categeryitem  catageries={this.props.items} topic={this.props.itemname}></Categeryitem>
             </div>}

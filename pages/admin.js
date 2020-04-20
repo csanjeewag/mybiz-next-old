@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
@@ -767,6 +768,10 @@ class Index extends Component {
  
           return ( 
             <Layout>
+                    <Head>
+                <title> {web.wetopic}</title>
+                
+                </Head>
              <SubNavBar sidenavconst={sidenavconst}/> 
              {this.props.errorShops&&this.props.error?<Error />:null}
 

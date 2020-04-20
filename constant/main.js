@@ -1,6 +1,16 @@
 export const wesitename = 'MyBiz';
+export const WebUrl=  'http://localhost:8000/';
 export const Url=  'http://localhost:8000/api/';
 export const ImageUrl= 'http://localhost:8000/Images/';
+
+export const web ={
+    weburl:'http://localhost:8000/',
+    wetopic : "onshop, all items",
+    webContent : "All shop items in sri lanka",
+    webImage : "http://localhost:8000/special/back1.jpg",
+    webKeyword: "shop, sri lanka"
+};
+
 
 export const NavLink = [
     {url:'/', urlname:'home'},

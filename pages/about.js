@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from './../layouts/MainLayout';
 import SubNavBar from './../layouts/SubNavbar';
 import Footer from './../components/Footer';
+import {WebUrl,web,createshopUrl} from './../constant/main';
 import {about} from './../constant/page';
 
 const About = ()=>{
@@ -182,6 +183,19 @@ class Index extends Component {
  
       return ( 
         <Layout>
+
+                <Head>
+                <title> {web.wetopic}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={web.wetopic} />
+                <meta property="og:description"   content={web.webContent} />
+                <meta property="og:image"         content={web.webImage}/>
+                
+                <meta name="keywords" content={web.webKeyword}></meta>
+                <meta name="description" content={web.webContent}></meta>
+                </Head>
+
          <SubNavBar sidenavconst={sidenavconst}/> 
       <About/>
 

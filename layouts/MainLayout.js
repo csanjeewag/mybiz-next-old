@@ -43,8 +43,6 @@ class Layout extends Component {
     return(
   <div >
 <Head>
-<title>Agency - Start Bootstrap Theme</title>
-
   
 
  <meta name="google-signin-client_id" content="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"/>

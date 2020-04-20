@@ -148,6 +148,7 @@ const Index = props => (
     
       `}
       </style>
+ 
   </Layout>
 );
 

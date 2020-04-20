@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
 import Cartitem from '../components/Cartitem';
 import SubNavBar from '../layouts/SubNavbar';
 import Footer from '../components/Footer';
 import Cookie from "js-cookie";
-import {Url,ImageUrl} from './../constant/main';
+import {Url,ImageUrl,web,WebUrl} from './../constant/main';
 
 const OrderTable=(props)=>{
 
@@ -188,6 +189,17 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
+                    <Head>
+                <title> {web.wetopic}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={web.wetopic} />
+                <meta property="og:description"   content={web.webContent} />
+                <meta property="og:image"         content={web.webImage}/>
+                
+                <meta name="keywords" content={web.webKeyword}></meta>
+                <meta name="description" content={web.webContent}></meta>
+                </Head>
                  <SubNavBar sidenavconst={sidenavconst}/> 
 
                 <Cartitem  topic="My favorites"></Cartitem>

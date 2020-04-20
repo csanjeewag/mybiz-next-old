@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import Allcatagery from './../components/Allcatagery';
 import SubNavBar from './../layouts/SubNavbar';
@@ -6,7 +7,7 @@ import TopSlide from '../components/Topslide';
 import FilterItem from './../layouts/filterItem';
 import Footer from './../components/Footer';
 import Categeryitem from '../components/Categeryitem';
-import {Url} from './../constant/main';
+import {Url,web,WebUrl} from './../constant/main';
 import fetch from 'isomorphic-unfetch';
 
 
@@ -32,7 +33,17 @@ class Index extends Component {
           return ( 
            <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-       
+                <Head>
+                <title> {web.wetopic}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={web.wetopic} />
+                <meta property="og:description"   content={web.webContent} />
+                <meta property="og:image"         content={web.webImage}/>
+                
+                <meta name="keywords" content={web.webKeyword}></meta>
+                <meta name="description" content={web.webContent}></meta>
+                </Head>
     
     <Categeryitem  catageries={this.props.items} topic={'filter items'}></Categeryitem>
      <Footer></Footer>
