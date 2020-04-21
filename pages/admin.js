@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl, myshopmUrl,adminUrl,createcategorUrl} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl, myshopmUrl,adminUrl,createcategorUrl,web} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import Footer from './../components/Footer';
@@ -26,6 +26,7 @@ const ShopList=(props)=>{
         <thead>
           <tr>
             <th scope="col">image</th>
+            <th scope="col">validity Admin</th>
             <th scope="col">validity</th>
             <th scope="col">shop Details</th>
             <th scope="col">Location</th>
@@ -45,6 +46,16 @@ const ShopList=(props)=>{
                   <Link href={myshopmUrl+x.urlname}><img width="50px" src={ImageUrl+x.images[0]} /></Link>
            <p className="fontsizeE-8">{x.createDate}</p>
            </div></th>
+          <td> 
+              <div className="item-details font6"> 
+                  <p className="topicColor">{x.isvalidA?'valid':'removed'} </p>
+                  <p >
+                  <img onClick={props.updateshop.bind(this,x._id,{isvalidA:true})}  src="https://img.icons8.com/cute-clipart/30/000000/save-close.png"/>
+                  <img onClick={props.updateshop.bind(this,x._id,{isvalidA:false})} src="https://img.icons8.com/color/30/000000/close-window.png"/>
+        
+                  </p>
+              </div> 
+          </td>
           <td> 
               <div className="item-details font6"> 
                   <p className="topicColor">{x.isvalid?'valid':'removed'} </p>
@@ -214,7 +225,7 @@ const Contentside=(props)=>{
                     </div>
                 </div>
                 <hr/>
-                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
+                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
                 <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update shop</a></Link>
               
             </div>
@@ -377,9 +388,11 @@ const CartList=(props)=>{
           <thead>
             <tr>
               <th scope="col">item</th>
+              <th scope="col">state Admin</th>
               <th scope="col">state</th>
               <th scope="col">Item Details</th>
-              <th scope="col">Index</th>
+              <th scope="col">M Index</th>
+              <th scope="col">S Index</th>
               <th scope="col">Price</th>
               <th scope="col">Update</th>
               
@@ -394,6 +407,16 @@ const CartList=(props)=>{
                     <Link href={itemUrl+x.urlname}><img width="50px" src={ImageUrl+x.images[0]} /></Link>
              <p className="fontsizeE-8">{x.createDate}</p>
              </div></th>
+            <td> 
+                <div className="item-details font6"> 
+                    <p className="topicColor">{x.isvalidA?'valid':'removed'} </p>
+                    <p >
+                    <img onClick={props.updateitem.bind(this,x._id,{isvalidA:true})}  src="https://img.icons8.com/cute-clipart/30/000000/save-close.png"/>
+                    <img onClick={props.updateitem.bind(this,x._id,{isvalidA:false})} src="https://img.icons8.com/color/30/000000/close-window.png"/>
+          
+                    </p>
+                </div> 
+            </td>
             <td> 
                 <div className="item-details font6"> 
                     <p className="topicColor">{x.isvalid?'valid':'removed'} </p>
@@ -412,6 +435,15 @@ const CartList=(props)=>{
             </td>
             <td>
                 <div className="item-details font6"> 
+               <p className="topicColor" >{x.mIndex} </p>
+                </div> 
+                <div className="item-details font6 btn-group btn-group-sm">
+                <button onClick={props.loadpromt.bind(this,x._id,'mIndex')}  className="btn btn-primary float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;Index</button>
+               
+                </div> 
+            </td>
+            <td>
+                <div className="item-details font6"> 
                <p className="topicColor" >{x.sIndex} </p>
                 </div> 
                 <div className="item-details font6 btn-group btn-group-sm">
@@ -419,6 +451,7 @@ const CartList=(props)=>{
                
                 </div> 
             </td>
+          
             <td>
                 <div className="item-details font6"> 
                <p className="topicColor" > <strike className="fontsizeE-8">Rs.{x.itemPrice}.00</strike> <span className="fontcolorOrange fontsizeE-8">{x.itemdiscount}% </span>  Rs.{x.itemPrice*(100-x.itemdiscount)/100} </p>
@@ -586,7 +619,7 @@ class Index extends Component {
             }
         )
         .then(response => { return response.json(); } )
-        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.push(myProfileUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
+        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.push(adminUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
         .catch(error => console.log(error))
     }
 
@@ -633,10 +666,19 @@ class Index extends Component {
             }
         }
         if(name=='sIndex'){
-            var data = parseInt(prompt("change Index.", "100"));
+            var data = parseInt(prompt("change s Index.", "100"));
             if(data>0){
                 
               this.updateitem(id,{sIndex:data})
+            }else{
+                alert('wrong format.')
+            }
+        }
+        if(name=='mIndex'){
+            var data = parseInt(prompt("change m Index.", "1000"));
+            if(data>0){
+                
+              this.updateitem(id,{mIndex:data})
             }else{
                 alert('wrong format.')
             }
@@ -721,12 +763,12 @@ class Index extends Component {
     componentDidMount(){
 
         if(Cookie.getJSON('user')){
-            fetch(`${Url}viewbyusername/${Cookie.getJSON('user')._id}`)
+            fetch(`${Url}adminviewbyusername/${Cookie.getJSON('user')._id}`)
             .then(res=>{return res.json()})
             .then(data=>{this.setState({myshops:data})})
         }
         if(this.props.shop){
-            fetch(`${Url}orderbyshopid/${this.props.shop._id}?state=new`)
+            fetch(`${Url}adminorderbyshopid/${this.props.shop._id}?state=new`)
             .then(res=>{return res.json()})
             .then(data=>{this.setState({orders:data})})
         }
@@ -788,7 +830,7 @@ class Index extends Component {
              <ul className="nav nav-tabs nav-tabs-myshop">
              {this.state.myshops.map((x,i)=>
               <li key={i} className="nav-item pointer">
-              <Link href={`${myProfileUrl}?id=${Cookie.getJSON('user')._id}&shopindex=${i}`}><a className= {this.props.shop._id==x._id?"nav-link active font1":"nav-link font1"} >{x.shopName}</a></Link>
+              <Link href={`${adminUrl}?id=${Cookie.getJSON('user')._id}&shopindex=${i}`}><a className= {this.props.shop._id==x._id?"nav-link active font1":"nav-link font1"} >{x.shopName}</a></Link>
             </li>   
                 )}
         
@@ -844,7 +886,7 @@ class Index extends Component {
     } else if(1==1){
 
       var shopid= shopL&&shopL.lenght>0?shopL:'All-island';
-      const resshop = await fetch(`${Url}allshop/${shopid}`);
+      const resshop = await fetch(`${Url}adminallshop/${shopid}`);
    
         var  shopanditems = await resshop.json();
 

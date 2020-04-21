@@ -188,6 +188,9 @@ class Layout extends Component {
    .fontsizeE1-25 {
     font-size : 1.1em;
    }
+   .fontsizeE1-3 {
+    font-size : 1.2em;
+   }
    .fontsizeE1-5 {
     font-size : 1.5em;
    }
@@ -206,7 +209,33 @@ class Layout extends Component {
 
    .isuserlogin{}
 
-   `}
+
+   .m-image{
+    width: 100%;
+    padding: 2px;
+
+  }
+  .m-content{
+    padding: 2px;
+  
+  }
+  .m-content-left{
+    padding: 0;
+    margin:0px;
+    text-align: left;
+  }
+  .m-content-right{
+    padding: 0;
+    margin:0px;
+    text-align: right;
+  }
+  .m-card{
+    padding:5px 5px;
+  
+  }
+   `
+   
+   }
  </style>
 
   </div>

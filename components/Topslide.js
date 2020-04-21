@@ -30,7 +30,7 @@ class Index extends Component {
           return ( 
             <Layout>
          <div className="div1"  >
-         <h1 className="topic font1"  >MYBIZ.COM</h1>
+         <h1 className="topic font7"  >MYBIZ.COM</h1>
          
         </div> 
             

@@ -18,9 +18,10 @@ exports.viewall = function(req,res) {
    
   }
 
+  // view items by urlname
   exports.viewbyname = function(req,res) {
     
-    models.find({urlname:req.params.id},function(error,data){
+    models.find({urlname:req.params.id,isvalid:true,isvalidA:true},function(error,data){
         if(error){
             return   res.status(404).send({msg:'there is a error'});
             
@@ -69,6 +70,7 @@ else{
         bodydata.user.token = null;
         bodydata.createDate = Date.now();
         bodydata.isvalid = true;
+        bodydata.isvalidA = true;
         bodydata.sIndex = 100,
         bodydata.mIndex = 10000,
         bodydata.save(function(err,data) {
@@ -93,7 +95,7 @@ else{
 //for favorite
 exports.viewforfavorite = function(req,res) {
     var fav = req.query.fav.split(',');
-    models.find({'_id': { $in: fav}},function(error,data){
+    models.find({'_id': { $in: fav},isvalid:true,isvalidA:true},function(error,data){
         if(error){
             return   res.status(404).json('error');
             
@@ -165,10 +167,10 @@ exports.viewforfavorite = function(req,res) {
    }
    
 
-   //filter
+   //filter isvalid and isvalidA
    exports.viewallfilter = function(req,res) {
 
-    var request = {};
+    var request = {isvalid:true,isvalidA:true};
     var towns = [];
     if(req.query.category&&req.query.category.length>2){
         request = {...request,categery:req.query.category};

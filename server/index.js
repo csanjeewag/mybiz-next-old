@@ -46,7 +46,7 @@ server.use(fileupload());
 
 app.prepare().then(() => {
 
-/********************* location***************** */
+/******************************************************* location************************************* */
 server.get("/api/locations", (req, res) => {
  
   locationrepository.viewall({},res);
@@ -57,7 +57,7 @@ server.get("/api/location/id", (req, res) => {
   locationrepository.viewall({district:req.params.id},res);
 
 });
-  /**reviews */
+  /***********************************************************reviews*************************** */
   server.get("/api/reviews/:id", (req, res) => {
  
     reviewrepository.viewall({itemid:req.params.id},res);
@@ -182,9 +182,21 @@ server.get("/api/location/id", (req, res) => {
 
   /***************************************************************************************shop api */
 
-  //get shop details by name
+  //get shop details by name isvalid isvalidA
 
   server.get("/api/allshop/:id", (req, res) => {
+ 
+    if(req.params.id=='All-island'){
+      shopRepository.viewall({isvalid:true,isvalidA:true},res); 
+    }else{
+      shopRepository.viewall({district:req.params.id,isvalid:true,isvalidA:true},res);
+    }
+    
+
+  }); 
+
+  //admin get all types shop
+  server.get("/api/adminallshop/:id", (req, res) => {
  
     if(req.params.id=='All-island'){
       shopRepository.viewall({},res); 
@@ -194,36 +206,44 @@ server.get("/api/location/id", (req, res) => {
     
 
   }); 
-
+  // get shop in url name
   server.get("/api/shop/:id", (req, res) => {
  
-    shopRepository.viewbyname({urlname:req.params.id},res);
+    shopRepository.viewbyname({urlname:req.params.id,isvalid:true,isvalidA:true},res);
 
   }); 
+//shop by id
   server.get("/api/shopid/:id", (req, res) => {
  
-    shopRepository.viewbyname({_id:req.params.id},res);
+    shopRepository.viewbyname({_id:req.params.id,isvalid:true,isvalidA:true},res);
 
   }); 
 
-  //shop and items by shop id
+  //shop and items by shop id isvaild isvalidA
   server.get("/api/shopanditems/:id", (req, res) => {
  
     shopRepository.viewshopanditems(req,res);
 
   }); 
 
-   //shop and items by user id
+   //admin shop and items by user id -- user all items
    server.get("/api/viewshopanditemsuserid/:id", (req, res) => {
  
     shopRepository.viewshopanditemsuserid(req,res);
 
   }); 
 
-
+//isvalid isvalidA
   server.get("/api/viewbyusername/:id", (req, res) => {
  
     shopRepository.viewbyusername(req,res);
+
+  }); 
+
+  //admin all shop by user names
+  server.get("/api/adminviewbyusername/:id", (req, res) => {
+ 
+    shopRepository.adminviewbyusername(req,res);
 
   }); 
 
@@ -289,37 +309,39 @@ server.get("/api/location/id", (req, res) => {
 
 server.get("/api/itembyid/:id", (req, res) => {
 
-  itemsRepository.viewall({'_id':req.params.id},res);
+  itemsRepository.viewall({'_id':req.params.id,isvalid:true,isvalidA:true},res);
 
 });
 
-  //get item details by name
+  //get item details by url name isvalid isvalidA
 
   server.get("/api/item/:id", (req, res) => {
  
     itemsRepository.viewbyname(req,res);
 
   }); 
-
+//favorite items in cookies isvalid isvalidA
   server.get("/api/itemforfavorite", (req, res) => {
  
     itemsRepository.viewforfavorite(req,res);
 
   }); 
 
+//items in category isvalid isvalidA
   server.get("/api/catagerybyname/:id", (req, res) => {
     
 
-    itemsRepository.viewall({categery:req.params.id},res);
+    itemsRepository.viewall({categery:req.params.id,isvalid:true,isvalidA:true},res);
 
   }); 
-
+//items in category isvalid isvalidA
   server.get("/api/itemsbyshopid/:id", (req, res) => {
 
-    itemsRepository.viewall({'shopid':req.params.id},res);
+    itemsRepository.viewall({'shopid':req.params.id,isvalid:true,isvalidA:true},res);
 
   }); 
-  //filter items
+
+  //filter items isvalid isvalidA
   server.get("/api/itemfilter", (req, res) => {
 
     itemsRepository.viewallfilter(req,res);
@@ -407,6 +429,13 @@ server.post("/api/createuser", (req, res) => {
 server.get("/api/orderbyshopid/:id", (req, res) => {
 
   orderRepository.viewallbystate(req,res);
+
+}); 
+
+//admin orders by shop id
+server.get("/api/adminorderbyshopid/:id", (req, res) => {
+
+  orderRepository.adminviewallbystate(req,res);
 
 }); 
 

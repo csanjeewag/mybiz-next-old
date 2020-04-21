@@ -19,17 +19,17 @@ const Index = props => (
       {props.catageries.map((c,i) => (
         <Link key={i} href={`${categoryUrl+c.type}?=ide${c._id}`} > 
        <div key={i} className="col-sm-6 col-lg-4 col-xl-3"> <div className="card">
-       <div className="image ">
+       <div className="image">
          <img src={ImageUrl+c.mainimage}  width="100%" height="200px" />
        </div>
        <div className="card-inner">
          <div className="header">
-           <h3 className="font4 topicColor fontsizeE1-5">{c.type}</h3>
+           <h3 className="font4 topicColor fontsizeE1-5">{c.name}</h3>
         
        </div>
-       <div className="content">
+       {/*<div className="content">
        <h4 className="font6 subtopicColor fontsizeE1">{c.name}</h4>
-       </div>
+      </div>*/}
          </div>
      </div></div>
      
@@ -56,6 +56,7 @@ const Index = props => (
     margin-bottom:10px;
     background-color:#FFF;
     font-size:0.9em;
+
   }
   
   .card:hover {
@@ -79,7 +80,7 @@ const Index = props => (
     transition: 0.5s;
   }
   .image{
-    height : 100px;
+ 
 
   }
   .image img:hover{

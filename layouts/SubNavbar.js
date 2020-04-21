@@ -24,7 +24,7 @@ const NavBar=(props)=>{
                 )}
                 <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
-                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/ios/25/ffffff/filter-edit.png"/></a>
+                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
                 
          </div>
                 
@@ -107,7 +107,7 @@ const MobileNavBar=(props)=>{
             <span className="navbar-brand">
             {props.state.isuserlogin?<img className="float-left avatar" src={props.state.user.imageUrl} />:null} 
             &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-9">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="#">{wesitename}</a>}
-            &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/ios/25/ffffff/filter-edit.png"/></a>
+            &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/search--v2.png"/></a>
             
             </span>
            

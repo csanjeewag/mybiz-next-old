@@ -24,7 +24,8 @@ class Index extends Component {
                 {this.props.allshops.map((c,i)=>
                   
                     <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
-                <div className="card">
+                {/***desktop and responsive */}
+                <div className="card ismobile_disable">
                 <Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
                     <div className="card-img-top-div">
                     <img className="card-img-top" src={ImageUrl+c.images[0]} height="150px" />
@@ -51,7 +52,34 @@ class Index extends Component {
                         <a className="Location-style font6"> {c.district}->{c.town} </a>
                     </div>
                 </div>
-        
+                {/******** */}
+
+                  {/*** mobile version */}
+                  <div className="isdesktop_disable">
+                <div className="row m-card">
+
+                <div className="col-4 m-image">
+                <Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
+                <img className="card-img-top pointer" src={ImageUrl+c.images[0]} />
+                </Link>
+                </div>
+
+                <div className="col-8 m-content">
+
+                <h4 className="font1 topicColor fontsizeE1-3 m-content-left">{c.shopName}</h4>
+
+                <p className="font6 subtopicColor fontsizeE1 m-content-left Catagory-style">{c.categery}</p>
+                <p className="font6 card-text m-content-left ">{c.content1.slice(0,100)}</p>
+                <div className="float-right">
+               <a className="font6 fontsizeE1 float-right m-content-righ Location-style">{c.district}->{c.town} &nbsp;&nbsp;</a>
+                
+                </div>                
+                </div>
+
+                </div>
+                <hr/>
+                </div>
+                {/** mobile verison */}
                    
                     </div>
                 )}

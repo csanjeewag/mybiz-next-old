@@ -75,34 +75,56 @@ render(){
 
 
 <div className="col-sm-6 col-md-4 col-lg-3 mt-4">
-<div className="row">
+
+<div className="row m-card">
 
 <div className="col-4 m-image">
 <img className="card-img-top" src={'./form2.jpg'} />
 </div>
 
-<div className="col-4 m-content">
+<div className="col-8 m-content">
 
-<div>
-<h4 className="font1 subtopicColor fontsizeE1-5 m-content">Idea mart</h4>
-<p className="font1 subtopicColor fontsizeE-9 m-content">Samsung</p>
-<p className="font1 subtopicColor fontsizeE-9 m-content">Electronic-device</p>
-</div>
-                        
-</div>
+<h4 className="font1 topicColor fontsizeE1-25 m-content-left">Samsung As hosty 5</h4>
 
+<p className="font6 subtopicColor fontsizeE-9 m-content-left ">Electronic-device/Samsung</p>
+<p className="font6 m-content-right"><strike className="fontsizeE-8">Rs 2500.00</strike><span className="fontcolorOrange fontsizeE-8">10% </span><span className="fontcolorred fontsizeE-9">Rs.25000</span></p>
 
-</div>
-
+<div className="float-right">
+<a className="btn btn-danger fontsizeE-9 float-right btn-sm m-content-righ"><img src="https://img.icons8.com/ios/20/ffffff/favorite-cart.png"/></a>
+<a className="font6 fontsizeE-9 float-right m-content-righ">Idea mart/Nugeggoda</a>
+</div>                
 </div>
 
 
-<span className=" float-right fontsizeE-9">
-<p className="Iprise font6 float-right">&nbsp;Rs.2250.00</p>
-<a className="Icutprise font6 float-right"> <strike>Rs 2500.00</strike>  </a> 
-<a className="Idiscount font6 float-right"> 10% </a>
-</span>
-        
+</div>
+
+</div>
+
+<div className="col-sm-6 col-md-4 col-lg-3 mt-4">
+
+<div className="row m-card">
+
+<div className="col-4 m-image">
+<img className="card-img-top" src={'./form2.jpg'} />
+</div>
+
+<div className="col-8 m-content">
+
+<h4 className="font1 topicColor fontsizeE1-25 m-content-left">Samsung As hosty 5</h4>
+
+<p className="font6 subtopicColor fontsizeE-9 m-content-left ">Electronic-device/Samsung</p>
+<p className="font6 m-content-right"><strike className="fontsizeE-8">Rs 2500.00</strike><span className="fontcolorOrange fontsizeE-8">10% </span><span className="fontcolorred fontsizeE-9">Rs.25000</span></p>
+
+<div className="float-right">
+<a className="btn btn-danger fontsizeE-9 float-right btn-sm m-content-righ"><img src="https://img.icons8.com/ios/20/ffffff/favorite-cart.png"/></a>
+<a className="font6 fontsizeE-9 float-right m-content-righ">Idea mart/Nugeggoda</a>
+</div>                
+</div>
+
+
+</div>
+
+</div>
          
 
 
@@ -114,11 +136,27 @@ render(){
                     .m-image{
                       width: 100%;
                       padding: 2px;
+
                     }
                     .m-content{
                       padding: 2px;
+                    
                     }
-
+                    .m-content-left{
+                      padding: 0;
+                      margin:0px;
+                      text-align: left;
+                    }
+                    .m-content-right{
+                      padding: 0;
+                      margin:0px;
+                      text-align: right;
+                    }
+                    .m-card{
+                      background:lightblue;
+                      padding:5px 0;
+                    
+                    }
                     
                     `
                 }</style>

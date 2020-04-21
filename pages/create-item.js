@@ -666,9 +666,9 @@ textarea {
 }
 
 Index.getInitialProps = async function(context) {
-    const { id,shopname,shopDistrict,shopTown } = context.query;
+    const { id,shopname,shopDistrict,shopTown,shopurl } = context.query;
     var shoplocation= {}
-    shoplocation = {shopName:shopname,district:shopDistrict,town:shopTown}
+    shoplocation = {shopName:shopname,district:shopDistrict,town:shopTown,shopurl:shopurl}
     const res = await fetch(`${Url}typebyshopid/${id}`);
     var  type = await res.json();
     var error = false;

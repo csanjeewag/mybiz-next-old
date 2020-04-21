@@ -22,6 +22,7 @@ var mongoose = require('mongoose');
             shopid:String,
             createDate: Date,
             isvalid:Boolean,
+            isvalidA:Boolean,
 
   });
   var SomeModel = mongoose.model('item', SomeModelSchema );

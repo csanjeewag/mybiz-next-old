@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
-import {ImageUrl,itemUrl} from '../constant/main'
+import {ImageUrl,itemUrl,myshopmUrl} from '../constant/main'
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -42,11 +42,12 @@ class Index extends Component {
                 <div className="menu2 row projects">
                 {this.props.catageries.map((c,i)=>
                   
-                    <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
-                <div className="card">
+                <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
+                {/****destop and responsive */}
+                <div className="card ismobile_disable">
                 <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
                     <div className="card-img-top-div">
-                    <img className="card-img-top" src={ImageUrl+c.images[0]} height="200px" />
+                    <img className="card-img-top pointer" src={ImageUrl+c.images[0]} height="200px" />
                     </div>
                     </Link> 
                     <div className="card-block">
@@ -70,19 +71,50 @@ class Index extends Component {
                     <div className="card-footer">
                         <small className="font3 float-left">{c.date}</small>
                          <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/></a>
-                         <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/></a>
+                        {/* <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/></a>*/}
+                        <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-right m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
+                        </Link>
                        
                     </div>
                 </div>
-        
+                {/*******desktop */}
+                {/*** mobile version */}
+                <div className="isdesktop_disable">
+                <div className="row m-card">
+
+                <div className="col-4 m-image">
+                <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
+                <img className="card-img-top pointer" src={ImageUrl+c.images[0]} />
+                </Link>
+                </div>
+
+                <div className="col-8 m-content">
+
+                <h4 className="font1 topicColor fontsizeE1-3 m-content-left">{c.itemname}</h4>
+
+                <p className="font6 subtopicColor fontsizeE1 m-content-left ">{c.categery} / {c.subcategery}</p>
+                <p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{c.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{c.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</span></p>
+
+                <div className="float-right">
+                <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-danger fontsizeE1 float-right btn-sm m-content-righ"><img src="https://img.icons8.com/ios/20/ffffff/favorite-cart.png"/></a>
+                <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-right m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
+                </Link>
+                </div>                
+                </div>
+
+                </div>
+                <hr/>
+                </div>
+                {/** mobile verison */}
                    
                     </div>
                 )}
                     
                 </div>
+    
               
                 </div>
-
+               
                 <style jsx>{
                     `h5 {
                         font-size: 1.28571429em;

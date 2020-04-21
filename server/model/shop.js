@@ -20,6 +20,7 @@ var mongoose = require('mongoose');
             images: [],
             createDate: Date,
             isvalid:Boolean,
+            isvalidA:Boolean,
     
   });
   var SomeModel = mongoose.model('shop', SomeModelSchema );
