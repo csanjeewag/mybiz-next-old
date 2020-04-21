@@ -14,8 +14,14 @@ class Index extends Component {
                 var windowheight = $(window).height();
                     //if the window is greater than 440px wide then turn on jScrollPane..
                   //  $('.div1').addClass('desktop')
-                  $('.silde1image').css({'height':windowwidth/3,'width':windowwidth});
-                  $('.topic').css({'font-size' : windowwidth/10});
+                  if(windowwidth>600){
+                    $('.silde1image').css({'height':windowwidth/3,'width':windowwidth});
+                    $('.topic').css({'font-size' : windowwidth/10});
+                  }else{
+                    $('.silde1image').css({'height':windowwidth/2,'width':windowwidth});
+                    $('.topic').css({'font-size' : windowwidth/10});
+                  }
+                  
                
             }
             // Execute on load

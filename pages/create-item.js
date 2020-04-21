@@ -26,9 +26,9 @@ class Index extends Component {
             content1:'',
             shoplocation:'',
             newitemSpecification:'',
-            itemSpecification:[{name:'cash on delivery',value:''}],
+            itemSpecification:[{name:'ex:material',value:'iron'}],
             newstockdetail:'',
-            stockDetail:[{name:' on delivery',value:''}],
+            stockDetail:[{name:'stock count',value:'50'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -126,7 +126,7 @@ class Index extends Component {
                 itemSpecification : shopd,
                 newitemSpecification : ''
             })
-            alert(' added new details!');
+         
             this.componentDidMount();
         }
      
@@ -173,7 +173,7 @@ class Index extends Component {
                 stockDetail : shopd,
                 newstockdetail : ''
             })
-            alert(' added new stock details!');
+          
             this.componentDidMount();
         }
      

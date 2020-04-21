@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../layouts/MainLayout';
 import NavBar from '../layouts/Navbar';
 import $ from 'jquery';
+import {wesitename} from './../constant/main';
 
 
 class Index extends Component {
@@ -13,10 +14,14 @@ class Index extends Component {
             function checkWidth() {
                 var windowwidth = $(window).width();
                 var windowheight = $(window).height();
-                    //if the window is greater than 440px wide then turn on jScrollPane..
-                  //  $('.div1').addClass('desktop')
-                  $('div.div1').css({'background-color':'lightblue','height':windowheight/2,'width':windowwidth});
-                  $('.topic').css({'font-size' : windowwidth/10});
+                  if(windowwidth>600){
+                    $('div.div1').css({'background-color':'lightblue','height':windowheight/2,'width':windowwidth});
+                    $('.topic').css({'font-size' : windowwidth/10});
+                  }else{
+                    $('div.div1').css({'background-color':'lightblue','height':windowheight/3,'width':windowwidth});
+                    $('.topic').css({'font-size' : windowwidth/8});
+                  }
+                 
                
             }
             // Execute on load
@@ -30,7 +35,7 @@ class Index extends Component {
           return ( 
             <Layout>
          <div className="div1"  >
-         <h1 className="topic font7"  >MYBIZ.COM</h1>
+         <h1 className="topic font7"  >{wesitename}.lk</h1>
          
         </div> 
             

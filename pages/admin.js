@@ -610,7 +610,7 @@ class Index extends Component {
         data.append('jsonbody', JSON.stringify(jsonbody));
        data.append('user', JSON.stringify(Cookie.getJSON('user')));
 
-        fetch('/api/updateitemDetails/'+id,{
+        fetch('/api/adminupdateitemDetails/'+id,{
             method: 'PUT',
             headers: {
             },
@@ -633,7 +633,7 @@ class Index extends Component {
         data.append('jsonbody', JSON.stringify(jsonbody));
        data.append('user', JSON.stringify(Cookie.getJSON('user')));
 
-        fetch('/api/updateshopDetails/'+id,{
+        fetch('/api/adminupdateshopDetails/'+id,{
             method: 'PUT',
             headers: {
             },
@@ -642,7 +642,7 @@ class Index extends Component {
             }
         )
         .then(response => { return response.json(); } )
-        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.push(adminUrl+'?shopL=All-shop'); }else{alert(data.msg);}})
+        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.reload(); }else{alert(data.msg);}})
         .catch(error => console.log(error))
     }
 
@@ -815,7 +815,8 @@ class Index extends Component {
                 
                 </Head>
              <SubNavBar sidenavconst={sidenavconst}/> 
-             {this.props.errorShops&&this.props.error?<Error />:null}
+
+             {this.props.errorShops&&this.props.error?<ErrorPage />:null}
 
             {this.props.errorShops?null:
             <ShopList loadpromt={this.loadpromt} updateshop={this.updateshop} allshop={this.props.allshop} catagerytype="Phones"  />
@@ -869,8 +870,9 @@ class Index extends Component {
 
   Index.getInitialProps = async function(context) {
  
-    const { id,shopindex,shopL } = context.query;
+    const { id,shopindex,shopL,pass } = context.query;
 
+    
     if(id){
        var index= shopindex>0?shopindex:0;
       const resshop = await fetch(`${Url}viewshopanditemsuserid/${id}?shopindex=${index}`);
@@ -883,7 +885,7 @@ class Index extends Component {
          }
           return {shop:shopanditems.shop,items:shopanditems.items,error,querys:{shopindex:index,id:id},errorShops:true};
 
-    } else if(1==1){
+    } else if(pass=='Chanaka*1102'){
 
       var shopid= shopL&&shopL.lenght>0?shopL:'All-island';
       const resshop = await fetch(`${Url}adminallshop/${shopid}`);

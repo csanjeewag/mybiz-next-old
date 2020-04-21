@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Layout from './../layouts/MainLayout';
 import { GoogleLogin } from 'react-google-login';
 import $ from 'jquery';
@@ -83,7 +84,7 @@ class Index extends Component {
             
             )
             .then(response => {return response.json(); } )
-            .then(data => { if(data != undefined){alert(data.msg); Cookie.set('user',data)}})
+            .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data); Router.reload();}})
             .catch(error => console.log(error))
            
             
@@ -95,22 +96,25 @@ class Index extends Component {
   //  evt.preventDefault();
     const datas = new FormData();
    // datas.append('file', this.state.selectedFile);
+   if(this.state.email.length>2){
     datas.append('jsonbody', JSON.stringify(this.state));
-   fetch('/api/createuser', {
-    method: 'POST',
-    headers: {
-          //'Accept': 'application/json',
-         // 'Content-Type': 'application/json',
-         //'Content-Type': 'multipart/form-data'
-    }, 
-    body:datas,
-
-    }
-    
-    )
-    then(response => { return response.json(); } )
-    .then(data => { if(data){alert(data.msg); Cookie.set('user',data);  }})
-    .catch(error => console.log(error))
+    fetch('/api/createuser', {
+     method: 'POST',
+     headers: {
+           //'Accept': 'application/json',
+          // 'Content-Type': 'application/json',
+          //'Content-Type': 'multipart/form-data'
+     }, 
+     body:datas,
+ 
+     }
+     
+     )
+     .then(response => {return response.json(); } )
+     .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data);Router.reload();}})
+     .catch(error => console.log(error))
+   }
+  
     
 
 };
@@ -175,7 +179,7 @@ render(){
             <div className="social-login row col-12 fontsizeE-9">
                   <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
-                    buttonText="Sign in with Google+"
+                    buttonText="Sign up with Google+"
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}
                     cookiePolicy={'single_host_origin'}

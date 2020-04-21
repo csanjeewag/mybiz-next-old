@@ -165,7 +165,7 @@ server.get("/api/location/id", (req, res) => {
       project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
          typeRepository.create(req,res)
     }, (error) => {
-        console.error(error.message); // Logs 'Invalid Value'
+     
         return res.status(404).json({msg:'you are signout please sign in.'}); 
   
     });
@@ -303,6 +303,47 @@ server.get("/api/location/id", (req, res) => {
         
         
       });
+  
+  //adminupdate shop
+  server.put("/api/adminupdateshop/:id", (req, res) => {
+
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        shopRepository.adminupdate(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'you are signout please sign in.'}); 
+  
+    });
+    }
+    else{
+      return res.status(404).json({msg:'check your account again.'}); 
+    }
+    
+    
+  });
+
+    //admin update details only
+    server.put("/api/adminupdateshopDetails/:id", (req, res) => {
+
+      if(req.body.user!='undefined'){
+        project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          shopRepository.adminupdateDetails(req,res)
+      }, (error) => {
+  
+          return res.status(404).json({msg:'you are signout please sign in.'}); 
+    
+      });
+      }
+      else{
+        return res.status(404).json({msg:'check your account again.'}); 
+      }
+      
+      
+    });
+
+
+      
 /***end shop api */
 
 /*************************************************************************** item api */
@@ -402,6 +443,46 @@ server.get("/api/itembyid/:id", (req, res) => {
         
         
       });
+
+        //adminupdate item
+        server.put("/api/adminupdateitem/:id", (req, res) => {
+
+          if(req.body.user!='undefined'){
+            project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+              itemsRepository.adminupdate(req,res)
+          }, (error) => {
+      
+              return res.status(404).json({msg:'you are signout please sign in.'}); 
+        
+          });
+          }
+          else{
+            return res.status(404).json({msg:'check your account again.'}); 
+          }
+          
+          
+        });
+  
+    //adminupdate details only
+        server.put("/api/adminupdateitemDetails/:id", (req, res) => {
+  
+          if(req.body.user!='undefined'){
+            project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+              itemsRepository.adminupdateDetails(req,res)
+          }, (error) => {
+      
+              return res.status(404).json({msg:'you are signout please sign in.'}); 
+        
+          });
+          }
+          else{
+            return res.status(404).json({msg:'check your account again.'}); 
+          }
+          
+          
+        });
+  
+
 /**end item api */
 
 /******************************************************* user api  ***************************************************/

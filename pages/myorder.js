@@ -17,7 +17,7 @@ const OrderTable=(props)=>{
     <button onClick={props.getorderbystate.bind(this,'new')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/new.png"/> new</button>
     <button onClick={props.getorderbystate.bind(this,'mail')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>
     <button onClick={props.getorderbystate.bind(this,'confirm')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
-    <button onClick={props.getorderbystate.bind(this,'remove')} type="button" className="btn btn-secondary fontsizeE1"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
+    <button onClick={props.getorderbystate.bind(this,'remove-by-customer')} type="button" className="btn btn-secondary fontsizeE1"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
   </div>
   <table className="table table-striped">
     <thead>
@@ -39,11 +39,10 @@ const OrderTable=(props)=>{
       <td> 
           <div className="item-details font6"> 
               <p className="topicColor">{x.state} </p>
-              <p>
-              <img onClick={props.updateorder.bind(this,x._id,'new')} src="https://img.icons8.com/ios/25/000000/new.png"/> 
-              <img onClick={props.updateorder.bind(this,x._id,'mail')} src="https://img.icons8.com/ios/25/000000/upload-mail.png"/> 
-              <img onClick={props.updateorder.bind(this,x._id,'confirm')} src="https://img.icons8.com/ios/25/000000/checked-checkbox.png"/>
-              <img onClick={props.updateorder.bind(this,x._id,'remove')} src="https://img.icons8.com/ios/25/000000/trash.png"/> </p>
+              {x.state!='remove-by-shop'?<p>
+            <img onClick={props.updateorder.bind(this,x._id,'new')} src="https://img.icons8.com/ios/25/000000/new.png"/>
+             <img onClick={props.updateorder.bind(this,x._id,'remove-by-customer')} src="https://img.icons8.com/ios/25/000000/trash.png"/>
+             </p>:null} 
           </div> 
       </td>
       <td> 
@@ -153,7 +152,7 @@ class Index extends Component {
         var send = prompt("enter your message.", "");
         if(send!=null){
         const data = new FormData();
-        var jsonbody = {userMsg:send}
+        var jsonbody = {userMsg:send,sellerMsg:''}
         //var jsonbody = {state:'new'}
         data.append('jsonbody', JSON.stringify(jsonbody));
         data.append('user', JSON.stringify(Cookie.getJSON('user')));
@@ -203,7 +202,7 @@ class Index extends Component {
                  <SubNavBar sidenavconst={sidenavconst}/> 
 
                 <Cartitem  topic="My favorites"></Cartitem>
-                <OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} userMassage={(id,state)=>this.userMassage(id,state)} />
+                <OrderTable  orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} userMassage={(id,state)=>this.userMassage(id,state)} />
             <Footer/>
                    </Layout>
            );

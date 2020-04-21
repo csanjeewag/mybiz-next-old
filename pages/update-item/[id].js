@@ -7,7 +7,7 @@ import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl,itemUrl,web} from './../../constant/main';
+import {Url,ImageUrl,itemUrl,web,WebUrl,wesitename} from './../../constant/main';
 import Errorpage from './../../layouts/error';
 class Index extends Component {
 

@@ -31,17 +31,17 @@ exports.viewall = function(req,res) {
                 bodydata.save(function(err,data) {
                     if (err){
                       
-                        return  res.status(400).json({msg:'Sign in fails.'});
+                        return  res.status(400).json({msg:'Sign up fails.',status:404});
                     }
                     else{
                         
-                    return  res.status(200).json({...data[0]._doc, token:body.token,msg:'Sign in success.'});
+                        return  res.status(200).json({...data._doc, token:body.token,msg:'Sign in success.',status:200});
                     }
                     
                   });
             }
             else{
-                return  res.status(401).json({msg:'There are error.'});
+                return  res.status(401).json({msg:'There are error.',status:404});
             }
         })
 
@@ -58,10 +58,10 @@ exports.viewall = function(req,res) {
         models.find({email:bodydata.email},function(error,data){
             if(data.length){
                         
-                    return  res.status(200).json({...data[0]._doc, token:body.token,msg:'Sign in success.'})
+                    return  res.status(200).json({...data[0]._doc, token:body.token,msg:'Sign in success.',status:200})
             }
             else{
-                return  res.status(401).json({msg:"You haven't account, please sign up."});
+                return  res.status(401).json({msg:"You haven't account, please sign up.",status:401});
             }
         })
 

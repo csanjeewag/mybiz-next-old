@@ -25,7 +25,7 @@ class Index extends Component {
             content1:'',
             content2:'',
             newshopdetail:'',
-            shopDetail:[{name:'cash on delivery',value:''}],
+            shopDetail:[{name:'warranty',value:'yes, all items'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],

@@ -79,7 +79,7 @@ else{
                 return  res.status(400).json({msg:'new items create in fails.',status:400});
             }
             else{
-                //console.log(data)
+            
             return  res.status(200).json({...data, status:200, token:body.token,msg:'item create in success.'});
             }
             
@@ -137,13 +137,14 @@ exports.viewforfavorite = function(req,res) {
  
      body.images = [...image_url ]
       body.user =  JSON.parse(req.body.user);  
-         models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+         models.findOneAndUpdate({_id:req.params.id,'user.email':JSON.parse(req.body.user).email},body, function(error,data){
              if(error){
                  var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
                  return  res.status(400).json(error);
              }
              else{
-                 return  res.status(200).json({status:200,msg:'update in success.'});
+                return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+        
              }
  
          })
@@ -153,13 +154,14 @@ exports.viewforfavorite = function(req,res) {
    exports.updateDetails = function(req,res){
 
     let body=  JSON.parse(req.body.jsonbody);
-    models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+    models.findOneAndUpdate({_id:req.params.id,'user.email':JSON.parse(req.body.user).email },body, function(error,data){
         if(error){
             var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
             return  res.status(400).json(error);
         }
         else{
-            return  res.status(200).json({status:200,msg:'update in success.'});
+            
+            return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
         }
 
     })
@@ -231,4 +233,64 @@ exports.viewforfavorite = function(req,res) {
         }
     }).sort({mIndex:1, sIndex:1,createDate:-1})
    
+  }
+
+  //admin update
+  exports.adminupdate = function(req,res){
+ 
+ 
+    let body=  JSON.parse(req.body.jsonbody);
+    var removeimages = {
+        files:req.files,
+        deleteimages:body.deleteimages,
+        images : body.images
+    }
+    //get file count
+    var filecount = 0 
+    while(removeimages.files){
+        if(removeimages.files.image[filecount]){
+            filecount=filecount+1;
+        }else{
+            filecount =filecount>0?filecount:1;
+            break;
+        }
+    }
+    if((filecount+removeimages.images.length-removeimages.deleteimages.length)>3){
+      
+        return  res.status(201).json({status:201,msg:'your submition fail !, because total file count than three(3). please remove some file.'});
+    } 
+    //
+   var image_url = imagefile.deleteimage(removeimages);
+
+    body.images = [...image_url ]
+     body.user =  JSON.parse(req.body.user);  
+        models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+            if(error){
+                var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                return  res.status(400).json(error);
+            }
+            else{
+               return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+       
+            }
+
+        })
+
+  }
+//admin update details
+  exports.adminupdateDetails = function(req,res){
+
+   let body=  JSON.parse(req.body.jsonbody);
+   models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+       if(error){
+           var error = {status:400,msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+           return  res.status(400).json(error);
+       }
+       else{
+           
+           return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+       }
+
+   })
+
   }

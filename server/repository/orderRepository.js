@@ -15,7 +15,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({createDate:-1})
    
   }
 
@@ -33,7 +33,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({createDate:-1})
    
   }
 
@@ -52,7 +52,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({createDate:-1})
    
   }
 
@@ -70,7 +70,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({createDate:-1})
    
   }
 
@@ -88,7 +88,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({createDate:-1})
    
   }
 

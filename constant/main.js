@@ -1,4 +1,4 @@
-export const wesitename = 'MyBiz';
+export const wesitename = 'onShop';
 export const WebUrl=  'http://localhost:8000/';
 export const Url=  'http://localhost:8000/api/';
 export const ImageUrl= 'http://localhost:8000/Images/';
@@ -16,8 +16,9 @@ export const NavLink = [
     {url:'/', urlname:'home'},
     {url:'/shop/All-island', urlname:'all-shop'},
     {url:'/filter', urlname:'filter-items'},
-    {url:'/about', urlname:'about-us'},
-    {url:'/myorder', urlname:'my-order'},
+    {url:'/create-shop', urlname:'create-shop'},
+    {url:'/about', urlname:'about-us'}
+    //{url:'/myorder', urlname:'my-order'},
 ]
 
 export const homeUrl = '/';

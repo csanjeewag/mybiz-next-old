@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Layout from '../layouts/MainLayout';
 import Cookie from "js-cookie";
 import Link from 'next/link';
@@ -579,7 +580,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .then(data => { if(data!=undefined){alert(data.msg); Router.reload()} })
             .catch(error => console.log(error))
 
     

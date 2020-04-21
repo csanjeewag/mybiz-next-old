@@ -101,7 +101,9 @@ class Index extends Component {
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
-                <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
+                <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/dotty/30/ffffff/favorite-cart.png"/></a></Link>
+                
                 <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in</a></Link>
                        
                      </div>

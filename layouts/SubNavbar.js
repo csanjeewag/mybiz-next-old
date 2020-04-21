@@ -22,7 +22,9 @@ const NavBar=(props)=>{
             {NavLink.map((x,i)=>
                 <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
-                <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-profile</a></Link>
+                <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/dotty/30/ffffff/favorite-cart.png"/></a></Link>
+                
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
                 <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
                 
@@ -119,7 +121,8 @@ const MobileNavBar=(props)=>{
                 {NavLink.map((x,i)=>
                 <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
-                <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link  active font1 isuserlogin fontsizeE-9 pointer"  >my-profile</a></Link>
+                <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link  active font1 isuserlogin fontsizeE-9 pointer"  >my-shops</a></Link>
+                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/dotty/30/ffffff/favorite-cart.png"/></a></Link>
                 <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
               
                 </ul>

@@ -287,8 +287,9 @@ const CartList=(props)=>{
              <p className="fontsizeE-8">{x.createDate}</p>
              </div></th>
             <td> 
-                <div className="item-details font6"> 
-                    <p className="topicColor">{x.isvalid?'valid':'removed'} </p>
+                <div className="item-details font6">
+                    <p className="topicColor">{x.isvalidA?'':'removed by admin'} </p> 
+                    <p className="topicColor">{x.isvalid?'active':'removed'} </p>
                     <p >
                     <img onClick={props.updateitem.bind(this,x._id,{isvalid:true})}  src="https://img.icons8.com/cute-clipart/30/000000/save-close.png"/>
                     <img onClick={props.updateitem.bind(this,x._id,{isvalid:false})} src="https://img.icons8.com/color/30/000000/close-window.png"/>
@@ -323,7 +324,7 @@ const CartList=(props)=>{
             </td>
             <td className="user-details font6">
             <div className="item-details font6"> 
-            <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios-glyphs/20/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
+            <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
               </div> 
             
             </td>
@@ -361,7 +362,7 @@ const OrderTable=(props)=>{
     <button onClick={props.getorderbystate.bind(this,'new')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/new.png"/> new</button>
     <button onClick={props.getorderbystate.bind(this,'mail')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>
     <button onClick={props.getorderbystate.bind(this,'confirm')} type="button" className="btn btn-secondary"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
-    <button onClick={props.getorderbystate.bind(this,'remove')} type="button" className="btn btn-secondary"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
+    <button onClick={props.getorderbystate.bind(this,'remove-by-shop')} type="button" className="btn btn-secondary"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
   </div>
 
   <table className="table table-striped">
@@ -385,11 +386,12 @@ const OrderTable=(props)=>{
       <td> 
           <div className="item-details font6"> 
               <p className="topicColor">{x.state} </p>
-              <p>
+              {x.state!='remove-by-customer'?<p>
               <img onClick={props.updateorder.bind(this,x._id,'new')} src="https://img.icons8.com/ios/25/000000/new.png"/> 
               <img onClick={props.updateorder.bind(this,x._id,'mail')} src="https://img.icons8.com/ios/25/000000/upload-mail.png"/> 
               <img onClick={props.updateorder.bind(this,x._id,'confirm')} src="https://img.icons8.com/ios/25/000000/checked-checkbox.png"/>
-              <img onClick={props.updateorder.bind(this,x._id,'remove')} src="https://img.icons8.com/ios/25/000000/trash.png"/> </p>
+              <img onClick={props.updateorder.bind(this,x._id,'remove-by-shop')} src="https://img.icons8.com/ios/25/000000/trash.png"/>
+            </p>:null}
           </div> 
       </td>
       <td> 
@@ -478,7 +480,7 @@ class Index extends Component {
             }
         )
         .then(response => { return response.json(); } )
-        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.push(myProfileUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
+        .then(data => {$('img').attr("disabled", false);if(data.status==200){Router.push(myProfileUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
         .catch(error => console.log(error))
     }
 
@@ -536,7 +538,7 @@ class Index extends Component {
           }
       )
       .then(response => {this.getorderbystate(state); return response.json(); } )
-      .then(data => { if(data!=undefined){alert(data.msg);}})
+      .then(data => { if(data.state!=200){alert(data.msg);}})
       .catch(error => console.log(error))
     }
 

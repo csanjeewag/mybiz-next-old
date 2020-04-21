@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from "./../layouts/MainLayout";
+import {footer} from './../constant/page';
 
 class Index extends Component {
 
@@ -12,70 +13,70 @@ class Index extends Component {
 	<div className="container">
 		<div className="row fontsizeE1">
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
-				<h5 className="info-topic fontsizeE1-25">CONTACT US</h5>
+				<h5 className="info-topic fontsizeE1-25">{footer.contactUs}</h5>
 				<table className="contact-info">
 					<tbody >
 						<tr>
 						<td><i className="fa fa-map-marker icon"></i></td>
-						<td > Smart Mobile Nugegoda.<br/>
-					281/1A, Stanly Thilakarathna Mawatha,<br/>
-					Nugegoda</td>
+						<td > {footer.a1.t1}<br/>
+						{footer.a1.t2}<br/>
+						{footer.a1.t3}</td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-phone icon"></i></td>
-						<td>0767 568 568, 0772 337 148,<br/>0114 546 614 </td>
+						<td>{footer.a2.t1},<br/>{footer.a1.t2} </td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-envelope-o icon"></i></td>
-						<td><a href="mailto:info@smartmobile.lk">info@smartmobile.lk</a></td>
+						<td><a href={footer.a2.t1}>{footer.a2.t2}</a></td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-globe icon"></i></td>
-						<td><a href="https://www.smartmobile.lk"> www.smartmobile.lk</a></td>
+						<td><a href={footer.a3.t1}> {footer.a3.t2}</a></td>
 					</tr>
 					</tbody></table>
 			</div>
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5 className="info-topic fontsizeE1-25">INFORMATION</h5>
+				<h5 className="info-topic fontsizeE1-25">{footer.information}</h5>
 				<table className="contact-info">
 					<tbody >
 						<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td > About Us</td>
+						<td > {footer.b1}</td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td>Delivery Information </td>
+						<td>{footer.b2}</td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td>Privacy Policy </td>
+						<td>{footer.b3} </td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td>Terms & Conditions</td>
+						<td>{footer.b4}</td>
 					</tr>
 					</tbody></table>
 			</div>
 			<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<h5 className="info-topic fontsizeE1-25">FOLLOW US</h5>
+				<h5 className="info-topic fontsizeE1-25">{footer.followus}</h5>
 				<table className="contact-info">
 					<tbody >
 						<tr>
 						<td><i className="fa fa-facebook icon"></i></td>
-						<td > facebook</td>
+						<td > {footer.c1}</td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-twitter icon"></i></td>
-						<td>twitter </td>
+						<td>{footer.c2} </td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-instagram icon"></i></td>
-						<td>instagram </td>
+						<td>{footer.c3} </td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-google-plus icon"></i></td>
-						<td>google plus</td>
+						<td>{footer.c4}</td>
 					</tr>
 					</tbody></table>
 			</div>
