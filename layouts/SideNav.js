@@ -70,6 +70,7 @@ render(){
 }
 
 .menu-close{
+width:100%;
 color: rgb(61, 228, 246);
 font-size: 1.5em;
 padding: 20px 10px 20px 10px;

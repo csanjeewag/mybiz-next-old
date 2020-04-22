@@ -24,6 +24,7 @@ export const NavLink = [
 export const homeUrl = '/';
 export const myoderUrl = '/myorder';
 export const createcategorUrl = '/create-catagery';
+export const updatecategoryUrl = '/update-category/'
 export const categoryUrl = '/catagery/';
 export const myProfileUrl = '/myprofile';
 export const filteritemUrl = '/filter';

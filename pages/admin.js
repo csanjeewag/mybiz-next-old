@@ -3,12 +3,41 @@ import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl, myshopmUrl,adminUrl,createcategorUrl,web} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl, myshopmUrl,adminUrl,createcategorUrl,updatecategoryUrl,web} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import Footer from './../components/Footer';
 import ErrorPage from './../layouts/error';
 import Router from 'next/router';
+
+const TypeSlide=(props)=>{
+
+    return(
+        
+        <div>  
+        <h4 className="font1 p-10">All Category</h4>
+          <div>
+
+            <ul className="list-group">
+            <li>
+            <Link href={createcategorUrl}><button className="btn btn-success float-left btn-sm fontsizeE-9"> &nbsp;Create-Category</button></Link> 
+            </li>
+            {props.types.map((x,i)=>
+                <li key={i} className="list-group-item"> 
+                <Link href={updatecategoryUrl+x._id}><a className="float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;{x.type}&nbsp;</a></Link> 
+             
+
+                    {x.subtype.map((s,y)=><a key={y}>&nbsp;{s.name}, </a>)}
+                </li>
+                )}
+        
+            </ul>
+            </div>
+          <br/>
+        </div>
+        
+    )
+}
 
 const ShopList=(props)=>{
 
@@ -18,7 +47,8 @@ const ShopList=(props)=>{
       <div className="order-table">
       <div className="item-details font6">
       <br/>
-      <Link href={createcategorUrl}><a href="#" className="btn btn-success float-left btn-sm fontsizeE-9"> &nbsp;Create-Category</a></Link> 
+      <h4 className="font1 p-10">All shop</h4>
+      <br/>
       
       </div>
            
@@ -593,6 +623,7 @@ class Index extends Component {
       totalprice : 0,
       orders:[],
       myshops:[],
+      types:[],
       istable:false,
       querys:{}
 
@@ -759,9 +790,16 @@ class Index extends Component {
       
       }
 
+    loadtypes(){
+            fetch(`${Url}types`)
+            .then(res=>{return res.json()})
+            .then(data=>{this.setState({types:data})})
+        
+    }  
 
     componentDidMount(){
 
+        this.loadtypes();
         if(Cookie.getJSON('user')){
             fetch(`${Url}adminviewbyusername/${Cookie.getJSON('user')._id}`)
             .then(res=>{return res.json()})
@@ -818,9 +856,10 @@ class Index extends Component {
 
              {this.props.errorShops&&this.props.error?<ErrorPage />:null}
 
-            {this.props.errorShops?null:
+            {this.props.errorShops?null:<div>
+            <TypeSlide types={this.state.types} />
             <ShopList loadpromt={this.loadpromt} updateshop={this.updateshop} allshop={this.props.allshop} catagerytype="Phones"  />
-
+            </div>
             }
             
         {this.props.error?null:

@@ -127,7 +127,7 @@ exports.viewall = function(req,res) {
 
 
      });
-     return  res.status(200).json({msg:'order in success.'});
+     return  res.status(200).json({msg:'add new order, thank you!'});
 
   }
 
@@ -139,7 +139,7 @@ exports.viewall = function(req,res) {
     .then(data=>{
         
         
-        return  res.status(200).json({ msg:'success.'});
+        return  res.status(200).json({ msg:'success, thank you!'});
         
     })
     .catch(err=>{

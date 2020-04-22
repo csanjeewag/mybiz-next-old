@@ -33,7 +33,7 @@ exports.viewall = function(req,res) {
             }
             else{
                 //console.log(data)
-            return  res.status(200).json({...data, token:body.token,msg:'create in success.'});
+            return  res.status(200).json({...data, token:body.token,msg:'review added, thank you!'});
             }
             
           });
@@ -47,7 +47,7 @@ exports.viewall = function(req,res) {
         }
         else{
             //console.log(data)
-        return  res.status(200).json({token:body.token,msg:'delete is success.'});
+        return  res.status(200).json({token:body.token,msg:'review deleted!'});
         }
       });
 

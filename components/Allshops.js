@@ -33,7 +33,7 @@ class Index extends Component {
                     </Link> 
                     <div className="card-block">
                         <figure className="profile">
-                            <img src={ImageUrl+c.images[1]} className="profile-avatar" alt=""/>
+                            <img src={c.user.imageUrl} className="profile-avatar" alt=""/>
                         </figure>
                         <h4 className="card-title font2 topicColor">{c.shopName}</h4>
                         <div className="meta font6 subtopicColor">

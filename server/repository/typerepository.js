@@ -74,3 +74,56 @@ exports.create = function(req,res){
           });
 
   }
+
+  
+exports.update = function(req,res){
+
+    
+    let body=  JSON.parse(req.body.jsonbody);
+    var removeimages = {
+        files:req.files,
+        deleteimages:body.deleteimages,
+        images : body.images
+    }
+    //get file count only update main image or cover image
+    var filecount = 0;
+    var mainimage_url = '';
+    if(req.files&&req.files.mainfile){
+        mainimage_url = imagefile.imageupload(req.files.mainfile);
+        body.mainimage=mainimage_url;
+  
+    }else{
+    while(removeimages.files){
+        if(removeimages.files.image[filecount]){
+            filecount=filecount+1;
+        }else{
+            filecount =filecount>0?filecount:1;
+            break;
+        }
+    }
+    if((filecount+removeimages.images.length-removeimages.deleteimages.length)>3){
+      
+        return  res.status(201).json({status:200, msg:'your submition fail !, because total file count than three(3). please remove some file.'});
+    }
+    var image_url = imagefile.deleteimage(removeimages);
+
+    body.images = [...image_url ];
+    }
+    //change main image
+    
+    //
+
+
+   
+        models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
+            if(error){
+                var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                return  res.status(400).json(error);
+            }
+            else{
+                return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
+        
+            }
+
+        })
+}

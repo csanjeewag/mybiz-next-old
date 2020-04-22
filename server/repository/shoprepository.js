@@ -95,7 +95,7 @@ exports.viewall = function(req,res) {
             }
             else{
                 //console.log(data)
-            return  res.status(200).json({...data, status:200, token:body.token,msg:'create in success.'});
+            return  res.status(200).json({...data, status:200, token:body.token,msg:'new shop added, thank you!'});
             }
             
           });
@@ -234,7 +234,7 @@ exports.viewshopanditems = function(req,res) {
                 return  res.status(400).json(error);
             }
             else{
-                return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+                return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
         
             }
 
@@ -252,7 +252,7 @@ exports.viewshopanditems = function(req,res) {
             return  res.status(400).json(error);
         }
         else{
-            return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+            return  data?res.status(200).json({status:200,msg:'updated, thank you!.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
         
         }
 
@@ -296,7 +296,7 @@ exports.viewshopanditems = function(req,res) {
                 return  res.status(400).json(error);
             }
             else{
-                return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+                return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
         
             }
 
@@ -314,7 +314,7 @@ exports.viewshopanditems = function(req,res) {
             return  res.status(400).json(error);
         }
         else{
-            return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+            return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
         
         }
 

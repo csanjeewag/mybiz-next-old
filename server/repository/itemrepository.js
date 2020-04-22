@@ -11,7 +11,7 @@ exports.viewall = function(req,res) {
             
         }else{
             
-            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no items!'};
             return   data.length>0?res.status(200).send(data):res.status(201).send(error);
         }
     }).sort({mIndex:1, sIndex:1,createDate:-1})
@@ -143,7 +143,7 @@ exports.viewforfavorite = function(req,res) {
                  return  res.status(400).json(error);
              }
              else{
-                return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+                return  data?res.status(200).json({status:200,msg:'updated!'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
         
              }
  
@@ -161,7 +161,7 @@ exports.viewforfavorite = function(req,res) {
         }
         else{
             
-            return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+            return  data?res.status(200).json({status:200,msg:'updated!'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
         }
 
     })
@@ -228,7 +228,7 @@ exports.viewforfavorite = function(req,res) {
                 
             }
             
-            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no shops!'};
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, empty shops!'};
             return   res.status(200).send(dataarray)
         }
     }).sort({mIndex:1, sIndex:1,createDate:-1})
@@ -270,7 +270,7 @@ exports.viewforfavorite = function(req,res) {
                 return  res.status(400).json(error);
             }
             else{
-               return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+               return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
        
             }
 
@@ -288,7 +288,7 @@ exports.viewforfavorite = function(req,res) {
        }
        else{
            
-           return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'you are invalid user.'}) ;
+           return  data?res.status(200).json({status:200,msg:'update in success.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
        }
 
    })

@@ -33,7 +33,7 @@ exports.viewall = function(req,res) {
             }
             else{
                 //console.log(data)
-            return  res.status(200).json({...data, token:body.token,msg:'create in success.'});
+            return  res.status(200).json({...data, token:body.token,msg:'question added!'});
             }
             
           });
@@ -49,7 +49,7 @@ exports.viewall = function(req,res) {
     .then(data=>{
         
         
-        return  res.status(200).json({ ...data,token:body.token,msg:'create in success.'});
+        return  res.status(200).json({ ...data,token:body.token,msg:'answer added!'});
         
     })
     .catch(err=>{
@@ -70,7 +70,7 @@ exports.viewall = function(req,res) {
     .then(data=>{
         
         
-        return  res.status(200).json({ ...data,token:body.token,msg:'remove answer is success.'});
+        return  res.status(200).json({ ...data,token:body.token,msg:'removed answer.'});
         
     })
     .catch(err=>{
@@ -80,3 +80,4 @@ exports.viewall = function(req,res) {
     });
 
   }
+  

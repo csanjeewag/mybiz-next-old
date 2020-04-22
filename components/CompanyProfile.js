@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl} from './../constant/main';
+import  {Url,ImageUrl,itemUrl,myshopmUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -265,7 +265,8 @@ const CartList=(props)=>{
         {props.items.map((c,i)=>
         
         <div key={i} className="col-lg-6 col-sm-12">
-        <div  className="card">
+     {/**desktop version */}
+        <div  className="card ismobile_disable">
         <div className="row col-12">
         <Link href={itemUrl+c.urlname}>
         <div className="col-lg-3">
@@ -292,8 +293,7 @@ const CartList=(props)=>{
         <div className="card-footer">
            
               <button onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-danger float-right btn-sm ismobile_disable fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp;Add to Cart</button>
-             <button onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-primary float-right btn-sm ismobile_disable fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp; Order Now</button>
-           
+          
         </div>
         
              </div>
@@ -302,7 +302,41 @@ const CartList=(props)=>{
 
 </div>    
             </div>
+    {/***desktop */}
+        
+
+    {/*** mobile version */}
+    <div className="isdesktop_disable">
+                <div className="row m-card">
+
+                <div className="col-4 m-image">
+                <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
+                <img className="card-img-top pointer" src={ImageUrl+c.images[0]} />
+                </Link>
+                </div>
+
+                <div className="col-8 m-content">
+
+                <h4 className="font1 topicColor fontsizeE1-3 m-content-left">{c.itemname}</h4>
+
+                <p className="font6 subtopicColor fontsizeE1 m-content-left ">{c.categery} / {c.subcategery}</p>
+                <p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{c.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{c.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</span></p>
+
+                <div className="float-right">
+                <a onClick={props.addtocart.bind(this,c._id,c.itemname)} className="btn btn-danger fontsizeE1 float-right btn-sm m-content-righ"><img src="https://img.icons8.com/ios/20/ffffff/favorite-cart.png"/></a>
+                <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-right m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
+                </Link>
+                </div>                
+                </div>
+
+                </div>
+                <hr/>
+                </div>
+                {/** mobile verison */}
+                   
+
         </div>
+     
 
         )}
       </div>

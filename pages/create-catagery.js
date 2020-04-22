@@ -324,7 +324,7 @@ class Index extends Component {
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">details<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" type={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
                            
@@ -360,7 +360,7 @@ class Index extends Component {
                         </div>
                         <hr/>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">main images for category</h3>
                         <div className=" row col-12">
                      
                           <div  className=" field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -378,7 +378,7 @@ class Index extends Component {
                               {/* file upload */}
                               <hr/>
                           <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for category</h3>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
                           <div key={i} className=" field-wrap col-lg-4 col-md-4 col-sm-12">

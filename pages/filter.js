@@ -45,7 +45,7 @@ class Index extends Component {
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
     
-    <Categeryitem  catageries={this.props.items} topic={'filter items'}></Categeryitem>
+    <Categeryitem  catageries={this.props.items} topic={'search items...'}></Categeryitem>
      <Footer></Footer>
   
                   </Layout>

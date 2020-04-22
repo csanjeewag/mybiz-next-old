@@ -108,7 +108,7 @@ const MobileNavBar=(props)=>{
             <nav className="navbar navbar-expand-lg ">
             <span className="navbar-brand">
             {props.state.isuserlogin?<img className="float-left avatar" src={props.state.user.imageUrl} />:null} 
-            &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-9">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="#">{wesitename}</a>}
+            &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-7">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="#">{wesitename}</a>}
             &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/search--v2.png"/></a>
             
             </span>
