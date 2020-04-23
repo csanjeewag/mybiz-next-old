@@ -90,8 +90,18 @@ class Index extends Component {
             <div className="mainnav" >
             <SignUp ref="signup" showsignup={this.props.showsignup} />
             <nav className="navbar-bar navbar fixed navbar-expand-md">
-            <a className="navbar-brand font7" href="#">{wesitename}</a>
-  
+
+            <span className="navbar-brand isdesktop_disable">
+            <a className="font7 fontsizeE1" href="#">{wesitename}</a>
+            {this.state.isuserlogin&&this.state.user.isseller?
+             <Link  key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
+               :null
+                }
+            </span>
+            <span className="navbar-brand ismobile_disable">
+            <a className="font7 fontsizeE1" href="#">{wesitename}</a>
+            </span>
+
             <button onClick={this.show}  className="navbar-toggler" type="button" data-toggle="collapse" >
             <img src="https://img.icons8.com/ios/20/ffffff/menu.png"/>
             </button>
@@ -101,14 +111,19 @@ class Index extends Component {
                     <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
-                <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
-                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/dotty/30/ffffff/favorite-cart.png"/></a></Link>
-                
+               {this.state.isuserlogin&&this.state.user.isseller?
+             <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+               :null
+                }
                 <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in</a></Link>
-                       
+                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                
+                    
                      </div>
+            
             </div>
-          
+            {this.state.isuserlogin? <a className="ismobile_disable logo-link nav-link nav-link-main active font1" href="#">{this.state.user.givenName} </a>:null }
+            {this.state.isuserlogin?<img className="ismobile_disable float-left avatar" src={this.state.user.imageUrl} />:null}  
        
             
             </nav>
@@ -119,10 +134,17 @@ class Index extends Component {
             
             <style jsx>
                 {`
+                .avatar {
+                    vertical-align: middle;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                  }
                 .mainnav {
                     z-index : 100;
                   
                 }
+                
                 .navbar-nav{
                     padding-left : 100px;
                 }

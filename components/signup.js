@@ -18,7 +18,8 @@ class Index extends Component {
             googleId:'',
             givenName:'',
             familyName:'',
-            token:''
+            token:'',
+            isseller:false
         };
     }
 
@@ -43,22 +44,40 @@ class Index extends Component {
 
   handleChange = evt => {
     // This triggers everytime the input is changed
+    if(evt.target.name=='isseller'){
+        this.setState({
+            [evt.target.name]: evt.target.checked,
+        });
+    }
+    else{
         this.setState({
             [evt.target.name]: evt.target.value,
         });
+    }
+        
     };
 
   responseGoogle = (response) => {
-
-    if(this.state.contact.length>0){
+    
+    if(this.state.isseller==true){
+        if(this.state.address.length>2&&this.state.contact.length>2){
+            this.setState({
+                ...response.profileObj,
+                token:response.tokenId
+            });
+            this.handleSubmit();
+        }
+        else{
+            alert('You register as seller, so please complete all field')
+        }
+      
+    }
+    else{
         this.setState({
             ...response.profileObj,
             token:response.tokenId
         });
         this.handleSubmit();
-    }
-    else{
-        alert('There should be contact details.')
     }
 
   }
@@ -145,7 +164,7 @@ render(){
     <div id="logreg-forms" className="col-lg-4 col-md-8 col-sm-12">
     <div className="popup-close">x</div>
             <br/>
-            <h3 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign in</h3>
+            <h2 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign in</h2>
             <div className="social-login row col-12 fontsizeE-9">
                  <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
@@ -153,28 +172,29 @@ render(){
                     onSuccess={this.responseGoogleSignIn}
                     onFailure={this.responseGoogleSignIn}
                     cookiePolicy={'single_host_origin'}
-                    className="btn google-btn social-btn col-lg-6 col-sm-12"
+                    className="btn google-btn social-btn col-lg-12 col-sm-12"
                     isSignedIn={false}
                     />
-                     <button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                     {/*<button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>*/}
               
             </div>
             <hr/>
-            <h3 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign up</h3>
+            <h2 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign up</h2>
             <form>
 
             <div className="form-group">
-                <label  className="font1 fontsizeE1">address</label>
-                <input type="email" className="form-control fontsizeE1" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
+                <label  className="font1 fontsizeE-9">address</label>
+                <input type="email" className="form-control fontsizeE-9" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label  className="font1 fontsizeE1">Contact *</label>
-                <input type="email" className="form-control fontsizeE1" id="exampleInputAddress" placeholder="Enter Contact *" name="contact" value={this.state.contact} onChange={this.handleChange}/>
+                <label  className="font1 fontsizeE-9">Contact *</label>
+                <input type="email" className="form-control fontsizeE-9" id="exampleInputAddress" placeholder="Enter Contact *" name="contact" value={this.state.contact} onChange={this.handleChange}/>
             </div>
             <div className="form-check">
-                <input type="checkbox" className="form-check-input" />
+                <input type="checkbox" className="form-check-input" name="isseller" value={this.state.isseller} onChange={this.handleChange} />
                 <label className="form-check-label"  className="font1 fontsizeE-9">Sign up as Seller</label>
             </div>
+            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you register as seller, you should provide address and contact.</small>
             <small id="emailHelp" className="form-text text-muted fontsizeE-7">We'll never share your details with anyone else.</small>
             <div className="social-login row col-12 fontsizeE-9">
                   <GoogleLogin
@@ -183,10 +203,10 @@ render(){
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}
                     cookiePolicy={'single_host_origin'}
-                    className="btn google-btn social-btn col-lg-6 col-sm-12"
+                    className="btn google-btn social-btn col-lg-12 col-sm-12"
                     isSignedIn={false}
                     />
-                     <button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                     {/*<button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>*/}
               
             </div>
             </form>
@@ -249,7 +269,7 @@ render(){
       position: relative;
       box-sizing: border-box;
       height: auto;
-      padding: 10px;
+      padding: 2px;
       font-size: 1.1em;
   }
   #logreg-forms .form-control:focus { z-index: 2; }

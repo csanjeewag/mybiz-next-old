@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
     givenName:String,
     familyName:String,
     role:String,
-    seller:Boolean,
+    isseller:Boolean,
     createDate: Date,
     isvalid:Boolean,
     

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Head from 'next/head'
-import Header from './Header';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 

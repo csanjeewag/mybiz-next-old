@@ -22,7 +22,10 @@ const NavBar=(props)=>{
             {NavLink.map((x,i)=>
                 <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
-                <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+            {props.state.isuserlogin&&props.state.user.isseller?
+             <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+               :null
+                }
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
                
                 <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
@@ -112,6 +115,11 @@ const MobileNavBar=(props)=>{
             &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-7">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="#">{wesitename}</a>}
             &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/search--v2.png"/></a>
             
+            {props.state.isuserlogin&&props.state.user.isseller?
+             <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin"  >&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
+               :null
+                }
+
             </span>
            
             <button className="navbar-toggler" type="button"  onClick={show} >
@@ -122,10 +130,13 @@ const MobileNavBar=(props)=>{
                 {NavLink.map((x,i)=>
                 <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
-                <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link  active font1 isuserlogin fontsizeE-9 pointer"  >my-shops</a></Link>
+               
                 <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
-              
+                {props.state.isuserlogin&&props.state.user.isseller?
+             <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+               :null
+                }
                 </ul>
             </div>  
             </nav>

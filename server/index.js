@@ -20,9 +20,6 @@ var orderRepository = require('./repository/orderRepository');
 //google
 const GoogleSignIn = require('google-sign-in');
 const project = new GoogleSignIn.Project('511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com');
-//facebook login
-const FacebookTokenStrategy = require('passport-facebook-token');
-const passport = require('passport');
  
 //database connection
 const mongoose = require('mongoose');
@@ -72,7 +69,7 @@ server.get("/api/location/id", (req, res) => {
         reviewrepository.create(req,res)
     }, (error) => {
   
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -107,7 +104,7 @@ server.get("/api/location/id", (req, res) => {
           questionRepository.create(req,res)
     }, (error) => {
   
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -126,7 +123,7 @@ server.get("/api/location/id", (req, res) => {
           questionRepository.answertoqestion(req,res);
     }, (error) => {
 
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -172,7 +169,7 @@ server.get("/api/location/id", (req, res) => {
          typeRepository.create(req,res)
     }, (error) => {
      
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -191,7 +188,7 @@ server.get("/api/location/id", (req, res) => {
          typeRepository.update(req,res)
     }, (error) => {
      
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -279,7 +276,7 @@ server.get("/api/location/id", (req, res) => {
         shopRepository.create(req,res)
     }, (error) => {
 
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -298,7 +295,7 @@ server.get("/api/location/id", (req, res) => {
           shopRepository.update(req,res)
       }, (error) => {
   
-          return res.status(404).json({msg:'you are signout please sign in.'}); 
+          return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
     
       });
       }
@@ -317,7 +314,7 @@ server.get("/api/location/id", (req, res) => {
             shopRepository.updateDetails(req,res)
         }, (error) => {
     
-            return res.status(404).json({msg:'you are signout please sign in.'}); 
+            return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
       
         });
         }
@@ -336,7 +333,7 @@ server.get("/api/location/id", (req, res) => {
         shopRepository.adminupdate(req,res)
     }, (error) => {
 
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -355,7 +352,7 @@ server.get("/api/location/id", (req, res) => {
           shopRepository.adminupdateDetails(req,res)
       }, (error) => {
   
-          return res.status(404).json({msg:'you are signout please sign in.'}); 
+          return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
     
       });
       }
@@ -419,7 +416,7 @@ server.get("/api/itembyid/:id", (req, res) => {
       project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
         itemsRepository.create(req,res)
     }, (error) => {
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -438,7 +435,7 @@ server.get("/api/itembyid/:id", (req, res) => {
             itemsRepository.update(req,res)
         }, (error) => {
     
-            return res.status(404).json({msg:'you are signout please sign in.'}); 
+            return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
       
         });
         }
@@ -457,7 +454,7 @@ server.get("/api/itembyid/:id", (req, res) => {
             itemsRepository.updateDetails(req,res)
         }, (error) => {
     
-            return res.status(404).json({msg:'you are signout please sign in.'}); 
+            return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
       
         });
         }
@@ -476,7 +473,7 @@ server.get("/api/itembyid/:id", (req, res) => {
               itemsRepository.adminupdate(req,res)
           }, (error) => {
       
-              return res.status(404).json({msg:'you are signout please sign in.'}); 
+              return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
         
           });
           }
@@ -495,7 +492,7 @@ server.get("/api/itembyid/:id", (req, res) => {
               itemsRepository.adminupdateDetails(req,res)
           }, (error) => {
       
-              return res.status(404).json({msg:'you are signout please sign in.'}); 
+              return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
         
           });
           }
@@ -558,7 +555,7 @@ server.get("/api/orderbyuserid/:id", (req, res) => {
         orderRepository.create(req,res)
     }, (error) => {
 
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
@@ -576,7 +573,7 @@ server.get("/api/orderbyuserid/:id", (req, res) => {
         orderRepository.update(req,res)
     }, (error) => {
 
-        return res.status(404).json({msg:'you are signout please sign in.'}); 
+        return res.status(404).json({msg:'sign in session expired, please sign in again.'}); 
   
     });
     }
