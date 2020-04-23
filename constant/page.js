@@ -2,22 +2,23 @@
 
 export const about = {
     aboutUs : 'About Us',
-    p1:'This is a website which you provide sales platform for your business. This consist with several categories of items. There are web page for every shop and items. Additionally you are able to search items several type.',
+    p1:'This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures. If there is any problem or suggestion feel free to contact us.',
     p2:'is there any problem or suggestion contact us?',
     
     topic1:'Shop keeper',
-    content1:'As shop keeper you can add new shop which should be one category to this website. Then admin will accept after check your details. Then you can add items regarding subcategory.',
+    content1:'As a shop keeper, you can add a new shop which needs to fall under one category. Then admin will accept after the proper review is obtained regarding your details. Then you can add items relating to other subcategories.',
 
     topic2:'Customer',
-    content2:'As customer you can search items in this website, if there are items which your prefer, you are able to request to items through the web or contact personally through contact details.',
+    content2:'As a customer you can search for items in this website, if there are items that tally with your preferences, you are able to request items through the web or contact personally through contact details.',
 
     topic3:'How do you create shop?',
-    content3:'First of all sign up within google account, then you are eligible to create shop. To create shop use bellow button. However after create shop you have to wait contact admin or admin will contact you. First 500 shop can create account free. so please try it quickly. Best of luck.',
+    content3:'First of all sign up with your Google account, then you are eligible to create a shop. To create a shop use the button below. However, after creating shop you have to wait for the contact admin or admin to contact you. The First 500 shops can create account free. so please try it quickly. Best of luck.',
     btn3:'create shop',
     link3:'/create-shop'
 
 
 }
+
 
 export const footer = {
     contactUs:'CONTACT US',
