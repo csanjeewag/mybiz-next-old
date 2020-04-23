@@ -15,7 +15,7 @@ export const web ={
 export const NavLink = [
     {url:'/', urlname:'home'},
     {url:'/shop/All-island', urlname:'all-shop'},
-    {url:'/filter', urlname:'filter-items'},
+    {url:'/filter', urlname:'search-items'},
     {url:'/create-shop', urlname:'create-shop'},
     {url:'/about', urlname:'about-us'}
     //{url:'/myorder', urlname:'my-order'},

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
 import SignUp from './../components/signup';
-import {NavLink,wesitename} from './../constant/main';
+import {NavLink,wesitename,filteritemUrl} from './../constant/main';
 import Cookie from "js-cookie";
 import Filter from './filterItem'
  
@@ -23,10 +23,11 @@ const NavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
                 <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
-                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/dotty/30/ffffff/favorite-cart.png"/></a></Link>
-                
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
-                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
+               
+                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
+                
+                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/25/ffffff/search--v2.png"/></a>
                 
          </div>
                 
@@ -122,7 +123,7 @@ const MobileNavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
                 <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link  active font1 isuserlogin fontsizeE-9 pointer"  >my-shops</a></Link>
-                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/dotty/30/ffffff/favorite-cart.png"/></a></Link>
+                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
               
                 </ul>

@@ -630,8 +630,8 @@ Index.getInitialProps = async function(context) {
     var error = false;
     if(res.status!=200){
         error = true ;
-   }
-  console.log(types)
+   }   
+
     return {typeid:id,type:types[0],error}
 
 
