@@ -1,10 +1,14 @@
 export const wesitename = 'onShop';
-export const WebUrl=  'http://localhost:8000/';
-export const Url=  'http://localhost:8000/api/';
-export const ImageUrl= 'http://localhost:8000/Images/';
+export const WebUrl=  'http://142.44.247.169:8000/';
+export const Url=  'http://142.44.247.169::8000/api/';
+export const ImageUrl= 'http://142.44.247.169:8000/Images/';
+//export const WebUrl=  'http://localhost:8000/';
+//export const Url=  'http://localhost:8000/api/';
+//export const ImageUrl= 'http://localhost:8000/Images/';
 
 export const web ={
-    weburl:'http://localhost:8000/',
+   // weburl:'http://localhost:8000/',
+    weburl :'http://142.44.247.169:8000/',
     wetopic : "onshop, all items",
     webContent : "All shop items in sri lanka",
     webImage : "http://localhost:8000/special/back1.jpg",

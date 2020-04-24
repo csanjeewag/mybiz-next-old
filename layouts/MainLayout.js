@@ -48,7 +48,7 @@ class Layout extends Component {
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
 <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Cabin|Indie+Flower|Trade+Winds|Ubuntu&display=swap" rel="stylesheet"></link>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>
-
+<meta property="og:site_name" content="OnShop"></meta>
       </Head>
         <div className="desktopmobile">
         {this.props.children}
