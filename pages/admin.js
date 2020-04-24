@@ -793,7 +793,7 @@ class Index extends Component {
     loadtypes(){
             fetch(`${Url}types`)
             .then(res=>{return res.json()})
-            .then(data=>{this.setState({types:data})})
+            .then(data=>{this.setState({types:data});})
         
     }  
 

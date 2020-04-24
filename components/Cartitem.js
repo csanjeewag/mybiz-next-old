@@ -4,7 +4,7 @@ import Layout from '../layouts/MainLayout';
 import Cookie from "js-cookie";
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
-import {Url,ImageUrl,itemUrl,cartitemMSG,cartUserNotlogin,cartUserdetails} from './../constant/main';
+import {Url,ImageUrl,itemUrl,cartitemMSG,cartUserNotlogin,cartUserdetails,myshopmUrl} from './../constant/main';
 
 
 const CartList=(props)=>{
@@ -31,15 +31,17 @@ const CartList=(props)=>{
         <div className="menu2 row projects">
         
         {props.catageries.length!=0?props.catageries.map((c,i)=>
-        <div key={i} className="card">
+        <div key={i}>
+        {/**desktop version */}
+        <div className="card">
         <div className="popup-close-cartitem" onClick={()=>deletefavItems(c._id)} >x</div>
-        <div className="row col-12">
+        <div className="col-12 row">
         <Link href={itemUrl+c.urlname}>
-        <div className="col-lg-3">
+        <div className="col-lg-3 col-4">
         <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
         </div>
         </Link>
-        <div className="col-lg-9">
+        <div className="col-lg-9 col-8">
         <h4 className="card-title font2 topicColor">{c.itemlongname}</h4>
         <div className="meta font6 subtopicColor">
             <a>{c.categery} - {c.subcategery}</a>
@@ -49,27 +51,26 @@ const CartList=(props)=>{
             <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
             </div>
         </div>
-        <div className="card-text font6">
-        {c.content1.slice(0,150)}...
-         </div>
-    
-        <div className="card-footer">
-        <small className="font3 float-left">2020/25/5</small>
-        
-        <div className="btn-group float-right" role="group" aria-label="Basic example">
+        <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-left m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
+                </Link>
+        <div className="btn-group" role="group" aria-label="Basic example">
         <button type="button" className="btn btn-danger btn-sm float-right" id={'unitcount-'+c.id} aria-describedby="emailHelp" >{c.qty?c.qty:0}</button>      
-        <button type="button" onClick={()=>unitcount(c._id,-1)}  className="btn btn-secondary btn-sm float-right"><img src="https://img.icons8.com/ios/20/ffffff/sort-down.png"/>&nbsp;</button>
-        <button type="button" onClick={()=>unitcount(c._id,1)} className="btn btn-secondary btn-sm float-right"><img src="https://img.icons8.com/ios/20/ffffff/sort-up.png"/>&nbsp;</button>
+        <button type="button" onClick={()=>unitcount(c._id,-1)}  className="btn btn-secondary btn-sm float-right"><img src="https://img.icons8.com/ios/18/ffffff/sort-down.png"/>&nbsp;</button>
+        <button type="button" onClick={()=>unitcount(c._id,1)} className="btn btn-secondary btn-sm float-right"><img src="https://img.icons8.com/ios/18/ffffff/sort-up.png"/>&nbsp;</button>
         <button type="button" onClick={()=>unitcount(c._id,10)} className="btn btn-secondary btn-sm float-right">+10</button>
         </div>
-        
-             </div>
+                
     </div>
 
 
 </div>    
             </div>
-        ):<div className="d-flex justify-content-center"><h4 className="card-title font2 topicColor">Loading...</h4></div>}
+        {/**************** */}
+      
+    
+            
+       </div>
+       ):<div className="d-flex justify-content-center"><h4 className="card-title font2 topicColor">Loading...</h4></div>}
             
             
             
@@ -92,7 +93,7 @@ const CartList=(props)=>{
                     .card {
                         font-size: 1em;
                         overflow: hidden;
-                        padding: 20px;
+                        padding: 5px;
                         border: none;
                         border-radius: .28571429rem;
                         box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;

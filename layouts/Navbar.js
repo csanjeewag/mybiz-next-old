@@ -94,7 +94,7 @@ class Index extends Component {
             <span className="navbar-brand isdesktop_disable">
             <a className="font7 fontsizeE1" href="#">{wesitename}</a>
             {this.state.isuserlogin&&this.state.user.isseller?
-             <Link  key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
+             <Link  href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
                :null
                 }
             </span>
@@ -112,11 +112,11 @@ class Index extends Component {
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
                {this.state.isuserlogin&&this.state.user.isseller?
-             <Link key='101' href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
-                <Link key='100'  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in</a></Link>
-                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in</a></Link>
+                <Link href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 
                     
                      </div>

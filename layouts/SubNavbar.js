@@ -23,14 +23,14 @@ const NavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
             {props.state.isuserlogin&&props.state.user.isseller?
-             <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
                
-                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
                 
-                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/25/ffffff/search--v2.png"/></a>
+                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
                 
          </div>
                 
@@ -113,10 +113,10 @@ const MobileNavBar=(props)=>{
             <span className="navbar-brand">
             {props.state.isuserlogin?<img className="float-left avatar" src={props.state.user.imageUrl} />:null} 
             &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-7">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="#">{wesitename}</a>}
-            &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/search--v2.png"/></a>
+            &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/25/ffffff/search--v2.png"/></a>
             
             {props.state.isuserlogin&&props.state.user.isseller?
-             <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin"  >&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
+             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/25/ffffff/shop.png"/></a></Link>
                :null
                 }
 
@@ -131,10 +131,10 @@ const MobileNavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
                
-                <Link key='101' href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
                 {props.state.isuserlogin&&props.state.user.isseller?
-             <Link key='101' href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
                 </ul>

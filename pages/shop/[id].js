@@ -98,7 +98,7 @@ class Index extends Component {
                 {`
                 .catagoryname{
                     color:#ffa445;
-                    background-image: linear-gradient(darkblue, #4084d9);
+                    background-image: linear-gradient(#01489f, #296fc6);
                     cursor: pointer;
                     padding: 0.5em;
                 }

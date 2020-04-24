@@ -1,15 +1,12 @@
 
 const WesSite = 'http://142.44.247.169:8000/';
+//const WesSite = 'http://localhost:8000/';
 export const wesitename = 'onShop';
 export const WebUrl=  WesSite;
 export const Url=  WesSite+'api/';
 export const ImageUrl= WesSite+'Images/';
-//export const WebUrl=  'http://localhost:8000/';
-//export const Url=  'http://localhost:8000/api/';
-//export const ImageUrl= 'http://localhost:8000/Images/';
 
 export const web ={
-   // weburl:'http://localhost:8000/',
     weburl : WesSite,
     wetopic : 'onshop, This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures.',
     webContent : 'All shop items in sri lanka',
