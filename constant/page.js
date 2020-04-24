@@ -2,8 +2,8 @@
 
 export const about = {
     aboutUs : 'About Us',
-    p1:'This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures. If there is any problem or suggestion feel free to contact us.',
-    p2:'is there any problem or suggestion contact us?',
+    p1:'This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures.',
+    p2:'If there is any problem or suggestion feel free to contact us.',
     
     topic1:'Shop keeper',
     content1:'As a shop keeper, you can add a new shop which needs to fall under one category. Then admin will accept after the proper review is obtained regarding your details. Then you can add items relating to other subcategories.',
