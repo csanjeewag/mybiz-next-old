@@ -1,6 +1,6 @@
 export const wesitename = 'onShop';
 export const WebUrl=  'http://142.44.247.169:8000/';
-export const Url=  'http://142.44.247.169::8000/api/';
+export const Url=  'http://142.44.247.169:8000/api/';
 export const ImageUrl= 'http://142.44.247.169:8000/Images/';
 //export const WebUrl=  'http://localhost:8000/';
 //export const Url=  'http://localhost:8000/api/';
