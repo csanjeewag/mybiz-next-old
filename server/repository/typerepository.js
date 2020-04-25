@@ -1,6 +1,6 @@
 var models = require('../model/type');
 var shop = require('./../model/shop');
-var imagefile = require('./../fileupload');
+var imagefile = require('./../filespecial');
 var exports = module.exports = {};
 
 exports.viewall = function(req,res) {
