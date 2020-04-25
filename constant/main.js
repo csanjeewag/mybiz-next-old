@@ -10,7 +10,7 @@ export const web ={
     weburl : WesSite,
     wetopic : 'onshop, This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures.',
     webContent : 'All shop items in sri lanka',
-    webImage : WesSite+'special/back1.jpg',
+    webImage : WesSite+'special/back2.jpg',
     webKeyword: 'onshop, sri lanka'
 };
 
