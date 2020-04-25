@@ -62,7 +62,7 @@ class Index extends Component {
     gettypeandlocation=()=>{
         fetch(`${Url}types`)
         .then(res=>{return res.json()})
-        .then(data=>{this.setState({types:data}); console.log(data)})
+        .then(data=>{this.setState({types:data});})
         fetch(`${Url}locations`)
         .then(res=>{return res.json()})
         .then(data=>{this.setState({location:data});})
