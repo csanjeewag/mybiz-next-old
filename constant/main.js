@@ -1,5 +1,5 @@
 
-const WesSite = 'http://142.44.247.169:8000/';
+const WesSite = 'http://142.44.247.169.xip.io:8000/';
 //const WesSite = 'http://localhost:8000/';
 export const wesitename = 'onShop';
 export const WebUrl=  WesSite;

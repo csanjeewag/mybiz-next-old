@@ -62,7 +62,7 @@ class Index extends Component {
     gettypeandlocation=()=>{
         fetch(`${Url}types`)
         .then(res=>{return res.json()})
-        .then(data=>{this.setState({types:data});})
+        .then(data=>{this.setState({types:data}); console.log(data)})
         fetch(`${Url}locations`)
         .then(res=>{return res.json()})
         .then(data=>{this.setState({location:data});})
@@ -70,7 +70,7 @@ class Index extends Component {
 
     componentDidMount(){
         this.gettypeandlocation();
-       
+
         $(document).ready(function() {
             
             function checkMobile() {
@@ -101,11 +101,11 @@ class Index extends Component {
                 <div className="field-wrap  col-lg-3 col-md-3 col-sm-5 col-xs-12">
                 <label  className="font1 labelf1">Category</label>
                 <select className={'font1 inputf1'} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange}>
-                <option key='1' value="d">all categories</option>
+                <option value="d">all categories</option>
                 {this.state.types.map((x,i)=><option key={i} value={x.type}>{x.name}</option>)}                      
                 </select>
                 <select className={'font1 inputf1'} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange}>
-                <option key='1' value="d">all subcategories</option>
+                <option value="d">all subcategories</option>
                 {this.getsubcategory(this.state.categery).map((x,i)=><option key={i} value={x.type}>{x.name}</option>)}                      
                 </select>
                
@@ -114,11 +114,11 @@ class Index extends Component {
                 <div className="field-wrap  col-lg-2 col-md-2 col-sm-4 col-xs-7">
                 <label  className="font1 labelf1">location</label>
                 <select className={'font1 inputf1'} type="text" required  name="district" value={this.state.district} onChange={this.handleChange}>
-                <option key='1' value="d">all district</option>
+                <option value="d">all district</option>
                 {this.state.location.map((x,i)=><option key={i} value={x.district}>{x.district}</option>)}                      
                 </select>
                 <select className={'font1 inputf1'} type="text" required  name="town" value={this.state.town} onChange={this.handleChange}>
-                <option key='1' value="d">all cities</option>
+                <option value="d">all cities</option>
                 {this.gettows(this.state.district).map((x,i)=><option key={i} value={x}>{x}</option>)}                      
                 </select>
                
