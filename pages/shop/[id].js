@@ -21,6 +21,20 @@ class Index extends Component {
 
     }
     componentDidMount(){
+        $(document).ready(function() {
+
+            $('.category-hover').hover(function () {
+     
+                $('#panel').slideDown(500);
+            }, function () {
+                $('#panel').hover(function(){
+
+                },function(){
+                    $('#panel').slideUp(500);
+                })
+            });
+         
+        });
 
         this.setState({
             catageries:this.props.allcatagery,
@@ -74,12 +88,12 @@ class Index extends Component {
 
 
                 <br/>
-        <button onClick={this.showCategory} type="button" className="font6  btn btn-category category btn-sm catagoryname fontsizeE1"  required  name="newsubtype" data-toggle="collapse" > catageries </button>
-        <div id="panel" className="ismobile_disable">
+        <button onClick={this.showCategory} type="button" className="font6  btn btn-category category btn-sm catagoryname fontsizeE1 category-hover"  required  name="newsubtype" data-toggle="collapse" > catageries </button>
+        <div id="panel" >
         <div className="catagoryname row" >
                 {this.props.allcatagery.map((c,i)=> 
 
-                <div key={i} className="col-lg-1 col-md-2 col-sm-6 category"><Link href={'#'+c.type+'-catogery'} ><p className="font1 fontsizeE-9" > {/*i!=0?'||':null*/} {c.name}</p></Link></div>
+                <div key={i} className="col-lg-1 col-md-2 col-sm-6 category category-hover-content"><Link href={'#'+c.type+'-catogery'} ><p className="font1 fontsizeE-9" > {/*i!=0?'||':null*/} {c.name}</p></Link></div>
                 
                   )}
             
@@ -96,6 +110,9 @@ class Index extends Component {
             <Footer/>
             <style>
                 {`
+                #panel{
+                    display:none;
+                }
                 .catagoryname{
                     color:#ffa445;
                     background-image: linear-gradient(#01489f, #296fc6);

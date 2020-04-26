@@ -30,7 +30,10 @@ const NavBar=(props)=>{
                
                 <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
                 
-                <a className="nav-link nav-link-main active font1 pointer fontsizeE-9" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
+                <a  className="nav-link nav-link-main active font1 pointer fontsizeE-9 search-icon" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
+               
+               
+            
                 
          </div>
                 
@@ -207,6 +210,14 @@ class Index extends Component {
 
         $(document).ready(function() {
 
+            //nav-bar
+            $('.search-icon').hover(function () {
+     
+                $('.filter-item').slideDown(1000);
+            }, function () {
+               // $('.filter-item').slideUp(1000);
+            });
+           
           
             // Transition effect for navbar 
             $(window).scroll(function() {

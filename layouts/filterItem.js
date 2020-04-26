@@ -8,6 +8,212 @@ import Router from 'next/router';
 
 import Cookie from "js-cookie";
 
+const HoverCategory = (props)=>{
+    return(
+ 
+       
+       <div className="category-hover" onMouseLeave={props.handleHoverout_list.bind(this,'category-hover')}>
+       {/***category list */}
+       <div className="d-flex flex-row ">
+       <div className="drop">
+        {props.types.map((x,i)=>
+          <li key={i} onClick={props.submitcategory.bind(this,props.selecttype,'')}   className={props.selecttype==x.type?'font1 sublist-item':'font1 list-item'} onMouseEnter={props.handleHover.bind(this,x.type,'category')} id={x.type}>{x.name} {props.selecttype==x.type?<i className="fa fa-angle-double-right float-right" aria-hidden="true"></i>:<i className="fa fa-angle-double-down float-right" aria-hidden="true"></i>} </li>  
+            )}
+        </div>
+        <div className="drop" >
+        {props.types.map((x,i)=>
+        <div key={i}>
+        <ul className="list-group sub-list " id={'sublist-'+x.type} >
+          <li className="font1 topic-sub" >{x.name}</li>
+          {x.subtype.map((y,i)=>
+           <li key={i} className=" font6 sublist-item" id={y.type} onClick={props.submitcategory.bind(this,props.selecttype,y.type)}>{y.name}</li> 
+            )}
+            </ul>
+          </div>
+            )}
+        
+        </div>
+
+        </div>
+        <style jsx>
+                {`
+                @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+                .topic-sub{
+                    font-size: 0.9em;
+                    display: block;
+                    width: 100%;
+                    padding: 5px 5px;
+                    background: darkgray;
+                    background-image: none;
+                    border: none;
+                    border: 1px solid #01567e;
+                    color: darkblue;
+                    border-radius: 0;
+                    transition: border-color 0.5s ease;
+                }
+                .category-hover{       
+                    display: none;
+                    position: absolute;
+                    z-index: 1;
+                }
+                .drop{
+                   width:220px;
+                   
+                }
+                .list-group-item{
+
+                }
+                .list-item :hover{
+                    border: 1px 0 1px 1px;
+                    background: lightgray;
+                    color : black;
+                }
+                .sublist-item :hover{
+                    border: 1px 0 1px 1px;
+                    background: gray;
+                    color : black;
+                }
+                .sub-list{
+                    display:none;
+                }
+                .list-item {
+                    font-size: 0.9em;
+                    display: block;
+                    width: 100%;
+                    padding: 5px 5px;
+                    background: white;
+                    background-image: none;
+                    border: none;
+                    border: 1px solid #01567e;
+                    color: darkblue;
+                    border-radius: 0;
+                    transition: border-color 0.5s ease;
+                }
+                .sublist-item {
+                    font-size: 0.9em;
+                    display: block;
+                    width: 100%;
+                    padding: 5px 5px;
+                    background: lightgray;
+                    background-image: none;
+                    border: none;
+                    border: 1px solid #01567e;
+                    color: darkblue;
+                    border-radius: 0;
+                    transition: border-color 0.5s ease;
+                }
+                `}</style>
+          {/***category list */}     
+        </div>
+        
+    )
+}
+
+const HoverLocation = (props)=>{
+    return(
+ 
+       
+       <div className="location-hover" onMouseLeave={props.handleHoverout_list.bind(this,'location-hover')}>
+       {/***category list */}
+       <div className="d-flex flex-row ">
+       <div className="drop">
+        {props.location.map((x,i)=>
+          <li key={i} onClick={props.submitlocation.bind(this,props.selectlocation,'')}  
+           className={props.selectlocation==x.district?'font1 sublist-item':'font1 list-item'} 
+           onMouseEnter={props.handleHover.bind(this,x.district,'location')} id={x.district}>{x.district} 
+           {props.selectlocation==x.district?<i className="fa fa-angle-double-right float-right" aria-hidden="true"></i>:<i className="fa fa-angle-double-down float-right" aria-hidden="true"></i>} </li>  
+            )}
+        </div>
+        <div className="drop" >
+        {props.location.map((x,i)=>
+        <div key={i}>
+        <ul className="list-group sub-list" id={'sublist-'+x.district} >
+          <li className="font1 topic-sub " >{x.district}</li>
+          {x.town.map((y,i)=>
+           <li onClick={props.submitlocation.bind(this,props.selectlocation,y)}  key={i} className=" font6 sublist-item" id={y} >{y}</li> 
+          )}
+            </ul>
+          </div>
+          )}
+        
+        </div>
+
+        </div>
+        <style jsx>
+                {`
+                @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+                .topic-sub{
+                    font-size: 0.9em;
+                    display: block;
+                    width: 100%;
+                    padding: 5px 5px;
+                    background: darkgray;
+                    background-image: none;
+                    border: none;
+                    border: 1px solid #01567e;
+                    color: darkblue;
+                    border-radius: 0;
+                    transition: border-color 0.5s ease;
+                }
+                .location-hover{       
+                    display: none;
+                    position: absolute;
+                    z-index: 1;
+                }
+                .drop{
+                   width:220px;
+                   
+                }
+                .list-group-item{
+
+                }
+                .list-item :hover{
+                    border: 1px 0 1px 1px;
+                    background: lightgray;
+                    color : black;
+                }
+                .sublist-item :hover{
+                    border: 1px 0 1px 1px;
+                    background: gray;
+                    color : black;
+                }
+                .sub-list{
+                    display:none;
+                }
+                .list-item {
+                    font-size: 0.9em;
+                    display: block;
+                    width: 100%;
+                    padding: 5px 5px;
+                    background: white;
+                    background-image: none;
+                    border: none;
+                    border: 1px solid #01567e;
+                    color: darkblue;
+                    border-radius: 0;
+                    transition: border-color 0.5s ease;
+                }
+                .sublist-item {
+                    font-size: 0.9em;
+                    display: block;
+                    width: 100%;
+                    padding: 5px 5px;
+                    background: lightgray;
+                    background-image: none;
+                    border: none;
+                    border: 1px solid #01567e;
+                    color: darkblue;
+                    border-radius: 0;
+                    transition: border-color 0.5s ease;
+                }
+                `}</style>
+          {/***category list */}     
+        </div>
+        
+    )
+}
+
+
 class Index extends Component {
 
     constructor() {
@@ -17,11 +223,14 @@ class Index extends Component {
             location:[],
             search:'',
             categery:'',
+            selecttype:'',
             subcategery:'',
+            selectlocation:'',
             district:'',
             town:'',
             upperprice:'',
-            lowerprice:''
+            lowerprice:'',
+            
 
   }
 
@@ -90,6 +299,44 @@ class Index extends Component {
             $(window).resize(checkMobile);
     });
     }
+
+    //hover drop down
+    handleHover_list=(name)=>{
+        $('.'+name).slideDown(100) ;
+    }
+    handleHoverout_list=(name)=>{
+        $('.'+name).slideUp(100) ;
+    }
+    handleHover=(id,what)=>{
+        if(what=='category'){
+            this.setState({
+                selecttype:id
+            })
+        }else if(what=='location'){
+            this.setState({
+                selectlocation:id
+            })
+        }
+        
+        $('.sub-list').slideUp(100)
+        $('#sublist-'+id).slideDown(100) 
+    }
+    submitcategory=(category,subcategory)=>{
+        this.handleHoverout_list('category-hover')
+        this.setState({
+            categery : category,
+            subcategery :  subcategory
+        })
+    }
+    submitlocation=(district,town)=>{
+   
+        this.handleHoverout_list('location-hover')
+        this.setState({
+            district : district,
+            town :  town
+        })
+    }
+
     render() { 
         
           return ( 
@@ -99,11 +346,12 @@ class Index extends Component {
 
             
                 <div className="field-wrap  col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <label  className="font1 labelf1">Category</label>
-                <select className={'font1 inputf1'} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange}>
+                <label   className="font1 labelf1">Category</label>
+                <select onClick={this.handleHoverout_list.bind(this,'category-hover')}  className={'font1 inputf1'} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onMouseEnter={this.handleHover_list.bind(this,'category-hover')} >
                 <option value="d">all categories</option>
                 {this.state.types.map((x,i)=><option key={i} value={x.type}>{x.name}</option>)}                      
                 </select>
+                <HoverCategory handleHover_list={this.handleHover_list} handleHoverout_list={this.handleHoverout_list} selecttype={this.state.selecttype} types={this.state.types} handleHover={this.handleHover} submitcategory={this.submitcategory} />
                 <select className={'font1 inputf1'} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange}>
                 <option value="d">all subcategories</option>
                 {this.getsubcategory(this.state.categery).map((x,i)=><option key={i} value={x.type}>{x.name}</option>)}                      
@@ -113,10 +361,12 @@ class Index extends Component {
 
                 <div className="field-wrap  col-lg-2 col-md-2 col-sm-4 col-xs-7">
                 <label  className="font1 labelf1">location</label>
-                <select className={'font1 inputf1'} type="text" required  name="district" value={this.state.district} onChange={this.handleChange}>
+                <select onClick={this.handleHoverout_list.bind(this,'location-hover')} onMouseEnter={this.handleHover_list.bind(this,'location-hover')} className={'font1 inputf1'} type="text" required  name="district" value={this.state.district} onChange={this.handleChange}>
                 <option value="d">all district</option>
                 {this.state.location.map((x,i)=><option key={i} value={x.district}>{x.district}</option>)}                      
                 </select>
+                <HoverLocation gettown ={(district)=>this.gettows(district)} handleHover_list={this.handleHover_list} handleHoverout_list={this.handleHoverout_list} selectlocation={this.state.selectlocation} location={this.state.location} handleHover={this.handleHover} submitlocation={this.submitlocation} />
+               
                 <select className={'font1 inputf1'} type="text" required  name="town" value={this.state.town} onChange={this.handleChange}>
                 <option value="d">all cities</option>
                 {this.gettows(this.state.district).map((x,i)=><option key={i} value={x}>{x}</option>)}                      
