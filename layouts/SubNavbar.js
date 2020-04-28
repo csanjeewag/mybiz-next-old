@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
+import Loading from './../components/loading';
 import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
@@ -43,6 +44,10 @@ const NavBar=(props)=>{
             }
             {props.state.isuserlogin?<img className="float-left avatar" src={props.state.user.imageUrl} />:null}    
         </nav>
+
+         <div className="load" >
+            <Loading />
+            </div>
         <style jsx>
                 {`
                   .avatar {
@@ -202,6 +207,7 @@ class Index extends Component {
     
     componentDidMount(){
         $('.filter-item').hide();
+        $('.load').hide();
         $('.show-fixed-bar').hide();
         this.setState({
             user : Cookie.getJSON('user'),

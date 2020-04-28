@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
-import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import  {Url,ImageUrl,itemUrl,myshopmUrl} from './../constant/main';
 import Link from 'next/link';
@@ -46,7 +45,7 @@ const Imageside=(props)=> {
             top: 0;
             left: 0;
             max-width: 100%;
-            padding: 1em 0.75em;
+          
             
         }
         .card-footer-button{
@@ -95,7 +94,7 @@ const Contentside=(props)=>{
                     <div className="row">
                         {props.shop.shopDetail?props.shop.shopDetail.map((x,i)=>
                             <div className="col-lg-6 col-sm-12" key={i}>
-                            <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+                            <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
                             </div>
                             ):null}
                         
@@ -264,8 +263,8 @@ const CartList=(props)=>{
    
         {props.items.map((c,i)=>
         
-        <div key={i} className="col-lg-6 col-sm-12">
-     {/**desktop version */}
+        <div key={i} className="col-lg-3 col-md-4 col-sm-6">
+     {/**desktop version *
         <div  className="card ismobile_disable">
         <div className="row col-12">
         <Link href={itemUrl+c.urlname}>
@@ -302,7 +301,45 @@ const CartList=(props)=>{
 
 </div>    
             </div>
-    {/***desktop */}
+    ***desktop */}
+
+          {/****destop and responsive */}
+          <div className="card ismobile_disable m-0">
+                <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
+                    <div className="card-img-top-div">
+                    <img className="card-img-top pointer" src={ImageUrl+c.images[0]} height="200px" />
+                    </div>
+                    </Link> 
+                    <div className="card-block">
+                        <figure className="profile">
+                            <img src={c.user.imageUrl} className="profile-avatar" alt=""/>
+                        </figure>
+                        <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
+                        <h5 className=" font2 topicColor fontsizeE1-9">{c.itemname}</h5>
+                        </Link>
+                        <div className="meta font6 subtopicColor">
+                            <a>{c.subcategery}</a>
+                            <div className=" float-right"> 
+                            <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
+                            <a className="Idiscount font6"> {c.itemdiscount}% </a>
+                            <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
+                            </div>
+                        </div>
+                        <div className="card-text font6">
+                            {c.content1.slice(0,100)}...
+                        </div>
+                    </div>
+                    
+                    <div className="card-footer">
+                        <small className="font3 float-left">{c.date}</small>
+                         <a onClick={()=>props.addtocart(c._id,c.itemname)} className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/></a>
+                        {/* <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/></a>*/}
+                        <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE-9 float-left m-content-righ">{c.shop[0].shopName} <br/>in {c.shop[0].town} &nbsp;&nbsp;</a>
+                        </Link>
+                       
+                    </div>
+                </div>
+                {/*******desktop */}
         
 
     {/*** mobile version */}
@@ -364,7 +401,7 @@ const CartList=(props)=>{
                         border-radius: .28571429rem;
                         box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
                         transition: 0.5s;
-                        margin : 0.5em 0 ;
+                        margin : 0 ;
                     
                     }
                     .card:hover{
@@ -606,16 +643,21 @@ class Index extends Component {
           return ( 
             <Layout>
              
-                <div className="cart-menu col-lg-11 col-sm-12 mx-auto">
+                <div className="col-lg-11 col-md-11 col-sm-12 mx-auto">
+                <br/>
                 <div>
-                    <h2 className="font1 topicColor profile-css-topic fontsizeE2-25">{this.props.topic}</h2>
+                    <h2 className="font1 topicColor profile-css-topic fontsizeE2">{this.props.topic}</h2>
                     
                 </div>
-                <div className="row col-12">
+                <div className="row">
+               
                 <Imageside shop={this.props.shop?this.props.shop:null} ></Imageside>
+            
                 <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
+        
                 </div>
                 <br/>  
+               {/* <Categeryitem  catageries={this.state.items} topic={''}></Categeryitem>*/}
                 <CartList items={this.state.items} catagerytype="Phones" addtocart ={(id,name)=>this.addtocart(id,name)} />
                 </div>  
                   </Layout>

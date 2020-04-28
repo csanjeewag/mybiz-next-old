@@ -37,7 +37,7 @@ class Index extends Component {
                 <meta name="description" content={this.props.shopanditems.shop.content1}></meta>
                 </Head>
 
-                <Profile shop={this.props.shopanditems.shop} items={this.props.shopanditems.items} topic="My Shops"></Profile>
+                <Profile shop={this.props.shopanditems.shop} items={this.props.shopanditems.items} topic=""></Profile>
                 </div>
                 }
              

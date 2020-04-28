@@ -633,7 +633,7 @@ class Index extends Component {
 
     //update item
     updateitem=(id,update)=>{
-
+        $('.load').show();
         $('img').attr("disabled", true);
         const data = new FormData();
         
@@ -650,13 +650,13 @@ class Index extends Component {
             }
         )
         .then(response => { return response.json(); } )
-        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.push(adminUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
+        .then(data => {$('img').attr("disabled", false);$('.load').hide(); if(data.status==200){Router.push(adminUrl+'?id='+this.props.querys.id+'&shopindex='+this.props.querys.shopindex); }else{alert(data.msg);}})
         .catch(error => console.log(error))
     }
 
        //update shop details
        updateshop=(id,update)=>{
-
+        $('.load').show();
         $('img').attr("disabled", true);
         const data = new FormData();
         
@@ -673,7 +673,7 @@ class Index extends Component {
             }
         )
         .then(response => { return response.json(); } )
-        .then(data => {$('img').attr("disabled", false); if(data.status==200){Router.reload(); }else{alert(data.msg);}})
+        .then(data => {$('img').attr("disabled", false);$('.load').hide(); if(data.status==200){Router.reload(); }else{alert(data.msg);}})
         .catch(error => console.log(error))
     }
 
@@ -749,7 +749,7 @@ class Index extends Component {
     }
 
     updateorder(id,state){
-
+        $('.load').show();
       const data = new FormData();
       var jsonbody = {state:state}
       data.append('jsonbody', JSON.stringify(jsonbody));
@@ -763,7 +763,7 @@ class Index extends Component {
           }
       )
       .then(response => {this.getorderbystate(state); return response.json(); } )
-      .then(data => { if(data!=undefined){alert(data.msg);}})
+      .then(data => { if(data!=undefined){alert(data.msg);} $('.load').hide();})
       .catch(error => console.log(error))
     }
 

@@ -260,6 +260,7 @@ class Index extends Component {
         }
         else{
             $('button').attr("disabled", true);
+            $('.load').show();
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -284,7 +285,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{alert(data.msg);}})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{alert(data.msg);}$('.load').hide();})
             .catch(error => console.log(error))
     
         }

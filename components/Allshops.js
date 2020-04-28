@@ -15,15 +15,15 @@ class Index extends Component {
           return ( 
             <Layout>
                 
-                <div className="container">
+                <div className="col-lg-11 col-sm-12 mx-auto">
                 <div>
-                    <h2 className="font1 topicColor menu2-topic fontsizeE2-25">{this.props.topic}</h2>
+                    <h2 className="font1 topicColor menu2-topic fontsizeE2">{this.props.topic}</h2>
                     
                 </div>
                 <div className="menu2 row projects">
                 {this.props.allshops.map((c,i)=>
                   
-                    <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
+                    <div key={i} className="col-sm-6 col-md-4 col-lg-2 mt-4">
                 {/***desktop and responsive */}
                 <div className="card ismobile_disable">
                 <Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
@@ -43,7 +43,7 @@ class Index extends Component {
                             </div>
                         </div>
                         <div className="card-text font6 ">
-                            {c.content1.slice(0,150)}...
+                            {c.content1.slice(0,100)}...
                         </div>
                     </div>
                     
@@ -107,7 +107,7 @@ class Index extends Component {
                         overflow: hidden;
                         padding: 0;
                         border: none;
-                        border-radius: .28571429rem;
+                        border-radius: 0em;
                         box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
                         transition: 0.5s;
                         font-size: 0.9em;

@@ -92,7 +92,7 @@ const Contentside=(props)=>{
                     <div className="row">
                         {props.item.itemSpecification?props.item.itemSpecification.map((x,i)=>
                             <div className="col-lg-6 col-sm-12" key={i}>
-                            <a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+                            <a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
                             </div>
                             ):null}
                       
@@ -105,7 +105,7 @@ const Contentside=(props)=>{
                     <div className="row">
                     {props.item.stockDetail?props.item.stockDetail.map((x,i)=>
                             <div className="col-lg-6 col-sm-12" key={i}>
-                            <a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+                            <a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
                             </div>
                             ):null}
     

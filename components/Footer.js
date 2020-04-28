@@ -88,7 +88,7 @@ class Index extends Component {
 
 
 
-<div className="footer">This footer will always be positioned at the bottom of the page, but <strong>not fixed</strong>.</div>
+<div className="footer">Designer csanjeewag@gmail.com © 2019. <strong>All rights reserved</strong>.</div>
 <style jsx>
 {  `
 .footer {

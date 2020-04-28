@@ -102,7 +102,7 @@ class Index extends Component {
         </div>
 
                 {this.props.allcatagery.map((c,i)=>
-                 this.filterarray(c.type).length>0?<div key={i} id={c.type+'-catogery'} >{i!=0?<div><br/><br/><br/><br/></div>:null}<AllShops  allshops={this.filterarray(c.type)} topic={c.name} type={c.type}></AllShops></div>:null
+                 this.filterarray(c.type).length>0?<div key={i} id={c.type+'-catogery'} >{i!=0?<div><br/><br/></div>:null}<AllShops  allshops={this.filterarray(c.type)} topic={c.name} type={c.type}></AllShops></div>:null
                     )}
                 
         </div>}

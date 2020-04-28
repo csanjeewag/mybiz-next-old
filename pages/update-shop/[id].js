@@ -57,6 +57,7 @@ class Index extends Component {
         $(document).ready(function() {
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
+              
                 var $this = $(this),
                     label = $this.prev('.labelf1');
               
@@ -214,6 +215,7 @@ class Index extends Component {
        
         else{
             $('button').attr("disabled", true);
+            $('.load').slideDown(200);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -239,7 +241,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);alert(data.msg);}else{alert(data.msg);} $('button').attr("disabled", false);})
+            .then(data => { if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);alert(data.msg);}else{alert(data.msg);} $('button').attr("disabled", false);$('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -369,6 +371,9 @@ class Index extends Component {
                 <title> {web.wetopic}</title>
   
                 </Head>
+
+           
+
                 {this.props.error?<Errorpage error={this.props.item} />:
             <div className="form-create-shop">
 

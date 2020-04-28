@@ -174,6 +174,7 @@ class Index extends Component {
             alert('Sorry, you are not sign in.');
         }
         else{
+            $('.load').show();
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -197,7 +198,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);}})
+            .then(data => { $('.load').hide(); if(data!=undefined){alert(data.msg);}})
             .catch(error => console.log(error))
     
         }

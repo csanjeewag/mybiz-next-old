@@ -38,6 +38,7 @@ export const footer = {
     b1:'About Us',
     b2:'Delivery Information',
     b3:'Terms & Conditions',
+    b4:'Help information',
 
     followus:'FOLLOW US',
     c1:'facebook',
@@ -48,4 +49,7 @@ export const footer = {
 
     
 
+}
+export const createShop = {
+    signupMsg :" if you are not already sign up, please sign up before create shop. Any problem contact us.Thank you!"
 }

@@ -53,7 +53,7 @@ const CartList=(props)=>{
         </div>
         <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-left m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
                 </Link>
-        <div className="btn-group" role="group" aria-label="Basic example">
+        <div className="btn-group float-right" role="group" aria-label="Basic example">
         <button type="button" className="btn btn-danger btn-sm float-right" id={'unitcount-'+c.id} aria-describedby="emailHelp" >{c.qty?c.qty:0}</button>      
         <button type="button" onClick={()=>unitcount(c._id,-1)}  className="btn btn-secondary btn-sm float-right"><img src="https://img.icons8.com/ios/18/ffffff/sort-down.png"/>&nbsp;</button>
         <button type="button" onClick={()=>unitcount(c._id,1)} className="btn btn-secondary btn-sm float-right"><img src="https://img.icons8.com/ios/18/ffffff/sort-up.png"/>&nbsp;</button>

@@ -42,6 +42,7 @@ class Index extends Component {
     
 
         $(document).ready(function() {
+            $('.load').hide();
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
@@ -185,6 +186,7 @@ class Index extends Component {
             alert('Sorry, you are not sign in.');
         }
         else{
+            $('.load').slideDown(200);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -208,7 +210,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data!=undefined){alert(data.msg);Router.reload(); }})
+            .then(data => { if(data!=undefined){alert(data.msg);Router.reload(); }; $('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -336,6 +338,7 @@ class Index extends Component {
           
                 </Head>
                 <SubNavBar sidenavconst={sidenavconst}/>
+
 
             <div className="form-create-shop">
 

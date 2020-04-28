@@ -34,7 +34,7 @@ class Index extends Component {
           return ( 
             <Layout>
                 
-                <div className="container">
+                <div className="col-lg-11 col-sm-12 mx-auto">
                 <div>
                     <h2 className="font1 topicColor menu2-topic fontsizeE2-25">{this.props.topic}</h2>
                     
@@ -42,19 +42,21 @@ class Index extends Component {
                 <div className="menu2 row projects">
                 {this.props.catageries.map((c,i)=>
                   
-                <div key={i} className="col-sm-6 col-md-4 col-lg-3 mt-4">
+                <div key={i} className="col-sm-4 col-md-3 col-lg-2 mt-3">
                 {/****destop and responsive */}
-                <div className="card ismobile_disable">
+                <div className="card ismobile_disable m-0">
                 <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
                     <div className="card-img-top-div">
-                    <img className="card-img-top pointer" src={ImageUrl+c.images[0]} height="200px" />
+                    <img className="card-img-top pointer" src={ImageUrl+c.images[0]} height="150px" />
                     </div>
                     </Link> 
                     <div className="card-block">
                         <figure className="profile">
                             <img src={c.user.imageUrl} className="profile-avatar" alt=""/>
                         </figure>
-                        <h4 className="card-title font2 topicColor">{c.itemname}</h4>
+                        <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
+                        <h5 className=" font2 topicColor fontsizeE1-9">{c.itemname}</h5>
+                        </Link>
                         <div className="meta font6 subtopicColor">
                             <a>{c.subcategery}</a>
                             <div className=" float-right"> 
@@ -64,7 +66,7 @@ class Index extends Component {
                             </div>
                         </div>
                         <div className="card-text font6">
-                            {c.content1.slice(0,150)}...
+                            {c.content1.slice(0,100)}...
                         </div>
                     </div>
                     
@@ -72,7 +74,7 @@ class Index extends Component {
                         <small className="font3 float-left">{c.date}</small>
                          <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-danger float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/></a>
                         {/* <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-primary float-right btn-sm"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/></a>*/}
-                        <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-right m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
+                        <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE-9 float-left m-content-righ">{c.shop[0].shopName} <br/>in {c.shop[0].town} &nbsp;&nbsp;</a>
                         </Link>
                        
                     </div>
@@ -90,15 +92,15 @@ class Index extends Component {
                 </div>
 
                 <div className="col-8 m-content">
-
+                <Link key={i} href={itemUrl+c.urlname+'?ide='+c._id}>
                 <h4 className="font1 topicColor fontsizeE1-3 m-content-left">{c.itemname}</h4>
-
+                </Link>
                 <p className="font6 subtopicColor fontsizeE1 m-content-left ">{c.categery} / {c.subcategery}</p>
                 <p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{c.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{c.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</span></p>
 
                 <div className="float-right">
                 <a onClick={()=>this.addtocart(c._id,c.itemname)} className="btn btn-danger fontsizeE1 float-right btn-sm m-content-righ"><img src="https://img.icons8.com/ios/20/ffffff/favorite-cart.png"/></a>
-                <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-right m-content-righ">{c.shop[0].shopName} in {c.shop[0].town} &nbsp;&nbsp;</a>
+                <Link key={i} href={myshopmUrl+c.shop[0].shopurl}><a className="font6 fontsizeE1 float-right m-content-righ">{c.shop[0].shopName} - {c.shop[0].town} &nbsp;&nbsp;</a>
                 </Link>
                 </div>                
                 </div>
@@ -134,13 +136,13 @@ class Index extends Component {
                         overflow: hidden;
                         padding: 0;
                         border: none;
-                        border-radius: .28571429rem;
+                        border-radius: 0em;
                         box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
                         transition: 0.5s;
                     }
                     .card:hover{
                         box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-                        transform: scale(1.02);
+                        transform: scale(1.01);
                         transition: 0.5s;
                     }
                     .card-block {
@@ -164,7 +166,6 @@ class Index extends Component {
                     }
                     
                     .card-title {
-                        font-size: 1.28571429em;
                         font-weight: 700;
                         line-height: 1.2857em;
                         margin-bottom: 0px;
@@ -175,7 +176,7 @@ class Index extends Component {
                         clear: both;
                         margin-top: .5em;
                         color: rgba(0, 0, 0, .68);
-                        font-size : 0.9em;
+                        font-size : 0.8em;
                     }
                     
                     .card-footer {
@@ -249,7 +250,7 @@ class Index extends Component {
                     }
                     .Iprise{
                         color: red;
-                        font-size: 1em;
+                        font-size: 0.9em;
                     }
 
                     .projects div {

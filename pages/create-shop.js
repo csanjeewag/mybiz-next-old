@@ -7,6 +7,7 @@ import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 import {Url,myshopmUrl,web,WebUrl} from './../constant/main';
+import {createShop} from './../constant/page';
 import Router from 'next/router';
 class Index extends Component {
 
@@ -43,7 +44,9 @@ class Index extends Component {
         };
     }
     componentDidMount(){
+       
         $(document).ready(function() {
+            $('.load').hide();
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
@@ -205,6 +208,7 @@ class Index extends Component {
         }
         else{
             $('button').attr("disabled", true);
+            $('.load').slideDown(200)
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -230,7 +234,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {alert(data.msg); if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);}$('button').attr("disabled", false);})
+            .then(data => {alert(data.msg); if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);}$('button').attr("disabled", false); $('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -337,11 +341,15 @@ class Index extends Component {
                 </Head>
 
                 <SubNavBar sidenavconst={sidenavconst}/>
-
+           
+   
             <div className="form-create-shop">
 
                 <div className="container" >
                     <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Create new shop</h1>
+                    <div className="alert alert-danger" role="alert">
+                        {createShop.signupMsg}
+                        </div>
                     <form className="form">
 
                     <div className="content">

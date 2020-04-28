@@ -54,6 +54,7 @@ class Index extends Component {
         }
         
         $(document).ready(function() {
+       
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
@@ -256,6 +257,7 @@ class Index extends Component {
         }
         else{
             $('button').attr("disabled", true);
+            $('.load').slideDown(200);
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -278,7 +280,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+this.state.urlname) }else{alert(data.msg);}})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+this.state.urlname) }else{alert(data.msg); $('.load').hide();}})
             .catch(error => console.log(error))
     
         }

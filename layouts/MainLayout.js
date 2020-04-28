@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Cookie from "js-cookie";
 
 
+
 class Layout extends Component {
 
   componentDidMount(){
@@ -50,6 +51,7 @@ class Layout extends Component {
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>
 <meta property="og:site_name" content="OnShop"></meta>
       </Head>
+     
         <div className="desktopmobile">
         {this.props.children}
         </div>
