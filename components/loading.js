@@ -26,11 +26,12 @@ class Index extends Component {
             background-image: radial-gradient(circle, white, rgba(255,255,255,0.3), rgba(255,255,255,0));
             position: fixed;
             width: 100%;
-            bottom: 50%;
+            bottom: 10%;
             z-index:99;
 
          }
-         .load-svg{   
+         .load-svg{ 
+             padding : 200px 0 0 0
          }
          `}
          </style>

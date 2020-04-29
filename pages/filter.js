@@ -23,7 +23,12 @@ class Index extends Component {
 
 
     componentDidMount(){
-        this.setState({items:this.props.items})
+        this.showfilter();
+        this.setState({items:this.props.items});
+        
+    }
+    showfilter(){
+        this.refs.navbar.showfilter();
     }
     
     render() { 
@@ -32,7 +37,7 @@ class Index extends Component {
 
           return ( 
            <Layout>
-                <SubNavBar sidenavconst={sidenavconst}/>
+                <SubNavBar ref="navbar" sidenavconst={sidenavconst}/>
                 <Head>
                 <title> {web.wetopic}</title>
                 <meta property="og:url"           content={WebUrl} />

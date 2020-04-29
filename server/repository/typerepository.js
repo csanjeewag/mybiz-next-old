@@ -1,5 +1,6 @@
 var models = require('../model/type');
 var shop = require('./../model/shop');
+var item = require('./../model/item');
 var imagefile = require('./../filespecial');
 var exports = module.exports = {};
 
@@ -105,6 +106,7 @@ exports.update = function(req,res){
       
         return  res.status(201).json({status:200, msg:'your submition fail !, because total file count than three(3). please remove some file.'});
     }
+
     var image_url = imagefile.deleteimage(removeimages);
 
     body.images = [...image_url ];
@@ -112,7 +114,6 @@ exports.update = function(req,res){
     //change main image
     
     //
-
 
    
         models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
@@ -126,4 +127,23 @@ exports.update = function(req,res){
             }
 
         })
+}
+
+
+exports.updateCategery = function(req,res){
+
+
+    var body = {catagory:'sa'}
+    shop.updateMany({categery:'mobile-phone-accessories'},body, function(error,data){
+        if(error){
+            var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return  res.status(400).json(error);
+        }
+        else{
+            return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
+    
+        }
+
+    })
+
 }

@@ -5,6 +5,7 @@ import $ from 'jquery';
 import SignUp from './../components/signup';
 import {NavLink,wesitename} from './../constant/main';
 import Cookie from "js-cookie";
+import Router from 'next/router';
 
 class Index extends Component {
 
@@ -21,7 +22,14 @@ class Index extends Component {
             this.refs.signup.showsignup();
           }
 
+    
+
     componentDidMount(){
+        if(Router.query.signin=='true'){
+        this.showsignup();
+        }
+        
+
         this.setState({
             user : Cookie.getJSON('user'),
             isuserlogin : Cookie.getJSON('user')?true:false

@@ -319,6 +319,10 @@ class Index extends Component {
         this.refs.child.showSidebar();
       }
     
+    signinuser(){
+        this.refs.navbar.showsignup();
+    }
+    
     render() { 
         
 
@@ -340,16 +344,18 @@ class Index extends Component {
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
 
-                <SubNavBar sidenavconst={sidenavconst}/>
+                <SubNavBar ref="navbar" sidenavconst={sidenavconst} />
            
    
             <div className="form-create-shop">
 
                 <div className="container" >
                     <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Create new shop</h1>
-                    <div className="alert alert-danger" role="alert">
+
+                    <div onClick={this.signinuser.bind(this)} className="alert alert-danger pointer" role="alert">
                         {createShop.signupMsg}
                         </div>
+
                     <form className="form">
 
                     <div className="content">

@@ -106,9 +106,16 @@ const Contentside=(props)=>{
                     </div>
                 </div>
                 <hr/>
+                <div className="ismobile_disable">
                 <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
                 <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update shop</a></Link>
-              
+                </div>
+
+                 <div className="isdesktop_disable">
+                <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a href="#" className="btn btn-primary float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;new item</a></Link>
+                <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update</a></Link>
+                </div>
+
             </div>
 
         </div>
@@ -291,9 +298,12 @@ const CartList=(props)=>{
                     <p className="topicColor">{x.isvalidA?'':'removed by admin'} </p> 
                     <p className="topicColor">{x.isvalid?'active':'removed'} </p>
                     <p >
-                    <img onClick={props.updateitem.bind(this,x._id,{isvalid:true})}  src="https://img.icons8.com/cute-clipart/30/000000/save-close.png"/>
-                    <img onClick={props.updateitem.bind(this,x._id,{isvalid:false})} src="https://img.icons8.com/color/30/000000/close-window.png"/>
-          
+                    {x.isvalid?
+                     <img onClick={props.updateitem.bind(this,x._id,{isvalid:false})} src="https://img.icons8.com/color/30/000000/toggle-on.png"/>
+                    : <img onClick={props.updateitem.bind(this,x._id,{isvalid:true})}  src="https://img.icons8.com/cute-clipart/30/000000/toggle-off.png"/>
+                   
+                    }
+                   
                     </p>
                 </div> 
             </td>
@@ -308,7 +318,8 @@ const CartList=(props)=>{
                <p className="topicColor" >{x.sIndex} </p>
                 </div> 
                 <div className="item-details font6 btn-group btn-group-sm">
-                <button onClick={props.loadpromt.bind(this,x._id,'sIndex')}  className="btn btn-primary float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;Index</button>
+                
+                <button onClick={props.loadpromt.bind(this,x._id,'sIndex')}  className="btn btn-primary float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/overview-pages-4.png"/> </button>
                
                 </div> 
             </td>

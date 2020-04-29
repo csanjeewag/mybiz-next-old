@@ -8,7 +8,7 @@ import SignUp from './../components/signup';
 import {NavLink,wesitename,filteritemUrl} from './../constant/main';
 import Cookie from "js-cookie";
 import Filter from './filterItem'
- 
+import Router from 'next/router';
 
 const NavBar=(props)=>{
     return(
@@ -44,10 +44,10 @@ const NavBar=(props)=>{
             }
             {props.state.isuserlogin?<img className="float-left avatar" src={props.state.user.imageUrl} />:null}    
         </nav>
-
-         <div className="load" >
+        <div className="load" >
             <Loading />
             </div>
+
         <style jsx>
                 {`
                   .avatar {
@@ -148,6 +148,9 @@ const MobileNavBar=(props)=>{
                 </ul>
             </div>  
             </nav>
+            <div className="load" >
+            <Loading />
+            </div>
             </div>
          <style jsx>
          {`
@@ -209,6 +212,11 @@ class Index extends Component {
         $('.filter-item').hide();
         $('.load').hide();
         $('.show-fixed-bar').hide();
+
+        if(Router.query.signin=='true'){
+            this.showsignup();
+            }
+
         this.setState({
             user : Cookie.getJSON('user'),
             isuserlogin : Cookie.getJSON('user')?true:false
@@ -268,6 +276,7 @@ class Index extends Component {
 
             <div className="filter-item" >
             <Filter/>
+
             </div>
             </div>
             <style jsx>{

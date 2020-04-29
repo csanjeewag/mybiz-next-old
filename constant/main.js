@@ -8,7 +8,7 @@ export const ImageUrl= WesSite+'Images/';
 
 export const web ={
     weburl : WesSite,
-    wetopic : 'onShop, This is a website that will aid you to do sales in an online platform for your business.',
+    wetopic : 'onShop.lk, This is a website that will aid you to do sales in an online platform for your business.',
     webContent : 'This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures.',
     webImage : WesSite+'special/back2.jpg',
     webKeyword: 'onshop, sri lanka'
@@ -32,6 +32,11 @@ export const categoryUrl = '/catagery/';
 export const myProfileUrl = '/myprofile';
 export const filteritemUrl = '/filter';
 export const adminUrl = '/admin';
+
+export const policiesUrl = '/policies';
+export const helpUrl = '/help';
+export const aboutusUrl = '/about';
+
 
 export const itemUrl = '/item/';
 export const createitemUrl = '/create-item';

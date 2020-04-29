@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 import Layout from "./../layouts/MainLayout";
 import {footer} from './../constant/page';
+import {aboutusUrl,policiesUrl,helpUrl} from './../constant/main';
 
 class Index extends Component {
 
@@ -42,19 +44,19 @@ class Index extends Component {
 					<tbody >
 						<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td > {footer.b1}</td>
+						<td > <Link href={aboutusUrl} ><a>{footer.b1}</a></Link>  </td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td>{footer.b2}</td>
+						<td> <Link href={policiesUrl} ><a>{footer.b2}</a></Link></td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td>{footer.b3} </td>
+						<td><Link href={policiesUrl} ><a>{footer.b3}</a></Link> </td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-info icon"></i></td>
-						<td>{footer.b4}</td>
+						<td><Link href={helpUrl} ><a>{footer.b4}</a></Link></td>
 					</tr>
 					</tbody></table>
 			</div>
@@ -91,6 +93,9 @@ class Index extends Component {
 <div className="footer">Designer csanjeewag@gmail.com © 2019. <strong>All rights reserved</strong>.</div>
 <style jsx>
 {  `
+a{
+	color :white;
+}
 .footer {
 position: relative;
 right: 0;

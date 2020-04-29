@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Layout from './../layouts/MainLayout';
 import {Url} from './../constant/main';
 import $ from 'jquery';
@@ -30,6 +31,7 @@ class Index extends Component {
 
     }
     handleHover=(id)=>{
+        Router.push('/?signIn=true')
         this.setState({
             selecttype:id
         })
