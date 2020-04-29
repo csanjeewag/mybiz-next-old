@@ -168,11 +168,12 @@ class Index extends Component {
             form.categery.length <2 ?  'Categery should be select.':''
             break;
             case ('contact1') : validation.contact1 = 
-            form.contact1.length <1 ?  'Contact cannot be empty.':''
+            form.contact1.length !=10 ?  'There should be 10 characters.':''
             break;
             case ('content1') : validation.content1 = 
-            form.content1.length <1 ?  'Content cannot be empty.':''
+            form.contact1.length <100 ?  'There should be atleast 100 characters.':''
             break;
+           
 
         }
         this.setState({

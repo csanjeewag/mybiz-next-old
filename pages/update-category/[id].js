@@ -15,6 +15,10 @@ class Index extends Component {
         this.state = {
             name:'',
             type:'',
+            index:'',
+            changetype:'',
+            changesubtype:'',
+            previoussubtype:'',
             content1:'',
             newsubtype:'',
             mainfile:null,
@@ -28,7 +32,7 @@ class Index extends Component {
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
             validation : {
                 name: '',
-                type :'',
+                changetype :'',
                 content1:'',
             }
         };
@@ -98,8 +102,8 @@ class Index extends Component {
     handleChangedetails= evt =>{
         var shopd = this.state.subtype;
         shopd.find(function(e){
-             if(e.name == evt.target.name){
-                 e.type = evt.target.value;
+             if(e.type == evt.target.name){
+                 e.name = evt.target.value;
              }
         });
 
@@ -110,7 +114,7 @@ class Index extends Component {
     addnewSubtypes = evt =>{
         if(this.state.newsubtype != ''){
             var shopd = this.state.subtype;
-            shopd.push({name:this.state.newsubtype,type:''});
+            shopd.push({type:this.state.newsubtype,name:''});
             this.setState({
                 subtype : shopd,
                 newsubtype : ''
@@ -126,7 +130,7 @@ class Index extends Component {
         
        var shopd = this.state.subtype;
        shopd.splice(shopd.findIndex(function(e){
-        return e.name == type
+        return e.type == type
      
         }),1);
 
@@ -134,6 +138,17 @@ class Index extends Component {
         subtype : shopd,
     })
     this.componentDidMount();
+    }
+
+    }
+
+   changesubtype = subtype =>{
+
+        if(confirm('is it sure change '+subtype+'?')){
+            this.setState({
+                previoussubtype:subtype
+            })
+
     }
 
     }
@@ -149,8 +164,8 @@ class Index extends Component {
             case ('name') : validation.name = 
             form.name.length <1 ?  'name cannot be empty.':''
             break;
-            case ('type') : validation.type = 
-            form.type.length <1 ?  'type cannot be empty.':''
+            case ('changetype') : validation.changetype = 
+            form.type.length>0 ?  '':''
             break;
             case ('content1') : validation.content1 = 
             form.content1.length <1 ?  'Content cannot be empty.':''
@@ -347,7 +362,7 @@ class Index extends Component {
                     <form className="form">
 
                     <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">new type</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">update type</h3>
                         <div className="row">
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">name<span className="req">*</span></label>
@@ -355,9 +370,14 @@ class Index extends Component {
                                 <span className="form-error">{this.state.validation.name}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">type<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.type!=''?'input-error':'')} type="text" required  name="type" value={this.state.type} onChange={this.handleChange} onBlur={this.validationform}/>
-                                <span className="form-error">{this.state.validation.type}</span>
+                                <label  className="font2 labelf1">type({this.state.type})<span className="req">*</span></label>
+                                <input className={'font6 inputf1 '+(this.state.validation.changetype!=''?'input-error':'')} type="text" required  name="changetype" value={this.state.changetype} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <span className="form-error">{this.state.validation.changetype}</span>
+                            </div>
+                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
+                                <label  className="font2 labelf1">Index<span className="req">*</span></label>
+                                <input className={'font6 inputf1 '} type="number" required  name="index" value={this.state.index} onChange={this.handleChange} onBlur={this.validationform}/>
+                        
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">details<span className="req">*</span></label>
@@ -385,9 +405,10 @@ class Index extends Component {
                         <div className="row">
                         {this.state.subtype.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                            <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
-                            <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.type} onChange={this.handleChangedetails} />
+                            <div className="popup-close-1" onClick={()=>this.deleteDetals(x.type)} display='none' >x</div>
+                            <div className="popup-updatesub" onClick={()=>this.changesubtype(x.type)} display='none' >update</div>
+                            <label  className="font2 labelf1">{x.type}(enter name)</label>
+                            <input className='font6 inputf1' type="text" required  name={x.type} value={x.name} onChange={this.handleChangedetails} />
                         </div>
                         )
 
@@ -395,6 +416,21 @@ class Index extends Component {
                         </div>
 
                         </div>
+                        {/**update subtype */}
+                        <hr/>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">to update Sub type</h3>
+                        <div className="row">
+                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
+                                <label  className="font2 labelf1">change subtype({this.state.previoussubtype})<span className="req">*</span></label>
+                                <input className={'font6 inputf1 '} type="text" required  name="changesubtype" value={this.state.changesubtype} onChange={this.handleChange} onBlur={this.validationform}/>
+                        
+                            </div>
+                     
+                           
+                        </div>
+
+                        {/**************** */}
+
                         {/***main image */}
                         <hr/>
                         <div className="content">
@@ -518,6 +554,20 @@ class Index extends Component {
 	right: 1rem;
 	position: absolute;
 
+}
+.popup-updatesub{
+    color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #660000;
+	cursor: pointer;
+	font-size: 0.6rem;
+	width: 3rem;
+	height: 1.5rem;
+	top: 3.4rem;
+	right: 1rem;
+	position: absolute;
 }
 .form-create-shop {
     background: #8b8b8ba8;

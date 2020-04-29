@@ -57,7 +57,7 @@ class Index extends Component {
         <p>{policies.Ratings.p2}</p>
         <p>{policies.Ratings.p3}</p>
 
-        <h5><img src="https://img.icons8.com/ios-filled/25/00008b/acupuncture-point.png"/> {policies.violates.t1}</h5>
+        <h5 className="violate"><img src="https://img.icons8.com/ios-filled/25/ff3434/acupuncture-point.png"/> {policies.violates.t1}</h5>
         <p>{policies.violates.p1}</p>
 
     <style jsx>
@@ -83,6 +83,9 @@ class Index extends Component {
         margin:0;
         font-family: 'Acme', sans-serif;
         font-size:0.9em;
+    }
+    .violate{
+        color:#ff3434;
     }
 
     `}

@@ -17,7 +17,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({index:1,createDate:-1})
    
   }
 
@@ -41,7 +41,7 @@ exports.viewall = function(req,res) {
             }
         })
         }
-    })
+    }).sort({index:1,createDate:-1})
 
 
    
@@ -115,6 +115,29 @@ exports.update = function(req,res){
     
     //
 
+    if(body.changesubtype.length>3){
+
+        var subbody = {subcategery:body.changesubtype}
+        if(body.changetype.length>3){
+            subbody = {...subbody, categery:body.changetype}
+        }
+        item.updateMany({subcategery:body.previoussubtype},subbody, function(error,data){ });
+
+        var subtype = body.subtype;
+            subtype.find(function(e){
+            if(e.type == body.previoussubtype){
+                e.type = body.changesubtype;
+            }
+       });
+        body.subtype = subtype;
+    }
+    if(body.changetype.length>3){
+
+        var subbody = {categery:body.changetype}
+        shop.updateMany({categery:body.type},subbody, function(error,data){ });
+        body.type = body.changetype;
+    }
+
    
         models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
             if(error){
@@ -133,17 +156,29 @@ exports.update = function(req,res){
 exports.updateCategery = function(req,res){
 
 
-    var body = {catagory:'sa'}
-    shop.updateMany({categery:'mobile-phone-accessories'},body, function(error,data){
+    var body = {categery:'mobile-phone-accessories'}
+    shop.updateMany({categery:'mobile-phone'},body, function(error,data){
+        if(error){
+            var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+           // return  res.status(400).json(error);
+        }
+        else{
+          //  return  data?res.status(200).json({status:200,msg:'updated.',data}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
+    
+        }
+
+    });
+
+    item.updateMany({categery:'mobile-phone'},body, function(error,data){
         if(error){
             var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
             return  res.status(400).json(error);
         }
         else{
-            return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
+            return  data?res.status(200).json({status:200,msg:'updated.',data}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
     
         }
 
-    })
+    });
 
 }

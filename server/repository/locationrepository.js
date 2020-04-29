@@ -14,7 +14,7 @@ exports.viewall = function(req,res) {
                     return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({Date:1})
+    }).sort({index:1,createDate:-1})
    
   }
 

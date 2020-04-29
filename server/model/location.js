@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
   var SomeModelSchema = new mongoose.Schema({
             district:String,
             town: [],
-            Date: Date,
+            createDate: Date,
             isvalid:Boolean,
+            index:Number,
 
   });
   var SomeModel = mongoose.model('location', SomeModelSchema );

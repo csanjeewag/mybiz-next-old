@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Layout from './../layouts/MainLayout';
 import SubNavBar from './../layouts/SubNavbar';
 import Footer from './../components/Footer';
-import {WebUrl,web,createshopUrl} from './../constant/main';
+import {WebUrl,web,createshopUrl,policiesUrl,helpUrl} from './../constant/main';
 import {about} from './../constant/page';
 
 const About = ()=>{
@@ -17,7 +17,18 @@ const About = ()=>{
                         <h2 className="aboutus-title">{about.aboutUs}</h2>
                         <p className="aboutus-text">{about.p1}</p>
                         <p className="aboutus-text">{about.p2}</p>
-                       
+
+                        <table className="contact-info">
+					<tbody >
+
+					<tr>
+						<td><i className="fa fa-info icon"></i><Link href={policiesUrl} ><a>policies and condition</a></Link> </td>
+					</tr>
+					<tr>
+						<td><i className="fa fa-info icon"></i><Link href={helpUrl} ><a>help information</a></Link></td>
+					</tr>
+					</tbody></table>
+
                     </div>
                 </div>
                 <div className="col-md-3 col-sm-6 col-xs-12">

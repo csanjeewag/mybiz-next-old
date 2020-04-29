@@ -109,9 +109,7 @@ export const policies = {
     },
     violates:{
         t1:`Violating the onshop.lk policies may result in actions against your account, such as cancellation of listings, suspension or removal of selling privileges without permission.`,
-        p1:`Filing Infringement Notices as an Agent or Brand Protection Agency
-        Gamurr.com understands that many brands may choose to have brand protection agencies or agents report intellectual property infringement on their behalf and accepts submissions from authorized agents. However, Gamurr.com does not permit individuals with active selling accounts to file infringement notices as an agent of a brand when the filing of those notices could benefit their own selling account (through removing competing listings, for example). Any sellers filing notices as an agent to benefit their own status as a seller may have their selling account terminated
-        `
+        p1:` `
     }
 
 
@@ -126,31 +124,44 @@ export const help ={
 
     customer :'Customer problem',
     Customerproblem:[
-        {q:'what is this?',
-        a:'this online shop'},
-        {q:'',
-        a:''},
-        {q:'',
-        a:''},
-        {q:'',
-        a:''},
-        {q:'',
-        a:''}
+        {q:'Why important this website to us?',
+        a:'This is consist of several categories. Then you can search items in your town without time wasting.'},
+        {q:'How do I use this website?',
+        a:'You can visit our website and get information about items, after that contact them for more information.'},
+        {q:'Should I sign in for website?',
+        a:'No, But if you sign in you are able to request items from shop.'},
+        {q:'How do I delivery Item?',
+        a:'We have not delivery system yet, but you can contact shop though onshop.lk or private.'},
+        {q:'How we know whether item is best?',
+        a:'You can get information from reviews about items, and ask question about item from shop.'},
+        {q:'Can I add reviews to items?',
+        a:'Yes, Go to the item you can add reviews, but before you should sign in to onshop.lk'},
+        {q:'How I change my details after sign up?',
+        a:'Go to the sign-in/out and then complete your details and sign-up/update, if you have account it will update with new details.'},
+        {q:'Can I get more infomation?',
+        a:'Yes, contact us (onshop.lk), There are conatact details Footer of website. Thank you! '},
+
 
     ],
 
     seller :'Seller problem',
     Sellerproblem:[
-        {q:'',
-        a:''},
-        {q:'',
-        a:''},
-        {q:'',
-        a:''},
-        {q:'',
-        a:''},
-        {q:'',
-        a:''}
+        {q:'Why important to this website to my business?',
+        a:'This website will help you to keep virtual shop in internet. And sell item to online customer.'},
+        {q:'How do I join with onshop.lk?',
+        a:'First of all you should signup to onshop.lk with google account. Then you join with us. If you need seller account click seller checkbox and provide address and contact number.'},
+        {q:'How do I create shop?',
+        a:'After you sign up, you can create a shop in create-shop link. After create new shop we will contact you for more information though your contact. '},
+        {q:'How do I update shop details?',
+        a:'If you create shop, your shop will be approve by our team. Then go to my-shops, update your shop details. '},
+        {q:'How do I add item to my shop?',
+        a:'If you create shop, your shop will be approve by our team. Then go to my-shops, here buttons to add new item and update your shop details. '},
+        {q:'How do I edit my Item?',
+        a:'Again go the my-shops and there are your item list, you can update there details and index.'},
+        {q:'Can I delete my item?',
+        a:'yes you can remove your item, then that will not visible'},
+        {q:'If there any problem what should I do?',
+        a:'you can contact us, using our contact details in Footer. Thank you.'}
 
     ]
 

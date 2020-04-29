@@ -30,11 +30,11 @@ class Index extends Component {
 					</tr>
 					<tr>
 						<td><i className="fa fa-envelope-o icon"></i></td>
-						<td><a href={footer.a2.t1}>{footer.a2.t2}</a></td>
+						<td><a href={footer.a3.t1}> {footer.a3.t2}</a></td>
 					</tr>
 					<tr>
 						<td><i className="fa fa-globe icon"></i></td>
-						<td><a href={footer.a3.t1}> {footer.a3.t2}</a></td>
+						<td><a href={footer.a4.t1}> {footer.a4.t2}</a></td>
 					</tr>
 					</tbody></table>
 			</div>

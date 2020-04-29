@@ -14,6 +14,7 @@ class Index extends Component {
         this.state = {
             name:'',
             type:'',
+            index:'',
             content1:'',
             newsubtype:'',
             mainfile:null,
@@ -86,8 +87,8 @@ class Index extends Component {
     handleChangedetails= evt =>{
         var shopd = this.state.subtype;
         shopd.find(function(e){
-             if(e.name == evt.target.name){
-                 e.type = evt.target.value;
+             if(e.type == evt.target.name){
+                 e.name = evt.target.value;
              }
         });
 
@@ -98,7 +99,7 @@ class Index extends Component {
     addnewSubtypes = evt =>{
         if(this.state.newsubtype != ''){
             var shopd = this.state.subtype;
-            shopd.push({name:this.state.newsubtype,type:''});
+            shopd.push({type:this.state.newsubtype,name:''});
             this.setState({
                 subtype : shopd,
                 newsubtype : ''
@@ -114,7 +115,7 @@ class Index extends Component {
         
        var shopd = this.state.subtype;
        shopd.splice(shopd.findIndex(function(e){
-        return e.name == type
+        return e.type == type
      
         }),1);
 
@@ -323,6 +324,11 @@ class Index extends Component {
                                 <input className={'font6 inputf1 '+(this.state.validation.type!=''?'input-error':'')} type="text" required  name="type" value={this.state.type} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.type}</span>
                             </div>
+                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
+                                <label  className="font2 labelf1">Index<span className="req">*</span></label>
+                                <input className={'font6 inputf1 '} type="number" required  name="index" value={this.state.index} onChange={this.handleChange} onBlur={this.validationform}/>
+                        
+                            </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">details<span className="req">*</span></label>
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -349,9 +355,9 @@ class Index extends Component {
                         <div className="row">
                         {this.state.subtype.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                            <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
-                            <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.type} onChange={this.handleChangedetails} />
+                            <div className="popup-close-1" onClick={()=>this.deleteDetals(x.type)} display='none' >x</div>
+                            <label  className="font2 labelf1">{x.type}(enter name)</label>
+                            <input className='font6 inputf1' type="text" required  name={x.type} value={x.name} onChange={this.handleChangedetails} />
                         </div>
                         )
 

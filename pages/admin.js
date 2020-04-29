@@ -24,7 +24,7 @@ const TypeSlide=(props)=>{
             </li>
             {props.types.map((x,i)=>
                 <li key={i} className="list-group-item"> 
-                <Link href={updatecategoryUrl+x._id}><a className="float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> &nbsp;{x.type}&nbsp;</a></Link> 
+                <Link href={updatecategoryUrl+x._id}><a className="float-left btn-sm fontsizeE-9"> <img src="https://img.icons8.com/ios-glyphs/15/ffffff/update-tag.png"/> {x.index}&nbsp;- {x.type}&nbsp;</a></Link> 
              
 
                     {x.subtype.map((s,y)=><a key={y}>&nbsp;{s.name}, </a>)}

@@ -154,6 +154,7 @@ server.get("/api/location/id", (req, res) => {
     typeRepository.viewall({_id:req.params.id},res);
 
   });
+
   //get sub catagories by item id
   server.get("/api/typebyshopid/:id", (req, res) => {
  
@@ -199,6 +200,12 @@ server.get("/api/location/id", (req, res) => {
     
   });
   
+      //get type by id
+  server.get("/api/updateCategory", (req, res) => {
+ 
+    typeRepository.updateCategery(req,res);
+    
+  });
   /** */
 
   /**********************************************************************************shop api ***************************/

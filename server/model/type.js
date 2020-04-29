@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
             mainimage:String,
             createDate: Date,
             isvalid:Boolean,
+            index:Number
 
   });
   var SomeModel = mongoose.model('type', SomeModelSchema );

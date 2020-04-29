@@ -72,6 +72,11 @@ exports.viewall = function(req,res) {
   }
 //create new
   exports.create = function(req,res){
+
+    let body=  JSON.parse(req.body.jsonbody);
+    if(!JSON.parse(req.body.user).isseller){
+        return  res.status(201).json({status:201, token:body.token,msg:'You are not sign up as seller, update your account as seller.'});
+    }else{
     var image_url = [];
     if(req.files){
 
@@ -79,7 +84,6 @@ exports.viewall = function(req,res) {
 
     }
 
-    let body=  JSON.parse(req.body.jsonbody);
 
         var bodydata = new models(body);
         bodydata.user = JSON.parse(req.body.user); 
@@ -99,7 +103,7 @@ exports.viewall = function(req,res) {
             }
             
           });
-
+        }
   }
 
 

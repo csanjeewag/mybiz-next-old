@@ -103,7 +103,7 @@ class Index extends Component {
             
             )
             .then(response => {return response.json(); } )
-            .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data); Router.reload();}})
+            .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data); }})
             .catch(error => console.log(error))
            
             
@@ -152,6 +152,12 @@ class Index extends Component {
      });
         
   }
+  signOut=()=>{
+      if(confirm('Are you sure, do you need to sign out from onshop.lk')){
+        Cookie.remove('user');
+        Router.reload();
+      }
+  }
   
 render(){
 
@@ -172,12 +178,14 @@ render(){
                     onSuccess={this.responseGoogleSignIn}
                     onFailure={this.responseGoogleSignIn}
                     cookiePolicy={'single_host_origin'}
-                    className="btn google-btn social-btn col-lg-12 col-sm-12"
+                    className="btn google-btn social-btn col-lg-6 col-sm-12"
                     isSignedIn={false}
                     />
                      {/*<button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>*/}
+                     {<button className="btn social-btn col-lg-6 col-sm-12 fontsizeE-9" onClick={this.signOut} type="button"><span><img className="google-icon" width="15px" height="15px" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/> Sign out from google+</span> </button>}
               
             </div>
+            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you have account sign in now, or you can sign out from your account. </small>
             <hr/>
             <h2 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign up</h2>
             <form>
@@ -194,12 +202,13 @@ render(){
                 <input type="checkbox" className="form-check-input" name="isseller" value={this.state.isseller} onChange={this.handleChange} />
                 <label className="form-check-label"  className="font1 fontsizeE-9">Sign up as Seller</label>
             </div>
-            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you register as seller, you should provide address and contact.</small>
+            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you register as seller, you should provide address and contact. Otherwise that are not compulsory.</small>
             <small id="emailHelp" className="form-text text-muted fontsizeE-7">We'll never share your details with anyone else.</small>
+            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you have aleady account, acount details will be update.</small>
             <div className="social-login row col-12 fontsizeE-9">
                   <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
-                    buttonText="Sign up with Google+"
+                    buttonText="Sign up with Google+ /Update "
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}
                     cookiePolicy={'single_host_origin'}
@@ -290,8 +299,11 @@ render(){
   }
   #logreg-forms .social-btn{
       font-weight: 100;
-      color:white;
+      color:gray;
       font-size: 0.9rem;
+      background:#f8f8f8;
+      width:100%;
+      box-shadow: 0 7px 7px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0,0,0,0.24);
   }
   
   #logreg-forms a{

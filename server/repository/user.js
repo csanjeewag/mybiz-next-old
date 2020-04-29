@@ -41,7 +41,21 @@ exports.viewall = function(req,res) {
                   });
             }
             else{
-                return  res.status(401).json({msg:'There are error.',status:404});
+                var updatemodel = {name:bodydata.name, address:bodydata.address,contact:bodydata.contact,
+                    givenName:bodydata.givenName,familyName:bodydata.familyName,isseller:bodydata.isseller};
+               
+                models.findOneAndUpdate({email:bodydata.email},updatemodel, function(error,user){
+                    if(error){
+                        var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                        return  res.status(400).json(error);
+                    }
+                    else{
+                        return  res.status(200).json({...user._doc, token:body.token,msg:'You have aleady account, it updated.',status:200});
+                
+                    }
+        
+                })
+               // return  res.status(401).json({msg:'There are error.',status:404});
             }
         })
 

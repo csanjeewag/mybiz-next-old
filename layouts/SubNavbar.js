@@ -27,7 +27,7 @@ const NavBar=(props)=>{
              <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
-                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
+                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in/out</a>
                
                 <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
                 
@@ -140,7 +140,7 @@ const MobileNavBar=(props)=>{
                 )}
                
                 <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
-                <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in</a>
+                <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in/out</a>
                 {props.state.isuserlogin&&props.state.user.isseller?
              <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
