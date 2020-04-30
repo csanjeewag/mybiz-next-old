@@ -8,6 +8,7 @@ import FilterItem from './../layouts/filterItem';
 import Footer from './../components/Footer';
 import Categeryitem from '../components/Categeryitem';
 import {Url,web,WebUrl} from './../constant/main';
+import {specialMsg} from './../constant/page';
 import fetch from 'isomorphic-unfetch';
 
 
@@ -37,7 +38,7 @@ class Index extends Component {
 
           return ( 
            <Layout>
-                <SubNavBar ref="navbar" sidenavconst={sidenavconst}/>
+                <SubNavBar ref="navbar" sidenavconst={sidenavconst} searchitem={this.props.searchitem}/>
                 <Head>
                 <title> {web.wetopic}</title>
                 <meta property="og:url"           content={WebUrl} />
@@ -51,6 +52,11 @@ class Index extends Component {
                 </Head>
     
     <Categeryitem  catageries={this.props.items} topic={'search items...'}></Categeryitem>
+   {this.props.items.length==0?
+   <div className="alert alert-dark col-lg-10 col-sm-12 mx-auto" role="alert">
+   {specialMsg.filteremptymsg} 
+ </div>:null
+}
      <Footer></Footer>
   
                   </Layout>
@@ -61,6 +67,9 @@ class Index extends Component {
 
 Index.getInitialProps = async function(context) {
     const { category,subcategory,upperprice,lowerprice,district,town,search } = context.query;
+
+    var searchitem = {category:category,subcategory:subcategory,upperprice:upperprice,
+        lowerprice:lowerprice,district:district,town:town,search:search };
 
     var url = ` ${Url}itemfilter?${search?'search='+search:'search='}`+
                 `${category?'&category='+category:''}${subcategory?'&subcategory='+subcategory:''}`+
@@ -73,7 +82,7 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200){
         error = true ;
    }
-    return {items,error}
+    return {items,error,searchitem}
 
 
   }

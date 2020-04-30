@@ -6,6 +6,7 @@ import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
 import {Url,ImageUrl,wesitename,WebUrl, web} from './../../constant/main';
+import {specialMsg} from './../../constant/page';
 import Errorpage from './../../layouts/error';
 
 class Index extends Component {
@@ -35,7 +36,7 @@ class Index extends Component {
             <Layout>
                 
                 <SubNavBar sidenavconst={sidenavconst}/>
-                {this.props.error?<Errorpage error={{msg:'Sorry, Items are temporarily disabled',errormsg:'Thesedays sellers add sales itemsto onshop.lk , you also can join with as seller. come again, thank you!'} } />:
+                {this.props.error?<Errorpage error={{msg:specialMsg.emptycategoryMsg,errormsg:specialMsg.filteremptymsg,Opps:''} } />:
             <div>
                 <Head>
                 <title> {wesitename+' '+this.props.itemname}</title>

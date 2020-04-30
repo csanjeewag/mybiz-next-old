@@ -46,7 +46,6 @@ class Index extends Component {
     componentDidMount(){
        
         $(document).ready(function() {
-            $('.load').hide();
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
@@ -171,7 +170,7 @@ class Index extends Component {
             form.contact1.length !=10 ?  'There should be 10 characters.':''
             break;
             case ('content1') : validation.content1 = 
-            form.contact1.length <100 ?  'There should be atleast 100 characters.':''
+            form.content1.length <100 ?  'There should be atleast 100 characters.':''
             break;
            
 
@@ -377,6 +376,9 @@ class Index extends Component {
                                     </select>
                                 <span className="form-error">{this.state.validation.categery}</span>
                             </div>
+                            <div  className=" alert alert-danger pointer col-lg-11 col-sm-11 mx-auto" role="alert">
+                        {createShop.newlocationMsg}
+                        </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">District<span className="req">*</span></label>
                                 <select className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>

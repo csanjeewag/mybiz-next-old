@@ -275,7 +275,7 @@ class Index extends Component {
             </div>
 
             <div className="filter-item" >
-            <Filter/>
+            <Filter searchitem={this.props.searchitem}/>
 
             </div>
             </div>

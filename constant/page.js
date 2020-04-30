@@ -1,4 +1,7 @@
-
+export const specialMsg = {
+    filteremptymsg:'There are not items which you selected criteria, we are sorry for that, Thesedays sellers are adding items to onshop.lk. keep your mind come again.',
+    emptycategoryMsg:'Sorry, keep your mind with us.'
+};
 
 export const about = {
     aboutUs : 'About Us',
@@ -51,7 +54,8 @@ export const footer = {
 
 }
 export const createShop = {
-    signupMsg :" If you are not already sign up, please click here sign up before create shop. Any problem contact us.Thank you!"
+    signupMsg :" If you are not already sign up, please click here sign up before create shop. Any problem contact us.Thank you!",
+    newlocationMsg:"If there are not consist your shop category or your location, please contact us. we will help you."
 }
 
 export const policies = {

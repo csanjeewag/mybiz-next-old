@@ -278,7 +278,13 @@ class Index extends Component {
     }
 
     componentDidMount(){
+     
         this.gettypeandlocation();
+        this.setState({
+            search:this.props.searchitem?this.props.searchitem.search:'',
+            upperprice:this.props.searchitem?this.props.searchitem.upperprice:'',
+            lowerprice:this.props.searchitem?this.props.searchitem.lowerprice:'',
+        })
 
         $(document).ready(function() {
             
