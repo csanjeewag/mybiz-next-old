@@ -11,7 +11,9 @@ export const web ={
     wetopic : 'onShop.lk, This is a website that will aid you to do sales in an online platform for your business.',
     webContent : 'This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures.',
     webImage : WesSite+'special/back2.jpg',
-    webKeyword: 'onshop, sri lanka'
+    webKeyword: 'onshop, sri lanka, online shop, mobile, laptop, furniture, cosmetic, gift item',
+    webtypeW:'website',
+    webtypeA:'article'
 };
 
 

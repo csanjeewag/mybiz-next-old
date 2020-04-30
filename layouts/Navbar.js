@@ -64,13 +64,13 @@ class Index extends Component {
                 var windowwidth = $(window).width();
 
                 if(windowwidth<600){
-                    $('.nav-link-main').css({'background-color':'black','opacity':'0.9','padding-left':'20px'});
+                    $('.nav-link-main').css({'background-color':'#03468f','opacity':'0.9','padding-left':'20px'});
 
                     $(window).scroll(function() {
                         if($(this).scrollTop() > $(window).height()/4) { 
                             $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.9','padding-left':'20px'});
                         }else{
-                            $('.nav-link-main').css({'background-color':'black','opacity':'0.9','padding-left':'20px'});
+                            $('.nav-link-main').css({'background-color':'#03468f','opacity':'0.9','padding-left':'20px'});
                         }
                         
                       });
@@ -116,15 +116,15 @@ class Index extends Component {
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
                 <div className="navbar-nav">
                 {NavLink.map((x,i)=>
-                    <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1" >{x.urlname}</a></Link>
+                    <Link key={i} href={x.url} ><a className="nav-link nav-link-main active font1" onClick={this.show} >{x.urlname}</a></Link>
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
                {this.state.isuserlogin&&this.state.user.isseller?
-             <Link  href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
-                <Link  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >sign-in/out</a></Link>
-                <Link href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this) }  >sign-in/out</a></Link>
+                <Link href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  onClick={this.show}  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 
                     
                      </div>

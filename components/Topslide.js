@@ -34,7 +34,7 @@ class Index extends Component {
         
           return ( 
             <Layout>
-         <div className="div1"  >
+         <div className="topslide div1"  >
          <h1 className="topic font7"  >{wesitename}.lk</h1>
          
         </div> 
@@ -44,12 +44,14 @@ class Index extends Component {
             <style jsx>
                 {`
               div.div1 {
-                background-image: url("./mainimage.jpg");
+                background-image: url("./mainimage2.jpg");
                 background-position: center;
                 background-repeat: no-repeat; 
                 background-size: cover; 
+               
                 
               }
+      
               .topic {
                 position: relative;
                 top: 45%;

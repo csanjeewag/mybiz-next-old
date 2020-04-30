@@ -136,13 +136,13 @@ const MobileNavBar=(props)=>{
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul className="navbar-nav">
                 {NavLink.map((x,i)=>
-                <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
+                <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" onClick={show} >{x.urlname}</a></Link>
                 )}
                
-                <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
-                <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in/out</a>
+                <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img onClick={show} src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this) } >sign-in/out</a>
                 {props.state.isuserlogin&&props.state.user.isseller?
-             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin" onClick={show} >my-shops</a></Link>
                :null
                 }
                 </ul>

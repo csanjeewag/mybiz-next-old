@@ -5,7 +5,7 @@ import Categeryitem from '../../components/Categeryitem';
 import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
-import {Url,ImageUrl,wesitename,WebUrl} from './../../constant/main';
+import {Url,ImageUrl,wesitename,WebUrl, web} from './../../constant/main';
 import Errorpage from './../../layouts/error';
 
 class Index extends Component {
@@ -35,12 +35,12 @@ class Index extends Component {
             <Layout>
                 
                 <SubNavBar sidenavconst={sidenavconst}/>
-                {this.props.error?<Errorpage error={this.props.item} />:
+                {this.props.error?<Errorpage error={{msg:'Sorry, Items are temporarily disabled',errormsg:'Thesedays sellers add sales itemsto onshop.lk , you also can join with as seller. come again, thank you!'} } />:
             <div>
                 <Head>
                 <title> {wesitename+' '+this.props.itemname}</title>
                 <meta property="og:url"           content={WebUrl} />
-                <meta property="og:type"          content="article" />
+                <meta property="og:type"          content={web.webtypeA}/>
                 <meta property="og:title"         content={wesitename+' '+this.props.itemname} />
                 <meta property="og:description"   content={this.props.catagery[0].content1} />
                 <meta property="og:image"         content={ImageUrl+this.props.catagery[0].images[0]}/>
