@@ -3,7 +3,7 @@ import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
 import SignUp from './../components/signup';
-import {NavLink,wesitename} from './../constant/main';
+import {NavLink,wesitename,myProfileUrl,myshopmUrl,myoderUrl} from './../constant/main';
 import Cookie from "js-cookie";
 import Router from 'next/router';
 
@@ -100,9 +100,9 @@ class Index extends Component {
             <nav className="navbar-bar navbar fixed navbar-expand-md">
 
             <span className="navbar-brand isdesktop_disable">
-            <a className="font7 fontsizeE1" href="#">{wesitename}</a>
+            <a className="font7 fontsizeE1" href="/">{wesitename}</a>
             {this.state.isuserlogin&&this.state.user.isseller?
-             <Link  href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
+             <Link  href={`/${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
                :null
                 }
             </span>
@@ -120,11 +120,11 @@ class Index extends Component {
                     )}
                 {/* <Link key='100' href='#'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this)} >signin</a></Link>*/}
                {this.state.isuserlogin&&this.state.user.isseller?
-             <Link  href={`/myprofile?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
                 <Link  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this) }  >sign-in/out</a></Link>
-                <Link href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  onClick={this.show}  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link href={`/${myoderUrl}`}><a className="nav-link nav-link-main active font1 isuserlogin"  onClick={this.show}  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 
                     
                      </div>

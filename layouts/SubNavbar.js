@@ -5,7 +5,7 @@ import Link from 'next/link';
 import $ from 'jquery';
 import SideNav from './../layouts/SideNav';
 import SignUp from './../components/signup';
-import {NavLink,wesitename,filteritemUrl} from './../constant/main';
+import {NavLink,wesitename,filteritemUrl,myProfileUrl,myshopmUrl,myoderUrl} from './../constant/main';
 import Cookie from "js-cookie";
 import Filter from './filterItem'
 import Router from 'next/router';
@@ -15,7 +15,7 @@ const NavBar=(props)=>{
         <div>
         <nav className="navbar navbar-expand-md">
        
-        { props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1">{props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 fontsizeE1" href="#">{wesitename}a</a>}
+        { props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1">{props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 fontsizeE1" href="/">{wesitename}a</a>}
   
         
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,12 +24,12 @@ const NavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" >{x.urlname}</a></Link>
                 )}
             {props.state.isuserlogin&&props.state.user.isseller?
-             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
+             <Link  href={`/${myProfileUrl}?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in/out</a>
                
-                <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`/${myoderUrl}`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
                 
                 <a  className="nav-link nav-link-main active font1 pointer fontsizeE-9 search-icon" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
                
@@ -120,11 +120,11 @@ const MobileNavBar=(props)=>{
             <nav className="navbar navbar-expand-lg ">
             <span className="navbar-brand">
             {props.state.isuserlogin?<img className="float-left avatar" src={props.state.user.imageUrl} />:null} 
-            &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-7">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="#">{wesitename}</a>}
+            &nbsp;{ props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1 fontsizeE-7">{props.sidenavconst.topiclink}</button>:<a className="font7 fontsizeE1" href="/">{wesitename}</a>}
             &nbsp; <a className=" font1 pointer" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/25/ffffff/search--v2.png"/></a>
             
             {props.state.isuserlogin&&props.state.user.isseller?
-             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/25/ffffff/shop.png"/></a></Link>
+             <Link  href={`/${myProfileUrl}?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/25/ffffff/shop.png"/></a></Link>
                :null
                 }
 
@@ -139,10 +139,10 @@ const MobileNavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" onClick={show} >{x.urlname}</a></Link>
                 )}
                
-                <Link  href={`/myorder`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img onClick={show} src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`/${myoderUrl}`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img onClick={show} src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this) } >sign-in/out</a>
                 {props.state.isuserlogin&&props.state.user.isseller?
-             <Link  href={`/myprofile?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin" onClick={show} >my-shops</a></Link>
+             <Link  href={`/${myProfileUrl}?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin" onClick={show} >my-shops</a></Link>
                :null
                 }
                 </ul>

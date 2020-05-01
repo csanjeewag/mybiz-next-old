@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from './../layouts/MainLayout';
-import SubNavBar from './../layouts/SubNavbar';
-import Footer from './../components/Footer';
+import Layout from '../layouts/MainLayout';
+import SubNavBar from '../layouts/SubNavbar';
+import Footer from '../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,web,WebUrl} from './../constant/main';
+import {Url,web,WebUrl} from '../constant/main';
 class Index extends Component {
 
     constructor() {

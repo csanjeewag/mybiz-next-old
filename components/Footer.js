@@ -90,7 +90,7 @@ class Index extends Component {
 
 
 
-<div className="footer">Designer csanjeewag@gmail.com © 2019. <strong>All rights reserved</strong>.</div>
+<div className="footer"><strong>All rights reserved  © 2020. </strong>.</div>
 <style jsx>
 {  `
 a{

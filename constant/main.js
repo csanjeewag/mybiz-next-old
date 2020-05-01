@@ -19,7 +19,7 @@ export const web ={
 
 export const NavLink = [
     {url:'/', urlname:'home'},
-    {url:'/shop/All-island', urlname:'all-shop'},
+    {url:'/allshop/All-island', urlname:'all-shop'},
     {url:'/filter', urlname:'search-items'},
     {url:'/create-shop', urlname:'create-shop'},
     {url:'/about', urlname:'about-us'}
@@ -28,9 +28,9 @@ export const NavLink = [
 
 export const homeUrl = '/';
 export const myoderUrl = '/myorder';
-export const createcategorUrl = '/create-catagery';
+export const createcategorUrl = '/create-catagory';
 export const updatecategoryUrl = '/update-category/'
-export const categoryUrl = '/catagery/';
+export const categoryUrl = '/catagory/';
 export const myProfileUrl = '/myprofile';
 export const filteritemUrl = '/filter';
 export const adminUrl = '/admin';
@@ -44,8 +44,8 @@ export const itemUrl = '/item/';
 export const createitemUrl = '/create-item';
 export const updateitemUrl = '/update-item/';
 
-export const myshopmUrl = '/myshop/';
-export const shopmUrl = '/shop/';
+export const myshopmUrl = '/shop/';
+export const shopmUrl = '/allshop/';
 export const updateshopUrl = '/update-shop/';
 export const createshopUrl = '/create-shop';
 
