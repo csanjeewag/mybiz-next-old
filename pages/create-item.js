@@ -222,7 +222,7 @@ class Index extends Component {
             form.subcategery.length <2 ?  'sub categery should be select.':''
             break;
             case ('content1') : validation.content1 = 
-            form.contact1.length <100 ?  'There should be atleast 100 characters.':''
+            form.content1.length <100 ?  'There should be atleast 100 characters.':''
             break;
 
         }
