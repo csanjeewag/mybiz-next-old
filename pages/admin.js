@@ -791,7 +791,7 @@ class Index extends Component {
       }
 
     loadtypes(){
-            fetch(`${Url}types`)
+            fetch(`${Url}admintypes`)
             .then(res=>{return res.json()})
             .then(data=>{this.setState({types:data});})
         

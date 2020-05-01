@@ -2,12 +2,31 @@ import React, { Component } from 'react';
 import Head from 'next/head'
 import $ from 'jquery';
 import Cookie from "js-cookie";
+import {WebUrl} from './../constant/main';
 
 
 
 class Layout extends Component {
 
   componentDidMount(){
+
+    //facebook whatsapp button
+    (function () {
+        var options = {
+            facebook: "113469750349042", // Facebook page ID
+            whatsapp: "+94717492917", // WhatsApp number
+            call_to_action: "contact us", // Call to action
+            button_color: "#129BF4", // Color of button
+            position: "right", // Position may be 'right' or 'left'
+            order: "facebook,whatsapp", // Order of buttons
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+    
+
     $(document).ready(function() {
 
       function isMobile() {
@@ -49,12 +68,15 @@ class Layout extends Component {
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
 <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Cabin|Indie+Flower|Trade+Winds|Ubuntu&display=swap" rel="stylesheet"></link>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>
-<link rel="icon" href="./icon2.jpg"></link>
+<link rel="icon" href={WebUrl+"special/icon2.jpg"}></link>
 <meta property="og:site_name" content="OnShop"></meta>
       </Head>
      
         <div className="desktopmobile">
         {this.props.children}
+
+      
+
         </div>
     
 

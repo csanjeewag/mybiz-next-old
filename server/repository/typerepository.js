@@ -24,7 +24,7 @@ exports.viewall = function(req,res) {
   //get sub catagory by shop id
   exports.viewbyshopid = function(req,res) {
 
-    shop.find({_id:req.params.id},function(error,data){
+    shop.find({_id:req.params.id,index: {$gt:0} },function(error,data){
         if(error){
             var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested page not found!'};
                     return   res.status(201).send(error);

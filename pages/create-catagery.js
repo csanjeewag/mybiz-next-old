@@ -104,7 +104,7 @@ class Index extends Component {
                 subtype : shopd,
                 newsubtype : ''
             })
-            this.componentDidMount();
+         
         }
      
     }

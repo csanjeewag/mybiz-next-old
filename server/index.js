@@ -139,13 +139,18 @@ server.get("/api/location/id", (req, res) => {
   /**************************************************************** type api **********************************************/
   server.get("/api/types", (req, res) => {
  
+    typeRepository.viewall({index: {$gt:0}},res);
+
+  });
+  server.get("/api/admintypes", (req, res) => {
+ 
     typeRepository.viewall({},res);
 
   });
 
   server.get("/api/typebyname/:id", (req, res) => {
  
-    typeRepository.viewall({type:req.params.id},res);
+    typeRepository.viewall({type:req.params.id,index: {$gt:0}},res);
 
   });
   //get type by id

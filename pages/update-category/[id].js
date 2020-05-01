@@ -119,7 +119,7 @@ class Index extends Component {
                 subtype : shopd,
                 newsubtype : ''
             })
-            this.componentDidMount();
+            
         }
      
     }
@@ -137,7 +137,7 @@ class Index extends Component {
        this.setState({
         subtype : shopd,
     })
-    this.componentDidMount();
+  
     }
 
     }
