@@ -15,7 +15,7 @@ const NavBar=(props)=>{
         <div>
         <nav className="navbar navbar-expand-md">
        
-        { props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1">{props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 fontsizeE1" href="/">{wesitename}a</a>}
+        { props.sidenavconst.visible?<button onClick={props.showsidebar.bind(this)} type="button" className="btn btn-sm btn-primary font1">{props.sidenavconst.topiclink}</button>:<a className="navbar-brand font7 fontsizeE1" href="/">{wesitename}</a>}
   
         
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">

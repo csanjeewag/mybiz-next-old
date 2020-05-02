@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl, myshopmUrl,adminUrl,createcategorUrl,updatecategoryUrl,web} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,adupdateshopUrl,itemUrl,adupdateitemUrl, myshopmUrl,adminUrl,createcategorUrl,updatecategoryUrl,web} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import Footer from './../components/Footer';
@@ -127,7 +127,7 @@ const ShopList=(props)=>{
           </td>
           <td className="user-details font6">
           <div className="item-details font6"> 
-          <Link href={updateshopUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"> &nbsp;update</a></Link> 
+          <Link href={adupdateshopUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"> &nbsp;update</a></Link> 
             </div> 
             <div className="item-details font6"> 
             <Link href={adminUrl+'?id='+x.user._id}><a href="#" className="btn btn-success float-left btn-sm fontsizeE-9"> &nbsp;items  &nbsp;</a></Link> 
@@ -256,7 +256,7 @@ const Contentside=(props)=>{
                 </div>
                 <hr/>
                 <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
-                <Link href={updateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update shop</a></Link>
+                <Link href={adupdateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update shop</a></Link>
               
             </div>
 
@@ -494,7 +494,7 @@ const CartList=(props)=>{
             </td>
             <td className="user-details font6">
             <div className="item-details font6"> 
-            <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios-glyphs/20/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
+            <Link href={adupdateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios-glyphs/20/ffffff/update-tag.png"/> &nbsp;update</a></Link> 
               </div> 
             
             </td>

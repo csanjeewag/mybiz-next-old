@@ -34,7 +34,7 @@ const Imageside=(props)=> {
 </div>
 
         <div className="card-footer">
-            <small className="font3 card-footer-button">{props.shop.createDate}</small>
+           {/* <small className="font3 card-footer-button">{props.shop.createDate}</small>*/}
  
         </div>
 

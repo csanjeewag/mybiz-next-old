@@ -292,8 +292,9 @@ exports.viewshopanditems = function(req,res) {
     //
    var image_url = imagefile.deleteimage(removeimages);
 
-    body.images = [...image_url ]
-     body.user =  JSON.parse(req.body.user);  
+    body.images = [...image_url ];
+    delete body['user'];
+ 
         models.findOneAndUpdate({_id:req.params.id},body, function(error,data){
             if(error){
                 var error = {status:400, msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};

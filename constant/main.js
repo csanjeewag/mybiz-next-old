@@ -36,7 +36,7 @@ export const NavLink = [
 export const homeUrl = '/';
 export const myoderUrl = '/myorder';
 export const createcategorUrl = '/create-catagory';
-export const updatecategoryUrl = '/update-category/'
+export const updatecategoryUrl = '/update-category/';
 export const categoryUrl = '/catagory/';
 export const myProfileUrl = '/myprofile';
 export const filteritemUrl = '/filter';
@@ -50,10 +50,12 @@ export const aboutusUrl = '/about';
 export const itemUrl = '/item/';
 export const createitemUrl = '/create-item';
 export const updateitemUrl = '/update-item/';
+export const adupdateitemUrl = '/update-itemad/';
 
 export const myshopmUrl = '/shop/';
 export const shopmUrl = '/allshop/';
 export const updateshopUrl = '/update-shop/';
+export const adupdateshopUrl = '/update-shopad/';
 export const createshopUrl = '/create-shop';
 
 

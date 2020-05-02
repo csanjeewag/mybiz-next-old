@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Head from 'next/head';
 import Layout from './../../layouts/MainLayout';
 import SubNavBar from './../../layouts/SubNavbar';
@@ -6,58 +7,56 @@ import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl,myshopmUrl,web} from './../../constant/main';
+import {Url,ImageUrl,itemUrl,web,WebUrl,wesitename} from './../../constant/main';
 import Errorpage from './../../layouts/error';
-import Router from 'next/router';
 class Index extends Component {
 
     constructor() {
         super();
         this.state = {
             urlname:'',
-            shopName: '',
+            itemname: '',
+            itemlongname: '',
             categery :'',
-            district:'',
-            town:'',
-            address:'',
-            contact1:'',
-            contact2:'',
+            subcategery:'',
+            itemPrice:'',
+            itemdiscount:'',
             content1:'',
-            content2:'',
             images:[],
             deleteimages:[],
-            newshopdetail:'',
-            shopDetail:[{name:'cash on delivery',value:''}],
+            newitemSpecification:'',
+            itemSpecification:[{name:'cash on delivery',value:''}],
+            newstockdetail:'',
+            stockDetail:[{name:' on delivery',value:''}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
             validation : {
-                shopName: '',
+                itemname: '',
+                itemlongname:'',
                 categery :'',
-                district:'',
-                town:'',
-                address:'',
-                contact1:'',
-                contact2:'',
+                subcategery:'',
+                itemPrice:'',
+                itemdiscount:'',
                 content1:'',
                 content2:''
+
             }
         };
     }
     componentDidMount(){
-        if(this.props.shop){
-        var shop = this.props.shop;
-        shop.user = null;
-
-        this.setState({
-            ...shop
-        })
-    }
-
+        if(this.props.item){
+            var item = this.props.item;
+            item.user = null;
+            this.setState({
+                ...item
+            })
+        }
+        
         $(document).ready(function() {
+       
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
-              
                 var $this = $(this),
                     label = $this.prev('.labelf1');
               
@@ -106,10 +105,13 @@ class Index extends Component {
         this.setState({
             [evt.target.name]: evt.target.value,
         });
+
     };
  
+
+    ///new spefication
     handleChangedetails= evt =>{
-        var shopd = this.state.shopDetail;
+        var shopd = this.state.itemSpecification;
         shopd.find(function(e){
              if(e.name == evt.target.name){
                  e.value = evt.target.value;
@@ -117,16 +119,16 @@ class Index extends Component {
         });
 
         this.setState({
-            shopDetail : shopd
+            itemSpecification : shopd
         })
     }
-    addnewShopDetails = evt =>{
-        if(this.state.newshopdetail != ''){
-            var shopd = this.state.shopDetail;
-            shopd.push({name:this.state.newshopdetail,value:''});
+    addnewitemSpecifications = evt =>{
+        if(this.state.newitemSpecification != ''){
+            var shopd = this.state.itemSpecification;
+            shopd.push({name:this.state.newitemSpecification,value:''});
             this.setState({
-                shopDetail : shopd,
-                newshopdetail : ''
+                itemSpecification : shopd,
+                newitemSpecification : ''
             })
             alert(' added new details!');
             this.componentDidMount();
@@ -138,19 +140,70 @@ class Index extends Component {
         if(confirm('is it sure remove '+value+'?')){
 
         
-       var shopd = this.state.shopDetail;
+       var shopd = this.state.itemSpecification;
        shopd.splice(shopd.findIndex(function(e){
         return e.name == value
      
         }),1);
 
        this.setState({
-        shopDetail : shopd,
+        itemSpecification : shopd,
     })
     this.componentDidMount();
     }
 
     }
+
+    /*********************end specifation */
+
+    /**** new stock details */
+    handleChangestockdetails= evt =>{
+        var shopd = this.state.stockDetail;
+        shopd.find(function(e){
+             if(e.name == evt.target.name){
+                 e.value = evt.target.value;
+             }
+        });
+
+        this.setState({
+            stockDetail : shopd
+        })
+    }
+    addnewstockDetails = evt =>{
+        if(this.state.newstockdetail != ''){
+            var shopd = this.state.stockDetail;
+            shopd.push({name:this.state.newstockdetail,value:''});
+            this.setState({
+                stockDetail : shopd,
+                newstockdetail : ''
+            })
+            alert(' added new stock details!');
+            this.componentDidMount();
+        }
+     
+    }
+    deletestockDetails = value =>{
+
+        if(confirm('is it sure remove '+value+'?')){
+
+        
+       var shopd = this.state.stockDetail;
+       shopd.splice(shopd.findIndex(function(e){
+        return e.name == value
+     
+        }),1);
+
+       this.setState({
+        stockDetail : shopd,
+    })
+    this.componentDidMount();
+    }
+
+    }
+
+    /*********************end specifation */
+
+
 
     validationform=(evt)=>{
         this.checkvalidation(evt.target.name)
@@ -160,24 +213,17 @@ class Index extends Component {
         var form = this.state;
         var validation = this.state.validation;
         switch(name){
-            case ('shopName') : validation.shopName = 
-            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.'
-            :''
+            case ('itemname') : validation.itemname = 
+            form.itemname.length < 5 ?  'There are should be atleast 5 charactors.':''
             break;
-            case ('district') : validation.district = 
-            form.district.length <1 ?  'District cannot be empty.':''
-            break;
-            case ('town') : validation.town = 
-            form.town.length <1 ?  'Town cannot be empty.':''
-            break;
-            case ('address') : validation.address = 
-            form.address.length <1 ?  'Address cannot be empty.':''
+            case ('itemPrice') : validation.itemPrice = 
+            form.itemPrice.length <1 ?  'itemPrice cannot be empty.':''
             break;
             case ('categery') : validation.categery = 
             form.categery.length <2 ?  'Categery should be select.':''
             break;
-            case ('contact1') : validation.contact1 = 
-            form.contact1.length !=10 ?  'There should be 10 characters.':''
+            case ('subcategery') : validation.subcategery = 
+            form.subcategery.length <2 ?  'sub categery should be select.':''
             break;
             case ('content1') : validation.content1 = 
             form.content1.length <100 ?  'There should be atleast 100 characters.':''
@@ -209,10 +255,6 @@ class Index extends Component {
         {
             alert('Sorry, cannot Submit form, check again form!.');
         }
-        else if (!Cookie.getJSON('user')){
-            alert('Sorry, you are not sign in.');
-        }
-       
         else{
             $('button').attr("disabled", true);
             $('.load').slideDown(200);
@@ -222,17 +264,14 @@ class Index extends Component {
                     data.append(`image`,x.selectedFile);   
                     })
             }
-        
+            
             var jsonbody = this.state;
-           // jsonbody.files = null;
-           // jsonbody.defaultfilepath = null;
+           // var urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
+           // jsonbody.urlname = urlname.split(" ").join("-");
             data.append('jsonbody', JSON.stringify(jsonbody));
-            var urlname = this.state.categery+'-'+this.state.shopName+'-in-'+this.state.town;
-            jsonbody.urlname = urlname.split(" ").join("-");
-           // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
-            fetch('/api/updateshop/'+this.props.shopid,{
+            fetch('/api/adminupdateitem/'+this.props.itemid,{
                 method: 'PUT',
                 headers: {
                 },
@@ -241,7 +280,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);alert(data.msg);}else{alert(data.msg);} $('button').attr("disabled", false);$('.load').hide();})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+this.state.urlname) }else{alert(data.msg); $('.load').hide();}})
             .catch(error => console.log(error))
     
         }
@@ -280,6 +319,7 @@ class Index extends Component {
 
      
     }
+    /**update remove image */
     deleteImagesinDB = x =>{
 
         var deleteimages = this.state.deleteimages;
@@ -303,6 +343,8 @@ class Index extends Component {
         }
 
     }
+
+    /**************** */
     deleteFiles = selectedfilepath =>{
 
         if(confirm('is it sure remove ?')){
@@ -335,15 +377,6 @@ class Index extends Component {
 
     }
     
-         //select town 
-    gettows=(district)=>{
-
-        var id = this.props.location.findIndex(e=>e.district==district);
-        var index = id>0?id:0;
-        
-       return district.length>2?this.props.location[index].town:[];
-    }
-      
 
     showsidebar(){
         this.refs.child.showSidebar();
@@ -351,7 +384,7 @@ class Index extends Component {
     
     render() { 
         
-  
+ 
         //side navbar link
         const sidenavlink = [
             {id:1,link:'/',linkname:'home'},
@@ -367,78 +400,78 @@ class Index extends Component {
           return ( 
             <Layout>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                <Head>
-                <title> {web.wetopic}</title>
-  
-                </Head>
-
-           
-
                 {this.props.error?<Errorpage error={this.props.item} />:
             <div className="form-create-shop">
 
+                <Head>
+                <title> {web.wetopic}</title>
+                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:type"          content="article" />
+                <meta property="og:title"         content={wesitename+','+web.wetopic} />
+                <meta property="og:description"   content={web.webContent} />
+                <meta property="og:image"         content={web.webImage}/>
+                
+                <meta name="keywords" content={web.webKeyword}></meta>
+                <meta name="description" content={web.webContent}></meta>
+                </Head>
+
+
                 <div className="container" >
-                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Update shop</h1>
+                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Update item</h1>
                     <form className="form">
 
                     <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item Details</h3>
                         <div className="row">
-                            <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">Shop Name<span className="req">*</span></label>
-                                <input disabled className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform} />
-                                <span className="form-error">{this.state.validation.shopName}</span>
+                             <div className="field-wrap  col-lg-12 col-md-12 col-sm-12">
+                                <label  className="font2 labelf1">Url name<span className="req">*</span></label>
+                                <input  className={'font6 inputf1 '} type="text" required  name="itemname" value={this.state.urlname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                
                             </div>
-                            <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
+
+                            <div className="field-wrap  col-lg-4 col-md-4 col-sm-12">
+                                <label  className="font2 labelf1">Item Name<span className="req">*</span></label>
+                                <input  className={'font6 inputf1 '+(this.state.validation.itemname!=''?'input-error':'')} type="text" required  name="itemname" value={this.state.itemname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <span className="form-error">{this.state.validation.itemname}</span>
+                            </div>
+                            <div className="field-wrap  col-lg-8 col-md-8 col-sm-12">
+                                <label  className="font2 labelf1">Item long Name<span className="req">*</span></label>
+                                <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <span className="form-error">{this.state.validation.itemlongname}</span>
+                            </div>
+                            
+                            <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <select disabled className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
-                                    <option value="d">Default select</option>
-                                    {this.props.error?null:this.props.type.map((x,i)=>
-                                    <option key={i} value={x.type}>{x.name}</option>
-                                        )}
+                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                                
+                                        <option value={this.state.categery}>{this.state.categery}</option>
+
                                     </select>
                                 <span className="form-error">{this.state.validation.categery}</span>
                             </div>
-                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">District<span className="req">*</span></label>
-                                <select disabled className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
-                                <option value="d">Default select</option>
-                                    {this.props.error?null:this.props.location.map((x,i)=>
-                                    <option key={i} value={x.district}>{x.district}</option>
-                                        )}
+
+                            <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
+                                <label  className="font2 labelf1">Sub Categery Name<span className="req">*</span></label>
+                                <select className={'font6 inputf1 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
+                                    {/*<option key='100' value="d">Default select</option>*/}
+                                    <option value={this.state.subcategery}>{this.state.subcategery}</option>
+                                    {/*this.props.error?null:this.props.type.subtype.map((x,i)=>
+                                        <option key={i} value={x.type}>{x.name}</option>
+                                    )*/}
+                                        
                                     </select>
-                                <span className="form-error">{this.state.validation.district}</span>
+                                <span className="form-error">{this.state.validation.subcategery}</span>
                             </div>
-                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">Town<span className="req">*</span></label>
-                                <select disabled className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
-                                <option value="d">Default select</option>
-                                    {this.props.error?null:this.gettows(this.state.district).map((x,i)=>
-                                    <option key={i} value={x}>{x}</option>
-                                        )}
-                                    </select>
-                                <span className="form-error">{this.state.validation.town}</span>
+                            
+                            <div className="field-wrap col-lg-3 col-md-3 col-sm-6">
+                                <label  className="font2 labelf1">item price<span className="req">*</span></label>
+                                <input className={'font6 inputf1 '+(this.state.validation.itemPrice!=''?'input-error':'')} type="number" required  name="itemPrice" value={this.state.itemPrice} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <span className="form-error">{this.state.validation.itemPrice}</span>
                             </div>
-
-                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">Address<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.address!=''?'input-error':'')} type="text" required  name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
-                                <span className="form-error">{this.state.validation.address}</span>
-                            </div>
-
-                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
-                        {'you are not allowed to change shop name, category, district and town. If need to change get support from onshop.lk board.'}
-                        </div>
-
-                            <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">contact 1<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
-                                <span className="form-error">{this.state.validation.contact1}</span>
-                            </div>
-                            <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">contact 2<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required  name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
-                                <span className="form-error">{this.state.validation.contact2}</span>
+                            <div className="field-wrap col-lg-3 col-md-3 col-sm-6">
+                                <label  className="font2 labelf1">item discount<span className="req">*</span></label>
+                                <input className={'font6 inputf1 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="number" required  name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <span className="form-error">{this.state.validation.itemdiscount}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 1<span className="req">*</span></label>
@@ -468,11 +501,8 @@ class Index extends Component {
                         </div>  
                         ))}
                         </div>
-    
-                        </div>
-
                         {/* file remove */}
-                               <hr/>
+                        <hr/>
                           <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">what should be removed</h3>
                         <div className=" row col-12">
@@ -492,26 +522,51 @@ class Index extends Component {
                         </div>
     
                         </div>
-                        
-                         {/* shop details */}
+                        </div>
+                         {/* item details */}
                         <hr></hr>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item spefication</h3>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required  name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
-                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newshopdetail" onClick={this.addnewShopDetails} > new+ </button>
+                                <input type="text" className='font6 inputf1 '  required  name="newitemSpecification" value={this.state.newitemSpecification} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newitemSpecification" onClick={this.addnewitemSpecifications} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field as your details of shop</span>
+                        <span>If you need add more field as your item details </span>
                         </div>
                         <div className="row">
-                        {this.state.shopDetail.map((x,i)=>(
+                        {this.state.itemSpecification.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
                             <label  className="font2 labelf1">{x.name}</label>
                             <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
+                        </div>
+                        )
+
+                        )}
+                        </div>
+                        </div>
+                        {/* stock details */}
+                                <hr></hr>
+                        <div className="content">
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Stock Details</h3>
+                        <div className="col-12">
+                        <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
+                                <div className="btn-group" role="group" aria-label="Basic example">
+                                <input type="text" className='font6 inputf1 '  required  name="newstockdetail" value={this.state.newstockdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newstockdetail" onClick={this.addnewstockDetails} > new+ </button>
+                                </div>
+                        </div>
+                        <span>If you need add more field stock details</span>
+                        </div>
+                        <div className="row">
+                        {this.state.stockDetail.map((x,i)=>(
+                            <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
+                            <div className="popup-close-1" onClick={()=>this.deletestockDetails(x.name)} display='none' >x</div>
+                            <label  className="font2 labelf1">{x.name}</label>
+                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangestockdetails} />
                         </div>
                         )
 
@@ -524,13 +579,14 @@ class Index extends Component {
                     </div>
 
                     <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required  name="newshopdetail" onClick={this.handleSubmit} > Submit </button>
+                    <button type="button" className="font6  btn btn-submit "  required  name="newitemSpecification" onClick={this.handleSubmit} > Submit </button>
                     </div>
                     </form>
                 </div>
 
             </div>
                 }
+
 <style jsx>
 {`
 .imageupload{
@@ -682,6 +738,7 @@ textarea {
 }
 `}
 </style>
+  
                
             <Footer/>
                    </Layout>
@@ -691,21 +748,18 @@ textarea {
 }
 
 Index.getInitialProps = async function(context) {
-
-    var {id} = context.query;
-
-    const resshop = await fetch(`${Url}shopid/${id}`);
-    const res = await fetch(`${Url}types`);
-    const reslocation = await fetch(`${Url}locations`);
-
-    var shop = await resshop.json();
-    var  type = await res.json();
-    var  location = await reslocation.json();
+    const { id,shopname } = context.query;
+    
+    const res = await fetch(`${Url}itembyid/${id}`);
+    var  item = await res.json();
     var error = false;
-    if(res.status!=200||resshop.status!=200||reslocation.status!=200){
+    if(res.status!=200){
         error = true ;
    }
-    return {location,shopid:id,type,shop,error};
+
+    return {itemid:id,item:item[0],error,shopname:shopname}
+
+
   }
 
 

@@ -232,7 +232,7 @@ class Index extends Component {
            // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
-            fetch('/api/updateshop/'+this.props.shopid,{
+            fetch('/api/adminupdateshop/'+this.props.shopid,{
                 method: 'PUT',
                 headers: {
                 },
@@ -384,14 +384,19 @@ class Index extends Component {
                     <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
                         <div className="row">
+                        <div className="field-wrap  col-lg-12 col-md-12 col-sm-12">
+                                <label  className="font2 labelf1">Url name<span className="req">*</span></label>
+                                <input  className={'font6 inputf1 '} type="text" required  name="itemname" value={this.state.urlname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                
+                            </div>
                             <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">Shop Name<span className="req">*</span></label>
-                                <input disabled className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform} />
+                                <input  className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.shopName}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <select disabled className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option value="d">Default select</option>
                                     {this.props.error?null:this.props.type.map((x,i)=>
                                     <option key={i} value={x.type}>{x.name}</option>
@@ -401,7 +406,7 @@ class Index extends Component {
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">District<span className="req">*</span></label>
-                                <select disabled className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
+                                <select className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
                                 <option value="d">Default select</option>
                                     {this.props.error?null:this.props.location.map((x,i)=>
                                     <option key={i} value={x.district}>{x.district}</option>
@@ -411,7 +416,7 @@ class Index extends Component {
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Town<span className="req">*</span></label>
-                                <select disabled className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
+                                <select className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
                                 <option value="d">Default select</option>
                                     {this.props.error?null:this.gettows(this.state.district).map((x,i)=>
                                     <option key={i} value={x}>{x}</option>
@@ -419,17 +424,11 @@ class Index extends Component {
                                     </select>
                                 <span className="form-error">{this.state.validation.town}</span>
                             </div>
-
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Address<span className="req">*</span></label>
                                 <input className={'font6 inputf1 '+(this.state.validation.address!=''?'input-error':'')} type="text" required  name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.address}</span>
                             </div>
-
-                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
-                        {'you are not allowed to change shop name, category, district and town. If need to change get support from onshop.lk board.'}
-                        </div>
-
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">contact 1<span className="req">*</span></label>
                                 <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>

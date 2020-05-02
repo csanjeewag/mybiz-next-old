@@ -38,8 +38,8 @@ const Imageside=(props)=> {
 
         <div className="card-footer">
             <small className="font3 card-footer-button">{props.item.createDate}</small>
-              <button onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp; Add to Cart</button>
-             <button onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp;Order Now</button>
+             <button onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/favorite-cart.png"/> &nbsp; Add to Cart</button>
+            {/* <button onClick={props.addtocart.bind(this,props.item._id,props.item.itemname)} className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/in-transit.png"/> &nbsp;Order Now</button> */}
            
         </div>
 
@@ -114,7 +114,8 @@ const Contentside=(props)=>{
                     </div>
                 </div></div>
                 <hr/>
-                <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> &nbsp;go to shop</a></Link>
+          
+                <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> {props.item.shop[0].shopName}&nbsp;in&nbsp;{props.item.shop[0].town} </a></Link>
                 </div>
            
         </div>
