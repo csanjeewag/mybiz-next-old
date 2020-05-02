@@ -5,7 +5,7 @@ import SubNavbar from '../../layouts/SubNavbar';
 import Footer from '../../components/Footer';
 import Errorpage from './../../layouts/error';
 import $ from 'jquery';
-import  {Url,ImageUrl,myshopmUrl,wesitename,WebUrl} from './../../constant/main';
+import  {Url,ImageUrl,myshopmUrl,wesitename,WebUrl, web} from './../../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -558,8 +558,8 @@ class Index extends Component {
                 <Head>
                 <title> {wesitename+' '+this.props.item.itemname+' '+this.props.item.shop[0].shopName+' '+this.props.item.shop[0].town}</title>
                 <meta property="og:url"           content={WebUrl} />
-                <meta property="og:type"          content="article" />
-                <meta property="og:title"         content={wesitename+' '+this.props.item.itemname} />
+                <meta property="og:type"          content={web.webtypeA} />
+                <meta property="og:title"         content={wesitename+' online shop in sri lanka. '+this.props.item.itemname} />
                 <meta property="og:description"   content={this.props.item.content1} />
                 <meta property="og:image"         content={ImageUrl+this.props.item.images[0]}/>
                 

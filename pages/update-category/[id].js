@@ -579,6 +579,10 @@ class Index extends Component {
     background-repeat: no-repeat; /* Do not repeat the image */
     padding : 20px 10px;
     opacity:1.1;
+    height: 100%;
+    background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
    
 }
 .labelf1 {

@@ -10,8 +10,15 @@ export const web ={
     weburl : WesSite,
     wetopic : 'onShop.lk, This is a website that will aid you to do sales in an online platform for your business.',
     webContent : 'This is a website that will aid you to do sales in an online platform for your business. This consists of several categories of items. There is a web page for every shop and item. Additionally, you have the ability to search for items of multiple natures.',
+    
+    webtopicCreateshop:'onShop.lk, You are able to join with on the onshop.lk as seller. This your online platform',
+    webCreateshop:'You are able to join with on the onshop.lk as seller, to sell your items. It is easy, first join and create shop account. Overtime we will help you.',
+    webCreateItem:'You are able to join with on the onshop.lk as seller, to sell your items. It is easy, first join and create shop account. Then add items to your shop. Overtime we will help you.',
+    webcategories:'Here are lots of categories such as phones, laptop, photography, home items, electric devices, furniture, saloons, handmade gift items, cosmetics.',
     webImage : WesSite+'special/back1.jpg',
-    webKeyword: 'onshop, sri lanka, online shop, mobile, laptop, furniture, cosmetic, gift item',
+    webKeyword: `onshop, sri lanka, online shopping, mobile, laptop, furniture, cosmetic, gift item, Electrical, home accessories,
+    Photography, Cameras,Beauty, Saloon, Jewellery, ornaments, cake, bakery
+    `,
     webtypeW:'website',
     webtypeA:'article'
 };

@@ -77,8 +77,8 @@ class Index extends Component {
                 <Head>
                 <title> {wesitename+', All shop in '+this.props.district+', sri lanka'}</title>
                 <meta property="og:url"           content={WebUrl} />
-                <meta property="og:type"          content="article" />
-                <meta property="og:title"         content={wesitename+', All shop in '+this.props.district+', sri lanka'} />
+                <meta property="og:type"          content={web.webtypeA} />
+                <meta property="og:title"         content={wesitename+', All shop '+this.props.district+', in  sri lanka. '+web.webcategories} />
                 <meta property="og:description"   content={web.webContent} />
                 <meta property="og:image"         content={WebUrl+'special/back1.jpg'}/>
                 

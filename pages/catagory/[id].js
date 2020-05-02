@@ -42,7 +42,7 @@ class Index extends Component {
                 <title> {wesitename+' '+this.props.itemname}</title>
                 <meta property="og:url"           content={WebUrl} />
                 <meta property="og:type"          content={web.webtypeA}/>
-                <meta property="og:title"         content={wesitename+' '+this.props.itemname} />
+                <meta property="og:title"         content={wesitename+', online shop in sri lanka. '+this.props.itemname} />
                 <meta property="og:description"   content={this.props.catagery[0].content1} />
                 <meta property="og:image"         content={ImageUrl+this.props.catagery[0].images[0]}/>
                 

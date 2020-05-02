@@ -1,7 +1,11 @@
+
+
 export const specialMsg = {
     filteremptymsg:'There are not items which you selected criteria, we are sorry for that, Thesedays sellers are adding items to onshop.lk. keep your mind come again.',
     emptycategoryMsg:'Sorry, keep your mind with us.'
 };
+
+
 
 export const about = {
     aboutUs : 'About Us',
@@ -54,8 +58,25 @@ export const footer = {
 
 }
 export const createShop = {
-    signupMsg :" If you are not already sign up, please click here sign up before create shop. Any problem contact us.Thank you!",
-    newlocationMsg:"If there are not consist your shop category or your location, please contact us. we will help you."
+    signupMsg :" If you are not already sign up as seller with your contact details, please click here sign up before create shop. Any problem contact us.Thank you!",
+    categoryMsg:'Is there not your category for your business, please inform us through messenger or whatsapp. We will help you.',
+    locationMsg:'Is there not your district or city, please inform us through messenger or whatsapp. we will help you.',
+    content1Msg:"you should enter description of your business atleast 40 words, that will help to onshop.lk customers. ",
+    imageMsg:"you should add atleast one image about your bussiness. first image is your main image. ",
+    shopdetailMsg:"shop details mean you are able to add custom field about your shop or business. example you have studio. you can add sub type as 'wedding photography' fill value 'yes'. here are example. remove them add your details."
+}
+
+export const createItem = {
+    itemNameMsg :"Item name should be short, but you can add an item name with more details for long name.",
+    subcategoryMsg:'Is there not your sub category for your business, please inform us through messenger or whatsapp. We will help you.',
+    priceMsg:'You should add a price for your product or service and you can add discount for price. If you have not fixed price, please add around price.',
+    contentMsg:'you should enter description of your product or service atleast 30 words, that will help to onshop.lk customers. ',
+    imageMsg:"you should add atleast one image about your bussiness. first image is your main image. ",
+    itemdetailMsg:"Item details mean you are able to add custom field about your item or service. We added some example, You can remove and add your fields.",
+    stockdetailMsg:"Stock details mean you are able to add custom stock details field about your item or service. We added some example, You can remove and add your fields.",
+    
+
+   
 }
 
 export const policies = {

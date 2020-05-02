@@ -191,7 +191,7 @@ class Index extends Component {
                     <Head>
                 <title> {web.wetopic}</title>
                 <meta property="og:url"           content={WebUrl} />
-                <meta property="og:type"          content="article" />
+                <meta property="og:type"          content={web.webtypeW} />
                 <meta property="og:title"         content={web.wetopic} />
                 <meta property="og:description"   content={web.webContent} />
                 <meta property="og:image"         content={web.webImage}/>

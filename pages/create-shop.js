@@ -26,7 +26,7 @@ class Index extends Component {
             content1:'',
             content2:'',
             newshopdetail:'',
-            shopDetail:[{name:'warranty',value:'yes, all items'}],
+            shopDetail:[{name:'warranty',value:'yes, all items'},{name:'wedding photography',value:'yes'},{name:'event photography',value:'only parties'},{name:'rent cameras',value:'no'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -335,9 +335,9 @@ class Index extends Component {
                 <Head>
                 <title> {web.wetopic}</title>
                 <meta property="og:url"           content={WebUrl} />
-                <meta property="og:type"          content="article" />
-                <meta property="og:title"         content={web.wetopic} />
-                <meta property="og:description"   content={web.webContent} />
+                <meta property="og:type"          content={web.webtypeW} />
+                <meta property="og:title"         content={web.webtopicCreateshop} />
+                <meta property="og:description"   content={web.webCreateshop} />
                 <meta property="og:image"         content={web.webImage}/>
                 
                 <meta name="keywords" content={web.webKeyword}></meta>
@@ -352,7 +352,7 @@ class Index extends Component {
                 <div className="container" >
                     <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Create new shop</h1>
 
-                    <div onClick={this.signinuser.bind(this)} className="alert alert-danger pointer" role="alert">
+                    <div onClick={this.signinuser.bind(this)} className="alert alert-danger pointer col-lg-11 col-11 mx-auto" role="alert">
                         {createShop.signupMsg}
                         </div>
 
@@ -376,9 +376,11 @@ class Index extends Component {
                                     </select>
                                 <span className="form-error">{this.state.validation.categery}</span>
                             </div>
-                            <div  className=" alert alert-danger pointer col-lg-11 col-sm-11 mx-auto" role="alert">
-                        {createShop.newlocationMsg}
+
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.categoryMsg}
                         </div>
+                        
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">District<span className="req">*</span></label>
                                 <select className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
@@ -389,6 +391,7 @@ class Index extends Component {
                                     </select>
                                 <span className="form-error">{this.state.validation.district}</span>
                             </div>
+
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Town<span className="req">*</span></label>
                                 <select className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
@@ -404,6 +407,11 @@ class Index extends Component {
                                 <input className={'font6 inputf1 '+(this.state.validation.address!=''?'input-error':'')} type="text" required  name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.address}</span>
                             </div>
+
+                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.locationMsg}
+                        </div>
+
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <label  className="font2 labelf1">contact 1<span className="req">*</span></label>
                                 <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -419,6 +427,11 @@ class Index extends Component {
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
+
+                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.content1Msg}
+                        </div>
+
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 2<span className="req">*</span></label>
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -431,6 +444,10 @@ class Index extends Component {
                             <hr/>
                           <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.imageMsg}
+                        </div>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
                           <div key={i} className=" field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -447,7 +464,10 @@ class Index extends Component {
                          {/* shop details */}
                         <hr></hr>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Business other details</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.shopdetailMsg}
+                        </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -539,9 +559,10 @@ class Index extends Component {
     background-repeat: no-repeat; /* Do not repeat the image */
     padding : 20px 10px;
     opacity:1.1;
+    height: 100%;
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+     background-repeat: no-repeat;
+     background-size: cover;
    
 }
 .labelf1 {

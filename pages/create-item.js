@@ -7,6 +7,7 @@ import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 import {Url,itemUrl,web} from './../constant/main';
+import {createItem} from './../constant/page';
 import Router from 'next/router';
 
 class Index extends Component {
@@ -26,9 +27,9 @@ class Index extends Component {
             content1:'',
             shoplocation:'',
             newitemSpecification:'',
-            itemSpecification:[{name:'ex:material',value:'iron'}],
+            itemSpecification:[{name:'material of product',value:'iron'},{name:'warrenty',value:'yes, 1 year'},{name:'customize',value:'yes we can'}],
             newstockdetail:'',
-            stockDetail:[{name:'stock count',value:'50'}],
+            stockDetail:[{name:'stock amount',value:'50'},{name:'colors',value:'red, green, blue'},{name:'accessories',value:'yes all'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -391,7 +392,7 @@ class Index extends Component {
                     <form className="form">
 
                     <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item Details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange"></h3>
                         <div className="row">
                             <div className="field-wrap  col-lg-4 col-md-4 col-sm-12">
                                 <label  className="font2 labelf1">Item Name<span className="req">*</span></label>
@@ -403,6 +404,10 @@ class Index extends Component {
                                 <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemlongname}</span>
                             </div>
+
+                            <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.itemNameMsg}
+                        </div>
                             
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
@@ -438,11 +443,24 @@ class Index extends Component {
                                 <input className={'font6 inputf1 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="number" required  name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemdiscount}</span>
                             </div>
+
+                        <div className="row">
+                        <div  className=" alert alert-secondary pointer col-lg-5 col-10 mx-auto" role="alert">
+                        {createItem.subcategoryMsg}
+                        </div>
+                        <div  className=" alert alert-secondary pointer col-lg-5 col-10 mx-auto" role="alert">
+                        {createItem.priceMsg}
+                        </div>
+                        </div>
+
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 1<span className="req">*</span></label>
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
+                            <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.contentMsg}
+                        </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 2<span className="req">*</span></label>
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -451,10 +469,14 @@ class Index extends Component {
                            
                         </div>
 
+
                           {/* file upload */}
                             <hr/>
                           <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.imageMsg}
+                        </div>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
                           <div key={i} className=" field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -472,6 +494,9 @@ class Index extends Component {
                         <hr></hr>
                         <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item spefication</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.itemdetailMsg}
+                        </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -479,7 +504,7 @@ class Index extends Component {
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newitemSpecification" onClick={this.addnewitemSpecifications} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field as your item details </span>
+                        <span>If you need add more field to your item details </span>
                         </div>
                         <div className="row">
                         {this.state.itemSpecification.map((x,i)=>(
@@ -497,6 +522,9 @@ class Index extends Component {
                                 <hr></hr>
                         <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">Stock Details</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.stockdetailMsg}
+                        </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -504,7 +532,7 @@ class Index extends Component {
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newstockdetail" onClick={this.addnewstockDetails} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field stock details</span>
+                        <span>If you need add more field to stock details</span>
                         </div>
                         <div className="row">
                         {this.state.stockDetail.map((x,i)=>(
@@ -588,6 +616,10 @@ class Index extends Component {
     background-repeat: no-repeat; /* Do not repeat the image */
     padding : 20px 10px;
     opacity:1.1;
+    height: 100%;
+    background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
    
 }
 .labelf1 {
