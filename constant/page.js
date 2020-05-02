@@ -36,8 +36,8 @@ export const footer = {
     a2:{t1:'0717 49 29 17, 0765 49 27 95,',
         t2:'0717 10 96 50'},
 
-    a3:{t1:'mailto:info.onshoplk@gmail.com',
-        t2:'info.onshoplk@gmail.com'},
+    a3:{t1:'mailto:business.onshop.lk@gmail.com',
+        t2:'business.onshop.lk@gmail.com'},
     a4:{t1:'https://www.onshop.lk',
         t2:'www.onshop.lk'},
 
