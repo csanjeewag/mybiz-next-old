@@ -1,5 +1,6 @@
 var models = require('../model/shop');
 var items = require('./../model/item');
+var order = require('./../model/order');
 var imagefile = require('./../fileupload');
 var mongoose = require('mongoose');
 var exports = module.exports = {};
@@ -301,8 +302,24 @@ exports.viewshopanditems = function(req,res) {
                 return  res.status(400).json(error);
             }
             else{
+                //update items
+                var itembody ={
+                    'shop.$.shopName':body.shopName,
+                    'shop.$.district':body.district,
+                    'shop.$.town':body.town,
+                    'shop.$.shopurl':body.urlname};
+         
+
+                items.updateMany({'shop.shopid':body._id},{$set:itembody,categery:body.categery},function(error,dataitem){
+                    if(dataitem.nModified>0){
+                        order.deleteMany({shopid:body._id},function (err){})
+                    }
+                });
+                
+
                 return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
-        
+
+              
             }
 
         })

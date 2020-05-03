@@ -225,10 +225,10 @@ class Index extends Component {
         
             var jsonbody = this.state;
            // jsonbody.files = null;
-           // jsonbody.defaultfilepath = null;
-            data.append('jsonbody', JSON.stringify(jsonbody));
+           // jsonbody.defaultfilepath = null;           
             var urlname = this.state.categery+'-'+this.state.shopName+'-in-'+this.state.town;
             jsonbody.urlname = urlname.split(" ").join("-");
+            data.append('jsonbody', JSON.stringify(jsonbody));
            // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     

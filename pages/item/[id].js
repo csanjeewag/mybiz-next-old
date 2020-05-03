@@ -115,7 +115,7 @@ const Contentside=(props)=>{
                 </div></div>
                 <hr/>
           
-                <Link href={myshopmUrl+props.item.shop[0].shopid}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> {props.item.shop[0].shopName}&nbsp;in&nbsp;{props.item.shop[0].town} </a></Link>
+                <Link href={myshopmUrl+props.item.shop[0].shopurl}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE1"><img src="https://img.icons8.com/ios/25/ffffff/online-shop.png"/> {props.item.shop[0].shopName}&nbsp;in&nbsp;{props.item.shop[0].town} </a></Link>
                 </div>
            
         </div>

@@ -271,6 +271,7 @@ exports.viewforfavorite = function(req,res) {
                 return  res.status(400).json(error);
             }
             else{
+
                return  data?res.status(200).json({status:200,msg:'updated.'}):res.status(201).json({status:201,msg:'sorry, you are not permitted to update.'}) ;
        
             }
