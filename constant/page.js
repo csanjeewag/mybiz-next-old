@@ -1,4 +1,6 @@
-
+export const mycart ={
+    ordermsg:'You can request an order to each shop after that they will contact you, first you should sign in. However we did not provide payment method yet, we wish to add them. We are sorry, we are not able to delivery to you till then.'
+}
 
 export const specialMsg = {
     filteremptymsg:'There are not items which you selected criteria, we are sorry for that, Thesedays sellers are adding items to onshop.lk. keep your mind come again.',

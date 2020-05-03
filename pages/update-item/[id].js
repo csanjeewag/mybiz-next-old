@@ -216,6 +216,10 @@ class Index extends Component {
             case ('itemname') : validation.itemname = 
             form.itemname.length < 5 ?  'There are should be atleast 5 charactors.':''
             break;
+            case ('itemlongname') : validation.itemlongname = 
+            form.itemlongname.length < 5 ?  'There are should be atleast 5 charactors.':
+            RegExp('[^A-Za-z0-9 ]').test(form.itemlongname)?'allow only english word only':''
+            break;
             case ('itemPrice') : validation.itemPrice = 
             form.itemPrice.length <1 ?  'itemPrice cannot be empty.':''
             break;

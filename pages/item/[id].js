@@ -381,14 +381,14 @@ class Index extends Component {
             if(!data.includes(itemid))
             {jsonarray = [...data,itemid]
             Cookie.set('faverite-item',jsonarray);
-            alert(`add ${name} to cart.`)
+            alert(`add ${name} to cart, you can change count, go to my-cart.`)
             }else{
             alert(`already added ${name} to cart.`) 
             }
         }else{
             jsonarray = [itemid]
             Cookie.set('faverite-item',jsonarray);
-            alert(`add ${name} to cart.`)
+            alert(`add ${name} to cart. you can change count, go to my-cart.`)
         }
     
      

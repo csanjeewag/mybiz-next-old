@@ -285,7 +285,7 @@ const CartList=(props)=>{
             </tr>
           </thead>
           <tbody className="projects">
-        
+        {props.items.length==0?<h5 className="text-danger">Add new items to your shop or business</h5>:null}
         {props.items.map((x,i)=>
             <tr key={i}>
             <th>

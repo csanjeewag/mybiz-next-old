@@ -27,9 +27,9 @@ class Index extends Component {
             content1:'',
             shoplocation:'',
             newitemSpecification:'',
-            itemSpecification:[{name:'material of product',value:'iron'},{name:'warrenty',value:'yes, 1 year'},{name:'customize',value:'yes we can'}],
+            itemSpecification:[{name:'material of product (remove this)',value:'iron'},{name:'warrenty (remove this)',value:'yes, 1 year'},{name:'customize (remove this)',value:'yes we can'}],
             newstockdetail:'',
-            stockDetail:[{name:'stock amount',value:'50'},{name:'colors',value:'red, green, blue'},{name:'accessories',value:'yes all'}],
+            stockDetail:[{name:'stock amount(remove this)',value:'50'},{name:'colors(remove this)',value:'red, green, blue'},{name:'accessories(remove this)',value:'yes all'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -212,6 +212,10 @@ class Index extends Component {
         switch(name){
             case ('itemname') : validation.itemname = 
             form.itemname.length < 5 ?  'There are should be atleast 5 charactors.':''
+            break;
+            case ('itemlongname') : validation.itemlongname = 
+            form.itemlongname.length < 5 ?  'There are should be atleast 5 charactors.':
+            RegExp('[^A-Za-z0-9 ]').test(form.itemlongname)?'allow only english word only':''
             break;
             case ('itemPrice') : validation.itemPrice = 
             form.itemPrice.length <1 ?  'itemPrice cannot be empty.':''

@@ -5,7 +5,7 @@ import Cookie from "js-cookie";
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import {Url,ImageUrl,itemUrl,cartitemMSG,cartUserNotlogin,cartUserdetails,myshopmUrl} from './../constant/main';
-
+import {mycart} from './../constant/page';
 
 const CartList=(props)=>{
 
@@ -46,8 +46,8 @@ const CartList=(props)=>{
         <div className="meta font6 subtopicColor">
             <a>{c.categery} - {c.subcategery}</a>
             <div className=" float-right"> 
-            <a className="Icutprise font6"> <strike>Rs.{c.itemPrice}.00</strike>  </a> 
-            <a className="Idiscount font6"> {c.itemdiscount}% </a>
+            <a className="Icutprise font6"> {c.itemdiscount>0?<strike>Rs.{c.itemPrice}.00</strike>:null}  </a> 
+            <a className="Idiscount font6"> {c.itemdiscount>0?c.itemdiscount+'%':''} </a>
             <a className="Iprise font6">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</a>
             </div>
         </div>
@@ -301,7 +301,7 @@ const OrderSide=(props)=>{
     <div className="col-xs-12">
       <div className="table-responsive">
         <table summary="This table shows how to create responsive tables using Bootstrap's default functionality" className="table table-bordered table-hover">
-          <caption className="text-center">An example of a responsive table based on </caption>
+          <caption className="text-center">{mycart.ordermsg} </caption>
           <thead >
             <tr className=" fontcolorOrange">
               <th>Item Name</th>
@@ -318,7 +318,7 @@ const OrderSide=(props)=>{
                   <tr key={i}  className="subtopicColor">
                   <td>{c.itemlongname}</td>
                   <td>{c.categery}-{c.subcategery}</td>
-                  <td>{c.itemdiscount}%</td>
+                  <td>{c.itemdiscount>0?c.itemdiscount+'%':'no'}</td>
                   <td> <strike>Rs.{c.itemPrice}</strike> Rs.{c.itemPrice*(100-c.itemdiscount)/100}</td>
                   <td>{c.qty?c.qty:0}</td>
                   <td className="fontcolorpink">Rs.{(c.itemPrice*(100-c.itemdiscount)/100)*(c.qty?c.qty:0)}</td>
@@ -563,6 +563,11 @@ class Index extends Component {
     handleSubmit = evt => {
         evt.preventDefault();
 
+        if(!Cookie.getJSON('user')){
+            alert('you are not sign in, please sign in.');
+           // this.props.signinuser
+        }
+        else{
         var items = this.state.items.filter(e=>e.qty>0);
         var user  = Cookie.getJSON('user');
         user.contact = this.state.user.contact;
@@ -583,7 +588,7 @@ class Index extends Component {
             .then(response => { return response.json(); } )
             .then(data => { if(data!=undefined){alert(data.msg); Router.reload()} })
             .catch(error => console.log(error))
-
+            }
     
     };
 

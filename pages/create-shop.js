@@ -6,7 +6,7 @@ import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,myshopmUrl,web,WebUrl} from './../constant/main';
+import {Url,web,WebUrl,myProfileUrl} from './../constant/main';
 import {createShop} from './../constant/page';
 import Router from 'next/router';
 class Index extends Component {
@@ -26,7 +26,7 @@ class Index extends Component {
             content1:'',
             content2:'',
             newshopdetail:'',
-            shopDetail:[{name:'warranty',value:'yes, all items'},{name:'wedding photography',value:'yes'},{name:'event photography',value:'only parties'},{name:'rent cameras',value:'no'}],
+            shopDetail:[{name:'warranty(remove this)',value:'yes, all items(exaple answer)'},{name:'wedding photography(remove this)',value:'yes'},{name:'event photography(remove this)',value:'only parties(remove this)'},{name:'rent cameras(remove this)',value:'no'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -151,8 +151,8 @@ class Index extends Component {
         var validation = this.state.validation;
         switch(name){
             case ('shopName') : validation.shopName = 
-            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.'
-            :''
+            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.':
+            RegExp('[^A-Za-z0-9 ]').test(form.shopName)?'allow only english word only':''
             break;
             case ('district') : validation.district = 
             form.district.length <2 ?  'District cannot be empty.':''
@@ -167,7 +167,8 @@ class Index extends Component {
             form.categery.length <2 ?  'Categery should be select.':''
             break;
             case ('contact1') : validation.contact1 = 
-            form.contact1.length !=10 ?  'There should be 10 characters.':''
+            form.contact1.length !=10 ?  'wrong contact number':
+            RegExp('[^0-9]').test(form.contact1)?'wrong format try again':''
             break;
             case ('content1') : validation.content1 = 
             form.content1.length <100 ?  'There should be atleast 100 characters.':''
@@ -234,7 +235,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {alert(data.msg); if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);}$('button').attr("disabled", false); $('.load').hide();})
+            .then(data => {alert(data.msg); if(data.status==200){Router.push(myProfileUrl+'?id='+Cookie.getJSON('user')._id);}$('button').attr("disabled", false); $('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -359,15 +360,15 @@ class Index extends Component {
                     <form className="form">
 
                     <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Business Details</h3>
                         <div className="row">
                             <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">Shop Name<span className="req">*</span></label>
+                                <label  className="font2 labelf1">Shop/Business Name<span className="req">*</span></label>
                                 <input  className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.shopName}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
+                                <label  className="font2 labelf1">Category Name<span className="req">*</span></label>
                                 <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option value="d">Default select</option>
                                     {this.props.error?null:this.props.type.map((x,i)=>
@@ -471,11 +472,11 @@ class Index extends Component {
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required  name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <input type="text" className='font6 inputf1 '  required  name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform} placeholder="add new point details" />       
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newshopdetail" onClick={this.addnewShopDetails} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field as your details of shop</span>
+                        <span>If you need add more field as your point details of shop</span>
                         </div>
                         <div className="row">
                         {this.state.shopDetail.map((x,i)=>(

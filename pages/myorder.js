@@ -149,6 +149,9 @@ class Index extends Component {
       }
 
       userMassage(id,state){
+        if(!Cookie.getJSON('user')){
+          this.refs.navbar.showsignup();
+        }{
         var send = prompt("enter your message.", "");
         if(send!=null){
         const data = new FormData();
@@ -169,6 +172,7 @@ class Index extends Component {
         .catch(error => console.log(error))
       }
     }
+    }
 
       componentDidMount(){
         var user = Cookie.getJSON('user');
@@ -180,6 +184,9 @@ class Index extends Component {
        
 
     }
+    signinuser(){
+      this.refs.navbar.showsignup();
+  }
     
     render() { 
       
@@ -199,9 +206,9 @@ class Index extends Component {
                 <meta name="keywords" content={web.webKeyword}></meta>
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
-                 <SubNavBar sidenavconst={sidenavconst}/> 
+                 <SubNavBar ref="navbar" sidenavconst={sidenavconst}/> 
 
-                <Cartitem  topic="My favorites"></Cartitem>
+                <Cartitem signinuser={this.signinuser.bind(this)}  topic="My favorites"></Cartitem>
                 <OrderTable  orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} userMassage={(id,state)=>this.userMassage(id,state)} />
             <Footer/>
                    </Layout>

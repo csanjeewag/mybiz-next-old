@@ -100,7 +100,7 @@ exports.viewall = function(req,res) {
             }
             else{
                 //console.log(data)
-            return  res.status(200).json({...data, status:200, token:body.token,msg:'new shop added, thank you!'});
+            return  res.status(200).json({...data, status:200, token:body.token,msg:'Your business added to onshop.lk, then add new items to your business!'});
             }
             
           });

@@ -29,7 +29,7 @@ const NavBar=(props)=>{
                 }
                 <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in/out</a>
                
-                <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1 "  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 
                 <a  className="nav-link nav-link-main active font1 pointer fontsizeE-9 search-icon" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
                
@@ -139,7 +139,7 @@ const MobileNavBar=(props)=>{
                 <Link key={i} href={x.url}><a className="nav-link  active font1 fontsizeE-9 pointer" onClick={show} >{x.urlname}</a></Link>
                 )}
                
-                <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1 isuserlogin"  ><img onClick={show} src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1" onClick={show} >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this) } >sign-in/out</a>
                 {props.state.isuserlogin&&props.state.user.isseller?
              <Link  href={`${myProfileUrl}?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin" onClick={show} >my-shops</a></Link>

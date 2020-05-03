@@ -161,8 +161,8 @@ class Index extends Component {
         var validation = this.state.validation;
         switch(name){
             case ('shopName') : validation.shopName = 
-            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.'
-            :''
+            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.':
+            RegExp('[^A-Za-z0-9 ]').test(form.shopName)?'allow only english word only':''
             break;
             case ('district') : validation.district = 
             form.district.length <1 ?  'District cannot be empty.':''
