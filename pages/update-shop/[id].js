@@ -128,8 +128,7 @@ class Index extends Component {
                 shopDetail : shopd,
                 newshopdetail : ''
             })
-            alert(' added new details!');
-            this.componentDidMount();
+            alert(' added '+this.state.newshopdetail+', now add value for that.');
         }
      
     }
@@ -180,7 +179,7 @@ class Index extends Component {
             form.contact1.length !=10 ?  'There should be 10 characters.':''
             break;
             case ('content1') : validation.content1 = 
-            form.content1.length <100 ?  'There should be atleast 100 characters.':''
+            form.content1.length <50 ?  'There should be atleast 50 characters.':''
             break;
 
         }

@@ -189,15 +189,16 @@ render(){
             <hr/>
             <h2 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign up</h2>
             <form>
-
+            {this.state.isseller?
             <div className="form-group">
                 <label  className="font1 fontsizeE-9">address</label>
                 <input type="email" className="form-control fontsizeE-9" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
-            </div>
+            </div>:null}
+            {this.state.isseller?
             <div className="form-group">
                 <label  className="font1 fontsizeE-9">Contact *</label>
                 <input type="email" className="form-control fontsizeE-9" id="exampleInputAddress" placeholder="Enter Contact *" name="contact" value={this.state.contact} onChange={this.handleChange}/>
-            </div>
+            </div>:null}
             <div className="form-check">
                 <input type="checkbox" className="form-check-input" name="isseller" value={this.state.isseller} onChange={this.handleChange} />
                 <label className="form-check-label"  className="font1 fontsizeE-9">Sign up as Seller</label>

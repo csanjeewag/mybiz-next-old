@@ -26,7 +26,7 @@ class Index extends Component {
             content1:'',
             content2:'',
             newshopdetail:'',
-            shopDetail:[{name:'warranty(remove this)',value:'yes, all items(exaple answer)'},{name:'wedding photography(remove this)',value:'yes'},{name:'event photography(remove this)',value:'only parties(remove this)'},{name:'rent cameras(remove this)',value:'no'}],
+            shopDetail:[{name:'warranty(remove this)',value:'yes, all items(exaple answer)'},{name:'c(remove this)',value:'yes'},{name:'event photography(remove this)',value:'only parties(remove this)'},{name:'rent cameras(remove this)',value:'no'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -44,7 +44,9 @@ class Index extends Component {
         };
     }
     componentDidMount(){
-       
+       if(!Cookie.getJSON('user')){
+        this.signinuser();
+       }
         $(document).ready(function() {
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
@@ -118,8 +120,8 @@ class Index extends Component {
                 shopDetail : shopd,
                 newshopdetail : ''
             })
-            alert(' added new details!');
-            this.componentDidMount();
+            
+         
         }
      
     }
@@ -137,7 +139,7 @@ class Index extends Component {
        this.setState({
         shopDetail : shopd,
     })
-    this.componentDidMount();
+    
     }
 
     }
@@ -171,7 +173,7 @@ class Index extends Component {
             RegExp('[^0-9]').test(form.contact1)?'wrong format try again':''
             break;
             case ('content1') : validation.content1 = 
-            form.content1.length <100 ?  'There should be atleast 100 characters.':''
+            form.content1.length <50 ?  'There should be atleast 50 characters.':''
             break;
            
 
@@ -304,6 +306,11 @@ class Index extends Component {
          }
      
 
+    }
+    removeallsetails=()=>{
+        this.setState({
+            shopDetail:[]
+        })
     }
     
     //select town 
@@ -465,7 +472,7 @@ class Index extends Component {
                          {/* shop details */}
                         <hr></hr>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Business other details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Business point details</h3>
                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createShop.shopdetailMsg}
                         </div>
@@ -476,8 +483,16 @@ class Index extends Component {
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newshopdetail" onClick={this.addnewShopDetails} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field as your point details of shop</span>
+                        <span>Here are exaple for point details.</span>
                         </div>
+                        <div className="row">
+                           {this.state.shopDetail?this.state.shopDetail.map((x,i)=>
+                            <div className="col-lg-6 col-sm-12" key={i}>
+                            <a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+                            </div>
+                            ):null}
+                        </div>
+                        <button type="button" className="font6  btn btn-danger " onClick={this.removeallsetails} > clear point details </button>
                         <div className="row">
                         {this.state.shopDetail.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
