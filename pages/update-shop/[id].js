@@ -128,7 +128,8 @@ class Index extends Component {
                 shopDetail : shopd,
                 newshopdetail : ''
             })
-            alert(' added '+this.state.newshopdetail+', now add value for that.');
+            //alert(' added '+this.state.newshopdetail+', now add value for that.');
+            this.componentDidMount();
         }
      
     }

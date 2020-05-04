@@ -130,7 +130,7 @@ class Index extends Component {
                 itemSpecification : shopd,
                 newitemSpecification : ''
             })
-            alert(' added new details!');
+            //alert(' added new details!');
             this.componentDidMount();
         }
      
