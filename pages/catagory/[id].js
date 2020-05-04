@@ -5,7 +5,7 @@ import Categeryitem from '../../components/Categeryitem';
 import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
-import {Url,ImageUrl,wesitename,WebUrl, web} from './../../constant/main';
+import {Url,ImageUrl,wesitename,WebUrl, web,websiteUrl,categoryUrl} from './../../constant/main';
 import {specialMsg} from './../../constant/page';
 import Errorpage from './../../layouts/error';
 
@@ -40,7 +40,7 @@ class Index extends Component {
             <div>
                 <Head>
                 <title> {wesitename+' '+this.props.itemname}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+categoryUrl+this.props.itemname} />
                 <meta property="og:type"          content={web.webtypeA}/>
                 <meta property="og:title"         content={wesitename+', online shop in sri lanka. '+this.props.itemname} />
                 <meta property="og:description"   content={this.props.catagery[0].content1} />

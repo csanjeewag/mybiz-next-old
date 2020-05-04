@@ -6,7 +6,7 @@ import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,web,WebUrl,myProfileUrl} from './../constant/main';
+import {Url,web,WebUrl,myProfileUrl,websiteUrl,createshopUrl} from './../constant/main';
 import {createShop} from './../constant/page';
 import Router from 'next/router';
 class Index extends Component {
@@ -342,7 +342,7 @@ class Index extends Component {
 
                 <Head>
                 <title> {web.wetopic}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+createshopUrl} />
                 <meta property="og:type"          content={web.webtypeW} />
                 <meta property="og:title"         content={web.webtopicCreateshop} />
                 <meta property="og:description"   content={web.webCreateshop} />

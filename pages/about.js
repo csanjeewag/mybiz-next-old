@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Layout from './../layouts/MainLayout';
 import SubNavBar from './../layouts/SubNavbar';
 import Footer from './../components/Footer';
-import {WebUrl,web,createshopUrl,policiesUrl,helpUrl} from './../constant/main';
+import {WebUrl,web,createshopUrl,policiesUrl,helpUrl,websiteUrl,aboutusUrl} from './../constant/main';
 import {about} from './../constant/page';
 
 const About = ()=>{
@@ -198,7 +198,7 @@ class Index extends Component {
 
                 <Head>
                 <title> {web.wetopic}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+aboutusUrl} />
                 <meta property="og:type"          content="article" />
                 <meta property="og:title"         content={web.wetopic} />
                 <meta property="og:description"   content={web.webContent} />

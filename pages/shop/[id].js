@@ -6,7 +6,7 @@ import Profile from './../../components/CompanyProfile';
 import SubNavBar from './../../layouts/SubNavbar';
 import Footer from './../../components/Footer';
 import Errorpage from './../../layouts/error';
-import  {Url,ImageUrl,WebUrl,wesitename, web} from './../../constant/main';
+import  {Url,ImageUrl,WebUrl,wesitename, web,websiteUrl,myshopmUrl} from './../../constant/main';
 class Index extends Component {
 
 
@@ -27,7 +27,7 @@ class Index extends Component {
 
                   <Head>
                 <title> {wesitename+' '+this.props.shopanditems.shop.shopName+' '+this.props.shopanditems.shop.shopName+' '+this.props.shopanditems.shop.town}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+myshopmUrl+this.props.pathname} />
                 <meta property="og:type"          content={web.webtypeA} />
                 <meta property="og:title"         content={wesitename+', online shop in sri lanka. '+this.props.shopanditems.shop.shopName+' in '+this.props.shopanditems.shop.town} />
                 <meta property="og:description"   content={this.props.shopanditems.shop.content1} />
@@ -50,6 +50,7 @@ class Index extends Component {
  
 Index.getInitialProps = async function(context) {
     const { id,ide } = context.query;
+    var pathname = id+(ide?'?ide='+ide:'');
     const res = await fetch(`${Url}shopanditems/${id}?ide=${ide}`);
  
      var  shopanditems = await res.json();
@@ -59,7 +60,7 @@ Index.getInitialProps = async function(context) {
       error = true ;
     }
 
-    return {shopanditems,error}
+    return {pathname,shopanditems,error}
 
 
   }

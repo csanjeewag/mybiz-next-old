@@ -5,10 +5,11 @@ import AllShops from '../../components/Allshops';
 import SubNavBar from './../../layouts/SubNavbar';
 import Slide from  './../../components/Slide1';
 import Footer from './../../components/Footer';
-import {Url,wesitename,WebUrl,web} from './../../constant/main';
+import {Url,wesitename,WebUrl,web,shopmUrl,websiteUrl} from './../../constant/main';
 import Link from 'next/link';
 import Errorpage from './../../layouts/error';
 import $ from 'jquery';
+import Router from 'next/router';
 
 class Index extends Component {
 
@@ -76,7 +77,7 @@ class Index extends Component {
 
                 <Head>
                 <title> {wesitename+', All shop in '+this.props.district+', sri lanka'}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+shopmUrl+this.props.district} />
                 <meta property="og:type"          content={web.webtypeA} />
                 <meta property="og:title"         content={wesitename+', All shop '+this.props.district+', in  sri lanka. '+web.webcategories} />
                 <meta property="og:description"   content={web.webContent} />

@@ -5,7 +5,7 @@ import Cartitem from '../components/Cartitem';
 import SubNavBar from '../layouts/SubNavbar';
 import Footer from '../components/Footer';
 import Cookie from "js-cookie";
-import {Url,ImageUrl,web,WebUrl} from './../constant/main';
+import {Url,ImageUrl,web,WebUrl,websiteUrl,myoderUrl} from './../constant/main';
 
 const OrderTable=(props)=>{
 
@@ -197,7 +197,7 @@ class Index extends Component {
             <Layout>
                     <Head>
                 <title> {web.wetopic}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+myoderUrl} />
                 <meta property="og:type"          content={web.webtypeW} />
                 <meta property="og:title"         content={web.wetopic} />
                 <meta property="og:description"   content={web.webContent} />

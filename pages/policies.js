@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import SubNavBar from './../layouts/SubNavbar';
 import Footer from './../components/Footer';
-import {Url,web,WebUrl} from './../constant/main';
+import {Url,web,WebUrl,websiteUrl,policiesUrl} from './../constant/main';
 import {policies} from './../constant/page';
 
 class Index extends Component {
@@ -18,7 +18,7 @@ class Index extends Component {
            <Layout>
                    <Head>
                 <title> {web.wetopic}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+policiesUrl} />
                 <meta property="og:type"          content="article" />
                 <meta property="og:title"         content={web.wetopic} />
                 <meta property="og:description"   content={web.webContent} />

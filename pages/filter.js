@@ -7,7 +7,7 @@ import TopSlide from '../components/Topslide';
 import FilterItem from './../layouts/filterItem';
 import Footer from './../components/Footer';
 import Categeryitem from '../components/Categeryitem';
-import {Url,web,WebUrl} from './../constant/main';
+import {Url,web,WebUrl,websiteUrl, wesitename,filteritemUrl} from './../constant/main';
 import {specialMsg} from './../constant/page';
 import fetch from 'isomorphic-unfetch';
 
@@ -41,7 +41,7 @@ class Index extends Component {
                 <SubNavBar ref="navbar" sidenavconst={sidenavconst} searchitem={this.props.searchitem}/>
                 <Head>
                 <title> {web.wetopic}</title>
-                <meta property="og:url"           content={WebUrl} />
+                <meta property="og:url"           content={websiteUrl+filteritemUrl+this.props.searchurl} />
                 <meta property="og:type"          content={web.webtypeW} />
                 <meta property="og:title"         content={web.wetopic} />
                 <meta property="og:description"   content={web.webContent +' '+web.webcategories} />
@@ -71,18 +71,18 @@ Index.getInitialProps = async function(context) {
     var searchitem = {category:category,subcategory:subcategory,upperprice:upperprice,
         lowerprice:lowerprice,district:district,town:town,search:search };
 
-    var url = ` ${Url}itemfilter?${search?'search='+search:'search='}`+
+    var searchurl = `?${search?'search='+search:'search='}`+
                 `${category?'&category='+category:''}${subcategory?'&subcategory='+subcategory:''}`+
                 `${district?'&district='+district:''}${town?'&town='+town:''}`+
                 `${lowerprice?'&lowerprice='+lowerprice:''}${upperprice?'&upperprice='+upperprice:''}`;
 
-    const res = await fetch(url);
+    const res = await fetch(Url+'itemfilter'+searchurl);
     var  items = await res.json();
     var error = false;
     if(res.status!=200){
         error = true ;
    }
-    return {items,error,searchitem}
+    return {items,error,searchitem,searchurl}
 
 
   }

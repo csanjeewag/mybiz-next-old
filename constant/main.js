@@ -1,6 +1,8 @@
+//const WEBURL = 'http://localhost:8000';
+const WEBURL = 'https://onshop.lk';
 
-const WesSite = 'https://onshop.lk/';
-//const WesSite = 'http://localhost:8000/';
+const WesSite = WEBURL+'/';
+export const websiteUrl = WEBURL;
 export const wesitename = 'onShop';
 export const WebUrl=  WesSite;
 export const Url=  WesSite+'api/';

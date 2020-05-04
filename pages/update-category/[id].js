@@ -121,7 +121,7 @@ class Index extends Component {
             })
             
         }
-     
+     this.componentDidMount();
     }
     deleteDetals = type =>{
 
