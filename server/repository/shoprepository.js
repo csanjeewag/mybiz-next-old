@@ -1,5 +1,6 @@
 var models = require('../model/shop');
 var items = require('./../model/item');
+var user = require('./../model/user');
 var order = require('./../model/order');
 var imagefile = require('./../fileupload');
 var mongoose = require('mongoose');
@@ -343,3 +344,42 @@ exports.viewshopanditems = function(req,res) {
     })
 
    }
+
+   //admincreate new
+  exports.admincreate = function(req,res){
+
+    let body=  JSON.parse(req.body.jsonbody);
+    user.findOne({email:body.ademail},function(err,user){
+        if(err){
+            var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
+            return  res.status(400).json(error);
+        }
+        else{
+            var image_url = [];
+            if(req.files){
+        
+                 image_url = imagefile.imageuploads(req.files);
+        
+            }    
+                var bodydata = new models(body);
+               
+                bodydata.user = {_id:''+user._id.toString(),name:user.name,email:user.email,imageUrl:user.imageUrl};
+                bodydata.images = image_url;
+                bodydata.createDate = Date.now();
+                bodydata.isvalid = true;
+                bodydata.isvalidA = true;
+                bodydata.save(function(err,data) {
+                    if (err){
+                        var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
+                        return  res.status(400).json(error);
+                    }
+                    else{
+                        //console.log(data)
+                    return  res.status(200).json({...data, status:200, token:body.token,msg:'Your business added to onshop.lk, then add new items to your business!'});
+                    }
+                    
+                  });
+        }
+    })
+        
+  }

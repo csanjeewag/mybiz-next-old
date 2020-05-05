@@ -124,8 +124,8 @@ class Index extends Component {
                :null
                 }
                 <Link href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1"  onClick={this.show}  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
-                <Link  href='?sign=true'><a className="nav-link nav-link-main active font1" onClick={this.showsignup.bind(this) }  >sign-in/out</a></Link>
-                
+                <Link  href='?sign=true'><a className="nav-link nav-link-main active font1 isnotuserlogin" onClick={this.showsignup.bind(this) }  >log-in</a></Link>
+                <Link  href='?sign=false'><a className="nav-link nav-link-main active font1 isuserlogin" onClick={Cookie.remove('user') }  >log-out</a></Link>
                     
                      </div>
             

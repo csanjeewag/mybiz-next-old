@@ -51,8 +51,10 @@ class Layout extends Component {
     })
     if(Cookie.get('user')){
         $('.isuserlogin').show();
+        $('.isnotuserlogin').hide();
     }else{
         $('.isuserlogin').hide();
+        $('.isnotuserlogin').show();
     }
    
   }

@@ -264,6 +264,19 @@ server.get("/api/location/id", (req, res) => {
     
   });
 
+    //admin create new shop
+    server.post("/api/admincreateshop", (req, res) => {
+
+      if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
+        shopRepository.admincreate(req,res);
+      }
+      else{
+        return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      }
+      
+      
+    });
+
     //update shop
     server.put("/api/updateshop/:id", (req, res) => {
 
@@ -375,7 +388,18 @@ server.get("/api/itembyid/:id", (req, res) => {
     
     
   });
+  //admin create item
+  server.post("/api/admincreateitem", (req, res) => {
 
+    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
+      itemsRepository.admincreate(req,res);
+    }
+    else{
+      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+    }
+    
+    
+  });
       //update item
       server.put("/api/updateitem/:id", (req, res) => {
 

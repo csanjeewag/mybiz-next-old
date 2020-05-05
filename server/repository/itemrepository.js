@@ -1,5 +1,6 @@
 var models = require('../model/item');
 var shop = require('../model/shop');
+var user = require('./../model/user');
 var imagefile = require('./../fileupload');
 var exports = module.exports = {};
 
@@ -296,3 +297,48 @@ exports.viewforfavorite = function(req,res) {
    })
 
   }
+
+  exports.admincreate = function(req,res){
+
+    let body=  JSON.parse(req.body.jsonbody);
+    user.findOne({email:body.ademail},function(err,user){
+        if(err){
+            var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
+            return  res.status(400).json(error);
+        }else{
+
+            //if valid
+                    var image_url = [];
+            if(req.files){
+        
+                 image_url = imagefile.imageuploads(req.files);
+        
+            }
+        
+            let body=  JSON.parse(req.body.jsonbody);
+                var bodydata = new models(body);
+                bodydata.images = image_url;
+                bodydata.shop = {...JSON.parse(req.body.shop)};
+                bodydata.shopid = JSON.parse(req.body.shop).shopid;
+                bodydata.user = {_id:''+user._id.toString(),name:user.name,email:user.email,imageUrl:user.imageUrl};
+                bodydata.createDate = Date.now();
+                bodydata.isvalid = true;
+                bodydata.isvalidA = true;
+                bodydata.sIndex = 100,
+                bodydata.mIndex = 10000,
+                bodydata.save(function(err,data) {
+                    if (err){
+                      
+                        return  res.status(400).json({msg:'new items create in fails.',status:400});
+                    }
+                    else{
+                    
+                    return  res.status(200).json({...data, status:200, token:body.token,msg:'item create in success.'});
+                    }
+                    
+                  });
+                }
+            })
+ 
+    
+   }

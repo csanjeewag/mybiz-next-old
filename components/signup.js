@@ -116,7 +116,7 @@ class Index extends Component {
   //  evt.preventDefault();
     const datas = new FormData();
    // datas.append('file', this.state.selectedFile);
-   if(this.state.email.length>2){
+   if(this.state.email&&this.state.email.length>2){
     datas.append('jsonbody', JSON.stringify(this.state));
     fetch('/api/createuser', {
      method: 'POST',
@@ -163,8 +163,8 @@ class Index extends Component {
   signupwithfb=(res)=>{
     this.setState({
         name:res.name,
-        email:res.email,
-        imageUrl:res.picture.data.url,
+        email:res.email?res.email:res.userID,
+        imageUrl:res.picture?res.picture.data.url:'',
         googleId:res.userID,
         givenName:res.name,
         token:res.accessToken
@@ -186,12 +186,11 @@ class Index extends Component {
 
   }
 
-   responseFacebook = (res) => {
-       console.log(res)
+  signwithfb = (res) => {
     this.setState({
         name:res.name,
-        email:res.email,
-        imageUrl:res.picture.data.url,
+        email:res.email?res.email:res.userID,
+        imageUrl:res.picture?res.picture.data.url:'',
         googleId:res.userID,
         givenName:res.name,
         token:res.accessToken
@@ -210,7 +209,7 @@ class Index extends Component {
        
        )
        .then(response => {return response.json(); } )
-       .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data); }})
+       .then(data => { alert(data.msg+' in facebook'); if(data.status==200){Cookie.set('user',data); }})
        .catch(error => console.log(error))
   }
 
@@ -240,9 +239,8 @@ render(){
                     <div className="facebook-btn col-lg-6 col-sm-12">
                     <FacebookLogin
                     appId="639750616597961"
-                    autoLoad={true}
                     fields="name,email,picture"
-                    callback={this.responseFacebook}
+                    callback={this.signwithfb}
                     cssClass="btn text text-light fontsizeE-9"
                     textButton=" login with facebook"
                     icon="fa-facebook"

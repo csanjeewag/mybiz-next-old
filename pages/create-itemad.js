@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import Router from 'next/router';
 import Head from 'next/head';
-import Layout from './../../layouts/MainLayout';
-import SubNavBar from './../../layouts/SubNavbar';
-import Footer from './../../components/Footer';
+import Layout from './../layouts/MainLayout';
+import SubNavBar from './../layouts/SubNavbar';
+import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,ImageUrl,itemUrl,web,WebUrl,wesitename} from './../../constant/main';
-import Errorpage from './../../layouts/error';
+import {Url,itemUrl,web} from './../constant/main';
+import {createItem} from './../constant/page';
+import Router from 'next/router';
+
 class Index extends Component {
 
     constructor() {
         super();
         this.state = {
+            ademail:'',
+            adkey:'',
+            shopid:'',
+            shopname:'',
             urlname:'',
             itemname: '',
             itemlongname: '',
@@ -22,12 +27,11 @@ class Index extends Component {
             itemPrice:'',
             itemdiscount:'',
             content1:'',
-            images:[],
-            deleteimages:[],
+            shoplocation:'',
             newitemSpecification:'',
-            itemSpecification:[{name:'cash on delivery',value:''}],
+            itemSpecification:[{name:'material of product (remove this)',value:'iron'},{name:'warrenty (remove this)',value:'yes, 1 year'},{name:'customize (remove this)',value:'yes we can'}],
             newstockdetail:'',
-            stockDetail:[{name:' on delivery',value:''}],
+            stockDetail:[{name:'stock amount(remove this)',value:'50'},{name:'colors(remove this)',value:'red, green, blue'},{name:'accessories(remove this)',value:'yes all'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -45,16 +49,11 @@ class Index extends Component {
         };
     }
     componentDidMount(){
-        if(this.props.item){
-            var item = this.props.item;
-            item.user = null;
-            this.setState({
-                ...item
-            })
-        }
-        
+        this.setState({
+            shoplocation : this.props.shoplocation,
+            shopid : this.props.shopid
+        })
         $(document).ready(function() {
-       
             $('.form').find('.inputf1').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
@@ -130,7 +129,7 @@ class Index extends Component {
                 itemSpecification : shopd,
                 newitemSpecification : ''
             })
-            alert(' added new details!');
+         
             this.componentDidMount();
         }
      
@@ -177,7 +176,7 @@ class Index extends Component {
                 stockDetail : shopd,
                 newstockdetail : ''
             })
-            alert(' added new stock details!');
+          
             this.componentDidMount();
         }
      
@@ -216,6 +215,10 @@ class Index extends Component {
             case ('itemname') : validation.itemname = 
             form.itemname.length < 5 ?  'There are should be atleast 5 charactors.':''
             break;
+            case ('itemlongname') : validation.itemlongname = 
+            form.itemlongname.length < 5 ?  'There are should be atleast 5 charactors.':
+            RegExp('[^A-Za-z0-9 ]').test(form.itemlongname)?'allow only english word only':''
+            break;
             case ('itemPrice') : validation.itemPrice = 
             form.itemPrice.length <1 ?  'itemPrice cannot be empty.':''
             break;
@@ -249,15 +252,22 @@ class Index extends Component {
           return count;
     }
     handleSubmit = evt => {
+
         evt.preventDefault();
        //check validations
         if(this.beforesubmit()>0)
         {
             alert('Sorry, cannot Submit form, check again form!.');
         }
+        else if (!Cookie.getJSON('user')){
+            alert('Sorry, you are not sign in.');
+        }
+        else if(this.state.files[0].selectedFile==null){
+            alert('Sorry, cannot Submit form, add atleast one image.');
+        }
         else{
             $('button').attr("disabled", true);
-            $('.load').slideDown(200);
+            $('.load').show();
             const data = new FormData();
             if(this.state.files!=undefined){
                 this.state.files.map((x,i)=>{
@@ -266,13 +276,15 @@ class Index extends Component {
             }
             
             var jsonbody = this.state;
-           // var urlname = this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
-           // jsonbody.urlname = urlname.split(" ").join("-");
+            var urlname = this.state.categery+'-'+this.state.subcategery+'-'+this.state.itemlongname+'-by-'+this.state.shoplocation.shopName+'-in-'+this.state.shoplocation.town;
+            jsonbody.urlname = urlname.split(" ").join("-");
             data.append('jsonbody', JSON.stringify(jsonbody));
+            data.append('shop', JSON.stringify({shopid:this.props.shopid,userid:Cookie.getJSON('user')._id,...this.state.shoplocation}));
+           // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
-            fetch('/api/adminupdateitem/'+this.props.itemid,{
-                method: 'PUT',
+            fetch('/api/admincreateitem',{
+                method: 'POST',
                 headers: {
                 },
                 body:data
@@ -280,7 +292,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+this.state.urlname) }else{alert(data.msg); $('.load').hide();}})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{alert(data.msg);}$('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -319,32 +331,6 @@ class Index extends Component {
 
      
     }
-    /**update remove image */
-    deleteImagesinDB = x =>{
-
-        var deleteimages = this.state.deleteimages;
-        if(!deleteimages.includes(x))
-        { deleteimages.push(x);
-            this.setState({
-                deleteimages:deleteimages
-            })
-        }
-      
-    }
-    addImagesinDB = x =>{
-        
-        var deleteimages = this.state.deleteimages;
-        if(deleteimages.includes(x))
-        { 
-            deleteimages.splice(deleteimages.findIndex(e=>e==x),1);
-            this.setState({
-                deleteimages:deleteimages
-            })
-        }
-
-    }
-
-    /**************** */
     deleteFiles = selectedfilepath =>{
 
         if(confirm('is it sure remove ?')){
@@ -399,34 +385,31 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
+                      <Head>
+                <title> {web.wetopic}</title>
+    
+                </Head>
                 <SubNavBar sidenavconst={sidenavconst}/>
-                {this.props.error?<Errorpage error={this.props.item} />:
+
             <div className="form-create-shop">
 
-                <Head>
-                <title> {web.wetopic}</title>
-                <meta property="og:url"           content={WebUrl} />
-                <meta property="og:type"          content="article" />
-                <meta property="og:title"         content={wesitename+','+web.wetopic} />
-                <meta property="og:description"   content={web.webContent} />
-                <meta property="og:image"         content={web.webImage}/>
-                
-                <meta name="keywords" content={web.webKeyword}></meta>
-                <meta name="description" content={web.webContent}></meta>
-                </Head>
-
-
                 <div className="container" >
-                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Update item</h1>
+                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Create new item</h1>
                     <form className="form">
 
                     <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item Details</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange"></h3>
                         <div className="row">
-                             <div className="field-wrap  col-lg-12 col-md-12 col-sm-12">
-                                <label  className="font2 labelf1">Url name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '} type="text" required  name="itemname" value={this.state.urlname} onChange={this.handleChange} onBlur={this.validationform}/>
-                                
+
+
+                            <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
+                                <label  className="font2 labelf1">Email/id<span className="req">*</span></label>
+                                <input  className={'font6 inputf1 '} type="text" required  name="ademail" value={this.state.ademail} onChange={this.handleChange}/>       
+                            </div>
+
+                             <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
+                                <label  className="font2 labelf1">key/pass<span className="req">*</span></label>
+                                <input  className={'font6 inputf1 '} type="password" required  name="adkey" value={this.state.adkey} onChange={this.handleChange}/>       
                             </div>
 
                             <div className="field-wrap  col-lg-4 col-md-4 col-sm-12">
@@ -439,13 +422,19 @@ class Index extends Component {
                                 <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemlongname}</span>
                             </div>
+
+                            <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.itemNameMsg}
+                        </div>
                             
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
                                 <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
                                 <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
-                                
-                                        <option value={this.state.categery}>{this.state.categery}</option>
-
+                                    <option key='1' value="d">Default select</option>
+                                    {this.props.error?null:
+                                        <option key='2' value={this.props.type.type}>{this.props.type.name}</option>
+                                    }
+                    
                                     </select>
                                 <span className="form-error">{this.state.validation.categery}</span>
                             </div>
@@ -453,11 +442,10 @@ class Index extends Component {
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
                                 <label  className="font2 labelf1">Sub Categery Name<span className="req">*</span></label>
                                 <select className={'font6 inputf1 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
-                                    {/*<option key='100' value="d">Default select</option>*/}
-                                    <option value={this.state.subcategery}>{this.state.subcategery}</option>
-                                    {/*this.props.error?null:this.props.type.subtype.map((x,i)=>
+                                    <option key='100' value="d">Default select</option>
+                                    {this.props.error?null:this.props.type.subtype.map((x,i)=>
                                         <option key={i} value={x.type}>{x.name}</option>
-                                    )*/}
+                                    )}
                                         
                                     </select>
                                 <span className="form-error">{this.state.validation.subcategery}</span>
@@ -473,11 +461,24 @@ class Index extends Component {
                                 <input className={'font6 inputf1 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="number" required  name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemdiscount}</span>
                             </div>
+
+                        <div className="row">
+                        <div  className=" alert alert-secondary pointer col-lg-5 col-10 mx-auto" role="alert">
+                        {createItem.subcategoryMsg}
+                        </div>
+                        <div  className=" alert alert-secondary pointer col-lg-5 col-10 mx-auto" role="alert">
+                        {createItem.priceMsg}
+                        </div>
+                        </div>
+
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 1<span className="req">*</span></label>
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
+                            <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.contentMsg}
+                        </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
                                 <label  className="font2 labelf1">content 2<span className="req">*</span></label>
                                 <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -486,10 +487,14 @@ class Index extends Component {
                            
                         </div>
 
+
                           {/* file upload */}
                             <hr/>
                           <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.imageMsg}
+                        </div>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
                           <div key={i} className=" field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -501,32 +506,15 @@ class Index extends Component {
                         </div>  
                         ))}
                         </div>
-                        {/* file remove */}
-                        <hr/>
-                          <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">what should be removed</h3>
-                        <div className=" row col-12">
-                        {this.state.images.map((x,i)=>(
-                          <div key={i} className={'field-wrap col-lg-4 col-md-4 col-sm-12'}>
-                          <div  className={this.state.deleteimages.includes(x)?'imageupload d-flex justify-content-center remove-image':'imageupload d-flex justify-content-center'}>
-
-                          {!this.state.deleteimages.includes(x)?
-                          <div className="popup-close-3" onClick={()=>this.deleteImagesinDB(x)}> remove</div>:
-                        <div className="popup-close-3" onClick={()=>this.addImagesinDB(x)}> add</div>
-                          }            
-
-                          <img className="align-self-center" width={x!=this.state.defaultfilepath?'100%':null} src={ImageUrl+x}/>
-                         </div>
-                        </div>  
-                        ))}
-                        </div>
     
-                        </div>
                         </div>
                          {/* item details */}
                         <hr></hr>
                         <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item spefication</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.itemdetailMsg}
+                        </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -534,7 +522,7 @@ class Index extends Component {
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newitemSpecification" onClick={this.addnewitemSpecifications} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field as your item details </span>
+                        <span>If you need add more field to your item details </span>
                         </div>
                         <div className="row">
                         {this.state.itemSpecification.map((x,i)=>(
@@ -552,6 +540,9 @@ class Index extends Component {
                                 <hr></hr>
                         <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">Stock Details</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createItem.stockdetailMsg}
+                        </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -559,7 +550,7 @@ class Index extends Component {
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newstockdetail" onClick={this.addnewstockDetails} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field stock details</span>
+                        <span>If you need add more field to stock details</span>
                         </div>
                         <div className="row">
                         {this.state.stockDetail.map((x,i)=>(
@@ -585,7 +576,6 @@ class Index extends Component {
                 </div>
 
             </div>
-                }
 
 <style jsx>
 {`
@@ -634,20 +624,6 @@ class Index extends Component {
 	position: absolute;
 
 }
-.popup-close-3{
-    color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #01567e;
-	cursor: pointer;
-	font-size: 0.6rem;
-	width: 5rem;
-	height: 1.5rem;
-	top: 2.1rem;
-	right: 1rem;
-	position: absolute;
-}
 .form-create-shop {
     background: #8b8b8ba8;
 }
@@ -672,15 +648,15 @@ class Index extends Component {
     transition: all 0.25s ease;
     -webkit-backface-visibility: hidden;
     pointer-events: none;
-    font-size: 18px;
+    font-size: 1.1em;
 }
 .labelf1 .req {
     margin: 2px;
     color: #01567e;
 }
 .labelf1.active {
-    left: 13px;
-    transform: translateY(10px);
+    left: 1em;
+    transform: translateY(0.5em);
     font-size: 1em;
 }
 .labelf1.active .req {
@@ -693,7 +669,7 @@ class Index extends Component {
     font-size: 1.1em;
     display: block;
     width: 100%;
-    padding: 5px 10px;
+    padding: 0.5em 0.7em;
     background: #c2d1e17d;
     background-image: none;
     border: none;
@@ -705,9 +681,6 @@ class Index extends Component {
 .inputf1:focus, textarea:focus {
     outline: 0;
     border-color: #023957;
-}
-.deletefile {
-    border-color: red; 
 }
 textarea {
     resize: vertical;
@@ -733,13 +706,9 @@ textarea {
 .input-error{
     border-color: red;
 }
-.remove-image{
-    border-color: red;
-}
 `}
 </style>
-  
-               
+                 
             <Footer/>
                    </Layout>
            );
@@ -748,16 +717,17 @@ textarea {
 }
 
 Index.getInitialProps = async function(context) {
-    const { id,shopname } = context.query;
-    
-    const res = await fetch(`${Url}itembyid/${id}`);
-    var  item = await res.json();
+    const { id,shopname,shopDistrict,shopTown,shopurl } = context.query;
+    var shoplocation= {}
+    shoplocation = {shopName:shopname,district:shopDistrict,town:shopTown,shopurl:shopurl}
+    const res = await fetch(`${Url}typebyshopid/${id}`);
+    var  type = await res.json();
     var error = false;
     if(res.status!=200){
         error = true ;
    }
 
-    return {itemid:id,item:item[0],error,shopname:shopname}
+    return {shoplocation,shopid:id,type,error}
 
 
   }
