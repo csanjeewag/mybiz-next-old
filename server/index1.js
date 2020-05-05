@@ -2,12 +2,12 @@ const express = require('express');
 const next = require('next');
 var bodypaser = require('body-parser');
 var fileupload = require('express-fileupload');
+var jwt = require('jwt-simple');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler();
 
-var auth = require('./auth');
 //repository
 var userRepository = require('./repository/user');
 var shopRepository = require('./repository/shoprepository');
@@ -34,6 +34,7 @@ mongoose.connect(mongoDB,{useUnifiedTopology: true, useNewUrlParser: true, useCr
   }
   })
   mongoose.set('useFindAndModify', false);
+  
 const server = express();
 server.use(express.static(__dirname + '/File'));
 server.use(bodypaser.urlencoded({ extended: true }));
@@ -43,6 +44,21 @@ server.use(fileupload());
 
 app.prepare().then(() => {
 
+  server.get("/api/token", (req, res) => {
+ 
+    var payload = { foo: 'bar' ,date:Date.now()};
+    var secret = 'xxx';
+    var token = jwt.encode(payload, secret,'HS512');
+    
+    try{
+      var decoded = jwt.decode(token, 'xxxs');
+      return  res.status(201).json({status:201,msg:token,decoded:decoded}) ;
+    }catch(err){
+      return  res.status(201).json({status:201,msg:token,decoded:'decoded'}) ;
+    }
+   
+  
+  });
 
 /******************************************************* location************************************* */
 server.get("/api/locations", (req, res) => {
@@ -65,11 +81,17 @@ server.get("/api/location/id", (req, res) => {
   server.post("/api/reviewcreate", (req, res) => {
 
   
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      reviewrepository.create(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        reviewrepository.create(req,res)
+    }, (error) => {
+  
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -94,11 +116,17 @@ server.get("/api/location/id", (req, res) => {
   server.post("/api/questioncreate", (req, res) => {
 
   
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      questionRepository.create(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          questionRepository.create(req,res)
+    }, (error) => {
+  
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -107,11 +135,17 @@ server.get("/api/location/id", (req, res) => {
   server.post("/api/answertoqestion/:id", (req, res) => {
 
   
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      questionRepository.answertoqestion(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          questionRepository.answertoqestion(req,res);
+    }, (error) => {
+
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -153,11 +187,17 @@ server.get("/api/location/id", (req, res) => {
   server.post("/api/createCatagery", (req, res) => {
 
    
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      typeRepository.create(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+         typeRepository.create(req,res)
+    }, (error) => {
+     
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
   
     
@@ -166,11 +206,17 @@ server.get("/api/location/id", (req, res) => {
   server.put("/api/updateCatagery/:id", (req, res) => {
 
    
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      typeRepository.update(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+         typeRepository.update(req,res)
+    }, (error) => {
+     
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
   
     
@@ -254,11 +300,17 @@ server.get("/api/location/id", (req, res) => {
   //create new shop
   server.post("/api/createshop", (req, res) => {
 
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      shopRepository.create(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        shopRepository.create(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -267,11 +319,17 @@ server.get("/api/location/id", (req, res) => {
     //update shop
     server.put("/api/updateshop/:id", (req, res) => {
 
-      if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-        shopRepository.update(req,res);
+      if(req.body.user!='undefined'){
+        project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          shopRepository.update(req,res)
+      }, (error) => {
+  
+          return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+    
+      });
       }
       else{
-        return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+        return res.status(404).json({msg:'check your account again.'}); 
       }
       
       
@@ -280,12 +338,17 @@ server.get("/api/location/id", (req, res) => {
       //update details only
       server.put("/api/updateshopDetails/:id", (req, res) => {
 
-        if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-          shopRepository.updateDetails(req,res);
-
+        if(req.body.user!='undefined'){
+          project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+            shopRepository.updateDetails(req,res)
+        }, (error) => {
+    
+            return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+      
+        });
         }
         else{
-          return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+          return res.status(404).json({msg:'check your account again.'}); 
         }
         
         
@@ -294,11 +357,17 @@ server.get("/api/location/id", (req, res) => {
   //adminupdate shop
   server.put("/api/adminupdateshop/:id", (req, res) => {
 
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      shopRepository.adminupdate(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        shopRepository.adminupdate(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -307,11 +376,17 @@ server.get("/api/location/id", (req, res) => {
     //admin update details only
     server.put("/api/adminupdateshopDetails/:id", (req, res) => {
 
-      if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-        shopRepository.adminupdateDetails(req,res);
+      if(req.body.user!='undefined'){
+        project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+          shopRepository.adminupdateDetails(req,res)
+      }, (error) => {
+  
+          return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+    
+      });
       }
       else{
-        return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+        return res.status(404).json({msg:'check your account again.'}); 
       }
       
       
@@ -366,11 +441,16 @@ server.get("/api/itembyid/:id", (req, res) => {
 
   server.post("/api/createitem", (req, res) => {
 
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      itemsRepository.create(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        itemsRepository.create(req,res)
+    }, (error) => {
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -379,11 +459,17 @@ server.get("/api/itembyid/:id", (req, res) => {
       //update item
       server.put("/api/updateitem/:id", (req, res) => {
 
-        if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-          itemsRepository.update(req,res);
+        if(req.body.user!='undefined'){
+          project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+            itemsRepository.update(req,res)
+        }, (error) => {
+    
+            return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+      
+        });
         }
         else{
-          return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+          return res.status(404).json({msg:'check your account again.'}); 
         }
         
         
@@ -392,11 +478,17 @@ server.get("/api/itembyid/:id", (req, res) => {
   //update details only
       server.put("/api/updateitemDetails/:id", (req, res) => {
 
-        if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-          itemsRepository.updateDetails(req,res);
+        if(req.body.user!='undefined'){
+          project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+            itemsRepository.updateDetails(req,res)
+        }, (error) => {
+    
+            return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+      
+        });
         }
         else{
-          return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+          return res.status(404).json({msg:'check your account again.'}); 
         }
         
         
@@ -405,11 +497,17 @@ server.get("/api/itembyid/:id", (req, res) => {
         //adminupdate item
         server.put("/api/adminupdateitem/:id", (req, res) => {
 
-          if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-            itemsRepository.adminupdate(req,res);
+          if(req.body.user!='undefined'){
+            project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+              itemsRepository.adminupdate(req,res)
+          }, (error) => {
+      
+              return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+        
+          });
           }
           else{
-            return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+            return res.status(404).json({msg:'check your account again.'}); 
           }
           
           
@@ -418,11 +516,17 @@ server.get("/api/itembyid/:id", (req, res) => {
     //adminupdate details only
         server.put("/api/adminupdateitemDetails/:id", (req, res) => {
   
-          if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-            itemsRepository.adminupdateDetails(req,res);
+          if(req.body.user!='undefined'){
+            project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+              itemsRepository.adminupdateDetails(req,res)
+          }, (error) => {
+      
+              return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+        
+          });
           }
           else{
-            return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+            return res.status(404).json({msg:'check your account again.'}); 
           }
           
           
@@ -431,8 +535,27 @@ server.get("/api/itembyid/:id", (req, res) => {
 
 /**end item api */
 
+/******************************************************* user api  ***************************************************/
+//create new user
+server.post("/api/createuser", (req, res) => {
 
-/*****************************************************************************order ******************************** */
+  userRepository.create(req,res);
+});
+
+  server.post("/api/signinuser", (req, res) => {
+    project.verifyToken(req.body.token).then((jsonData) => {
+      userRepository.signinuser(req,res);
+  }, (error) => {
+  
+      return res.status(404).json({msg:'There are some error.'}); 
+
+  });
+  });
+
+/**************************************************************************************************************************** */
+
+
+/********************order ******************************** */
 
 server.get("/api/orderbyshopid/:id", (req, res) => {
 
@@ -456,11 +579,17 @@ server.get("/api/orderbyuserid/:id", (req, res) => {
   //create new order
   server.post("/api/createorder", (req, res) => {
 
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      orderRepository.create(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        orderRepository.create(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
@@ -468,31 +597,22 @@ server.get("/api/orderbyuserid/:id", (req, res) => {
 
   server.put("/api/updateorder/:id", (req, res) => {
 
-    if(req.body.user!='undefined'&&auth.isvaliduser(req.body.user)){
-      orderRepository.update(req,res);
+    if(req.body.user!='undefined'){
+      project.verifyToken(JSON.parse(req.body.user).token).then((jsonData) => {
+        orderRepository.update(req,res)
+    }, (error) => {
+
+        return res.status(404).json({msg:'sign in session expired, please sign in again.',status:201}); 
+  
+    });
     }
     else{
-      return res.status(404).json({msg:'your account is not valid, check and try again. thank you.',status:201}); 
+      return res.status(404).json({msg:'check your account again.'}); 
     }
     
     
   });
 /********************************************************* */
-
-/******************************************************* user api  ***************************************************/
-//create new user
-server.post("/api/createuser", (req, res) => {
-
- //var token = auth.createtoken(req,res)
-  userRepository.create(req,res);
-});
-
-  server.post("/api/signinuser", (req, res) => {
-    userRepository.signinuser(req,res);
-  });
-
-/**************************************************************************************************************************** */
-
 
   server.get('*', (req, res) => {
     return handle(req, res)

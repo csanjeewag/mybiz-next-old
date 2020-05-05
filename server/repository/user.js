@@ -1,4 +1,5 @@
 var models = require('../model/user');
+var auth = require('./../auth');
 
 var exports = module.exports = {};
 
@@ -34,15 +35,15 @@ exports.viewall = function(req,res) {
                         return  res.status(400).json({msg:'Sign up fails.',status:404});
                     }
                     else{
-                        
-                        return  res.status(200).json({...data._doc, token:body.token,msg:'Sign in success.',status:200});
+                        var token = auth.createtoken(bodydata);
+                        return  res.status(200).json({...data._doc, token:token,msg:'Sign in success.',status:200});
                     }
                     
                   });
             }
             else{
                 var updatemodel = {name:bodydata.name, address:bodydata.address,contact:bodydata.contact,
-                    givenName:bodydata.givenName,familyName:bodydata.familyName,isseller:bodydata.isseller};
+                givenName:bodydata.givenName,familyName:bodydata.familyName,isseller:bodydata.isseller,imageUrl:bodydata.imageUrl};
                
                 models.findOneAndUpdate({email:bodydata.email},updatemodel, function(error,user){
                     if(error){
@@ -50,7 +51,8 @@ exports.viewall = function(req,res) {
                         return  res.status(400).json(error);
                     }
                     else{
-                        return  res.status(200).json({...user._doc, token:body.token,msg:'You have aleady account, it updated.',status:200});
+                        var token = auth.createtoken(bodydata);
+                        return  res.status(200).json({...user._doc, token:token,msg:'You have aleady account, it updated.',status:200});
                 
                     }
         
@@ -71,8 +73,8 @@ exports.viewall = function(req,res) {
         var bodydata = new models(body);
         models.find({email:bodydata.email},function(error,data){
             if(data.length){
-                        
-                    return  res.status(200).json({...data[0]._doc, token:body.token,msg:'Sign in success.',status:200})
+                var token = auth.createtoken(bodydata);     
+                    return  res.status(200).json({...data[0]._doc, token:token,msg:'Sign in success.',status:200})
             }
             else{
                 return  res.status(401).json({msg:"You haven't account, please sign up.",status:401});

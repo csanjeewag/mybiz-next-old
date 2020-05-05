@@ -5,6 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 import $ from 'jquery';
 import fetch from 'isomorphic-unfetch';
 import Cookie from "js-cookie";
+import FacebookLogin from 'react-facebook-login';
 class Index extends Component {
 
     constructor() {
@@ -159,6 +160,60 @@ class Index extends Component {
       }
   }
   
+  signupwithfb=(res)=>{
+    this.setState({
+        name:res.name,
+        email:res.email,
+        imageUrl:res.picture.data.url,
+        googleId:res.userID,
+        givenName:res.name,
+        token:res.accessToken
+        
+
+    });
+    if(this.state.isseller==true){
+        if(this.state.address.length>2&&this.state.contact.length>2){
+            this.handleSubmit();
+        }
+        else{
+            alert('You register as seller, so please complete all field')
+        }
+      
+    }
+    else{
+        this.handleSubmit();
+    }
+
+  }
+
+   responseFacebook = (res) => {
+       console.log(res)
+    this.setState({
+        name:res.name,
+        email:res.email,
+        imageUrl:res.picture.data.url,
+        googleId:res.userID,
+        givenName:res.name,
+        token:res.accessToken
+
+    });
+    const datas = new FormData();
+    datas.append('jsonbody', JSON.stringify(this.state));
+    datas.append('token', this.state.token);
+    fetch('/api/signinuser', {
+       method: 'POST',
+       headers: {
+       }, 
+       body:datas,
+   
+       }
+       
+       )
+       .then(response => {return response.json(); } )
+       .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data); }})
+       .catch(error => console.log(error))
+  }
+
 render(){
 
   return(
@@ -174,15 +229,25 @@ render(){
             <div className="social-login row col-12 fontsizeE-9">
                  <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
-                    buttonText="Sign in with Google+"
+                    buttonText="login with Google+"
                     onSuccess={this.responseGoogleSignIn}
                     onFailure={this.responseGoogleSignIn}
                     cookiePolicy={'single_host_origin'}
-                    className="btn google-btn social-btn col-lg-6 col-sm-12"
+                    className="bg-danger text-light btn google-btn social-btn col-lg-6 col-sm-12"
                     isSignedIn={false}
                     />
-                     {/*<button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>*/}
-                     {<button className="btn social-btn col-lg-6 col-sm-12 fontsizeE-9" onClick={this.signOut} type="button"><span><img className="google-icon" width="15px" height="15px" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/> Sign out from google+</span> </button>}
+                    {/*<button className="btn social-btn col-lg-6 col-sm-12 fontsizeE-9" onClick={this.signOut} type="button"><span><img className="google-icon" width="15px" height="15px" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/> Sign out from google+</span> </button>*/}
+                    <div className="facebook-btn col-lg-6 col-sm-12">
+                    <FacebookLogin
+                    appId="639750616597961"
+                    autoLoad={true}
+                    fields="name,email,picture"
+                    callback={this.responseFacebook}
+                    cssClass="btn text text-light fontsizeE-9"
+                    textButton=" login with facebook"
+                    icon="fa-facebook"
+                />
+                </div>
               
             </div>
             <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you have account sign in now, or you can sign out from your account. </small>
@@ -209,14 +274,24 @@ render(){
             <div className="social-login row col-12 fontsizeE-9">
                   <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
-                    buttonText="Sign up with Google+ /Update "
+                    buttonText="Sign up with Google+"
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}
                     cookiePolicy={'single_host_origin'}
-                    className="btn google-btn social-btn col-lg-12 col-sm-12"
+                    className="btn bg-danger text-light social-btn col-lg-6 col-sm-12"
                     isSignedIn={false}
                     />
-                     {/*<button className="btn facebook-btn social-btn col-lg-6 col-sm-12 fontsizeE-9" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>*/}
+                    <div className="facebook-btn col-lg-6 col-sm-12">
+                    <FacebookLogin
+                    appId="639750616597961"
+                    autoLoad={true}
+                    fields="name,email,picture"
+                    callback={this.signupwithfb}
+                    cssClass="btn text text-light fontsizeE-9"
+                    textButton=" sign up with facebook"
+                    icon="fa-facebook"
+                />
+                </div>
               
             </div>
             </form>
@@ -302,7 +377,7 @@ render(){
       font-weight: 100;
       color:gray;
       font-size: 0.9rem;
-      background:#f8f8f8;
+      background: #d13618;
       width:100%;
       box-shadow: 0 7px 7px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0,0,0,0.24);
   }
@@ -321,7 +396,7 @@ render(){
   
   #logreg-forms button[type="submit"]{ margin-top:10px; }
   
-  #logreg-forms .facebook-btn{  background-color:#3C589C; }
+  .facebook-btn{  background:#3C589C; }
   
   #logreg-forms .google-btn{ background-color: #DF4B3B;}
   
