@@ -27,6 +27,7 @@ exports.viewall = function(req,res) {
         var bodydata = new models(body);
         bodydata.createDate=Date.now(),
         bodydata.isvalid = true,
+        bodydata.shopcount=2;
         models.find({email:bodydata.email},function(error,data){
             if(!data.length){
                 bodydata.save(function(err,data) {

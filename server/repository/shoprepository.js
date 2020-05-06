@@ -79,32 +79,40 @@ exports.viewall = function(req,res) {
     if(!JSON.parse(req.body.user).isseller){
         return  res.status(201).json({status:201, token:body.token,msg:'You are not sign up as seller, update your account as seller.'});
     }else{
-    var image_url = [];
-    if(req.files){
 
-         image_url = imagefile.imageuploads(req.files);
-
-    }
-
-
-        var bodydata = new models(body);
-        bodydata.user = JSON.parse(req.body.user); 
-        bodydata.user.token = null;
-        bodydata.images = image_url;
-        bodydata.createDate = Date.now();
-        bodydata.isvalid = true;
-        bodydata.isvalidA = true;
-        bodydata.save(function(err,data) {
-            if (err){
-                var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
-                return  res.status(400).json(error);
-            }
-            else{
-                //console.log(data)
-            return  res.status(200).json({...data, status:200, token:body.token,msg:'Your business added to onshop.lk, then add new items to your business!'});
-            }
+        models.countDocuments({'user._id':JSON.parse(req.body.user)._id }, function(err, c) {
+            //check shop count
+            if(c>1){
+                return  res.status(201).json({status:201, token:body.token,msg:'failed, You can create only two shop, so contact admin.'});
+   
+            }else{
+                var image_url = [];
+                if(req.files){
             
-          });
+                     image_url = imagefile.imageuploads(req.files);
+            
+                }     
+                    var bodydata = new models(body);
+                    bodydata.user = JSON.parse(req.body.user); 
+                    bodydata.user.token = null;
+                    bodydata.images = image_url;
+                    bodydata.createDate = Date.now();
+                    bodydata.isvalid = true;
+                    bodydata.isvalidA = true;
+                    bodydata.save(function(err,data) {
+                        if (err){
+                            var error = {msg:'405 Not Found!', status:400, errormsg:'Sorry, an error has occured, Requested fail!'};
+                            return  res.status(400).json(error);
+                        }
+                        else{
+                            //console.log(data)
+                        return  res.status(200).json({...data, status:200, token:body.token,msg:'Your business added to onshop.lk, then add new items to your business!'});
+                        }
+                        
+                      });
+            }
+             });
+        
         }
   }
 

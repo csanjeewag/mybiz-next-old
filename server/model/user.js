@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
     familyName:String,
     role:String,
     isseller:Boolean,
+    shopcount:Number,
     createDate: Date,
     isvalid:Boolean,
     
