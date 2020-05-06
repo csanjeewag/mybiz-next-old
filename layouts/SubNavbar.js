@@ -27,12 +27,13 @@ const NavBar=(props)=>{
              <Link  href={`${myProfileUrl}?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin"  >my-shops</a></Link>
                :null
                 }
-                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this)} >sign-in/out</a>
-               
-                <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1 "  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
+                <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1 fontsizeE-9 pointer"  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 
-                <a  className="nav-link nav-link-main active font1 pointer fontsizeE-9 search-icon" onClick={props.showfilter.bind(this)} ><img src="https://img.icons8.com/pastel-glyph/30/ffffff/search--v2.png"/></a>
-               
+                <a  className="nav-link nav-link-main active font1 pointer fontsizeE-9 search-icon fontsizeE-9 pointer" onClick={props.showfilter.bind(this)} >search-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/search--v2.png"/></a>
+                
+                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer isnotuserlogin" onClick={props.showsignup.bind(this)} >log-in</a>
+                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer isuserlogin" onClick={props.logout.bind(this)} >log-out</a>
+
                
             
                 
@@ -140,7 +141,11 @@ const MobileNavBar=(props)=>{
                 )}
                
                 <Link  href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1" onClick={show} >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
-                <a className="nav-link  active font1 fontsizeE-9 pointer" onClick={props.showsignup.bind(this) } >sign-in/out</a>
+
+                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer isnotuserlogin" onClick={props.showsignup.bind(this)} >log-in</a>
+                <a className="nav-link nav-link-main active font1 fontsizeE-9 pointer isuserlogin" onClick={props.logout.bind(this)} >log-out</a>
+
+
                 {props.state.isuserlogin&&props.state.user.isseller?
              <Link  href={`${myProfileUrl}?id=${props.state.isuserlogin?props.state.user._id:''}`}><a className="nav-link nav-link-main active font1 isuserlogin" onClick={show} >my-shops</a></Link>
                :null
@@ -207,6 +212,14 @@ class Index extends Component {
             $('.filter-item').slideDown(1000)  
         }
     }
+    //log out 
+    logout(){
+        $('#collapsibleNavbar').slideUp(500);
+        if(confirm('do you need, log out from onshop.lk.')){           
+            Cookie.remove('user');
+            Router.reload();
+        }
+    }
     
     componentDidMount(){
         $('.filter-item').hide();
@@ -262,16 +275,16 @@ class Index extends Component {
             <div className="subnav" >
          
             <div className="ismobile_disable fixed show-fixed-bar">
-            <NavBar state={this.state} showsignup={this.showsignup.bind(this)} showfilter={this.showfilter} showsidebar={this.showsidebar.bind(this)} sidenavconst={this.props.sidenavconst} />        
+            <NavBar state={this.state} showsignup={this.showsignup.bind(this)} showfilter={this.showfilter} showsidebar={this.showsidebar.bind(this)} sidenavconst={this.props.sidenavconst} logout={this.logout} />        
             </div>
 
             <div className="ismobile_disable">
-            <NavBar state={this.state} showsignup={this.showsignup.bind(this)} showfilter={this.showfilter} showsidebar={this.showsidebar.bind(this)} sidenavconst={this.props.sidenavconst} />
+            <NavBar state={this.state} showsignup={this.showsignup.bind(this)} showfilter={this.showfilter} showsidebar={this.showsidebar.bind(this)} sidenavconst={this.props.sidenavconst} logout={this.logout}  />
         
             </div>
 
             <div className="isdesktop_disable">
-            <MobileNavBar state={this.state} showsignup={this.showsignup.bind(this)} showfilter={this.showfilter} showsidebar={this.showsidebar.bind(this)} sidenavconst={this.props.sidenavconst}  />
+            <MobileNavBar state={this.state} showsignup={this.showsignup.bind(this)} showfilter={this.showfilter} showsidebar={this.showsidebar.bind(this)} sidenavconst={this.props.sidenavconst} logout={this.logout}   />
             </div>
 
             <div className="filter-item" >

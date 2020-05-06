@@ -104,7 +104,7 @@ class Index extends Component {
             
             )
             .then(response => {return response.json(); } )
-            .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data); }})
+            .then(data => { alert(data.msg);  if(data.status==200){Cookie.set('user',data);}})
             .catch(error => console.log(error))
            
             
@@ -131,7 +131,7 @@ class Index extends Component {
      
      )
      .then(response => {return response.json(); } )
-     .then(data => { alert(data.msg); if(data.status==200){Cookie.set('user',data);Router.reload();}})
+     .then(data => { alert(data.msg);if(data.status==200){Cookie.set('user',data);Router.reload();}})
      .catch(error => console.log(error))
    }
   
@@ -224,7 +224,7 @@ render(){
     <div id="logreg-forms" className="col-lg-4 col-md-8 col-sm-12">
     <div className="popup-close">x</div>
             <br/>
-            <h2 className="h3 mb-3 font1 topicColor fontsizeE1" > Sign in</h2>
+            <h2 className="h3 mb-3 font1 topicColor fontsizeE1" > Log in</h2>
             <div className="social-login row col-12 fontsizeE-9">
                  <GoogleLogin
                     clientId="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"
@@ -236,12 +236,12 @@ render(){
                     isSignedIn={false}
                     />
                     {/*<button className="btn social-btn col-lg-6 col-sm-12 fontsizeE-9" onClick={this.signOut} type="button"><span><img className="google-icon" width="15px" height="15px" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/> Sign out from google+</span> </button>*/}
-                    <div className="facebook-btn col-lg-6 col-sm-12">
+                    <div className="facebook-btn col-lg-6 col-sm-12 ">
                     <FacebookLogin
                     appId="639750616597961"
                     fields="name,email,picture"
                     callback={this.signwithfb}
-                    cssClass="btn text text-light fontsizeE-9"
+                    cssClass="btn text text-light fontsizeE1"
                     textButton=" login with facebook"
                     icon="fa-facebook"
                 />
@@ -254,7 +254,7 @@ render(){
             <form>
             {this.state.isseller?
             <div className="form-group">
-                <label  className="font1 fontsizeE-9">address</label>
+                <label  className="font1 fontsizeE-9">shop or your city</label>
                 <input type="email" className="form-control fontsizeE-9" name="address" placeholder="Enter Address" value={this.state.address} onChange={this.handleChange}/>
             </div>:null}
             {this.state.isseller?
@@ -266,8 +266,7 @@ render(){
                 <input type="checkbox" className="form-check-input" name="isseller" value={this.state.isseller} onChange={this.handleChange} />
                 <label className="form-check-label"  className="font1 fontsizeE-9">Sign up as Seller</label>
             </div>
-            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you register as seller, you should provide address and contact. Otherwise that are not compulsory.</small>
-            <small id="emailHelp" className="form-text text-muted fontsizeE-7">We'll never share your details with anyone else.</small>
+            <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you register as seller, you should provide city and contact. Otherwise that are not compulsory.</small>
             <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you have aleady account, acount details will be update.</small>
             <div className="social-login row col-12 fontsizeE-9">
                   <GoogleLogin
@@ -285,7 +284,7 @@ render(){
                     autoLoad={true}
                     fields="name,email,picture"
                     callback={this.signupwithfb}
-                    cssClass="btn text text-light fontsizeE-9"
+                    cssClass="btn text text-light fontsizeE1"
                     textButton=" sign up with facebook"
                     icon="fa-facebook"
                 />
@@ -394,7 +393,7 @@ render(){
   
   #logreg-forms button[type="submit"]{ margin-top:10px; }
   
-  .facebook-btn{  background:#3C589C; }
+  .facebook-btn{  background:#3C589C; padding: 5px}
   
   #logreg-forms .google-btn{ background-color: #DF4B3B;}
   

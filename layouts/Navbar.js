@@ -90,6 +90,13 @@ class Index extends Component {
             $('#collapsibleNavbar').slideDown(500);
         }
     }
+    logout(){
+        if(confirm('do you need log out from onshop.lk.')){
+            Cookie.remove('user');
+            Router.reload();
+        }
+        
+    }
 
     render() { 
         
@@ -125,7 +132,7 @@ class Index extends Component {
                 }
                 <Link href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1"  onClick={this.show}  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <Link  href='?sign=true'><a className="nav-link nav-link-main active font1 isnotuserlogin" onClick={this.showsignup.bind(this) }  >log-in</a></Link>
-                <Link  href='?sign=false'><a className="nav-link nav-link-main active font1 isuserlogin" onClick={Cookie.remove('user') }  >log-out</a></Link>
+                <Link  href='?sign=false'><a className="nav-link nav-link-main active font1 isuserlogin" onClick={this.logout.bind(this)} >log-out</a></Link>
                     
                      </div>
             
