@@ -246,6 +246,7 @@ render(){
                     cssClass="btn text text-light fontsizeE1 col-12"
                     textButton=" login with facebook"
                     icon="fa-facebook"
+                    redirectUri="https://onshop.lk"
                 />
                 </div>
               
@@ -289,6 +290,7 @@ render(){
                     cssClass="btn text text-light fontsizeE1 col-12"
                     textButton=" sign up with facebook"
                     icon="fa-facebook"
+                    redirectUri="https://onshop.lk"
                 />
                 </div>
               
