@@ -187,7 +187,7 @@ class Index extends Component {
 
   }
 
-  signwithfb = (res) => {
+  responsefacebook = (res) => {
     this.setState({
         name:res.name,
         email:res.email?res.email:res.userID,
@@ -242,7 +242,7 @@ render(){
                     <FacebookLogin
                     appId="639750616597961"
                     fields="name,email,picture"
-                    callback={this.signwithfb}
+                    callback={this.responsefacebook}
                     cssClass="btn text text-light fontsizeE1 col-12"
                     textButton=" login with facebook"
                     icon="fa-facebook"
