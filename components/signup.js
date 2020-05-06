@@ -246,7 +246,8 @@ render(){
                     cssClass="btn text text-light fontsizeE1 col-12"
                     textButton=" login with facebook"
                     icon="fa-facebook"
-                    redirectUri="https://onshop.lk"
+                    //redirectUri="https://onshop.lk"
+                    disableMobileRedirect={true}
                 />
                 </div>
               
@@ -290,7 +291,8 @@ render(){
                     cssClass="btn text text-light fontsizeE1 col-12"
                     textButton=" sign up with facebook"
                     icon="fa-facebook"
-                    redirectUri="https://onshop.lk"
+                    disableMobileRedirect={true}
+                    //redirectUri="https://onshop.lk"
                 />
                 </div>
               
