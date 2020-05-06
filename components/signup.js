@@ -184,6 +184,7 @@ class Index extends Component {
         this.handleSubmit();
     }
 
+
   }
 
   signwithfb = (res) => {
@@ -209,7 +210,7 @@ class Index extends Component {
        
        )
        .then(response => {return response.json(); } )
-       .then(data => { alert(data.msg+' in facebook'); if(data.status==200){Cookie.set('user',data); }})
+       .then(data => { alert(data.msg+' on facebook'); if(data.status==200){Cookie.set('user',data); }})
        .catch(error => console.log(error))
   }
 
