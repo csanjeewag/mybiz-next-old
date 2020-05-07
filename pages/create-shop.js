@@ -669,7 +669,12 @@ Index.getInitialProps = async function(context) {
     if(res.status!=200||reslocation.status!=200){
         error = true ;
    }
-    return {location,type,error}
+   var filtertype =  type.filter(function(x){
+       return x.type!='special'
+   })
+  
+
+    return {location,type:filtertype,error}
 
 
   }

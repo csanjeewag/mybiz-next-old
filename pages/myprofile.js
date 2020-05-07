@@ -624,7 +624,7 @@ class Index extends Component {
     render() { 
 
       const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:[], visible:false };
- 
+    const errormsg= {msg:'Sorry, You have not shop',errormsg:'You already login to onshop.lk as seller, but did not add shop. So add a shop. is there any problem contact support board via facebook page'}
           return ( 
             <Layout>
                 <Head>
@@ -632,7 +632,7 @@ class Index extends Component {
               
                 </Head>
              <SubNavBar sidenavconst={sidenavconst}/> 
-        {this.props.error?<ErrorPage/>:
+        {this.props.error?<ErrorPage error={errormsg} />:
     <div>
              <div className="col-lg-11 col-sm-12 mx-auto">
              {/*<h3 className="font1 topicColor profile-css-topic">My Shops</h3>*/}
