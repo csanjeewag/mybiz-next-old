@@ -477,7 +477,7 @@ class Index extends Component {
                           {/* file upload */}
                             <hr/>
                           <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for item</h3>
                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createItem.imageMsg}
                         </div>

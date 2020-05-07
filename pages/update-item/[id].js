@@ -487,7 +487,7 @@ class Index extends Component {
                           {/* file upload */}
                             <hr/>
                           <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for item</h3>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
                           <div key={i} className=" field-wrap col-lg-4 col-md-4 col-sm-12">

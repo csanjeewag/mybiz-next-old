@@ -46,7 +46,33 @@ exports.imageupload = function(req,res) {
     }
     else{
 
-        return ''
+        filename = req.name;
+        encriptcode = randomstring.generate(20);
+        req.mv('server/File/Images/'+encriptcode+filename,function(error){
+            if(error){
+                console.log(error)
+                
+            }
+            else{
+              
+                (async () => {
+                    // Set the options.
+                    const options = {
+                        images: ['server/File/Images/'+encriptcode+filename],
+                        width: 600,
+                        quality: 65
+                    };
+                    
+                    // Run the module.
+                    await resizeOptimizeImages(options);
+                })();
+                
+            }
+         
+        })
+      
+
+        return encriptcode+filename;;
     }
    
   }
