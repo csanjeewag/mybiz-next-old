@@ -25,6 +25,7 @@ class Index extends Component {
     
 
     componentDidMount(){
+
         if(Router.query.signin=='true'){
         this.showsignup();
         }
@@ -107,7 +108,9 @@ class Index extends Component {
             <nav className="navbar-bar navbar fixed navbar-expand-md">
 
             <span className="navbar-brand isdesktop_disable">
-            <a className="font7 fontsizeE1" href="/">{wesitename}</a>
+            {this.state.isuserlogin?<img className="float-left avatar" src={this.state.user.imageUrl} />:null}  
+
+            <a className="font7 fontsizeE1" href="/">&nbsp;{wesitename}</a>
             {this.state.isuserlogin&&this.state.user.isseller?
              <Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
                :null

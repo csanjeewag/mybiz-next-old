@@ -26,7 +26,7 @@ class Index extends Component {
             content1:'',
             content2:'',
             newshopdetail:'',
-            shopDetail:[{name:'warranty(remove this)',value:'yes, all items(exaple answer)'},{name:'c(remove this)',value:'yes'},{name:'event photography(remove this)',value:'only parties(remove this)'},{name:'rent cameras(remove this)',value:'no'}],
+            shopDetail:[{name:'open days',value:'all days'},{name:'open hours',value:'7.00am to 7.00pm'},{name:'delivery areas',value:'no'},{name:'keep a order',value:'2 days before'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
