@@ -35,7 +35,9 @@ class Index extends Component {
                         <figure className="profile">
                             <img src={c.user.imageUrl} className="profile-avatar" alt=""/>
                         </figure>
-                        <h4 className="card-title font2 topicColor">{c.shopName}</h4>
+                        <Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
+                        <h4 className="card-title font2 topicColor pointer">{c.shopName}</h4>
+                        </Link>
                         <div className="meta font6 subtopicColor">
                             <a>{c.subcategery}</a>
                             <div className=" float-right"> 
@@ -65,8 +67,9 @@ class Index extends Component {
                 </div>
 
                 <div className="col-8 m-content">
-
-                <h4 className="font1 topicColor fontsizeE1-3 m-content-left">{c.shopName}</h4>
+                <Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
+                <h4 className="font1 topicColor fontsizeE1-3 m-content-left pointer">{c.shopName}</h4>
+                </Link>
 
                 <p className="font6 subtopicColor fontsizeE1 m-content-left Catagory-style">{c.categery}</p>
                 <p className="font6 card-text m-content-left ">{c.content1.slice(0,100)}</p>

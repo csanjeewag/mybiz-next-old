@@ -30,7 +30,7 @@ exports.imageupload = function(req,res) {
                     const options = {
                         images: ['server/File/Images/'+encriptcode+filename],
                         width: 600,
-                        quality: 85
+                        quality: 80
                     };
                     
                     // Run the module.

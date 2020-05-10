@@ -2,6 +2,7 @@ var models = require('../model/item');
 var shop = require('../model/shop');
 var user = require('./../model/user');
 var imagefile = require('./../fileupload');
+var notificationRepository = require('./../repository/notificationRepository');
 var exports = module.exports = {};
 
 exports.viewall = function(req,res) {
@@ -80,6 +81,20 @@ else{
                 return  res.status(400).json({msg:'new items create in fails.',status:400});
             }
             else{
+
+                //notification
+                var notificationdata = {
+                    type: 'newitem',
+                    content:  'Thank you, you added '+data.itemname+' to your shop. (click here)',
+                    name: 'admin of onshop.lk',
+                    imageUrl : '',
+                    link: '/item/'+data.urlname,
+                    userId: data.user._id,
+                    senderId:data.user._id,
+                    index:100
+                }
+                notificationRepository.createNotification(notificationdata);
+                 //notification
             
             return  res.status(200).json({...data, status:200, token:body.token,msg:'item create in success.'});
             }

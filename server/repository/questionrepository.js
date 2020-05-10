@@ -1,4 +1,6 @@
 var models = require('../model/quaction');
+var item = require('./../model/item');
+var notificationRepository = require('./notificationRepository');
 var exports = module.exports = {};
 
 exports.viewall = function(req,res) {
@@ -32,7 +34,25 @@ exports.viewall = function(req,res) {
                 return  res.status(400).json(error);
             }
             else{
-                //console.log(data)
+
+            //notification 
+            item.findOne({_id:data.itemid},function(err,item){
+                if(item){
+                    var notificationdata = {
+                        type: 'question',
+                        content:  'customer ask question about '+item.itemname+'. (click here)',
+                        name: user.name,
+                        imageUrl : user.imageUrl,
+                        link: '/item/'+item.urlname,
+                        userId: user._id,
+                        senderId:item.user._id,
+                        index:100
+                    }
+                    notificationRepository.createNotification(notificationdata);
+                }
+            })     
+            /////////
+
             return  res.status(200).json({...data, token:body.token,msg:'question added!'});
             }
             
@@ -47,7 +67,28 @@ exports.viewall = function(req,res) {
     var conditon = {_id:req.params.id};
        models.updateOne(conditon,body)
     .then(data=>{
-        
+           //notification
+        models.findOne({_id:req.params.id}, function(err,qa){
+            if(qa){
+          
+            item.findOne({_id:qa.itemid},function(err,item){
+                if(item){
+                    var notificationdata = {
+                        type: 'answer',
+                        content:  'seller answer to question on '+item.itemname+'. (click here)',
+                        name: item.user.name,
+                        imageUrl : item.user.imageUrl,
+                        link: '/item/'+item.urlname,
+                        userId: item.user._id,
+                        senderId:qa.a_user._id,
+                        index:100
+                    }
+                    notificationRepository.createNotification(notificationdata);
+                }
+            })     
+            }
+        })
+        //////////////
         
         return  res.status(200).json({ ...data,token:body.token,msg:'answer added!'});
         

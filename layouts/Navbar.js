@@ -3,9 +3,81 @@ import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
 import SignUp from './../components/signup';
-import {NavLink,wesitename,myProfileUrl,myshopmUrl,myoderUrl} from './../constant/main';
+import {Url,NavLink,wesitename,myProfileUrl,myshopmUrl,myoderUrl,createshopUrl} from './../constant/main';
 import Cookie from "js-cookie";
 import Router from 'next/router';
+
+
+
+
+const Notfication=(props)=>{
+
+   const deletenotification=(id)=>{
+    fetch(`${Url}deletenotification/${id}`);
+  //  props.loadnotifications.bind(this);
+    }
+  
+    return(
+        <div className="dropdown-menu dropdown-menu-notification notification">
+        
+        {props.notfication.map((x,i)=>
+  
+        <div key={i} className="row rownotication col-12 notificationmsg alert">
+            <div className="d-flex bd-highlight">
+            <div className="p-1 bd-highlight"> {x.imageUrl?<img src={x.imageUrl} alt="Avatar" className="avatar float-left"/>:null}</div>
+            <div className="p-1 flex-grow-1 bd-highlight">
+            <Link href={x.link?x.link:'#'}>
+            <a className=" topicColor fontsizeE-8 font1 float-left p-0 content pointer" onClick={deletenotification.bind(this,x._id)}> {x.content}</a>
+            </Link>
+            <span className=" fontsizeE-6 float-right footercontent"> {x.name} </span>
+            </div>
+            <div onClick={deletenotification.bind(this,x._id)} className="py-1 px-0 bd-highlight pointer"><span aria-hidden="true" className="fontsizeE-8 font1 float-right"><i data-dismiss="alert" aria-label="Close">x</i></span></div>
+        </div>
+        </div>
+        )}
+
+      <style jsx>
+          {`
+                    .notification{
+                        width:250px;
+                        border-radius:  0 0 10px 10px;
+                        background : #b5c6d9f0;
+                        overflow: auto;
+                        margin-left : -100px;
+                        
+                    }
+                    .rownotication{
+                        margin : 0;
+                    }
+                    .notificationmsg{
+                        width:248px;
+                        padding: 0 5px 0 5px;;
+                        marging:0;
+                        border-bottom: 1px solid #ececec;
+                    }
+                    .avatar {
+                        vertical-align: middle;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                      }
+                    .content{
+                        padding:0;
+                        marging:0;
+                    }
+                    .footercontent{
+                        padding:0;
+                        marging:0;
+                    }
+                 
+          `}
+      </style>
+          
+          </div>
+                     
+
+    )
+}
 
 class Index extends Component {
 
@@ -13,7 +85,9 @@ class Index extends Component {
 		super();
 		this.state = {
         isuserlogin:false,
-        user:{}
+        user:{},
+        notfication:[],
+        notficationcount :0
 
   }
 	}
@@ -22,9 +96,19 @@ class Index extends Component {
             this.refs.signup.showsignup();
           }
 
+    loadnotifications=()=>{
+
+        fetch(`${Url}notifications/${Cookie.getJSON('user')._id}`)
+        .then(res=>{ return res.json()})
+        .then(data => { this.setState({notfication:data,notficationcount:data.length});})
+    }
     
 
     componentDidMount(){
+
+        if(Cookie.getJSON('user')){
+            this.loadnotifications()
+        }
 
         if(Router.query.signin=='true'){
         this.showsignup();
@@ -99,6 +183,16 @@ class Index extends Component {
         
     }
 
+     shownotification=()=>{
+        if($('.dropdown-menu-notification').is(":visible")){
+            $('.dropdown-menu-notification').slideUp(500) 
+        }
+        else{
+          
+            $('.dropdown-menu-notification').slideDown(500)  
+        }
+    }
+
     render() { 
         
           return ( 
@@ -110,11 +204,28 @@ class Index extends Component {
             <span className="navbar-brand isdesktop_disable">
             {this.state.isuserlogin?<img className="float-left avatar" src={this.state.user.imageUrl} />:null}  
 
-            <a className="font7 fontsizeE1" href="/">&nbsp;{wesitename}</a>
+            <a className="font7 fontsizeE-8" href="/">&nbsp;{wesitename}</a>
+
+
             {this.state.isuserlogin&&this.state.user.isseller?
              <Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a className="font1 fontsizeE-7 isuserlogin "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/material-rounded/20/ffffff/shop.png"/></a></Link>
-               :null
+               : <Link  href={`${createshopUrl}`}><a className="font1 fontsizeE-7 "  >&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/windows/23/ffffff/add-user-group-man-man.png"/></a></Link>
+             
                 }
+
+                  {/**notification */}
+                  <div className="btn-group">
+                <a className="font1" onClick={this.shownotification}>&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src="https://img.icons8.com/ios-filled/17/ffffff/appointment-reminders.png"/>
+                {this.state.notficationcount>0?<span className="notificationCount"> {this.state.notficationcount}</span>:null}
+
+                </a>
+                {this.state.notficationcount>0?<Notfication notfication={this.state.notfication} loadnotifications={this.loadnotifications} />:null}
+                
+               </div>
+                {/**notfication end */}
+               
+
             </span>
             <span className="navbar-brand ismobile_disable">
             <a className="font7 fontsizeE1" href="#">{wesitename}</a>
@@ -136,7 +247,19 @@ class Index extends Component {
                 <Link href={`${myoderUrl}`}><a className="nav-link nav-link-main active font1"  onClick={this.show}  >my-cart-<img src="https://img.icons8.com/pastel-glyph/20/ffffff/shopping-cart--v2.png"/></a></Link>
                 <a className="nav-link nav-link-main active font1 isnotuserlogin" onClick={this.showsignup.bind(this) }  >log-in</a>
                 <a className="nav-link nav-link-main active font1 isuserlogin" onClick={this.logout.bind(this)} >log-out</a>
-                    
+
+                {/**notification */}
+                <div className="btn-group ismobile_disable">
+                <a className="nav-link nav-link-main active font1 isuserlogin" onClick={this.shownotification}>
+                <img src="https://img.icons8.com/ios-filled/17/ffffff/appointment-reminders.png"/>
+                {this.state.notficationcount>0?<span className="notificationCount"> {this.state.notficationcount}</span>:null}
+
+                </a>
+                {this.state.notficationcount>0?<Notfication notfication={this.state.notfication} loadnotifications={this.loadnotifications} />:null}
+                
+               </div>
+                {/**notfication end */}
+
                      </div>
             
             </div>
@@ -152,6 +275,22 @@ class Index extends Component {
             
             <style jsx>
                 {`
+                .notificationCount{
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ce0c0c;
+                    cursor: pointer;
+                    font-size: 0.5rem;
+                    width: 1.1rem;
+                    height: 1.1rem;
+                    top: 0rem;
+                    right: -0.4rem;
+                    position: absolute;
+                    border-radius: 50%;
+                }
+
                 .avatar {
                     vertical-align: middle;
                     width: 30px;

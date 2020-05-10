@@ -1,4 +1,6 @@
 var models = require('../model/user');
+var shop = require('./../model/shop');
+var items = require('./../model/shop');
 var auth = require('./../auth');
 
 var exports = module.exports = {};
@@ -7,15 +9,54 @@ exports.viewall = function(req,res) {
 
     models.find(req,function(error,data){
         if(error){
-            
-            return   res.status(404).json('error');
+            console.log(error)
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested page fail!'};
+            return   res.status(404).json(error);
             
         }else{
             
-              return   res.status(200).json(data);
+              var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+                    return   data?res.status(200).send(data):res.status(201).send(error);
             
         }
-    }).sort({date:-1})
+    }).sort({createDate:-1})
+   
+  }
+
+  exports.viewallshopanditems = function(req,res) {
+
+    var sendmodel = [];
+
+    models.find(req,function(error,data){
+        if(error){
+            console.log(error)
+            var error = {msg:'404 Not Found!',errormsg:'Sorry, an error has occured, Requested page fail!'};
+            return   res.status(404).json(error);
+            
+        }else{
+
+
+            data.forEach(element => {
+               shop.findOne({'user._id':element._id},function(error,shop){
+                   /* sendmodel.push({...element,shopname:shop?shop.shopName:null,urlname:shop?shop.urlname:null,})  
+                      
+                   if(shop){
+                        items.countDocuments({'shopid':shop._id},function(err,c){
+                            sendmodel.push({...element,shopname:shop?shop.shopName:null,urlname:shop?shop.urlname:null, itemcount:c})  
+                        })
+                    
+                    }*/
+                    sendmodel.push({user:element,shop:shop})   
+                })
+                              
+                
+            });
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, an error has occured, Requested fail!'};
+            return   sendmodel?res.status(200).send(sendmodel):res.status(201).send(error);
+          
+            
+        }
+    }).sort({createDate:-1})
    
   }
 

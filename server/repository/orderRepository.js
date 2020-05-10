@@ -1,5 +1,6 @@
 var models = require('../model/order');
 var shop =  require('./../model/shop');
+var notificationRepository = require('./notificationRepository');
 var exports = module.exports = {};
 
 exports.viewall = function(req,res) {
@@ -118,15 +119,32 @@ exports.viewall = function(req,res) {
                 bodydata.shop = shop;
                 bodydata.userMsg = e.userMsg;
                 e.userMsg = null;
+
                 bodydata.save(function(err,data) {
                     
+                         //notification 
+                        var notificationdata = {
+                            type: 'orderitem',
+                            content: 'you have a order to '+data.item.itemname,
+                            name: data.user.name,
+                            imageUrl : data.user.imageUrl,
+                            link: '/myProfileUrl'+'?id='+data.sellerid,
+                            userId:data.userid,
+                            senderId:data.sellerid,
+                            index:100
+                        }
+                        notificationRepository.createNotification(notificationdata);
+
                   });
-            }
+
+
+                 }
         })
 
 
 
      });
+
      return  res.status(200).json({msg:'add new order, thank you!'});
 
   }

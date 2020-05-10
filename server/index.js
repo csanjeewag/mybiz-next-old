@@ -17,6 +17,7 @@ var questionRepository = require('./repository/questionrepository');
 var reviewrepository = require('./repository/reviewrepository');
 var locationrepository = require('./repository/locationrepository');
 var orderRepository = require('./repository/orderRepository');
+var notificationRepository = require('./repository/notificationRepository');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -504,6 +505,17 @@ server.get("/api/orderbyuserid/:id", (req, res) => {
 /********************************************************* */
 
 /******************************************************* user api  ***************************************************/
+
+server.get("/api/users", (req, res) => {
+
+  userRepository.viewall({},res);
+
+}); 
+server.get("/api/usersadmin", (req, res) => {
+
+  userRepository.viewallshopanditems({},res);
+
+}); 
 //create new user
 server.post("/api/createuser", (req, res) => {
 
@@ -516,7 +528,31 @@ server.post("/api/createuser", (req, res) => {
   });
 
 /**************************************************************************************************************************** */
+/**************************************************notification */
+server.get("/api/notifications/:id", (req, res) => {
 
+  notificationRepository.viewall({senderId:req.params.id},res);
+
+}); 
+//create new notification
+server.post("/api/createnotification", (req, res) => {
+
+ //var token = auth.createtoken(req,res)
+ notificationRepository.create(req,res);
+});
+//update notification
+server.put("/api/updatenotification", (req, res) => {
+
+  //var token = auth.createtoken(req,res)
+  notificationRepository.update(req,res);
+ });
+ //delete notification
+server.get("/api/deletenotification/:id", (req, res) => {
+
+  //var token = auth.createtoken(req,res)
+  notificationRepository.delete(req,res);
+ });
+/************************************************************* */
 
   server.get('*', (req, res) => {
     return handle(req, res)

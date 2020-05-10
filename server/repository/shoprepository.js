@@ -2,6 +2,7 @@ var models = require('../model/shop');
 var items = require('./../model/item');
 var user = require('./../model/user');
 var order = require('./../model/order');
+var notificationRepository = require('./notificationRepository');
 var imagefile = require('./../fileupload');
 var mongoose = require('mongoose');
 var exports = module.exports = {};
@@ -82,8 +83,8 @@ exports.viewall = function(req,res) {
 
         models.countDocuments({'user._id':JSON.parse(req.body.user)._id }, function(err, c) {
             //check shop count
-            if(c>1){
-                return  res.status(201).json({status:201, token:body.token,msg:'failed, You can create only two shop, so contact admin.'});
+            if(c>0){
+                return  res.status(201).json({status:201, token:body.token,msg:'failed, You can create only one shop, so contact admin.'});
    
             }else{
                 var image_url = [];
@@ -105,6 +106,20 @@ exports.viewall = function(req,res) {
                             return  res.status(400).json(error);
                         }
                         else{
+                        
+                            var notificationdata = {
+                                type: 'createShop',
+                                content: 'you are welcome to onshop.lk, please add items to your shop.',
+                                name:'admin of onshop.lk',
+                                imageUrl : '',
+                                senderId : '',
+                                link: '/myprofile?id='+bodydata.user._id,
+                                userId:bodydata.user._id,
+                                senderId:bodydata.user._id,
+                                index:100
+                            }
+
+                            notificationRepository.createNotification(notificationdata);
                             //console.log(data)
                         return  res.status(200).json({...data, status:200, token:body.token,msg:'Your business added to onshop.lk, then add new items to your business!'});
                         }
