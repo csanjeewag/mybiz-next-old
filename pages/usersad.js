@@ -119,9 +119,9 @@ class Index extends Component {
 
 
     sendmsg=(id,name,imageUrl)=>{
-        var msg = prompt("enter msg",'');
-        var link = prompt("enter sub link (onshop.lk)",'');
-        if(msg.length>20&&Cookie.getJSON('user')){
+        var msg = prompt("enter msg","Hi, ");
+        var link = prompt("enter sub link (onshop.lk)","");
+        if(msg&&msg.length>20&&Cookie.getJSON('user')){
             var notification = {
                 type: 'admin',
                 content:msg,

@@ -98,6 +98,7 @@ class Index extends Component {
         this.setState({
             [evt.target.name]: evt.target.value,
         });
+        this.checkvalidation(evt.target.name)
     };
  
     handleChangedetails= evt =>{
@@ -138,7 +139,8 @@ class Index extends Component {
 
        this.setState({
         shopDetail : shopd,
-    })
+    });
+
     
     }
 
@@ -169,7 +171,7 @@ class Index extends Component {
             form.categery.length <2 ?  'Categery should be select.':''
             break;
             case ('contact1') : validation.contact1 = 
-            form.contact1.length !=10 ?  'wrong contact number':
+            form.contact1.length !=10 ?  'There are should be 10 character only':
             RegExp('[^0-9]').test(form.contact1)?'wrong format try again':''
             break;
             case ('content1') : validation.content1 = 
@@ -421,12 +423,12 @@ class Index extends Component {
                         </div>
 
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">contact 1<span className="req">*</span></label>
+                                <label  className="font2 labelf1">contact number<span className="req">*</span></label>
                                 <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.contact1}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">contact 2<span className="req">*</span></label>
+                                <label  className="font2 labelf1">contact number 2<span className="req">*</span></label>
                                 <input className={'font6 inputf1 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required  name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.contact2}</span>
                             </div>

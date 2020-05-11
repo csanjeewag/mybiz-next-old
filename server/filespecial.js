@@ -25,7 +25,7 @@ exports.imageupload = function(req,res) {
             }
             else{
               
-                (async () => {
+              /*  (async () => {
                     // Set the options.
                     const options = {
                         images: ['server/File/Images/'+encriptcode+filename],
@@ -35,7 +35,7 @@ exports.imageupload = function(req,res) {
                     // Run the module.
                     await resizeOptimizeImages(options);
                 })();
-                
+                */
             }
          
         })
@@ -66,8 +66,27 @@ exports.imageupload = function(req,res) {
         
         id = id+1;
       }
+      imageoptimize(image_url);
       return image_url;
   }
+  const imageoptimize=(image_url)=>{
+
+    image_url.forEach(element => {
+
+        (async () => {
+            // Set the options.
+            const options = {
+                images: ['server/File/Images/'+element],
+                quality: 95
+            };
+            
+            // Run the module.
+            await resizeOptimizeImages(options);
+        })();
+       
+   });
+  }
+
 
   exports.deleteimage = function(req,res){
   

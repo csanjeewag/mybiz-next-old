@@ -102,7 +102,7 @@ class Index extends Component {
         this.setState({
             [evt.target.name]: evt.target.value,
         });
-
+        this.checkvalidation(evt.target.name)
     };
  
 
@@ -404,7 +404,7 @@ class Index extends Component {
                                 <span className="form-error">{this.state.validation.itemname}</span>
                             </div>
                             <div className="field-wrap  col-lg-8 col-md-8 col-sm-12">
-                                <label  className="font2 labelf1">Item long Name<span className="req">*</span></label>
+                                <label  className="font2 labelf1">Item long Name(add item name in english)<span className="req">*</span></label>
                                 <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
                                 <span className="form-error">{this.state.validation.itemlongname}</span>
                             </div>

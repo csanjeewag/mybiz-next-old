@@ -18,6 +18,7 @@ var reviewrepository = require('./repository/reviewrepository');
 var locationrepository = require('./repository/locationrepository');
 var orderRepository = require('./repository/orderRepository');
 var notificationRepository = require('./repository/notificationRepository');
+var fileuploadrepo = require('./fileupload');
 
 //google
 const GoogleSignIn = require('google-sign-in');
@@ -44,6 +45,9 @@ server.use(fileupload());
 
 app.prepare().then(() => {
 
+server.get("/files/resizeall",(req,res)=>{
+  fileuploadrepo.resizeOptimizeImagesallimages(req,res);
+})
 
 /******************************************************* location************************************* */
 server.get("/api/locations", (req, res) => {
