@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from './../layouts/MainLayout';
-import SubNavBar from './../layouts/SubNavbar';
-import Footer from './../components/Footer';
+import Layout from '../layouts/MainLayout';
+import SubNavBar from '../layouts/SubNavbar';
+//import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
-import {Url,itemUrl,web} from './../constant/main';
-import {createItem} from './../constant/page';
+import {Url,itemUrl,web} from '../constant/main';
+import {createItem} from '../constant/page';
 import Router from 'next/router';
+
+import Header from '../component/header';
+import Footer from '../component/footer';
 
 class Index extends Component {
 
@@ -29,9 +32,9 @@ class Index extends Component {
             content1:'',
             shoplocation:'',
             newitemSpecification:'',
-            itemSpecification:[{name:'material of product (remove this)',value:'iron'},{name:'warrenty (remove this)',value:'yes, 1 year'},{name:'customize (remove this)',value:'yes we can'}],
+            itemSpecification:[{name:'color of product',value:'white, red'},{name:'ex:warrenty (remove this)',value:'yes, 1 year'},{name:'ex:customize (remove this)',value:'yes we do'}],
             newstockdetail:'',
-            stockDetail:[{name:'stock amount(remove this)',value:'50'},{name:'colors(remove this)',value:'red, green, blue'},{name:'accessories(remove this)',value:'yes all'}],
+            stockDetail:[{name:'stock amount',value:'50'},{name:'open days',value:'all days'},{name:'open hours',value:'7.00am to 7.00pm'},{name:'delivery areas',value:'no'},{name:'keep a order',value:'2 days before'}],
             selectedFilecount : 1,
             defaultfilepath :'https://img.icons8.com/ios/50/01567e/image.png',
             files : [{selectedFile:null,selectedfilepath:'https://img.icons8.com/ios/50/01567e/image.png'}],
@@ -54,10 +57,10 @@ class Index extends Component {
             shopid : this.props.shopid
         })
         $(document).ready(function() {
-            $('.form').find('.inputf1').on('keyup blur focus', function (e) {
+            $('.form').find('.stext-111 cl2 plh3 size-116 p-l-62 p-r-30').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
-                    label = $this.prev('.labelf1');
+                    label = $this.prev(' stext-111 pl-2');
               
                     if (e.type === 'keyup') {
                           if ($this.val() === '') {
@@ -84,11 +87,11 @@ class Index extends Component {
               });
               
               function loadingform1(){
-                $('.form .inputf1').each(
+                $('.form .stext-111 cl2 plh3 size-116 p-l-62 p-r-30').each(
                     function(){
                         var val = $(this).val().trim();
                         if (val != ''){
-                            $(this).prev('.labelf1').addClass('active highlight');
+                            $(this).prev(' stext-111 pl-2').addClass('active highlight');
                         }
                     });
               }
@@ -104,7 +107,7 @@ class Index extends Component {
         this.setState({
             [evt.target.name]: evt.target.value,
         });
-
+        this.checkvalidation(evt.target.name)
     };
  
 
@@ -229,7 +232,7 @@ class Index extends Component {
             form.subcategery.length <2 ?  'sub categery should be select.':''
             break;
             case ('content1') : validation.content1 = 
-            form.content1.length <10 ?  'There should be atleast 30 characters.':''
+            form.content1.length <30 ?  'There should be atleast 30 characters.':''
             break;
 
         }
@@ -257,13 +260,14 @@ class Index extends Component {
        //check validations
         if(this.beforesubmit()>0)
         {
-            alert('Sorry, cannot Submit form, check again form!.');
+            swal("Sorry!", "check the form", "warning");
         }
         else if (!Cookie.getJSON('user')){
-            alert('Sorry, you are not sign in.');
+            swal("Sorry!", "you should login", "warning");
         }
         else if(this.state.files[0].selectedFile==null){
-            alert('Sorry, cannot Submit form, add atleast one image.');
+
+            swal("Sorry!", "add atleast one image", "warning");
         }
         else{
             $('button').attr("disabled", true);
@@ -292,7 +296,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{alert(data.msg);}$('.load').hide();})
+            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{swal("Sorry!", data.msg, "warning");}$('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -389,37 +393,46 @@ class Index extends Component {
                 <title> {web.wetopic}</title>
     
                 </Head>
-                <SubNavBar sidenavconst={sidenavconst}/>
+                <Header sidenavconst={sidenavconst}/>
+                <div className="ismobile_disable p-t-80"></div>
+                <section className="bg0 p-t-20 p-b-116">
+		<div className="container">
+			<div className="flex-w flex-tr" >
+				<div className="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-100">
+					<form>
+						<h4 className="mtext-105 cl2 txt-center p-b-30">
+							Let's create items
+						</h4>
+                    <div className="row">
 
-            <div className="form-create-shop">
-
-                <div className="container" >
-                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Create new item</h1>
-                    <form className="form">
-
-                    <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange"></h3>
-                        <div className="row">
-
-
-                            <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">Email/id<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '} type="text" required  name="ademail" value={this.state.ademail} onChange={this.handleChange}/>       
+                    <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
+                    <label  className="font2 stext-111 pl-2">Email /Id</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input  className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '} type="text" required  name="ademail" value={this.state.ademail} onChange={this.handleChange}/>       
+                            </div>
                             </div>
 
                              <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">key/pass<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '} type="password" required  name="adkey" value={this.state.adkey} onChange={this.handleChange}/>       
+                             <label  className="font2 stext-111 pl-2">Key/pass</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input  className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '} type="password" required  name="adkey" value={this.state.adkey} onChange={this.handleChange}/>       
+                            </div>
                             </div>
 
-                            <div className="field-wrap  col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">Item Name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '+(this.state.validation.itemname!=''?'input-error':'')} type="text" required  name="itemname" value={this.state.itemname} onChange={this.handleChange} onBlur={this.validationform}/>
+                    <div className="field-wrap  col-lg-4 col-md-4 col-sm-12">
+                                <label  className="font2 stext-111 pl-2">Item Name</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: Robox Mix Powvder" className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.itemname!=''?'input-error':'')} type="text" required  name="itemname" value={this.state.itemname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-collection-item-1 zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>  
                                 <span className="form-error">{this.state.validation.itemname}</span>
                             </div>
                             <div className="field-wrap  col-lg-8 col-md-8 col-sm-12">
-                                <label  className="font2 labelf1">Item long Name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 stext-111 pl-2">Item long Name(add item name in english)</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: robox mix powder s6" className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.itemlongname!=''?'input-error':'')} type="text" required  name="itemlongname" value={this.state.itemlongname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-collection-item-1 zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.itemlongname}</span>
                             </div>
 
@@ -428,37 +441,49 @@ class Index extends Component {
                         </div>
                             
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
-                                <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                                <label  className="font2 stext-111 pl-2">Categery Name</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <select className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option key='1' value="d">Default select</option>
                                     {this.props.error?null:
                                         <option key='2' value={this.props.type.type}>{this.props.type.name}</option>
                                     }
                     
                                     </select>
+                                    <i className="zmdi zmdi-filter-list zmdi-hc-lg how-pos4 pointer-none"></i>
+                                    </div>
                                 <span className="form-error">{this.state.validation.categery}</span>
                             </div>
 
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-12">
-                                <label  className="font2 labelf1">Sub Categery Name<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
+                                <label  className="font2 stext-111 pl-2">Sub Categery Name</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <select className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.subcategery!=''?'input-error':'')} type="text" required  name="subcategery" value={this.state.subcategery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option key='100' value="d">Default select</option>
                                     {this.props.error?null:this.props.type.subtype.map((x,i)=>
                                         <option key={i} value={x.type}>{x.name}</option>
                                     )}
                                         
                                     </select>
+                                    <i className="zmdi zmdi-filter-list zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.subcategery}</span>
                             </div>
                             
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-6">
-                                <label  className="font2 labelf1">item price<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.itemPrice!=''?'input-error':'')} type="number" required  name="itemPrice" value={this.state.itemPrice} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 stext-111 pl-2">item price</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: 1500" className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.itemPrice!=''?'input-error':'')} type="number" required  name="itemPrice" value={this.state.itemPrice} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-money zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.itemPrice}</span>
                             </div>
                             <div className="field-wrap col-lg-3 col-md-3 col-sm-6">
-                                <label  className="font2 labelf1">item discount<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="number" required  name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 stext-111 pl-2">item discount (%)</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: 50" className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.itemdiscount!=''?'input-error':'')} type="number" required  name="itemdiscount" value={this.state.itemdiscount} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-money-box zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.itemdiscount}</span>
                             </div>
 
@@ -472,26 +497,32 @@ class Index extends Component {
                         </div>
 
                             <div className="field-wrap col-lg-12 col-sm-12">
-                                <label  className="font2 labelf1">content 1<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 stext-111 pl-2">content 1</label>
+                                <div className="bor8 m-b-2">
+                                <textarea className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                </div>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
+
                             <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createItem.contentMsg}
                         </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
-                                <label  className="font2 labelf1">content 2<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 stext-111 pl-2">content 2</label>
+                                <div className="bor8 m-b-2">
+                                <textarea className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
+                               </div>
                                 <span className="form-error">{this.state.validation.content2}</span>
                             </div>
                            
-                        </div>
+                        
 
 
+                     
                           {/* file upload */}
-                            <hr/>
-                          <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                          <hr/>
+                          <div className="content col-12">
+                        <h5 className="fontcolorOrange cl2 txt-left p-b-30">images for item</h5>
                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createItem.imageMsg}
                         </div>
@@ -511,14 +542,14 @@ class Index extends Component {
                          {/* item details */}
                         <hr></hr>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Item spefication</h3>
+                        <h5 className="fontcolorOrange cl2 txt-left p-b-30">Item spefication</h5>
                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createItem.itemdetailMsg}
                         </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required  name="newitemSpecification" value={this.state.newitemSpecification} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <input type="text" className='font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '  required  name="newitemSpecification" value={this.state.newitemSpecification} onChange={this.handleChange} onBlur={this.validationform}/>       
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newitemSpecification" onClick={this.addnewitemSpecifications} > new+ </button>
                                 </div>
                         </div>
@@ -528,8 +559,8 @@ class Index extends Component {
                         {this.state.itemSpecification.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
-                            <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
+                            <label  className="font2 stext-111 pl-2">{x.name}</label>
+                            <input className='font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
                         </div>
                         )
 
@@ -539,14 +570,14 @@ class Index extends Component {
                         {/* stock details */}
                                 <hr></hr>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Stock Details</h3>
+                        <h5 className="fontcolorOrange cl2 txt-left p-b-30">Stock Details</h5>
                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createItem.stockdetailMsg}
                         </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required  name="newstockdetail" value={this.state.newstockdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <input type="text" className='font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '  required  name="newstockdetail" value={this.state.newstockdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newstockdetail" onClick={this.addnewstockDetails} > new+ </button>
                                 </div>
                         </div>
@@ -556,8 +587,8 @@ class Index extends Component {
                         {this.state.stockDetail.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deletestockDetails(x.name)} display='none' >x</div>
-                            <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangestockdetails} />
+                            <label  className="font2 stext-111 pl-2">{x.name}</label>
+                            <input className='font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30' type="text" required  name={x.name} value={x.value} onChange={this.handleChangestockdetails} />
                         </div>
                         )
 
@@ -566,23 +597,25 @@ class Index extends Component {
                         </div>
                     
                   
-                    
-                    </div>
 
-                    <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required  name="newitemSpecification" onClick={this.handleSubmit} > Submit </button>
                     </div>
-                    </form>
-                </div>
+						<button className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" onClick={this.handleSubmit} >
+							Submit
+						</button>
+					</form>
+				</div>
 
-            </div>
+			</div>
+		</div>
+	</section>	
+ 
 
 <style jsx>
 {`
 .imageupload{
     background: #c2d1e17d;
     height:200px;
-    border: 1.5px solid #01567e;
+    border: 1.5px solid gray;
     overflow: hidden;
     margin-top:2rem;
 }
@@ -599,12 +632,12 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gray;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 1.2rem;
 	height: 1.2rem;
-	top: 2.2rem;
+	top: 2rem;
 	right: 1rem;
 	position: absolute;
     border-radious:100%;
@@ -614,7 +647,7 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gary;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 1.5rem;
@@ -625,12 +658,12 @@ class Index extends Component {
 
 }
 .form-create-shop {
-    background: #8b8b8ba8;
+    background: gray;
 }
 .container{
     
-    /*background: #dde1ffbf  ;*/
-    background-image: url("/form1.jpg");
+    background: #dde1ffbf  ;
+    /*background-image: url("/form1.jpg");*/
     background-repeat: no-repeat; /* Do not repeat the image */
     padding : 20px 10px;
     opacity:1.1;
@@ -640,48 +673,7 @@ class Index extends Component {
      background-size: cover;
    
 }
-.labelf1 {
-    position: relative;
-    transform: translateY(40px);
-    left: 1em;
-    color: #01567e;
-    transition: all 0.25s ease;
-    -webkit-backface-visibility: hidden;
-    pointer-events: none;
-    font-size: 1.1em;
-}
-.labelf1 .req {
-    margin: 2px;
-    color: #01567e;
-}
-.labelf1.active {
-    left: 1em;
-    transform: translateY(0.5em);
-    font-size: 1em;
-}
-.labelf1.active .req {
-    opacity: 0;
-}
-.labelf1.highlight {
-    color: #023957;
-}
-.inputf1 {
-    font-size: 1.1em;
-    display: block;
-    width: 100%;
-    padding: 0.5em 0.7em;
-    background: #c2d1e17d;
-    background-image: none;
-    border: none;
-    border: 1.5px solid #01567e;
-    color: darkblue;
-    border-radius: 0;
-    transition: border-color 0.5s ease;
-}
-.inputf1:focus, textarea:focus {
-    outline: 0;
-    border-color: #023957;
-}
+
 textarea {
     resize: vertical;
 }
@@ -690,7 +682,7 @@ textarea {
 
 }
 .btn-addnewshop{
-    background: #01567e;
+    background: gray;
     color:white; 
 }
 .btn-submit{

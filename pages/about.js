@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from './../layouts/MainLayout';
-import SubNavBar from './../layouts/SubNavbar';
-import Footer from './../components/Footer';
+//import SubNavBar from './../layouts/SubNavbar';
 import {WebUrl,web,createshopUrl,policiesUrl,helpUrl,websiteUrl,aboutusUrl} from './../constant/main';
 import {about} from './../constant/page';
+/** */
+import Header from '../component/header';
+import Footer from '../component/footer';
 
 const About = ()=>{
   return(
-    <div className="aboutus-section">
+    <div className="aboutus-section bg0 p-t-104 p-b-116">
         <div className="container">
             <div className="row">
                 <div className="col-md-3 col-sm-6 col-xs-12">
@@ -208,7 +210,7 @@ class Index extends Component {
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
 
-         <SubNavBar sidenavconst={sidenavconst}/> 
+         <Header/> 
       <About/>
 
      <Footer></Footer>

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from './../../layouts/MainLayout';
+import Layout from './../../layouts/MainLayout2';
 import SubNavBar from './../../layouts/SubNavbar';
-import Footer from './../../components/Footer';
+//import Footer from './../../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 import {Url,ImageUrl,myshopmUrl,web} from './../../constant/main';
 import Errorpage from './../../layouts/error';
+import {createShop} from '../../constant/page';
 import Router from 'next/router';
+/** */
+import Header from '../../component/header';
+import Footer from '../../component/footer';
 class Index extends Component {
 
     constructor() {
@@ -128,7 +132,7 @@ class Index extends Component {
                 shopDetail : shopd,
                 newshopdetail : ''
             })
-            alert(' added new details!');
+            
             this.componentDidMount();
         }
      
@@ -161,8 +165,8 @@ class Index extends Component {
         var validation = this.state.validation;
         switch(name){
             case ('shopName') : validation.shopName = 
-            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.'
-            :''
+            form.shopName.length < 5 ?  'There are should be atleast 5 charactors.':
+            RegExp('[^A-Za-z0-9 ]').test(form.shopName)?'allow only english word only':''
             break;
             case ('district') : validation.district = 
             form.district.length <1 ?  'District cannot be empty.':''
@@ -180,7 +184,7 @@ class Index extends Component {
             form.contact1.length !=10 ?  'There should be 10 characters.':''
             break;
             case ('content1') : validation.content1 = 
-            form.content1.length <30 ?  'There should be atleast 50 characters.':''
+            form.content1.length <50 ?  'There should be atleast 50 characters.':''
             break;
 
         }
@@ -207,10 +211,11 @@ class Index extends Component {
        //check validations
         if(this.beforesubmit()>0)
         {
-            alert('Sorry, cannot Submit form, check again form!.');
+            swal("Sorry!", "check the form", "warning");
         }
         else if (!Cookie.getJSON('user')){
-            alert('Sorry, you are not sign in.');
+
+            swal("Sorry!", "you should login", "warning");
         }
        
         else{
@@ -225,10 +230,10 @@ class Index extends Component {
         
             var jsonbody = this.state;
            // jsonbody.files = null;
-           // jsonbody.defaultfilepath = null;           
+           // jsonbody.defaultfilepath = null;
+            data.append('jsonbody', JSON.stringify(jsonbody));
             var urlname = this.state.categery+'-'+this.state.shopName+'-in-'+this.state.town;
             jsonbody.urlname = urlname.split(" ").join("-");
-            data.append('jsonbody', JSON.stringify(jsonbody));
            // data.append('files',this.state.files);
            data.append('user', JSON.stringify(Cookie.getJSON('user')));
     
@@ -240,8 +245,9 @@ class Index extends Component {
             
                 }
             )
+           
             .then(response => { return response.json(); } )
-            .then(data => { if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);alert(data.msg);}else{alert(data.msg);} $('button').attr("disabled", false);$('.load').hide();})
+            .then(data => { if(data.status==200){Router.push(myshopmUrl+jsonbody.urlname);swal("Good job!", "shop updated", "success");}else{swal("Sorry!", data.msg, "warning");} $('button').attr("disabled", false);$('.load').hide();})
             .catch(error => console.log(error))
     
         }
@@ -366,96 +372,144 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
-                <SubNavBar sidenavconst={sidenavconst}/>
+                <Header sidenavconst={sidenavconst}/>
                 <Head>
                 <title> {web.wetopic}</title>
   
                 </Head>
-
-           
-
                 {this.props.error?<Errorpage error={this.props.item} />:
-            <div className="form-create-shop">
-
-                <div className="container" >
-                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Update shop</h1>
-                    <form className="form">
-
-                    <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
-                        <div className="row">
-                        <div className="field-wrap  col-lg-12 col-md-12 col-sm-12">
+                <section className="bg0 p-t-104 p-b-20">
+                     <div className="ismobile_disable p-t-80"></div>
+		<div className="container">
+			<div className="flex-w flex-tr" >
+				<div className="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-100">
+					<form>
+						<h4 className="mtext-105 cl2 txt-center p-b-30">
+							Let's update shop
+						</h4>
+                        
+                    <div className="row">
+                
+                    <div className="field-wrap  col-lg-12 col-md-12 col-sm-12">
                                 <label  className="font2 labelf1">Url name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '} type="text" required  name="itemname" value={this.state.urlname} onChange={this.handleChange} onBlur={this.validationform}/>
-                                
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input  className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '} type="text" required  name="itemname" value={this.state.urlname} onChange={this.handleChange} onBlur={this.validationform}/>
+                                </div>
                             </div>
-                            <div className="field-wrap  col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">Shop Name<span className="req">*</span></label>
-                                <input  className={'font6 inputf1 '+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform}/>
-                                <span className="form-error">{this.state.validation.shopName}</span>
-                            </div>
-                            <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">Categery Name<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
+                        <div className="col-lg-6">
+                        <label className="stext-111 pl-2">Shop/Business Name</label>
+						<div className="bor8 m-b-2 how-pos4-parent">
+                            <input placeholder="ex: Robox Lanka"  className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30'+(this.state.validation.shopName!=''?'input-error':'')} type="text" required  name="shopName" value={this.state.shopName} onChange={this.handleChange} onBlur={this.validationform}/>
+                            <i className="zmdi zmdi-store zmdi-hc-lg how-pos4 pointer-none"></i>
+						</div>
+                        <span className="form-error">{this.state.validation.shopName}</span>
+                        </div>
+
+                        <div className="col-lg-6">
+                        <label className="stext-111 pl-2">Category Type</label>
+						<div className="bor8 m-b-2 how-pos4-parent">
+                        <select className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.categery!=''?'input-error':'')} type="text" required  name="categery" value={this.state.categery} onChange={this.handleChange} onBlur={this.validationform}>
                                     <option value="d">Default select</option>
                                     {this.props.error?null:this.props.type.map((x,i)=>
                                     <option key={i} value={x.type}>{x.name}</option>
                                         )}
                                     </select>
-                                <span className="form-error">{this.state.validation.categery}</span>
-                            </div>
-                            <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">District<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
+                            <i className="zmdi zmdi-store zmdi-hc-lg how-pos4 pointer-none"></i>
+						</div>
+                        <span className="form-error">{this.state.validation.categery}</span>
+                        </div>
+                        
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.categoryMsg}
+                        </div>
+                        
+                        <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
+                                <label  className="stext-111 pl-2">District</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <select className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.district!=''?'input-error':'')} type="text" required  name="district" value={this.state.district} onChange={this.handleChange} onBlur={this.validationform}>
                                 <option value="d">Default select</option>
                                     {this.props.error?null:this.props.location.map((x,i)=>
                                     <option key={i} value={x.district}>{x.district}</option>
                                         )}
                                     </select>
+                                    <i className="zmdi zmdi-pin zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.district}</span>
                             </div>
+
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">Town<span className="req">*</span></label>
-                                <select className={'font6 inputf1 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
+                                <label  className=" stext-111 pl-2">Town</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <select className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.town!=''?'input-error':'')} type="text" required  name="town" value={this.state.town} onChange={this.handleChange} onBlur={this.validationform}>
                                 <option value="d">Default select</option>
                                     {this.props.error?null:this.gettows(this.state.district).map((x,i)=>
                                     <option key={i} value={x}>{x}</option>
                                         )}
                                     </select>
+                                    <i className="zmdi zmdi-pin zmdi-hc-lg how-pos4 pointer-none"></i>
+                                    </div>
                                 <span className="form-error">{this.state.validation.town}</span>
                             </div>
+
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">Address<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.address!=''?'input-error':'')} type="text" required  name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className=" stext-111 pl-2">Address</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: kohuwela" className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.address!=''?'input-error':'')} type="text" required  name="address" value={this.state.address} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-pin zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.address}</span>
                             </div>
+
+                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.locationMsg}
+                        </div>
+
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">contact 1<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className=" stext-111 pl-2">contact number</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: 07x1234567" className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-phone-in-talk zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.contact1}</span>
                             </div>
                             <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <label  className="font2 labelf1">contact 2<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required  name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className=" stext-111 pl-2">contact number 2</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="ex: 07x7654321" className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required  name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <i className="zmdi zmdi-phone-in-talk zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
                                 <span className="form-error">{this.state.validation.contact2}</span>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
-                                <label  className="font2 labelf1">content 1<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className=" stext-111 pl-2">content 1</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <textarea className={'stext-111 cl2 plh3 size-116 p-lr-28 p-tb-10'+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                               
+                                </div>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
+
+                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.content1Msg}
+                        </div>
+
                             <div className="field-wrap col-lg-12 col-sm-12">
-                                <label  className="font2 labelf1">content 2<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content2!=''?'input-error':'')}  rows="3" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className=" stext-111 pl-2">content 2</label>
+                                <div className="bor8 m-b">
+                                <textarea className={'stext-111 cl2 plh3 size-116 p-lr-28 p-tb-10 '+(this.state.validation.content2!=''?'input-error':'')}  rows="2" required  name="content2" value={this.state.content2} onChange={this.handleChange} onBlur={this.validationform}/>
+                                
+                                </div>
                                 <span className="form-error">{this.state.validation.content2}</span>
                             </div>
                            
-                        </div>
+                               {/* file upload */}
+                               <br/>
+                          <div className="content col-12">
+                        <h5 className="fontcolorOrange cl2 txt-left p-b-30">cover images for shop</h5>
 
-                          {/* file upload */}
-                            <hr/>
-                          <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for shop</h3>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.imageMsg}
+                        </div>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
                           <div key={i} className=" field-wrap col-lg-4 col-md-4 col-sm-12">
@@ -470,9 +524,9 @@ class Index extends Component {
     
                         </div>
 
-                        {/* file remove */}
-                               <hr/>
-                          <div className="content">
+                         {/* file remove */}
+                         <hr/>
+                          <div className="content col-12">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">what should be removed</h3>
                         <div className=" row col-12">
                         {this.state.images.map((x,i)=>(
@@ -492,25 +546,37 @@ class Index extends Component {
     
                         </div>
                         
-                         {/* shop details */}
-                        <hr></hr>
+                       
+                               {/* shop details */}
+                               <hr></hr>
                         <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Shop Details</h3>
+                        <h5 className="fontcolorOrange cl2 txt-left p-b-30">point details</h5>
+                        <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
+                        {createShop.shopdetailMsg}
+                        </div>
                         <div className="col-12">
                         <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
                                 <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required  name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <input placeholder="ex: size" type="text" className='stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '  required  name="newshopdetail" value={this.state.newshopdetail} onChange={this.handleChange} onBlur={this.validationform} placeholder="add new point details" />       
                                 <button type="button" className="font6  btn btn-addnewshop"  required  name="newshopdetail" onClick={this.addnewShopDetails} > new+ </button>
                                 </div>
                         </div>
-                        <span>If you need add more field as your details of shop</span>
+                        <span>Here are exaple for point details.</span>
                         </div>
+                        <div className="row">
+                           {this.state.shopDetail?this.state.shopDetail.map((x,i)=>
+                            <div className="col-lg-6 col-sm-12" key={i}>
+                            <a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+                            </div>
+                            ):null}
+                        </div>
+                        <button type="button" className="font6  btn btn-danger " onClick={this.removeallsetails} > clear point details </button>
                         <div className="row">
                         {this.state.shopDetail.map((x,i)=>(
                             <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
                             <div className="popup-close-1" onClick={()=>this.deleteDetals(x.name)} display='none' >x</div>
-                            <label  className="font2 labelf1">{x.name}</label>
-                            <input className='font6 inputf1' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
+                            <label  className=" stext-111 pl-2">{x.name}</label>
+                            <input className='stext-111 cl2 plh3 size-116 p-l-62 p-r-30' type="text" required  name={x.name} value={x.value} onChange={this.handleChangedetails} />
                         </div>
                         )
 
@@ -518,24 +584,28 @@ class Index extends Component {
                         </div>
                         </div>
                     
-                  
-                    
-                    </div>
 
-                    <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required  name="newshopdetail" onClick={this.handleSubmit} > Submit </button>
+                        
                     </div>
-                    </form>
-                </div>
+						<button className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer mt-10" onClick={this.handleSubmit}>
+							Submit
+						</button>
+					</form>
+				</div>
 
-            </div>
-                }
+			</div>
+		</div>
+	</section>}
+  
+
+
+               
 <style jsx>
 {`
 .imageupload{
     background: #c2d1e17d;
     height:200px;
-    border: 1.5px solid #01567e;
+    border: 1.5px solid gray;
     overflow: hidden;
     margin-top:2rem;
 }
@@ -552,7 +622,7 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gray;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 1.2rem;
@@ -567,7 +637,7 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gray;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 1.5rem;
@@ -582,7 +652,7 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gray;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 5rem;
@@ -596,8 +666,8 @@ class Index extends Component {
 }
 .container{
     
-    /*background: #dde1ffbf  ;*/
-    background-image: url("/form1.jpg");
+    background: #dde1ffbf  ;
+    //background-image: url("/form1.jpg");
     background-repeat: no-repeat; /* Do not repeat the image */
     padding : 20px 10px;
     opacity:1.1;
@@ -606,48 +676,6 @@ class Index extends Component {
      background-repeat: no-repeat;
      background-size: cover;
    
-}
-.labelf1 {
-    position: relative;
-    transform: translateY(40px);
-    left: 1em;
-    color: #01567e;
-    transition: all 0.25s ease;
-    -webkit-backface-visibility: hidden;
-    pointer-events: none;
-    font-size: 18px;
-}
-.labelf1 .req {
-    margin: 2px;
-    color: #01567e;
-}
-.labelf1.active {
-    left: 13px;
-    transform: translateY(10px);
-    font-size: 1em;
-}
-.labelf1.active .req {
-    opacity: 0;
-}
-.labelf1.highlight {
-    color: #023957;
-}
-.inputf1 {
-    font-size: 1.1em;
-    display: block;
-    width: 100%;
-    padding: 5px 10px;
-    background: #c2d1e17d;
-    background-image: none;
-    border: none;
-    border: 1.5px solid #01567e;
-    color: darkblue;
-    border-radius: 0;
-    transition: border-color 0.5s ease;
-}
-.inputf1:focus, textarea:focus {
-    outline: 0;
-    border-color: #023957;
 }
 .deletefile {
     border-color: red; 
@@ -660,11 +688,11 @@ textarea {
 
 }
 .btn-addnewshop{
-    background: #01567e;
+    background: gray;
     color:white; 
 }
 .btn-submit{
-    background: #01567e;
+    background: gray;
     color:white; 
     width:100%;
     margin-top: 3rem;

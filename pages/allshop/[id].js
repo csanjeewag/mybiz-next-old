@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from './../../layouts/MainLayout';
-import AllShops from '../../components/Allshops';
-import SubNavBar from './../../layouts/SubNavbar';
-import Slide from  './../../components/Slide1';
-import Footer from './../../components/Footer';
+import Layout from './../../layouts/MainLayout2';
+import AllShops from '../../component/Allshops';
+import Header from './../../component/header';
+import Footer from './../../component/footer';
 import {Url,wesitename,WebUrl,web,shopmUrl,websiteUrl} from './../../constant/main';
 import Link from 'next/link';
 import Errorpage from './../../layouts/error';
@@ -71,7 +70,7 @@ class Index extends Component {
         //////////////
           return ( 
             <Layout>
-                <SubNavBar sidenavconst={sidenavconst}/>
+                <Header />
                 {this.props.error?<Errorpage error={this.props.allshops} />:
                 <div>
 
@@ -87,23 +86,24 @@ class Index extends Component {
                 <meta name="description" content={wesitename+', All shop in'+this.props.district+', sri lanka'}></meta>
                 </Head>
 
+                <div className="ismobile_disable p-t-80"></div>
 
-                <br/>
-        <button onClick={this.showCategory} type="button" className="font6  btn btn-category category btn-sm catagoryname fontsizeE1 category-hover"  required  name="newsubtype" data-toggle="collapse" > catageries </button>
-        <div id="panel" >
-        <div className="catagoryname row" >
-                {this.props.allcatagery.map((c,i)=> 
+        <div className="flex-w flex-sb-m p-b-52 col-lg-11 col-sm-12 mx-auto">
+				<div className="flex-w flex-l-m filter-tope-group m-tb-10">
 
-                <div key={i} className="col-lg-1 col-md-2 col-sm-6 category category-hover-content"><Link href={'#'+c.type+'-catogery'} ><p className="font1 fontsizeE-9" > {/*i!=0?'||':null*/} {c.name}</p></Link></div>
-                
-                  )}
-            
-        </div> 
-
+					{this.props.allcatagery?this.props.allcatagery.map((x,i)=>
+					<button key={i} className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+					<a href={'#'+x.type+'-catogery'} style={{color:'black'}} >{x.name}</a>	
+					</button>
+				
+					):null}
+			
+				</div>
         </div>
 
+                
                 {this.props.allcatagery.map((c,i)=>
-                 this.filterarray(c.type).length>0?<div key={i} id={c.type+'-catogery'} >{i!=0?<div><br/><br/></div>:null}<AllShops  allshops={this.filterarray(c.type)} topic={c.name} type={c.type}></AllShops></div>:null
+                 this.filterarray(c.type).length>0?<div key={i} id={c.type+'-catogery'} ><AllShops className={'isotope-item '+c.type}  allshops={this.filterarray(c.type)} topic={c.name} type={c.type}></AllShops></div>:null
                     )}
                 
         </div>}

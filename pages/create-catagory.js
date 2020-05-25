@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
 import SubNavBar from '../layouts/SubNavbar';
-import Footer from '../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
 import {Url,web,WebUrl} from '../constant/main';
+
+import Header from '../component/header';
+import Footer from '../component/footer';
 class Index extends Component {
 
     constructor() {
@@ -32,7 +34,7 @@ class Index extends Component {
     }
     componentDidMount(){
         $(document).ready(function() {
-            $('.form').find('.inputf1').on('keyup blur focus', function (e) {
+            $('.form').find('.stext-111 cl2 plh3 size-116 p-l-62 p-r-30').on('keyup blur focus', function (e) {
   
                 var $this = $(this),
                     label = $this.prev('.labelf1');
@@ -62,7 +64,7 @@ class Index extends Component {
               });
               
               function loadingform1(){
-                $('.form .inputf1').each(
+                $('.form .stext-111 cl2 plh3 size-116 p-l-62 p-r-30').each(
                     function(){
                         var val = $(this).val().trim();
                         if (val != ''){
@@ -169,10 +171,11 @@ class Index extends Component {
        //check validations
         if(this.beforesubmit()>0)
         {
-            alert('Sorry, cannot Submit form, check again form!.');
+            swal("Sorry!", "check the form", "warning");
         }
         else if (!Cookie.getJSON('user')){
-            alert('Sorry, you are not sign in.');
+
+            swal("Sorry!", "you should sign in", "warning");
         }
         else{
             $('.load').show();
@@ -199,9 +202,9 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => { $('.load').hide(); if(data!=undefined){alert(data.msg);}})
+            .then(data => { $('.load').hide(); if(data!=undefined){swal("Sorry!", data.msg, "warning");}})
             .catch(error => console.log(error))
-    
+            
         }
 
     
@@ -303,69 +306,49 @@ class Index extends Component {
                 <title> {web.wetopic}</title>
           
                 </Head>
-                <SubNavBar sidenavconst={sidenavconst}/>
-
-            <div className="form-create-shop">
-
-                <div className="container" >
-                    <h1 className="font4 fontsizeE2-25 topicColor d-flex justify-content-center">Create new Categery</h1>
-                    <form className="form">
-
-                    <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">new type</h3>
-                        <div className="row">
+                <Header/>
+                <div className="ismobile_disable p-t-80"></div>
+                <section className="bg0 p-t-20 p-b-116">
+		<div className="container">
+			<div className="flex-w flex-tr" >
+				<div className="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-100">
+					<form>
+						<h4 className="mtext-105 cl2 txt-center p-b-30">
+							Create Category
+						</h4>
+                 
+                    <div className="row">
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">name<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.name!=''?'input-error':'')} type="text" required  name="name" value={this.state.name} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 labelf1">name</label>
+                                <div className="bor8 m-b-20 how-pos4-parent">
+                                <input placeholder="Name" className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.name!=''?'input-error':'')} type="text" required  name="name" value={this.state.name} onChange={this.handleChange} onBlur={this.validationform}/>
+                                </div>
                                 <span className="form-error">{this.state.validation.name}</span>
+                                
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">type<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '+(this.state.validation.type!=''?'input-error':'')} type="text" required  name="type" value={this.state.type} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 labelf1">type</label>
+                                <div className="bor8 m-b-20 how-pos4-parent">
+                                <input placeholder="type" className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.type!=''?'input-error':'')} type="text" required  name="type" value={this.state.type} onChange={this.handleChange} onBlur={this.validationform}/>
+                                </div>
                                 <span className="form-error">{this.state.validation.type}</span>
                             </div>
                             <div className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                                <label  className="font2 labelf1">Index<span className="req">*</span></label>
-                                <input className={'font6 inputf1 '} type="number" required  name="index" value={this.state.index} onChange={this.handleChange} onBlur={this.validationform}/>
-                        
+                                <label  className="font2 labelf1">Index</label>
+                                <div className="bor8 m-b-20 how-pos4-parent">
+                                <input className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '} type="number" required  name="index" value={this.state.index} onChange={this.handleChange} onBlur={this.validationform}/>
+                                </div>
                             </div>
                             <div className="field-wrap col-lg-12 col-sm-12">
-                                <label  className="font2 labelf1">details<span className="req">*</span></label>
-                                <textarea className={'font6 inputf1 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                <label  className="font2 labelf1">details</label>
+                                <div className="bor8 m-b-20 how-pos4-parent">
+                                <textarea className={'font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.content1!=''?'input-error':'')}  rows="3" required  name="content1" value={this.state.content1} onChange={this.handleChange} onBlur={this.validationform}/>
+                                </div>
                                 <span className="form-error">{this.state.validation.content1}</span>
                             </div>
                            
                         </div>
-           
-                    
-        
-                         {/* sub items details */}
-                        <hr></hr>
-                        <div className="content">
-                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Sub type</h3>
-                        <div className="col-12">
-                        <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
-                                <div className="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" className='font6 inputf1 '  required  name="newsubtype" value={this.state.newsubtype} onChange={this.handleChange} onBlur={this.validationform}/>       
-                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newsubtype" onClick={this.addnewSubtypes} > new+ </button>
-                                </div>
-                        </div>
-                        <span>If you need add more field as your details of subtype</span>
-                        </div>
-                        <div className="row">
-                        {this.state.subtype.map((x,i)=>(
-                            <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
-                            <div className="popup-close-1" onClick={()=>this.deleteDetals(x.type)} display='none' >x</div>
-                            <label  className="font2 labelf1">{x.type}(enter name)</label>
-                            <input className='font6 inputf1' type="text" required  name={x.type} value={x.name} onChange={this.handleChangedetails} />
-                        </div>
-                        )
 
-                        )}
-                        </div>
-
-                        </div>
-                        <hr/>
                         <div className="content">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">main images for category</h3>
                         <div className=" row col-12">
@@ -382,9 +365,37 @@ class Index extends Component {
     
                         </div>
 
+                           {/* sub items details */}
+                           <hr></hr>
+                        <div className="content">
+                        <h3 className="font4 fontsizeE1-5 fontcolorOrange">Sub type</h3>
+                        <div className="col-12">
+                        <div className=" field-wrap col-lg-6 col-md-6 col-sm-12">
+                                <div className="btn-group" role="group" aria-label="Basic example">
+                                <input type="text" className='font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '  required  name="newsubtype" value={this.state.newsubtype} onChange={this.handleChange} onBlur={this.validationform}/>       
+                                <button type="button" className="font6  btn btn-addnewshop"  required  name="newsubtype" onClick={this.addnewSubtypes} > new+ </button>
+                                </div>
+                        </div>
+                        <span>If you need add more field as your details of subtype</span>
+                        </div>
+                        <div className="row">
+                        {this.state.subtype.map((x,i)=>(
+                            <div key={i} className="field-wrap col-lg-4 col-md-4 col-sm-12">
+                            <div className="popup-close-1" onClick={()=>this.deleteDetals(x.type)} display='none' >x</div>
+                            <label  className="font2 labelf1">{x.type}(enter name)</label>
+                            <input className='font6 stext-111 cl2 plh3 size-116 p-l-62 p-r-30' type="text" required  name={x.type} value={x.name} onChange={this.handleChangedetails} />
+                        </div>
+                        )
+
+                        )}
+                        </div>
+
+                        </div>
+                        
+
                               {/* file upload */}
                               <hr/>
-                          <div className="content">
+                          <div className="content col-12">
                         <h3 className="font4 fontsizeE1-5 fontcolorOrange">cover images for category</h3>
                         <div className=" row col-12">
                         {this.state.files.map((x,i)=>(
@@ -400,23 +411,24 @@ class Index extends Component {
     
                         </div>
                   
-                    
-                    </div>
 
-                    <div className="d-flex justify-content-end">
-                    <button type="button" className="font6  btn btn-submit "  required  name="newsubtype" onClick={this.handleSubmit} > Submit </button>
-                    </div>
-                    </form>
-                </div>
+                        <button onClick={this.handleSubmit}  className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							Submit
+						</button>
+					</form>
+				</div>
 
-            </div>
+			</div>
+		</div>
+	</section>	
+    
 
 <style jsx>
 {`
 .imageupload{
     background: #c2d1e17d;
     height:200px;
-    border: 1.5px solid #01567e;
+    border: 1.5px solid gray;
     overflow: hidden;
     margin-top:2rem;
 }
@@ -433,7 +445,7 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gray;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 1.2rem;
@@ -448,12 +460,12 @@ class Index extends Component {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #01567e;
+	background: gray;
 	cursor: pointer;
 	font-size: 0.6rem;
 	width: 1.5rem;
 	height: 1.5rem;
-	top: 2.1rem;
+	top: 2rem;
 	right: 1rem;
 	position: absolute;
 
@@ -463,8 +475,8 @@ class Index extends Component {
 }
 .container{
     
-    /*background: #dde1ffbf  ;*/
-    background-image: url("/form1.jpg");
+    background: #dde1ffbf  ;
+    //background-image: url("/form1.jpg");
     background-repeat: no-repeat; /* Do not repeat the image */
     padding : 20px 10px;
     opacity:1.1;
@@ -474,48 +486,7 @@ class Index extends Component {
      background-size: cover;
    
 }
-.labelf1 {
-    position: relative;
-    transform: translateY(40px);
-    left: 1em;
-    color: #01567e;
-    transition: all 0.25s ease;
-    -webkit-backface-visibility: hidden;
-    pointer-events: none;
-    font-size: 1.1em;
-}
-.labelf1 .req {
-    margin: 2px;
-    color: #01567e;
-}
-.labelf1.active {
-    left: 1em;
-    transform: translateY(0.5em);
-    font-size: 1em;
-}
-.labelf1.active .req {
-    opacity: 0;
-}
-.labelf1.highlight {
-    color: #023957;
-}
-.inputf1 {
-    font-size: 1.1em;
-    display: block;
-    width: 100%;
-    padding: 0.5em 0.7em;
-    background: #c2d1e17d;
-    background-image: none;
-    border: none;
-    border: 1.5px solid #01567e;
-    color: darkblue;
-    border-radius: 0;
-    transition: border-color 0.5s ease;
-}
-.inputf1:focus, textarea:focus {
-    outline: 0;
-    border-color: #023957;
-}
+
 textarea {
     resize: vertical;
 }
@@ -524,11 +495,11 @@ textarea {
 
 }
 .btn-addnewshop{
-    background: #01567e;
+    background: gray;
     color:white; 
 }
 .btn-submit{
-    background: #01567e;
+    background: gray;
     color:white; 
     width:100%;
     margin-top: 3rem;

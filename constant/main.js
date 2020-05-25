@@ -3,10 +3,11 @@ const WEBURL = 'https://onshop.lk';
 
 const WesSite = WEBURL+'/';
 export const websiteUrl = WEBURL;
-export const wesitename = 'onShop';
+export const wesitename = 'onShop.lk';
 export const WebUrl=  WesSite;
 export const Url=  WesSite+'api/';
 export const ImageUrl= WesSite+'Images/';
+export const logoUrl=websiteUrl+'/special/logo.png';
 
 export const web ={
     weburl : WesSite,
@@ -51,6 +52,7 @@ export const aboutusUrl = '/about';
 
 export const itemUrl = '/item/';
 export const createitemUrl = '/create-item';
+export const adcreateitemUrl = '/create-itemad';
 export const updateitemUrl = '/update-item/';
 export const adupdateitemUrl = '/update-itemad/';
 

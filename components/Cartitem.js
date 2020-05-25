@@ -4,8 +4,8 @@ import Layout from '../layouts/MainLayout';
 import Cookie from "js-cookie";
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
-import {Url,ImageUrl,itemUrl,cartitemMSG,cartUserNotlogin,cartUserdetails,myshopmUrl} from './../constant/main';
-import {mycart} from './../constant/page';
+import {Url,ImageUrl,itemUrl,cartitemMSG,cartUserNotlogin,cartUserdetails,myshopmUrl} from '../constant/main';
+import {mycart} from '../constant/page';
 
 const CartList=(props)=>{
 

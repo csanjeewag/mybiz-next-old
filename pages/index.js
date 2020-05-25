@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from './../layouts/MainLayout';
-import Allcatagery from './../components/Allcatagery';
-import NavBar from './../layouts/Navbar';
-import TopSlide from '../components/Topslide';
-import FilterItem from './../layouts/filterItem';
-import Footer from './../components/Footer';
-import {Url,web,WebUrl} from './../constant/main';
+import Layout from '../layouts/MainLayout';
+import Allcatagery from '../components/Allcatagery';
+import NavBar from '../layouts/Navbar';
+import FilterItem from '../layouts/filterItem';
+import {Url,web,WebUrl} from '../constant/main';
 import fetch from 'isomorphic-unfetch';
+/** */
+import Header from '../component/header';
+import TopSlide from '../component/topslide';
+import Homecategory from '../component/homeCategory';
+import Footer from '../component/footer';
 class Index extends Component {
 
 
@@ -29,14 +32,14 @@ class Index extends Component {
                 <meta name="keywords" content={web.webKeyword}></meta>
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
+        <Header/>
+       <TopSlide/>
+    
+        <Homecategory catageries={this.props.types} topic="categories" />
+        
+        <Footer/>
 
-         <NavBar ></NavBar>
-        <TopSlide></TopSlide>
-        <FilterItem></FilterItem>
-              <Allcatagery catageries={this.props.types} topic="categories" ></Allcatagery>
 
-
-     <Footer></Footer>
   
                   </Layout>
            );

@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import SubNavbar from './../layouts/SubNavbar';
-import Footer from './../components/Footer';
+import Footer from './../component/footer';
 import {Url,web,WebUrl} from './../constant/main';
 import fetch from 'isomorphic-unfetch';
 import Cookie from "js-cookie";
-
+import Headers from "./../component/header";
 
 const UserList=(props)=>{
 
 
 
     return(
-        <div className="order-table">
+        <div className="order-table p-t-80">
       
         <table className="table table-striped">
           <thead>
@@ -127,14 +127,15 @@ class Index extends Component {
                 content:msg,
                 name:'admin of onshop.lk',
                 imageUrl : imageUrl,
-                senderId : Cookie.getJSON('user')._id,
+                userId : Cookie.getJSON('user')._id,
                 link : link,
-                userId: id
+                senderId: id
             }
     
             this.sendnotification(notification)
         }else{
-            alert('did not send msg')
+    
+            swal("sorry", "did not send", "warning");
         }
     
 
@@ -157,7 +158,7 @@ class Index extends Component {
             }
         )
         .then(response => { return response.json(); } )
-        .then(data => {$('btn').attr("disabled", false);if(data.status==200){alert(data)} $('.load').hide();})
+        .then(data => {$('btn').attr("disabled", false);if(data.status==200){swal("Good job!", "You clicked the button!", "success");} $('.load').hide();})
         .catch(error => console.log(error))
     }
 
@@ -180,7 +181,7 @@ class Index extends Component {
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
 
-         <SubNavbar ref="navbar" sidenavconst={sidenavconst} />
+         <Headers />
 
     <UserList users ={this.props.users} sendmsg={this.sendmsg} />
      <Footer></Footer>

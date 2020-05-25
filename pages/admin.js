@@ -3,13 +3,48 @@ import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,adupdateshopUrl,itemUrl,adupdateitemUrl, myshopmUrl,adminUrl,createcategorUrl,updatecategoryUrl,web} from './../constant/main';
+import  {Url,ImageUrl,adcreateitemUrl,adupdateshopUrl,itemUrl,adupdateitemUrl, myshopmUrl,adminUrl,createcategorUrl,updatecategoryUrl,web} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
-import Footer from './../components/Footer';
+//import Footer from './../components/Footer';
 import ErrorPage from './../layouts/error';
 import Router from 'next/router';
+import Slider from "react-slick";
+/** */
+import Header from '../component/header';
+import Footer from '../component/footer';
 
+function SampleNextArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ display: "block", background: "red" }}
+		onClick={onClick}
+	  />
+	);
+  }
+  
+  function SamplePrevArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ display: "block", background: "green" }}
+		onClick={onClick}
+        />
+	);
+  }
+  function Arrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ display: "block", background: "gray" ,color:'purple'}}
+		onClick={onClick}
+        />
+	);
+  }
 const TypeSlide=(props)=>{
 
     return(
@@ -214,193 +249,118 @@ const Imageside=(props)=> {
 
 const Contentside=(props)=>{
 
+    var settings = {
+        dots: false,
+        fade: true,
+        infinite: true,
+        speed: 2000,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplaySpeed: 2000,
+        pauseOnHover: true,
+        nextArrow: <Arrow />,
+        prevArrow: <Arrow />
 
+      };
 
     return (
-        <div className="col-lg-6 col-sm-12">
+        <section className="sec-product-detail bg0 p-t-65 p-b-0">
+		<div className="container">
+			<div className="row">
+			<div className="col-md-6 col-lg-7 p-b-30">
+					<div className="p-l-25 p-r-30 p-lr-0-lg">
+						<div className="wrap-slick3 flex-sb flex-w">
+							<div className="wrap-slick3-dots">
+							{/*props.shop.images.map((x,i)=>
+							<img className="d-block w-100 silde2image pb-3" src={ImageUrl+x} alt="first slide" width="100%" />
+							)*/}
+							</div>
+							<div className="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-        <div className="card">
-            <div className="card-block">
-            
-                <h4 className="card-title font2 topicColor">{props.shop.shopName}</h4>
-                <div className="meta font6 subtopicColor">
-                    <a>{props.shop.categery}</a>
-                    <div className=" float-right"> 
-                    <a className="Icutprise font6">{props.shop.district+'/'+props.shop.town} </a> 
-                    </div>
-                </div>
-                
-                <div className="meta font6">
-                    <div className=" float-right"> 
-                    <a className="Icutprise font6">{props.shop.contact1+'/'+props.shop.contact2} </a>
-                    </div>
-                </div>
+							<div className="slick3 gallery-lb">
+                            <Slider {...settings}>
+							{props.shop.images.map((x,i)=>
+							<div key={i} className="item-slick3">
+							<div className="wrap-pic-w pos-relative">
+							<img className="d-block w-100 silde2image" src={ImageUrl+x} alt="first slide" style={{maxHeight:'600px',height:'auto',width:'100%'}}/>
 
-                <div className="card-text font6">
-                {props.shop.content1}
-                </div>
-                <div className="card-text font6">
-                {props.shop.content2}
-                </div>
-                <div className="profile-specification">
-                <h5 className="profile-subcard-title font2 fontcolorSkyblue"> &nbsp; </h5>
-                <div className=" card-text font6">
-                    <div className="row">
-                        {props.shop.shopDetail?props.shop.shopDetail.map((x,i)=>
-                            <div className="col-lg-6 col-sm-12" key={i}>
-                            <a className="float-left profile-speca"><img src="https://img.icons8.com/metro/15/000000/external-link.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+								<a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href={ImageUrl+x}>
+									<i className="fa fa-expand"></i>
+								</a>
+							</div>
+						</div>
+							)}
+	
+									</Slider>
+								
                             </div>
-                            ):null}
-                        
-                    </div>
-                </div>
-                <hr/>
-                <Link href={createitemUrl+'ad?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a href="#" className="btn btn-primary float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/new-view.png"/> &nbsp;add new item</a></Link>
-                <Link href={adupdateshopUrl+props.shop._id}><a href="#" className="btn btn-danger float-right btn-sm fontsizeE-9"><img src="https://img.icons8.com/ios/25/ffffff/update-tag.png"/> &nbsp;update shop</a></Link>
-              
-            </div>
+						</div>
+					</div>
+				</div>
+					
+				<div className="col-md-6 col-lg-5 p-b-30">
+					<div className="p-r-50 p-t-5 p-lr-0-lg">
+						<h4 className="mtext-105 cl2 js-name-detail p-b-14 subtopicColor">
+						{props.shop.shopName}
+						</h4>
+						<a className=" font6 float-right">{props.shop.contact1+(props.shop.contact2?'/'+props.shop.contact2:'')} </a> 
+						<span className="mtext-106 cl2">
+						<a className="font6">{props.shop.district+'/'+props.shop.town} </a>
+						</span>
 
-        </div>
-           
-        </div>
-        <style jsx>
-                {`
-                h5 {
-                    font-size: 1.5em;
-                    font-weight: 700;
-                    line-height: 1.2857em;
-                    margin-bottom: 20px;
-                }
-                .profile{
-                    margin-bottom : 20px;
-                }
-                .profile-topic{
-                    padding : 20px 10px 10px 10px;
-                }
-                .profile-speca{
-                    font-size: 1em;
-                    color: #CF570E ;
-                    
-                }
-                .profile-specb{
-                    font-size: 1em;
-                    color: #3E1903;
-                }
-                .card {
-                    font-size: 1em;
-                    overflow: hidden;
-                    padding: 0;
-                    transition: 0.5s;
-                    border : none;
-                }
-              
-                .card-block {
-                    font-size: 1em;
-                    position: relative;
-                    margin: 0;
-                    padding: 0.5em;
-                    box-shadow: none;
-                }
-                
-                .card-img-top {
-                    display: block;
-                    width: 100%;
-                    height: 200;
-                }
-                
-                .card-title {
-                    font-size: 1.28571429em;
-                    font-weight: 700;
-                    line-height: 1.2857em;
-                    margin-bottom: 0px;
-                    
-                }
-                .profile-subcard-title {
-                    font-size: 1em;
-                    font-weight: 700;
-                    line-height: 1.2857em;
-                    margin-bottom: 0px;
-                    
-                }
-                
-                .card-text {
-                    clear: both;
-                    margin-top: .5em;
-                    color: rgba(0, 0, 0, .68);
-                    font-size : 0.9em;
-                }
-                
-                .card-footer {
-                    font-size: 1em;
-                    position: static;
-                    top: 0;
-                    left: 0;
-                    max-width: 100%;
-                    padding: .5em 0.75em;
-                    
-                }
-                
-                
-                .profile {
-                    position: absolute;
-                    top: -12px;
-                    display: inline-block;
-                    overflow: hidden;
-                    width: 25px;
-                    height: 25px;
-                    margin: 0;
+						<p className="stext-102 cl3 p-t-23">
+						{props.shop.content1}
+						</p>
+						<p className="stext-102 cl3 p-t-23">
+						{props.shop.content2}
+						</p>
+						
+						<div className="menu2-specification">
+						{props.shop.shopDetail&&props.shop.shopDetail.length>0?<h5 className="menu2-subcard-title font2 fontcolorSkyblue fontsizeE1">Specification</h5>:null}
+						<div className=" card-text font6">
+							<div className="row">
+								{props.shop.shopDetail?props.shop.shopDetail.map((x,i)=>
+									<div className="col-lg-6 col-sm-12" key={i}>
+									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									</div>
+									):null}
+								</div>
+                       		</div>
+					   </div>
+					
+						{/**  */}
+						<div className="flex-w flex-m p-l-100 p-t-40 respon7">
+							<div className="flex-m bor9 p-r-10 m-r-11">
+								<a href="#" className="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+									<i className="zmdi zmdi-favorite"></i>
+								</a>
+							</div>
 
-                }
-                
-                .profile-avatar {
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                }
-                
-                .profile-inline {
-                    position: relative;
-                    top: 0;
-                    display: inline-block;
-                }
-                
-                .profile-inline ~ .card-title {
-                    display: inline-block;
-                    margin-left: 4px;
-                    vertical-align: top;
-                }
-                
-                .text-bold {
-                    font-weight: 700;
-                }
-                
-                .meta {
-                    font-size: 1.3em;
-                    
-                }
-                
-                .meta a {
-                    text-decoration: none;
-                    
-                }
-                .Icutprise{
-                    text-decoration: line-through;
-                    color: rgba(0, 0, 0, .8);
-                    font-size: 0.75em;
-                }
-                .Idiscount{
-                    color: darkorange;
-                    font-size: 0.8em;
-                }
-                .Iprise{
-                    color: red;
-                    font-size: 1em;
-                }
-                `}
-                </style>
-           
-            </div>
+							<a href="#" className="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+								<i className="fa fa-facebook"></i>
+							</a>
+
+							<a href="#" className="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+								<i className="fa fa-twitter"></i>
+							</a>
+
+							<a href="#" className="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+								<i className="fa fa-google-plus"></i>
+							</a>
+						</div>
+                        <div>
+                        <Link href={adcreateitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a data-tooltip="Add new items to your shop" href="#" className="btn btn-outline-primary btn-sm fontsizeE-9"><i className="zmdi zmdi-collection-plus"></i> &nbsp;add new item</a></Link>
+                        <Link href={adupdateshopUrl+props.shop._id}><a data-tooltip="you can update your shop details" href="#" className="btn btn-outline-danger btn-sm fontsizeE-9"><i className="zmdi zmdi-edit"></i> &nbsp;update shop</a></Link>
+                        </div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
         
     )
 }
@@ -852,8 +812,8 @@ class Index extends Component {
                 <title> {web.wetopic}</title>
                 
                 </Head>
-             <SubNavBar sidenavconst={sidenavconst}/> 
-
+             <Header/> 
+             <div className="ismobile_disable p-t-80"></div>
              {this.props.errorShops&&this.props.error?<ErrorPage />:null}
 
             {this.props.errorShops?null:<div>
@@ -866,7 +826,7 @@ class Index extends Component {
     <div>
              <div className="col-lg-11 col-sm-12 mx-auto">
              {/*<h3 className="font1 topicColor profile-css-topic">My Shops</h3>*/}
-             <br/>
+           
              <ul className="nav nav-tabs nav-tabs-myshop">
              {this.state.myshops.map((x,i)=>
               <li key={i} className="nav-item pointer">
@@ -883,7 +843,7 @@ class Index extends Component {
                 <div>                    
                 </div>
                 <div className="row col-12">
-                <Imageside shop={this.props.shop?this.props.shop:null} ></Imageside>
+               <br/>
                 <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
                 </div>
             <ul className="nav nav-tabs">

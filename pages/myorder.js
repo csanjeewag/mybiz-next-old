@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
-import Cartitem from '../components/Cartitem';
+import Cartitem from '../component/Cartitem';
 import SubNavBar from '../layouts/SubNavbar';
-import Footer from '../components/Footer';
+//import Footer from '../component/Footer';
 import Cookie from "js-cookie";
 import {Url,ImageUrl,web,WebUrl,websiteUrl,myoderUrl} from './../constant/main';
-
+/** */
+import Header from '../component/header';
+import Footer from '../component/footer';
 const OrderTable=(props)=>{
 
   return(
@@ -15,7 +17,7 @@ const OrderTable=(props)=>{
   <div className="btn-group btn-group-sm col-12 " role="group" aria-label="Basic example">
     <button onClick={props.getorderbystate.bind(this,'all')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/show-all-views.png"/>  All</button>
     <button onClick={props.getorderbystate.bind(this,'new')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/new.png"/> new</button>
-    <button onClick={props.getorderbystate.bind(this,'mail')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>
+   {/* <button onClick={props.getorderbystate.bind(this,'mail')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/upload-mail.png"/> email</button>*/}
     <button onClick={props.getorderbystate.bind(this,'confirm')} type="button" className="btn btn-secondary fontsizeE1"><img src="https://img.icons8.com/ios/20/ffffff/checked-checkbox.png"/> confirm</button>
     <button onClick={props.getorderbystate.bind(this,'remove-by-customer')} type="button" className="btn btn-secondary fontsizeE1"> <img src="https://img.icons8.com/ios/20/ffffff/trash.png"/> removes</button>
   </div>
@@ -101,7 +103,6 @@ const OrderTable=(props)=>{
   }
   
 
-
 class Index extends Component {
 
   constructor() {
@@ -138,8 +139,9 @@ class Index extends Component {
       
           }
       )
+      
       .then(response => {this.getorderbystate(state); return response.json(); } )
-      .then(data => { if(data!=undefined){alert(data.msg);}})
+      .then(data => { if(data!=undefined){swal("Good job!",data.msg, "success");}})
       .catch(error => console.log(error))
     }
    
@@ -168,7 +170,7 @@ class Index extends Component {
             }
         )
         .then(response => {this.getorderbystate(state); return response.json(); } )
-        .then(data => { if(data!=undefined){alert(data.msg);}})
+        .then(data => { if(data!=undefined){swal("Good job!",data.msg, "success");}})
         .catch(error => console.log(error))
       }
     }
@@ -206,9 +208,11 @@ class Index extends Component {
                 <meta name="keywords" content={web.webKeyword}></meta>
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
-                 <SubNavBar ref="navbar" sidenavconst={sidenavconst}/> 
-
+                 <Header/> 
+                <br/><br/>
+                
                 <Cartitem signinuser={this.signinuser.bind(this)}  topic="My favorites"></Cartitem>
+         
                 <OrderTable  orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} userMassage={(id,state)=>this.userMassage(id,state)} />
             <Footer/>
                    </Layout>

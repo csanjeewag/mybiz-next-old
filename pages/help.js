@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
-import SubNavBar from './../layouts/SubNavbar';
-import Footer from './../components/Footer';
+//import SubNavBar from './../layouts/SubNavbar';
+//import Footer from './../components/Footer';
 import {Url,web,websiteUrl,helpUrl} from './../constant/main';
 import {help} from './../constant/page';
-
+/** */
+import Header from '../component/header';
+import Footer from '../component/footer';
 class Index extends Component {
 
 
@@ -27,9 +29,9 @@ class Index extends Component {
                 <meta name="keywords" content={web.webKeyword}></meta>
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
-        <SubNavBar ref="navbar" sidenavconst={sidenavconst} />
+        <Header />
 
-        <div className="container">
+        <div className="container bg0 p-t-104 p-b-116">
         <br/>
         <h3>{help.topic}</h3>
         <p className="p">{help.para1}</p>

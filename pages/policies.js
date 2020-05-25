@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
-import SubNavBar from './../layouts/SubNavbar';
-import Footer from './../components/Footer';
+import Header from './../component/header';
+import Footer from './../component/footer';
 import {Url,web,WebUrl,websiteUrl,policiesUrl} from './../constant/main';
 import {policies} from './../constant/page';
 
@@ -27,8 +27,8 @@ class Index extends Component {
                 <meta name="keywords" content={web.webKeyword}></meta>
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
-        <SubNavBar ref="navbar" sidenavconst={sidenavconst} />
-
+        <Header />
+        <div className="ismobile_disable p-t-80"></div>
         <div className="container">
         <br/>
         <h3>{policies.topic}</h3>

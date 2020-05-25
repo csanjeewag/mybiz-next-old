@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from './../layouts/MainLayout';
-import Allcatagery from './../components/Allcatagery';
-import SubNavBar from './../layouts/SubNavbar';
-import TopSlide from '../components/Topslide';
-import FilterItem from './../layouts/filterItem';
-import Footer from './../components/Footer';
-import Categeryitem from '../components/Categeryitem';
-import {Url,web,WebUrl,websiteUrl, wesitename,filteritemUrl} from './../constant/main';
-import {specialMsg} from './../constant/page';
+import Layout from '../layouts/MainLayout';
+import FilterItem from '../component/filterItem';
+//import Footer from '../components/Footer';
+import {Url,web,WebUrl,websiteUrl, wesitename,filteritemUrl} from '../constant/main';
+import {specialMsg} from '../constant/page';
 import fetch from 'isomorphic-unfetch';
 
+import Header from '../component/header';
+import Itemlist from '../component/itemlist';
+import CategoryRowlist from '../component/categoryrowlist';
+import Footer from '../component/footer';
 
 class Index extends Component {
     constructor() {
@@ -24,7 +24,7 @@ class Index extends Component {
 
 
     componentDidMount(){
-        this.showfilter();
+        //this.showfilter();
         this.setState({items:this.props.items});
         
     }
@@ -38,7 +38,7 @@ class Index extends Component {
 
           return ( 
            <Layout>
-                <SubNavBar ref="navbar" sidenavconst={sidenavconst} searchitem={this.props.searchitem}/>
+                <Header/>
                 <Head>
                 <title> {web.wetopic}</title>
                 <meta property="og:url"           content={websiteUrl+filteritemUrl+this.props.searchurl} />
@@ -50,13 +50,16 @@ class Index extends Component {
                 <meta name="keywords" content={web.webKeyword}></meta>
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
-    
-    <Categeryitem  catageries={this.props.items} topic={'search items...'}></Categeryitem>
+   <div className="ismobile_disable p-t-80"></div>
+    {/*<FilterItem  searchitem={this.props.searchitem}/>*/}
+    <Itemlist items={this.props.items} topic={'Serch Items'} selectcatagery={null}/>
+ {/*   <Categeryitem  catageries={this.props.items} topic={'search items...'}></Categeryitem>*/}
    {this.props.items.length==0?
    <div className="alert alert-dark col-lg-10 col-sm-12 mx-auto" role="alert">
    {specialMsg.filteremptymsg} 
  </div>:null
 }
+
      <Footer></Footer>
   
                   </Layout>

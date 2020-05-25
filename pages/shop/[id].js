@@ -1,31 +1,28 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Router from "next/router";
-import Layout from './../../layouts/MainLayout';
-import Profile from './../../components/CompanyProfile';
-import SubNavBar from './../../layouts/SubNavbar';
-import Footer from './../../components/Footer';
+import fetch from 'isomorphic-unfetch';
+import Layout from '../../layouts/MainLayout2';
+import  {Url,ImageUrl,WebUrl,wesitename, web,websiteUrl,myshopmUrl} from '../../constant/main';
+/** */
+import Header from '../../component/header';
+import Itemlist from '../../component/itemlist';
+import ShopDetail from '../../component/shopDetail';
+import Footer from '../../component/footer';
 import Errorpage from './../../layouts/error';
-import  {Url,ImageUrl,WebUrl,wesitename, web,websiteUrl,myshopmUrl} from './../../constant/main';
 class Index extends Component {
 
 
-    showsidebar(){
-        this.refs.child.showSidebar();
-      }
+
     
     render() { 
-          
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:[],visible:false};
-        //////////////
-          return ( 
-              
-            <Layout>
-                <SubNavBar sidenavconst={sidenavconst}/>
-               
-                {this.props.error?<Errorpage error={this.props.shop} />:<div>
+        
 
-                  <Head>
+          return ( 
+           <Layout>
+        <Header/>
+        {this.props.error?<Errorpage error={this.props.allshops} />:
+        <div>
+                     <Head>
                 <title> {wesitename+' '+this.props.shopanditems.shop.shopName+' '+this.props.shopanditems.shop.shopName+' '+this.props.shopanditems.shop.town}</title>
                 <meta property="og:url"           content={websiteUrl+myshopmUrl+this.props.pathname} />
                 <meta property="og:type"          content={web.webtypeA} />
@@ -36,18 +33,20 @@ class Index extends Component {
                 <meta name="keywords" content={this.props.shopanditems.shop.urlname.split('-').join(',')+',sri lanka'}></meta>
                 <meta name="description" content={this.props.shopanditems.shop.content1}></meta>
                 </Head>
+                <div className="ismobile_disable p-t-80"></div>
+                <ShopDetail shop={this.props.shopanditems.shop} />
+        <Itemlist items={this.props.shopanditems.items}/>
+        </div>}
+        <Footer/>
 
-                <Profile shop={this.props.shopanditems.shop} items={this.props.shopanditems.items} topic=""></Profile>
-                </div>
-                }
-             
-            <Footer/>
-                   </Layout>
+
+  
+                  </Layout>
            );
       }
     
 }
- 
+
 Index.getInitialProps = async function(context) {
     const { id,ide } = context.query;
     var pathname = id+(ide?'?ide='+ide:'');
@@ -65,5 +64,4 @@ Index.getInitialProps = async function(context) {
 
   }
 
-  export default Index;
-
+export default Index; 

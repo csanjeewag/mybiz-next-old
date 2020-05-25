@@ -1,44 +1,28 @@
 import React, { Component } from 'react';
-import Head from 'next/head'
-import Layout from './../../layouts/MainLayout';
-import Categeryitem from '../../components/Categeryitem';
-import SubNavBar from './../../layouts/SubNavbar';
-import Slide from  './../../components/Slide1';
-import Footer from './../../components/Footer';
-import {Url,ImageUrl,wesitename,WebUrl, web,websiteUrl,categoryUrl} from './../../constant/main';
-import {specialMsg} from './../../constant/page';
+import Head from 'next/head';
+import Layout from '../../layouts/MainLayout2';
+import fetch from 'isomorphic-unfetch';
+/** */
+import Header from '../../component/header';
+import Itemlist from '../../component/itemlist';
+import CategoryRowlist from '../../component/categoryrowlist';
+import Footer from '../../component/footer';
 import Errorpage from './../../layouts/error';
-
+import {Url,ImageUrl,wesitename,WebUrl, web,websiteUrl,categoryUrl} from '../../constant/main';
 class Index extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            catageries : []
-        }
 
-    }
-    componentDidMount(){
-        this.setState({
-            catageries:this.props.allcatagery
-        })
-    }
 
-    showsidebar(){
-        this.refs.child.showSidebar();
-      }
     
     render() { 
         
-            const sidenavconst = {topic : 'Categeries',topiclink:'all categories',suburl:'/catagery/', sidenavlink:this.props.allcatagery,visible:this.props.error?false:true};
-        //////////////
+
           return ( 
-            <Layout>
-                
-                <SubNavBar sidenavconst={sidenavconst}/>
-                {this.props.error?<Errorpage error={{msg:specialMsg.emptycategoryMsg,errormsg:specialMsg.filteremptymsg,Opps:''} } />:
-            <div>
-                <Head>
+           <Layout>
+        <Header/>
+        {this.props.error?<Errorpage error={this.props.items} />:
+        <div>
+             <Head>
                 <title> {wesitename+' '+this.props.itemname}</title>
                 <meta property="og:url"           content={websiteUrl+categoryUrl+this.props.itemname} />
                 <meta property="og:type"          content={web.webtypeA}/>
@@ -49,36 +33,39 @@ class Index extends Component {
                 <meta name="keywords" content={this.props.itemname.split('-').join(',')+',sri lanka'}></meta>
                 <meta name="description" content={this.props.catagery[0].content1}></meta>
                 </Head>
+                <div className="ismobile_disable p-t-80"></div>
+        <CategoryRowlist catageries={this.props.allcatagery} topic="categories" />
+        <Itemlist items={this.props.items} topic={this.props.itemname} selectcatagery={this.props.catagery[0]}/>
+        </div>}
+        <Footer/>
 
-             <Slide catagery={this.props.catagery[0]} ></Slide>
-                <Categeryitem  catageries={this.props.items} topic={this.props.itemname}></Categeryitem>
-            </div>}
-            <Footer/>
-                   </Layout>
+
+  
+                  </Layout>
            );
       }
     
 }
 
 Index.getInitialProps = async function(context) {
-    const { id } = context.query;
-    
-    const res = await fetch(`${Url}catagerybyname/${id}`);
-    const rescatagery = await fetch(`${Url}typebyname/${id}`);
-    const resallcatageries = await fetch(`${Url}types`);
+  const { id } = context.query;
+  
+  const res = await fetch(`${Url}catagerybyname/${id}`);
+  const rescatagery = await fetch(`${Url}typebyname/${id}`);
+  const resallcatageries = await fetch(`${Url}types`);
 
-    var  items = await res.json();
-    var catagery = await rescatagery.json();
-    var allcatagery = await resallcatageries.json();
+  var  items = await res.json();
+  var catagery = await rescatagery.json();
+  var allcatagery = await resallcatageries.json();
 
-    var error = false;
-    if(res.status!=200||rescatagery.status!=200 ){
-        error = true ;
-   }
+  var error = false;
+  if(res.status!=200||rescatagery.status!=200 ||resallcatageries.status!=200 ){
+      error = true ;
+ }
 
-    return {itemname:id,items,catagery,allcatagery,error}
+  return {itemname:id,items,catagery,allcatagery,error}
 
 
-  }
+}
 
 export default Index; 
