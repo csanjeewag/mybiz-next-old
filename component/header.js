@@ -25,7 +25,7 @@ const Notfication=(props)=>{
    
 		 <div key={i} className="row rownotication col-12 notificationmsg alert">
 			 <div className="d-flex bd-highlight">
-			 <div className="p-1 bd-highlight"> {x.imageUrl?<img src={x.imageUrl} alt="Avatar" className="avatar float-left"/>:null}</div>
+			 <div className="p-1 bd-highlight"> {x.imageUrl?<img src={x.imageUrl} alt="Avatar" className="avatar float-left lazyload"/>:null}</div>
 			 <div className="p-1 flex-grow-1 bd-highlight">
 			 <Link href={x.link?x.link:'#'}>
 			 <a className=" topicColor fontsizeE-8 font1 float-left p-0 content pointer" onClick={deletenotification.bind(this,x._id)}> {x.content}</a>
@@ -254,7 +254,7 @@ class Index extends Component {
                 		<a href="#SignIn" className="flex-c-m trans-04 p-lr-25 isuserlogin" onClick={this.logout.bind(this,'login')} >Log Out</a>
 
 						{this.state.isuserlogin? <a className="ismobile_disable logo-link nav-link nav-link-main flex-c-m trans-04 p-lr-25" href="#">{this.state.user.givenName} </a>:<a href="#SignUp" className="flex-c-m trans-04 p-lr-25 isnotuserlogin" onClick={this.showsignup.bind(this,'login') }  >Login</a> }
-						{this.state.isuserlogin?<img style={{height:'40px'}} className="ismobile_disable float-left avatar flex-c-m trans-04 p-lr-25" src={this.state.user.imageUrl} />:null}
+						{this.state.isuserlogin?<img style={{height:'40px'}} className="lazyload ismobile_disable float-left avatar flex-c-m trans-04 p-lr-25" src={this.state.user.imageUrl} />:null}
 					</div>
 				</div>
 			</div>
@@ -264,7 +264,7 @@ class Index extends Component {
 					
 					{/* Logo desktop */}		
 					<a href="#" className="logo font7">
-					<img src={logoUrl} alt="onshop.lk" style={{height:'40px'}} />
+					<img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'40px'}} />
 					</a>
 
 					{/* Menu desktop */}
@@ -307,7 +307,7 @@ class Index extends Component {
 		<div className="wrap-header-mobile">
 			{/* Logo moblie */}		
 			<div className="logo-mobile">
-			<img src={logoUrl} alt="onshop.lk" style={{height:'40px'}} />
+			<img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'40px'}} />
 			</div>
 
 			{/* Icon header */}
@@ -356,7 +356,7 @@ class Index extends Component {
 						
 						<a href="#SignUp" className="flex-c-m trans-04 p-lr-10 isnotuserlogin" onClick={this.showsignup.bind(this,'seller') }  >Sign Up</a>
                 		<a href="#SignIn" className="flex-c-m trans-04 p-lr-10 isuserlogin" onClick={this.logout.bind(this,'login')} >Log out</a>
-						{this.state.isuserlogin?<img style={{height:'30px'}} className="float-left avatar flex-c-m trans-04 p-lr-10" src={this.state.user.imageUrl} />:null}
+						{this.state.isuserlogin?<img style={{height:'30px'}} className="lazyload float-left avatar flex-c-m trans-04 p-lr-10 lazyload" src={this.state.user.imageUrl} />:null}
 					
 					</div>
 				</li>
@@ -385,7 +385,7 @@ class Index extends Component {
 		<div className="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div className="container-search-header">
 				<button className="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="images/icons/icon-close2.png" alt="CLOSE"/>
+					<img className="lazyload" src="images/icons/icon-close2.png lazyload" alt="CLOSE"/>
 				</button>
 
 				<form className="wrap-search-header flex-w p-l-15">

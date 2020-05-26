@@ -13,8 +13,8 @@ const QuestionSide = (props)=>{
         {props.questiondata?props.questiondata.map((x,i)=>
             <div key={i} className="menu2-question ">
             {(x.answer&&Cookie.getJSON('user')&&Cookie.getJSON('user')._id==props.shopUserid)?<button className="popup-close-question" onClick={props.removeansewer.bind(this,x._id)}>x</button>:null}
-            <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; {x.question}<br/> <span className="spam-text font3 fontsizeE-8"> -{x.a_user.name}- on {x.a_Date}</span></p>
-            <p  className="font3 fontsizeE-9"><img src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp;{x.answer?x.answer:'pending answer..'}</p>
+            <img className="float-left lazyload" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/><p href="#" className="font6 fontsizeE-9">&nbsp; {x.question}<br/> <span className="spam-text font3 fontsizeE-8"> -{x.a_user.name}- on {x.a_Date}</span></p>
+            <p  className="font3 fontsizeE-9"><img  className="lazyload" src="https://img.icons8.com/windows/25/000000/stack-exchange-answer.png"/> &nbsp;{x.answer?x.answer:'pending answer..'}</p>
             {(!x.answer&&Cookie.getJSON('user')&&Cookie.getJSON('user')._id==props.shopUserid)?<div>
             <input className="inputf2" type="text" name="question" id={'input-'+x._id} /><br/>
             <button onClick={props.handlegiveanswer.bind(this,x._id)} type="button" className="btn btn-primary btn-sm"><i className="fa fa-bullhorn" aria-hidden="true"></i>&nbsp; keep a answer </button>
@@ -27,7 +27,7 @@ const QuestionSide = (props)=>{
       
 
         <div className="menu2-question">
-        <img className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/>
+        <img className="lazyload" className="float-left" src="https://img.icons8.com/cute-clipart/40/000000/faq.png"/>
         <input className="inputf2" type="text" name="question" value={props.question}  onChange={props.handleChange} /><br/>
         <button onClick={props.handleaskquestion} type="button" className="btn btn-primary btn-sm fontsizeE1"><i className="fa fa-quora" aria-hidden="true"></i>&nbsp; Ask a question </button>
         
@@ -71,7 +71,7 @@ const ReviewSide = (props)=>{
         <hr/>
         {props.reviewsdata?props.reviewsdata.map((x,i)=>
            <div key={i} className="menu2-reviews">
-           <img className="float-left avatar" src={x.user.imageUrl} /><p  className="font6 fontsizeE-9">&nbsp; {x.user.name} <br/> <span className="spam-text font3 fontsizeE-8"> -{x.createDate}-</span></p>
+           <img className="lazyload" className="float-left avatar" src={x.user.imageUrl} /><p  className="font6 fontsizeE-9">&nbsp; {x.user.name} <br/> <span className="spam-text font3 fontsizeE-8"> -{x.createDate}-</span></p>
            <p  className="font5 fontweight700 fontsizeE-9">&nbsp;&nbsp;&nbsp;{x.review} </p>
            <hr/>
            </div>   
@@ -94,7 +94,7 @@ const ReviewSide = (props)=>{
 				</span>
 		</div>
 
-        <img className="float-left" src="https://img.icons8.com/ios/40/000000/edit-chat-history.png"/>
+        <img className="lazyload" className="float-left" src="https://img.icons8.com/ios/40/000000/edit-chat-history.png"/>
         <input className="inputf2" type="text" name="review" value={props.review}  onChange={props.handleChange} /><br/>
         <button onClick={props.handlereviews} type="button" className="btn btn-danger btn-sm fontsizeE-9"><i className="fa fa-comments" aria-hidden="true"></i>&nbsp; keep a review </button>
         </div>
@@ -399,7 +399,7 @@ class Index extends Component {
 						<div className="wrap-slick3 flex-sb flex-w">
 							<div className="wrap-slick3-dots">
 							{this.props.item.images.map((x,i)=>			
-									<img key={i} className="pb-2" src={ImageUrl+x} alt="IMG-PRODUCT" style={{width:'100%'}} />
+									<img className="lazyload" key={i} className="pb-2" src={ImageUrl+x} alt="IMG-PRODUCT" style={{width:'100%'}} />
                				 )}	
 							</div>
 							<div className="wrap-slick3-arrows flex-sb-m flex-w">
@@ -411,7 +411,7 @@ class Index extends Component {
 							{this.props.item.images.map((x,i)=>
 								<div key={i} className="item-slick3" >
 								<div className="wrap-pic-w pos-relative">
-									<img src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
+									<img className="lazyload" src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
 
 									<a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href={ImageUrl+x}>
 										<i className="fa fa-expand"></i>
@@ -462,7 +462,7 @@ class Index extends Component {
 							<div className="row">
 								{this.props.item.itemSpecification?this.props.item.itemSpecification.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
                        </div>
@@ -474,7 +474,7 @@ class Index extends Component {
 							<div className="row">
 							{this.props.item.stockDetail?this.props.item.stockDetail.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
 			

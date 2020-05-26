@@ -59,7 +59,7 @@ class Index extends Component {
 					{this.state.items!=null?this.state.items.map((x,i)=>
 					<li key={i} className="header-cart-item flex-w flex-t m-b-12">
 					<div className="header-cart-item-img" onClick={this.deletefavItems.bind(this,x._id)} >
-						<img src={ImageUrl+x.image} alt="IMG"/>			
+						<img className="lazyload" src={ImageUrl+x.image} alt="IMG"/>			
 					</div>
 
 					<div className="header-cart-item-txt p-t-8">

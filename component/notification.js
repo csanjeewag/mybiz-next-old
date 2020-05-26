@@ -53,7 +53,7 @@ class Index extends Component {
                 <li key={i} className="header-cart-item flex-w flex-t m-b-12">
 					<div onClick={deletenotification.bind(this,x._id)} className="header-cart-item-img">
 					
-                    {x.imageUrl?<img src={x.imageUrl} alt="Avatar" className="avatar float-left"/>:null}
+                    {x.imageUrl?<img className="lazyload" src={x.imageUrl} alt="Avatar" className="avatar float-left"/>:null}
 					
 					</div>
 

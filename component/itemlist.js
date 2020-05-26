@@ -178,7 +178,7 @@ class Index extends Component {
 				<div className="block2">
 					<div className="block2-pic hov-img0">
 					
-					<img className="card-img-top pointer" src={ImageUrl+c.images[0]} height="170px" />
+					<img className="card-img-top pointer lazyload" src={ImageUrl+c.images[0]} height="170px" />
 					
 						<a href="#" className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" onClick={this.loadview.bind(this,c)}>
 							View
@@ -235,7 +235,7 @@ class Index extends Component {
 		<div className="container">
 			<div className="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button className="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="../images/icons/icon-close.png" alt="CLOSE"/>
+					<img className="lazyload" src="../images/icons/icon-close.png" alt="CLOSE"/>
 				</button>
 
 				<div className="row">
@@ -245,7 +245,7 @@ class Index extends Component {
 							<div className="wrap-slick3 flex-sb flex-w">
 								<div className="wrap-slick3-dots">
 								{this.state.item.images?this.state.item.images.map((x,i)=>			
-									<img key={i} className="pb-2" src={ImageUrl+x} alt="IMG-PRODUCT" style={{width:'100%'}} />
+									<img className="lazyload" key={i} className="pb-2" src={ImageUrl+x} alt="IMG-PRODUCT" style={{width:'100%'}} />
                				 ):null}	
 								</div>
 								
@@ -256,7 +256,7 @@ class Index extends Component {
 								<div key={i} className="item-slick3" >
 								<div className="wrap-pic-w pos-relative">
 								<Link href={itemUrl+this.state.item.urlname+'?ide='+this.state.item._id}>
-									<img src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
+									<img className="lazyload" src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
 								</Link>
 									<a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href={ImageUrl+x}>
 												<i className="fa fa-expand"></i>
@@ -307,7 +307,7 @@ class Index extends Component {
 							<div className="row">
 								{this.state.item.itemSpecification?this.state.item.itemSpecification.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
                        </div>
@@ -319,7 +319,7 @@ class Index extends Component {
 							<div className="row">
 							{this.state.item.stockDetail?this.state.item.stockDetail.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
 			

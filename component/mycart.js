@@ -28,7 +28,7 @@ class Index extends Component {
 								<tr className="table_row">
 									<td className="column-1">
 										<div className="how-itemcart1">
-											<img src="images/item-cart-04.jpg" alt="IMG"/>
+											<img className="lazyload" src="images/item-cart-04.jpg" alt="IMG"/>
 										</div>
 									</td>
 									<td className="column-2">Fresh Strawberries</td>
@@ -52,7 +52,7 @@ class Index extends Component {
 								<tr className="table_row">
 									<td className="column-1">
 										<div className="how-itemcart1">
-											<img src="images/item-cart-05.jpg" alt="IMG"/>
+											<img className="lazyload" src="images/item-cart-05.jpg" alt="IMG"/>
 										</div>
 									</td>
 									<td className="column-2">Lightweight Jacket</td>

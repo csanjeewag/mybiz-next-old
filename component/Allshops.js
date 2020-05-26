@@ -28,7 +28,7 @@ class Index extends Component {
 				<div className="block2">
 					<div className="block2-pic hov-img0">
 					<Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
-					<img className="card-img-top pointer" src={ImageUrl+c.images[0]} height="200px" />
+					<img className="card-img-top pointer lazyload" src={ImageUrl+c.images[0]} height="200px" />
 					</Link>
 						<a href={myshopmUrl+c.urlname+'?ide='+c._id} className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 						    shop

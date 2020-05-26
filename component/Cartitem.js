@@ -41,7 +41,7 @@ const CartList=(props)=>{
         <div className="row">
         <Link href={itemUrl+c.urlname}>
         <div className="col-lg-3 col-4">
-        <img className="f-card-img-top" src={ImageUrl+c.images[0]}/>
+        <img className="f-card-img-top lazyload" src={ImageUrl+c.images[0]}/>
         </div>
         </Link>
         <div className="col-lg-9 col-8">

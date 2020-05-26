@@ -128,6 +128,8 @@ class Layout extends Component {
 	<script src="./../js/main.js"></script>
     <script src="./../js/indexpage.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="lazysizes.min.js" async></script>
+
 {/*********** */}
 
  <style global jsx>

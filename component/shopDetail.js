@@ -83,7 +83,7 @@ class Index extends Component {
 						<div className="wrap-slick3 flex-sb flex-w">
 							<div className="wrap-slick3-dots">
 							{this.props.shop.images.map((x,i)=>
-							<img key={i} className="d-block w-100 silde2image pb-3" src={ImageUrl+x} alt="first slide" width="100%" />
+							<img key={i} className="d-block w-100 silde2image pb-3 lazyload" src={ImageUrl+x} alt="first slide" width="100%" />
 							)}
 							</div>
 							<div className="wrap-slick3-arrows flex-sb-m flex-w"></div>
@@ -93,7 +93,7 @@ class Index extends Component {
 							{this.props.shop.images.map((x,i)=>
 							<div key={i} className="item-slick3">
 							<div className="wrap-pic-w pos-relative">
-							<img className="d-block w-100 silde2image" src={ImageUrl+x} alt="first slide" style={{maxHeight:'600px',height:'auto',width:'100%'}}/>
+							<img className="d-block w-100 silde2image lazyload" src={ImageUrl+x} alt="first slide" style={{maxHeight:'600px',height:'auto',width:'100%'}}/>
 
 								<a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href={ImageUrl+x}>
 									<i className="fa fa-expand"></i>
@@ -132,7 +132,7 @@ class Index extends Component {
 							<div className="row">
 								{this.props.shop.shopDetail?this.props.shop.shopDetail.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
 								</div>

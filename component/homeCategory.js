@@ -62,7 +62,7 @@ class Index extends Component {
                 	<div key={i}  className="col-md-6 col-xl-3 p-b-30 m-lr-auto">
 					<Link  href={`${categoryUrl+c.type}?=ide${c._id}`} > 
 					<div  className="block1 wrap-pic-w">
-						<img className="imagebackground" src={ImageUrl+c.mainimage}  width="100%" height="200px" />
+						<img className="imagebackground lazyload" src={ImageUrl+c.mainimage}  width="100%" height="200px" />
 
 						<a className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-45 trans-03 respon3">
                         <div className="block1-txt-child1 flex-col-l">

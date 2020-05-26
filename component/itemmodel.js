@@ -147,7 +147,7 @@ class Index extends Component {
 						<div className="wrap-slick3 flex-sb flex-w">
 							<div className="wrap-slick3-dots">
 							{this.props.item.images.map((x,i)=>			
-									<img key={i} className="pb-2" src={ImageUrl+x} alt="IMG-PRODUCT" style={{width:'100%'}} />
+									<img className="lazyload" key={i} className="pb-2" src={ImageUrl+x} alt="IMG-PRODUCT" style={{width:'100%'}} />
                				 )}	
 							</div>
 							<div className="wrap-slick3-arrows flex-sb-m flex-w">
@@ -159,7 +159,7 @@ class Index extends Component {
 							{this.props.item.images.map((x,i)=>
 								<div key={i} className="item-slick3" >
 								<div className="wrap-pic-w pos-relative">
-									<img src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
+									<img className="lazyload" src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
 
 									<a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href={ImageUrl+x}>
 										<i className="fa fa-expand"></i>
@@ -200,7 +200,7 @@ class Index extends Component {
 							<div className="row">
 								{this.props.item.itemSpecification?this.props.item.itemSpecification.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
                        </div>
@@ -212,7 +212,7 @@ class Index extends Component {
 							<div className="row">
 							{this.props.item.stockDetail?this.props.item.stockDetail.map((x,i)=>
 									<div className="col-lg-6 col-sm-12" key={i}>
-									<a className="float-left menu2-speca"><img src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
+									<a className="float-left menu2-speca"><img className="lazyload" src="https://img.icons8.com/metro/15/000000/collect.png"/>&nbsp; &nbsp; {x.name} &nbsp;: </a> <a className="float-left profile-specb"> &nbsp; {x.value}</a>
 									</div>
 									):null}
 			
