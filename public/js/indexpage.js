@@ -11,7 +11,7 @@
 			});
 		})
 
-        $('.parallax100').parallax100();
+        
 
         $('.js-addwish-b2').on('click', function(e){
         e.preventDefault();

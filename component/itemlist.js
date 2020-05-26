@@ -187,16 +187,25 @@ class Index extends Component {
 
 					<div className="block2-txt flex-w flex-t p-t-14">
 						<div className="block2-txt-child1 flex-col-l ">
-							<a className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							<a className="stext-104 cl4 hov-cl1 trans-04 js-name-b2">
 							{c.itemname} - {c.subcategery}
 							</a>
-
 							<span className="stext-105 cl3">
 							<p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{c.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{c.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</span></p>
 							</span>
+
+							<span href={myshopmUrl+c.shop[0].shopurl} className="stext-104 cl4 hov-cl1 trans-04 js-name-b2">
+							<span style={{color:'#8283a5',fontSize:'11px'}}> <i className="zmdi zmdi-pin"></i> {c.shop[0].shopName}/{c.shop[0].town}</span>
+							<span href={myshopmUrl+c.shop[0].shopurl} style={{fontSize:'11px'}} className="flex-c-m cl0 bg1 bor1 hov-btn1 p-lr-5 trans-04 float-right">
+							Shop
+							</span>
+							</span>
+							<div>
+							
+							</div>
 						</div>
 
-						<div className="block2-txt-child2 flex-r p-t-3">
+						<div className="block2-txt-child2 flex-r">
 							<a className="btn-addwish-b2 dis-block pos-relative">
 								<span id={"cart-no-"+c._id} onClick={()=>this.addtocart(c)} style={{color:'gray'}}><i className="zmdi zmdi-shopping-cart zmdi-hc-lg"></i></span>
 								<span id={"cart-yes-"+c._id}  onClick={()=>this.addtocart(c)} style={{color:'blue'}}><i className="zmdi zmdi-shopping-cart zmdi-hc-lg"></i></span>
