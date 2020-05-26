@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import Slider from "react-slick";
-import {ImageUrl,createshopUrl} from '../constant/main';
+import {websiteUrl,createshopUrl} from '../constant/main';
 
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
@@ -54,7 +54,7 @@ class Index extends Component {
 
 		<Slider {...settings}>
 			<div>
-			<div className="item-slick1" style={{backgroundImage: 'url(cover01.jpg)'}}>
+			<div className="item-slick1" style={{backgroundImage: `url(${websiteUrl}/special/cover01.jpg)`}}>
 					<div className="container h-full">
 						<div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div data-appear="fadeInDown" data-delay="0">
@@ -79,7 +79,7 @@ class Index extends Component {
 				</div>
 			</div>
 			<div>
-			<div className="item-slick1" style={{backgroundImage: 'url(cover02.jpg)'}}>
+			<div className="item-slick1" style={{backgroundImage: `url(${websiteUrl}/special/cover02.jpg)`}}>
 					<div className="container h-full">
 						<div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div data-appear="fadeInDown" data-delay="0">
@@ -106,7 +106,7 @@ class Index extends Component {
 			
 			</div>
 			<div>
-			<div className="item-slick1" style={{backgroundImage: 'url(cover03.jpg)'}}>
+			<div className="item-slick1" style={{backgroundImage: `url(${websiteUrl}/special/cover03.jpg)`}}>
 					<div className="container h-full">
 						<div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div data-appear="fadeInDown" data-delay="0">

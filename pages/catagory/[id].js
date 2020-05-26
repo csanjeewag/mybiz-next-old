@@ -51,19 +51,21 @@ Index.getInitialProps = async function(context) {
   const { id } = context.query;
   
   const res = await fetch(`${Url}catagerybyname/${id}`);
-  const rescatagery = await fetch(`${Url}typebyname/${id}`);
   const resallcatageries = await fetch(`${Url}types`);
 
   var  items = await res.json();
-  var catagery = await rescatagery.json();
+
   var allcatagery = await resallcatageries.json();
+  var selectcatagery = allcatagery.filter(function(e){
+       return e.type==id;
+  })
 
   var error = false;
-  if(res.status!=200||rescatagery.status!=200 ||resallcatageries.status!=200 ){
+  if(res.status!=200||resallcatageries.status!=200 ){
       error = true ;
  }
 
-  return {itemname:id,items,catagery,allcatagery,error}
+  return {itemname:id,items,catagery:selectcatagery,allcatagery,error}
 
 
 }

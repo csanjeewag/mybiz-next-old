@@ -129,7 +129,7 @@ class Index extends Component {
 						All Products
 					</button>
 
-					{this.props.selectcatagery&&this.props.selectcatagery.length>0?this.props.selectcatagery.subtype.map((x,i)=>
+					{this.props.selectcatagery?this.props.selectcatagery.subtype.map((x,i)=>
 					<button key={i} className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter={'.'+x.type}>
 										{x.name}
 					</button>

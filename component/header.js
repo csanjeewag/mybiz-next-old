@@ -295,7 +295,7 @@ class Index extends Component {
 							<i className="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#" className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+						<a className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 						<i className="zmdi zmdi-notifications"></i>
 						</a>
 					</div>
@@ -320,7 +320,7 @@ class Index extends Component {
 					<i className="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#" className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+				<a className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 					<i className="zmdi zmdi-notifications"></i>
 				</a>
 			</div>

@@ -96,7 +96,7 @@ class Index extends Component {
 							<i className="fa fa-instagram"></i>
 						</a>
 
-						<a href="https://www.facebook.com/Onshoplk-113469750349042" className="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.pinterest.com/onshoplk/pins" className="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i className="fa fa-pinterest-p"></i>
 						</a>
 					</div>
