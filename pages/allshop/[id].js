@@ -88,7 +88,7 @@ class Index extends Component {
 
                 <div className="ismobile_disable p-t-80"></div>
 
-        <div className="flex-w flex-sb-m p-b-52 col-lg-11 col-sm-12 mx-auto">
+        <div className="flex-w flex-sb-m p-b-52 col-lg-11 col-sm-12 mx-auto ismobile_disable">
 				<div className="flex-w flex-l-m filter-tope-group m-tb-10">
 
 					{this.props.allcatagery?this.props.allcatagery.map((x,i)=>
@@ -138,17 +138,17 @@ Index.getInitialProps = async function(context) {
     const { id } = context.query;
     const resallshop = await fetch(`${Url}allshop/${id}`);
     const resallcatageries = await fetch(`${Url}types`);
-    const resalllocations = await fetch(`${Url}locations`);
+    //const resalllocations = await fetch(`${Url}locations`);
 
     var allshops = await resallshop.json();
     var allcatagery = await resallcatageries.json();
-    var alllocations = await resalllocations.json();
+    //var alllocations = await resalllocations.json();
 
     var error = false;
     if(resallshop.status!=200){
         error = true ;
    }
-    return {district:id,allcatagery,allshops,alllocations,error}
+    return {district:id,allshops,allcatagery,error}
 
 
   }

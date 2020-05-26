@@ -11,7 +11,7 @@ import FilterItems from "./../component/filterItem";
 	return (
 	  <div
 		className={className}
-		style={{ display: "block", background: "gray" ,color:'purple'}}
+		style={{ display: "none", background: "gray" ,color:'purple'}}
 		onClick={onClick}
         />
 	);
@@ -45,11 +45,11 @@ class Index extends Component {
 
 			$('#cart-yes-'+item._id).show(100);
 			$('#cart-no-'+item._id).hide(100);
-			swal("Added to cart",item.itemname+' in cart now.',"success");
+			swal("Added to favorites",item.itemname+' in favorites now.',"success");
 		
             }else{
 
-			swal("Already in cart",item.itemname+' in cart now.',"warning");
+			swal("Already in favorites",item.itemname+' in favorites now.',"warning");
 
             }
         }else{
@@ -59,7 +59,7 @@ class Index extends Component {
 			Cookie.set('faverite-item-list',JSON.stringify(jsonarrayList));
 			$('#cart-yes-'+item._id).show(100);
 			$('#cart-no-'+item._id).hide(100);
-            swal("Added to cart",item.itemname+' in cart now.',"success");
+            swal("Added to favorites",item.itemname+' in favorites now.',"success");
 
         }
 		
@@ -207,8 +207,8 @@ class Index extends Component {
 
 						<div className="block2-txt-child2 flex-r">
 							<a className="btn-addwish-b2 dis-block pos-relative">
-								<span id={"cart-no-"+c._id} onClick={()=>this.addtocart(c)} style={{color:'gray'}}><i className="zmdi zmdi-shopping-cart zmdi-hc-lg"></i></span>
-								<span id={"cart-yes-"+c._id}  onClick={()=>this.addtocart(c)} style={{color:'blue'}}><i className="zmdi zmdi-shopping-cart zmdi-hc-lg"></i></span>
+								<span id={"cart-no-"+c._id} onClick={()=>this.addtocart(c)} style={{color:'gray'}}><i className="zmdi zmdi-favorite-outline zmdi-hc-lg"></i></span>
+								<span id={"cart-yes-"+c._id}  onClick={()=>this.addtocart(c)} style={{color:'blue'}}><i className="zmdi zmdi-favorite zmdi-hc-lg"></i></span>
 							</a>
 							
 						</div>
@@ -279,7 +279,7 @@ class Index extends Component {
 						</h4>
 						<div >
 						<a href={myshopmUrl+this.state.item.shop[0].shopurl} className="flex-c-m stext-101 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right">
-							view Shop
+							07x xxxx
 						</a>
 						<a href={itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} className="flex-c-m stext-101 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right">
 							view item
@@ -332,7 +332,7 @@ class Index extends Component {
 						<div className="p-t-5">
 							<div className="flex-w flex-r-m p-b-10">
 								<div className="size-204 flex-w flex-m respon6-next">
-									<div className="wrap-num-product flex-w m-r-20 m-tb-10">
+									{/*<div className="wrap-num-product flex-w m-r-20 m-tb-10">
 										<div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i className="fs-16 zmdi zmdi-minus"></i>
 										</div>
@@ -342,10 +342,10 @@ class Index extends Component {
 										<div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i className="fs-16 zmdi zmdi-plus"></i>
 										</div>
-									</div>
+									</div>*/}
 
 									<button className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" onClick={()=>this.addtocart(this.state.item)}>
-										Add to cart
+										Add to favorites
 									</button>
 								</div>
 							</div>	

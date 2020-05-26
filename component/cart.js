@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Cookie from "js-cookie";
-import {ImageUrl,itemUrl,myoderUrl} from '../constant/main'
+import {ImageUrl,itemUrl,myshopmUrl} from '../constant/main'
 
 class Index extends Component {
 
@@ -46,7 +46,7 @@ class Index extends Component {
 		<div className="header-cart flex-col-l p-l-65 p-r-25">
 			<div className="header-cart-title flex-w flex-sb-m p-b-8">
 				<span className="mtext-103 cl2">
-					My Cart
+					My favorites
 				</span>
 
 				<div className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -62,22 +62,24 @@ class Index extends Component {
 						<img className="lazyload" src={ImageUrl+x.image} alt="IMG"/>			
 					</div>
 
-					<div className="header-cart-item-txt p-t-8">
-						<a href={itemUrl+x.urlname+'?ide='+x._id} className="header-cart-item-name m-b-18 hov-cl1 trans-04">
-							{x.itemname}
+					<div className="header-cart-item-txt">
+						<a href={itemUrl+x.urlname+'?ide='+x._id} className="header-cart-item-name hov-cl1 trans-04 stext-104">
+							{x.itemname} <span className="hov-btn1 bg1 bor1 p-lr-5">view</span>
 						</a>
-
 						<span className="header-cart-item-info">
 						<p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{x.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{x.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{x.itemPrice*(100-x.itemdiscount)/100}</span></p>
 						</span>
+						<span >
+						</span>
 					</div>
+
 				</li>
 					):null}
 					
 
 				</ul>
 				
-				<div className="w-full">
+			{/*	<div className="w-full">
 					<div className="header-cart-total w-full p-tb-40">
 						
 					</div>
@@ -91,7 +93,7 @@ class Index extends Component {
 							Check Out
 						</a>
 					</div>
-				</div>
+					</div>*/}
 			</div>
 		</div>
 	</div>

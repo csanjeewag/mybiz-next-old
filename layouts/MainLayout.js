@@ -76,7 +76,7 @@ class Layout extends Component {
 {/**new theme */}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+<link rel="prestylesheetload" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"></link>
 
                  {/* <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>*/}
@@ -221,8 +221,16 @@ class Layout extends Component {
    .stext-106{
     font-family: 'Noto Sans TC', sans-serif;
    }
+   .ltext-101{
+    font-family: 'Nunito Sans', sans-serif;
+   }
    .ltext-103{
     font-family: 'Nunito Sans', sans-serif;
+   }
+   .mtext-103{
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #333336;
+    font-weight: bold;
    }
    
    .font1 {

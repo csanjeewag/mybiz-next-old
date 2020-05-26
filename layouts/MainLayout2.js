@@ -227,6 +227,11 @@ class Layout extends Component {
     color: #333336;
     font-weight: bold;
    }
+   .mtext-103{
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #333336;
+    font-weight: bold;
+   }
 
 
    

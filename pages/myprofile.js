@@ -40,7 +40,7 @@ function SampleNextArrow(props) {
 	return (
 	  <div
 		className={className}
-		style={{ display: "block", background: "gray" ,color:'purple'}}
+		style={{ display: "none", background: "gray" ,color:'purple'}}
 		onClick={onClick}
         />
 	);
@@ -541,11 +541,11 @@ class Index extends Component {
             .then(res=>{return res.json()})
             .then(data=>{this.setState({myshops:data})})
         }
-        if(this.props.shop){
+       /* if(this.props.shop){
             fetch(`${Url}orderbyshopid/${this.props.shop._id}?state=new`)
             .then(res=>{return res.json()})
             .then(data=>{this.setState({orders:data})})
-        }
+        }*/
         this.setState({
             querys:this.props.querys
         })
@@ -614,7 +614,7 @@ class Index extends Component {
                     <br/>
                 <Contentside shop={this.props.shop?this.props.shop:null} ></Contentside>
                 </div>
-            <ul className="nav nav-tabs">
+            {/*<ul className="nav nav-tabs">
             <li className="nav-item pointer">
                 <a onClick={this.chnagetab.bind(this,false)} className= {this.state.istable?"nav-link":"nav-link active"} >Items List</a>
             </li>
@@ -622,10 +622,9 @@ class Index extends Component {
                 <a onClick={this.chnagetab.bind(this,true)}  className={this.state.istable?"nav-link active":"nav-link"}>Order List</a>
             </li>
 
-            </ul>
+             </ul>*/}
                 <br/>
-                {this.state.istable?<OrderTable orders={this.state.orders} updateorder={(id,state)=>this.updateorder(id,state)} getorderbystate={(state)=>this.getorderbystate(state)} sellerMassege={(id,state)=>this.sellerMassege(id,state)}/>
-                :<CartList loadpromt={this.loadpromt} updateitem={this.updateitem} items={this.props.items} catagerytype="Phones"  />}
+                {<CartList loadpromt={this.loadpromt} updateitem={this.updateitem} items={this.props.items} catagerytype="Phones"  />}
              </div>
              </div> }
              <Footer/> 

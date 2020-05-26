@@ -22,7 +22,7 @@ function SampleNextArrow(props) {
 	return (
 	  <div
 		className={className}
-		style={{ display: "block", background: "green" }}
+		style={{ display: "none", background: "green" }}
 		onClick={onClick}
         />
 	);
@@ -32,7 +32,7 @@ function SampleNextArrow(props) {
 	return (
 	  <div
 		className={className}
-		style={{ display: "block", background: "gray" ,color:'purple'}}
+		style={{ display: "none", background: "gray" ,color:'purple'}}
 		onClick={onClick}
         />
 	);

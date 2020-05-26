@@ -7,7 +7,7 @@ import Notfications from './notification';
 import $ from 'jquery';
 import SignUp from './signup';
 import Loading from './loading';
-import {Url,NavLink,wesitename,logoUrl,myProfileUrl,myshopmUrl,myoderUrl,createshopUrl, helpUrl} from './../constant/main';
+import {Url,NavLink,wesitename,logoUrl,myProfileUrl,myshopmUrl,myoderUrl,createshopUrl, helpUrl,filteritemUrl} from './../constant/main';
 
 
 
@@ -104,7 +104,7 @@ class Index extends Component {
         .then(res=>{ return res.json()})
         .then(data => { this.setState({notfication:data,notficationcount:data.length});})
     }
-    
+	
 
     componentDidMount(){
 		$('.load').hide();
@@ -209,19 +209,17 @@ class Index extends Component {
         
     }
 
-     shownotification=()=>{
-        if($('.dropdown-menu-notification').is(":visible")){
-            $('.dropdown-menu-notification').slideUp(500) 
-        }
-        else{
-          
-            $('.dropdown-menu-notification').slideDown(500)  
-        }
-	}
 	showcart=()=>{
 		this.refs.mycart.loaditems();
 		
 	}
+	searchitems=()=>{
+		
+		var seach= $('#searchitem').val();
+		alert('seach')
+		//Router.push('/filter?searcha='+seach)
+	}
+	
     render() { 
         
           return ( 
@@ -240,21 +238,21 @@ class Index extends Component {
 					</div>
 
 					<div className="right-top-bar flex-w h-full">
-						<a href={helpUrl}  className="flex-c-m trans-04 p-lr-25">
+						<a href={helpUrl}  className="flex-c-m stext-104 trans-04 p-lr-25">
 							Help & FAQs
 						</a>
 
 				
 							{this.state.isuserlogin&&this.state.user.isseller?
-						<Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="flex-c-m trans-04 p-lr-25 nav-link nav-link-main isuserlogin"  >My Shop</a></Link>
-						:<Link  href={`${createshopUrl}`}><a  onClick={this.show}  className="flex-c-m trans-04 p-lr-10"  >Create Shop</a></Link>
+						<Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="flex-c-m stext-104 trans-04 p-lr-25 nav-link nav-link-main isuserlogin"  >My Shop</a></Link>
+						:<Link  href={`${createshopUrl}`}><a  onClick={this.show}  className="flex-c-m stext-104 trans-04 p-lr-10"  >Create Shop</a></Link>
 							}
 						
-						<a href="#SignUp" className="flex-c-m trans-04 p-lr-25 isnotuserlogin" onClick={this.showsignup.bind(this,'seller') }  >Sign Up</a>
-                		<a href="#SignIn" className="flex-c-m trans-04 p-lr-25 isuserlogin" onClick={this.logout.bind(this,'login')} >Log Out</a>
+						<a href="#SignUp" className="flex-c-m stext-104 trans-04 p-lr-25 isnotuserlogin" onClick={this.showsignup.bind(this,'seller') }  >Sign Up</a>
+                		<a href="#SignIn" className="flex-c-m stext-104 trans-04 p-lr-25 isuserlogin" onClick={this.logout.bind(this,'login')} >Log Out</a>
 
-						{this.state.isuserlogin? <a className="ismobile_disable logo-link nav-link nav-link-main flex-c-m trans-04 p-lr-25" href="#">{this.state.user.givenName} </a>:<a href="#SignUp" className="flex-c-m trans-04 p-lr-25 isnotuserlogin" onClick={this.showsignup.bind(this,'login') }  >Login</a> }
-						{this.state.isuserlogin?<img style={{height:'40px'}} className="lazyload ismobile_disable float-left avatar flex-c-m trans-04 p-lr-25" src={this.state.user.imageUrl} />:null}
+						{this.state.isuserlogin? <a className="ismobile_disable logo-link nav-link nav-link-main flex-c-m stext-104 trans-04 p-lr-25" href="#">{this.state.user.givenName} </a>:<a href="#SignUp" className="flex-c-m stext-104 trans-04 p-lr-25 isnotuserlogin" onClick={this.showsignup.bind(this,'login') }  >Login</a> }
+						{this.state.isuserlogin?<img style={{height:'40px'}} className="lazyload ismobile_disable float-left avatar flex-c-m stext-104 trans-04 p-lr-25" src={this.state.user.imageUrl} />:null}
 					</div>
 				</div>
 			</div>
@@ -263,8 +261,8 @@ class Index extends Component {
 				<nav className="limiter-menu-desktop container">
 					
 					{/* Logo desktop */}		
-					<a href="#" className="logo font7">
-					<img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'40px'}} />
+					<a href="/" className="logo font7">
+					<img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'35px'}} />
 					</a>
 
 					{/* Menu desktop */}
@@ -279,7 +277,7 @@ class Index extends Component {
 		  						</ul>
 							</li>*/}
 							{NavLink.map((x,i)=>
-                    <Link key={i} href={x.url} ><a className="nav-link nav-link-main text-dark font1" onClick={this.show} >{x.urlname}</a></Link>
+                    <Link key={i} href={x.url} ><a className="nav-link nav-link-main font-weight-bold text-dark font1" onClick={this.show} >{x.urlname}</a></Link>
                     )}
 
 						</ul>
@@ -292,10 +290,10 @@ class Index extends Component {
 						</div>
 
 						<div onClick={this.showcart} className="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify={this.state.cartitemcount}>
-							<i className="zmdi zmdi-shopping-cart"></i>
+							<i className="zmdi zmdi-favorite"></i>
 						</div>
 
-						<a className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+						<a className=" icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 						<i className="zmdi zmdi-notifications"></i>
 						</a>
 					</div>
@@ -307,7 +305,7 @@ class Index extends Component {
 		<div className="wrap-header-mobile">
 			{/* Logo moblie */}		
 			<div className="logo-mobile">
-			<img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'40px'}} />
+			<Link href="/"><img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'30px'}} /></Link>
 			</div>
 
 			{/* Icon header */}
@@ -317,7 +315,7 @@ class Index extends Component {
 				</div>
 
 				<div className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify={this.state.cartitemcount}>
-					<i className="zmdi zmdi-shopping-cart"></i>
+					<i className="zmdi zmdi-favorite"></i>
 				</div>
 
 				<a className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
@@ -345,18 +343,18 @@ class Index extends Component {
 
 				<li>
 					<div className="right-top-bar flex-w h-full">
-					<a href={helpUrl} className="flex-c-m trans-04 p-lr-15">
+					<a href={helpUrl} className="flex-c-m stext-104 trans-04 p-lr-15">
 							Help & FAQs
 						</a>
 				
 							{this.state.isuserlogin&&this.state.user.isseller?
-						<Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="flex-c-m trans-04 p-lr-10 isuserlogin"  >My Shop</a></Link>
-						:<Link  href={`${createshopUrl}`}><a  onClick={this.show}  className="flex-c-m trans-04 p-lr-10 isuserlogin"  >Create Shop</a></Link>
+						<Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}><a  onClick={this.show}  className="flex-c-m stext-104 trans-04 p-lr-10 isuserlogin"  >My Shop</a></Link>
+						:<Link  href={`${createshopUrl}`}><a  onClick={this.show}  className="flex-c-m stext-104 trans-04 p-lr-10 isuserlogin"  >Create Shop</a></Link>
 							}
 						
-						<a href="#SignUp" className="flex-c-m trans-04 p-lr-10 isnotuserlogin" onClick={this.showsignup.bind(this,'seller') }  >Sign Up</a>
-                		<a href="#SignIn" className="flex-c-m trans-04 p-lr-10 isuserlogin" onClick={this.logout.bind(this,'login')} >Log out</a>
-						{this.state.isuserlogin?<img style={{height:'30px'}} className="lazyload float-left avatar flex-c-m trans-04 p-lr-10 lazyload" src={this.state.user.imageUrl} />:null}
+						<a href="#SignUp" className="flex-c-m stext-104 trans-04 p-lr-10 isnotuserlogin" onClick={this.showsignup.bind(this,'seller') }  >Sign Up</a>
+                		<a href="#SignIn" className="flex-c-m stext-104 trans-04 p-lr-10 isuserlogin" onClick={this.logout.bind(this,'login')} >Log out</a>
+						{this.state.isuserlogin?<img style={{height:'30px'}} className="lazyload float-left avatar flex-c-m stext-104 trans-04 p-lr-10 lazyload" src={this.state.user.imageUrl} />:null}
 					
 					</div>
 				</li>
@@ -382,18 +380,19 @@ class Index extends Component {
 		</div>
 
 		{/* Modal Search */}
-		<div className="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+		<div className="modal-search-header flex-c-m stext-104 trans-04 js-hide-modal-search">
 			<div className="container-search-header">
-				<button className="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img className="lazyload" src="images/icons/icon-close2.png lazyload" alt="CLOSE"/>
+				<button className="flex-c-m stext-104 btn-hide-modal-search trans-04 js-hide-modal-search">
+				<i className="zmdi zmdi-close"></i>
 				</button>
 
 				<form className="wrap-search-header flex-w p-l-15">
-					<button className="flex-c-m trans-04">
+					<button className="flex-c-m stext-104 trans-04" >
 						<i className="zmdi zmdi-search"></i>
 					</button>
-					<input className="plh3" type="text" name="search" placeholder="Search..."/>
+					<input id="searchitem"  type="text" name="search" placeholder="Search..."/>
 				</form>
+				
 			</div>
 		</div>
 	</header>

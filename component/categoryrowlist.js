@@ -9,7 +9,7 @@ function Arrow(props) {
 	return (
 	  <div
 		className={className}
-		style={{background: "gray" }}
+		style={{background: "gray" ,display:'none'}}
 		onClick={onClick}
         />
 	);
@@ -69,7 +69,7 @@ class Index extends Component {
                           </span>
 
                           <span className="block1-info stext-102 trans-04">
-                          onshop.lk
+                          
                           </span>
                       </div>
 

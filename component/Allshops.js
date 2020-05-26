@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Layout from '../layouts/MainLayout';
 import {ImageUrl,myshopmUrl} from '../constant/main'
 import Link from 'next/link';
@@ -6,7 +7,9 @@ import Cookie from "js-cookie";
 
 class Index extends Component {
 
-
+    loadview(name){
+        Router.push(myshopmUrl+name)
+    }
 
     
     render() { 
@@ -30,8 +33,8 @@ class Index extends Component {
 					<Link key={i} href={myshopmUrl+c.urlname+'?ide='+c._id}>
 					<img className="card-img-top pointer lazyload" src={ImageUrl+c.images[0]} height="200px" />
 					</Link>
-						<a href={myshopmUrl+c.urlname+'?ide='+c._id} className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-						    shop
+						<a href="#" className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" onClick={this.loadview.bind(this,c.urlname)}>
+                        shop
 						</a>
 					</div>
 
