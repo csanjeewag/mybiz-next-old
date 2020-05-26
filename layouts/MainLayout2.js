@@ -64,7 +64,9 @@ class Layout extends Component {
     return(
   <div >
 <Head>
-  
+
+ <script>var ezoicId = 195199; </script>
+<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script> 
 
  <meta name="google-signin-client_id" content="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"/>
  <meta name="p:domain_verify" content="57df324b59ede0dc20995948826c45ad"/>
