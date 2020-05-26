@@ -69,15 +69,17 @@ class Layout extends Component {
  <meta name="google-signin-client_id" content="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"/>
  <meta name="p:domain_verify" content="57df324b59ede0dc20995948826c45ad"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
-<link href="https://fonts.googleapis.com/css?family=Acme|Anton|Cabin|Indie+Flower|Trade+Winds|Ubuntu&display=swap" rel="stylesheet"></link>
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>
+
+{/*<link href="https://fonts.googleapis.com/css?family=Acme|Anton|Cabin|Indie+Flower|Trade+Winds|Ubuntu&display=swap" rel="stylesheet"></link>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Titillium+Web:wght@600&display=swap" rel="stylesheet"></link>*/}
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Nunito+Sans:ital@1&display=swap" rel="stylesheet"></link>
 <link rel="icon" href={WebUrl+"special/icon2.jpg"}></link>
 
 {/**new theme */}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"></link>
                   
                   {/*<link rel="stylesheet" type="text/css" href="./../fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>*/}
                   {<link rel="stylesheet" type="text/css" href="./../fonts/iconic/css/material-design-iconic-font.min.css"/>}
@@ -199,6 +201,34 @@ class Layout extends Component {
     font-size : 0.9rem;
    }
    
+   .stext-104{
+    font-family: 'Noto Sans TC', sans-serif;
+   } 
+   .stext-101 {
+    font-family: 'Noto Sans TC', sans-serif;
+   }
+   .mtext-105 {
+    font-family: 'Noto Sans TC', sans-serif;
+   }
+   .stext-101 {
+    font-family: 'Noto Sans TC', sans-serif;
+   }
+   .stext-102 {
+    font-family: 'Noto Sans TC', sans-serif;
+   }
+   .stext-111{
+    font-family: 'Noto Sans TC', sans-serif;
+   }
+   .stext-106{
+    font-family: 'Noto Sans TC', sans-serif;
+   }
+   .ltext-103{
+    font-family: 'Nunito Sans', sans-serif;
+    color: #333336;
+    font-weight: bold;
+   }
+
+
    
    .font1 {
     font-family: 'Titillium Web', sans-serif;
