@@ -126,8 +126,8 @@ class Index extends Component {
 						<p className="stext-102 cl3 p-t-23">
 						{this.props.shop.content2}
 						</p>
-						<div className="fb-share-button" data-href={websiteUrl+myshopmUrl+this.props.shop.urlname} data-layout="button_count" data-size="large"><a  target="_blank" href={websiteUrl+myshopmUrl+this.props.shop.urlname} className="fb-xfbml-parse-ignore">Share</a></div>
-							
+						<iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+myshopmUrl+this.props.shop.urlname}&layout=button_count&size=large&appId=639750616597961&width=96&height=20`} width="96" height="30"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
+						
 						<div className="menu2-specification">
 						{this.props.shop.shopDetail&&this.props.shop.shopDetail.length>0?<h5 className="menu2-subcard-title font2 fontcolorSkyblue fontsizeE1">Specification</h5>:null}
 						<div className=" card-text font6">

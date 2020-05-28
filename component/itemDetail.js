@@ -440,8 +440,9 @@ class Index extends Component {
 						<a href={categoryUrl+this.props.item.categery} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1">
 							All Items
 						</a>
-                        <div className="fb-share-button" data-href={websiteUrl+itemUrl+this.props.item.urlname} data-layout="button_count" data-size="large"><a  target="_blank" href={websiteUrl+itemUrl+this.props.item.urlname} className="fb-xfbml-parse-ignore">Share</a></div>
-						</div>
+                        <iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+itemUrl+this.props.item.urlname}&layout=button_count&size=small&appId=639750616597961&width=96&height=20`} width="96" height="20"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
+					
+                      </div>
 
                        
 
@@ -579,8 +580,7 @@ class Index extends Component {
 			</span>
 		</div>
 	</section>
-    <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
-
+ 
             </div>
            );
       }

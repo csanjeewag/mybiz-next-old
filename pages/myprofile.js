@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
 import SubNavBar from './../layouts/SubNavbar';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl,web,WebUrl} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl,web,websiteUrl,myshopmUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 //import Footer from './../components/Footer';
@@ -153,8 +153,10 @@ const Contentside=(props)=>{
 					
 				<div className="col-md-6 col-lg-5 p-b-30">
 					<div className="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 className="mtext-105 cl2 js-name-detail p-b-14 subtopicColor">
-						{props.shop.shopName}
+						<h4 href={websiteUrl+myshopmUrl+props.shop.urlname} className="mtext-105 cl2 js-name-detail p-b-14 subtopicColor">
+						
+            <a href={websiteUrl+myshopmUrl+props.shop.urlname}><a data-tooltip="Add new items to your shop" href="#" className="btn btn-outline-primary btn-sm fontsizeE-9"><i className="zmdi zmdi-collection-plus"></i></a></a>
+            {props.shop.shopName} 
 						</h4>
 						<a className=" font6 float-right">{props.shop.contact1+(props.shop.contact2?'/'+props.shop.contact2:'')} </a> 
 						<span className="mtext-106 cl2">
@@ -180,7 +182,8 @@ const Contentside=(props)=>{
 								</div>
                        		</div>
 					   </div>
-					
+             <iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+myshopmUrl+props.shop.urlname}&layout=button_count&size=large&appId=639750616597961&width=96&height=20`} width="96" height="30"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
+                              
 						{/**  */}
 						<div className="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div className="flex-m bor9 p-r-10 m-r-11">
@@ -201,6 +204,7 @@ const Contentside=(props)=>{
 								<i className="fa fa-google-plus"></i>
 							</a>
 						</div>
+            
                         <div>
                         <Link href={createitemUrl+'?id='+props.shop._id+'&shopname='+props.shop.shopName+'&shopDistrict='+props.shop.district+'&shopTown='+props.shop.town+'&shopurl='+props.shop.urlname}><a data-tooltip="Add new items to your shop" href="#" className="btn btn-outline-primary btn-sm fontsizeE-9"><i className="zmdi zmdi-collection-plus"></i> &nbsp;add new item</a></Link>
                         <Link href={updateshopUrl+props.shop._id}><a data-tooltip="you can update your shop details" href="#" className="btn btn-outline-danger btn-sm fontsizeE-9"><i className="zmdi zmdi-edit"></i> &nbsp;update shop</a></Link>
@@ -247,7 +251,8 @@ const CartList=(props)=>{
             <div className="item-details font6"> 
             <Link href={updateitemUrl+x._id}><a href="#" className="btn btn-danger float-left btn-sm fontsizeE-9"><i className="zmdi zmdi-edit"></i> &nbsp;update</a></Link> 
               </div> 
-            
+              <iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+itemUrl+x.urlname}&layout=button_count&size=small&appId=639750616597961&width=96&height=20`} width="96" height="25"  style={{border:'none',overflow:'hidden',padding:'2px'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
+						
             </td>
             <td>
                 <div className="pointer">

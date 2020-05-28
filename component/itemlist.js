@@ -200,8 +200,8 @@ class Index extends Component {
 							</span>
 
 							<div>
-							
-							<div className="fb-share-button" data-href={websiteUrl+itemUrl+c.urlname} data-layout="button_count" data-size="small"><a  target="_blank" href={websiteUrl+itemUrl+c.urlname} className="fb-xfbml-parse-ignore">Share</a></div>
+							<iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+itemUrl+c.urlname}&layout=button_count&size=small&appId=639750616597961&width=96&height=20`} width="96" height="25"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
+					
 							<a href={myshopmUrl+c.shop[0].shopurl} style={{fontSize:'11px'}} className="flex-c-m cl0 bg1 hov-btn1 stext-104 p-lr-15 bor1 trans-04 float-right pt-1 pb-1">
 							<i className="zmdi zmdi-store"></i>&nbsp; Shop
 							</a>
@@ -282,8 +282,8 @@ class Index extends Component {
 						</h4>
 						<div >
 
-						<div className="fb-share-button" data-href={websiteUrl+itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} data-layout="button_count" data-size="large"><a  target="_blank" href={websiteUrl+itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} className="fb-xfbml-parse-ignore">Share</a></div>
-						
+						<iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+itemUrl+this.state.item.urlname}&layout=button_count&size=large&appId=639750616597961&width=96&height=20`} width="96" height="30"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
+					
 						<a href={myshopmUrl+this.state.item.shop[0].shopurl} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1">
 							07x xxxx
 						</a>
@@ -387,8 +387,7 @@ class Index extends Component {
 		</div>
 	</div>
 
-	<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
-
+	
             </div>
            );
       }

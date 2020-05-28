@@ -34,7 +34,7 @@ class Index extends Component {
 					<img className="card-img-top pointer lazyload" src={ImageUrl+c.images[0]} height="200px" />
 					</Link>
 						<a href="#" className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" onClick={this.loadview.bind(this,c.urlname)}>
-                        shop
+                        shop items
 						</a>
 					</div>
 
@@ -53,10 +53,9 @@ class Index extends Component {
 						</div>
 
                         <div className="block2-txt-child2 flex-r">
-                         <a  target="_blank" href={"https://www.facebook.com/sharer/sharer.php?u="+websiteUrl+myshopmUrl+c.urlname} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1"><i className="zmdi zmdi-facebook-box"></i>&nbsp;Share</a>
-							
-							
+                        <iframe src={`https://www.facebook.com/plugins/share_button.php?href=${websiteUrl+myshopmUrl+c.urlname}&layout=button_count&size=large&appId=639750616597961&width=96&height=20`} width="96" height="30"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>		
 						</div>
+                        
 					</div>
 				</div>
 

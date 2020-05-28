@@ -32,10 +32,10 @@ class Index extends Component {
 
 
 
-<div className="fb-share-button" data-href="https://onshop.lk" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
-<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
-<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
-
+<div className="fb-share-button" data-href="https://onshop.lk" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://onshop.lk&layout=button_count" className="fb-xfbml-parse-ignore">Share</a></div>
+<h1>gk</h1>
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https://onshop.lk/shop/Gift-Handmade-items-Roo-Creation--in-Kelaniya" width="96" height="20" style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https://onshop.lk&layout=button_count&size=small&appId=639750616597961&width=96&height=20" width="96" height="20"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
             </Layout>
            );
       }

@@ -131,7 +131,6 @@ class Layout extends Component {
     <script src="./../js/indexpage.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="lazysizes.min.js" async></script>
-    <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
 {/*********** */}
 
  <style global jsx>
