@@ -232,7 +232,7 @@ class Index extends Component {
 render(){
 
   return(
-<Layout>
+<div>
 
 <div id="background-signin">
 <br/><br/>
@@ -511,7 +511,7 @@ render(){
 `}
 </style>
 
-</Layout>
+</div>
   )
 }
  

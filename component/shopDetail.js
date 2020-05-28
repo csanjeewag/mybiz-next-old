@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Layout from '../layouts/MainLayout';
 import $ from 'jquery';
 import Slider from "react-slick";
-import {ImageUrl,categoryUrl} from '../constant/main';
+import {ImageUrl,websiteUrl,myshopmUrl} from '../constant/main';
 
 
 function SampleNextArrow(props) {
@@ -115,17 +115,19 @@ class Index extends Component {
 						{this.props.shop.shopName}
 						</h4>
 						<a className=" font6 float-right">{this.props.shop.contact1+(this.props.shop.contact2?'/'+this.props.shop.contact2:'')} </a> 
+					
 						<span className="mtext-106 cl2">
 						<a className="font6">{this.props.shop.district+'/'+this.props.shop.town} </a>
 						</span>
-
+						
 						<p className="stext-102 cl3 p-t-23">
 						{this.props.shop.content1}
 						</p>
 						<p className="stext-102 cl3 p-t-23">
 						{this.props.shop.content2}
 						</p>
-						
+						<div className="fb-share-button" data-href={websiteUrl+myshopmUrl+this.props.shop.urlname} data-layout="button_count" data-size="large"><a  target="_blank" href={websiteUrl+myshopmUrl+this.props.shop.urlname} className="fb-xfbml-parse-ignore">Share</a></div>
+							
 						<div className="menu2-specification">
 						{this.props.shop.shopDetail&&this.props.shop.shopDetail.length>0?<h5 className="menu2-subcard-title font2 fontcolorSkyblue fontsizeE1">Specification</h5>:null}
 						<div className=" card-text font6">
@@ -167,6 +169,7 @@ class Index extends Component {
 		</div>
 
 	</section>
+	<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
 
 
             </div>

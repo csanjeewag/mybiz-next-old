@@ -14,7 +14,15 @@ import Footer from '../component/footer';
 class Index extends Component {
 
 
-
+componentDidMount(){
+  (function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+		fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'))	
+}
     
     render() { 
         
@@ -34,12 +42,20 @@ class Index extends Component {
                 </Head>
         <Header/>
        <TopSlide/>
-    
+    	<div className="fb-share-button" 
+    data-href="https://onshop.lk/shop/Gift-Handmade-items-Roo-Creation--in-Kelaniya" 
+    data-layout="button_count">
+  </div>
         <Homecategory catageries={this.props.types} topic="categories" />
         
         <Footer/>
 
-
+        <style jsx>{
+			  `.fb{
+				  background:black;
+			  }
+			  `
+		  }</style>
   
                   </Layout>
            );

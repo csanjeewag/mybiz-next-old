@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import $ from 'jquery';
 import Slider from "react-slick";
-import  {Url,ImageUrl,myshopmUrl,wesitename,WebUrl, web,websiteUrl,itemUrl} from './../constant/main';
+import  {Url,ImageUrl,myshopmUrl,categoryUrl, web,websiteUrl,itemUrl} from './../constant/main';
 import Cookie from "js-cookie";
 
 /****************************************************QuestionSide******************************************* */
@@ -433,13 +433,18 @@ class Index extends Component {
 							{this.props.item.itemlongname}
 						</h4>
                         <div >
-						<a href={myshopmUrl+this.props.item.shop[0].shopurl} className="flex-c-m stext-101 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right">
-							view Shop
+                        
+						<a href={myshopmUrl+this.props.item.shop[0].shopurl} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1">
+							07x xxxx
 						</a>
-						<a href={itemUrl+this.props.item.urlname+'?ide='+this.props.item._id} className="flex-c-m stext-101 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right">
-							view item
+						<a href={categoryUrl+this.props.item.categery} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1">
+							All Items
 						</a>
+                        <div className="fb-share-button" data-href={websiteUrl+itemUrl+this.props.item.urlname} data-layout="button_count" data-size="large"><a  target="_blank" href={websiteUrl+itemUrl+this.props.item.urlname} className="fb-xfbml-parse-ignore">Share</a></div>
 						</div>
+
+                       
+
 					<p className="fontsizeE-9" >{this.props.item.categery}/{this.props.item.subcategery}</p>
                     <p className="fontsizeE-9 fontcolorOrange" >{this.props.item.shop[0].shopName}/{this.props.item.shop[0].town}</p>
 						
@@ -499,8 +504,8 @@ class Index extends Component {
 										</div>
 									</div>*/}
 
-									<button className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" onClick={()=>this.addtocart(this.props.item)}>
-										Add to favorites
+									<button className="flex-c-m stext-104 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" onClick={()=>this.addtocart(this.props.item)}>
+										Add to Favorites
 									</button>
 								</div>
 							</div>	
@@ -574,6 +579,7 @@ class Index extends Component {
 			</span>
 		</div>
 	</section>
+    <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
 
             </div>
            );

@@ -39,7 +39,8 @@ class Index extends Component {
             autoplay: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplaySpeed: 3000,
+			autoplaySpeed: 3000,
+			pauseOnHover: false,
 			nextArrow: <SampleNextArrow />,
 			prevArrow: <SamplePrevArrow />
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
 import Layout from '../layouts/MainLayout';
-import {ImageUrl,myshopmUrl} from '../constant/main'
+import {ImageUrl,myshopmUrl,websiteUrl,shopmUrl} from '../constant/main'
 import Link from 'next/link';
 import Cookie from "js-cookie";
 
@@ -52,17 +52,19 @@ class Index extends Component {
 							</span>
 						</div>
 
-						<div className="block2-txt-child2 flex-r p-t-3">
-						
+                        <div className="block2-txt-child2 flex-r">
+                         <a  target="_blank" href={"https://www.facebook.com/sharer/sharer.php?u="+websiteUrl+myshopmUrl+c.urlname} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1"><i className="zmdi zmdi-facebook-box"></i>&nbsp;Share</a>
+							
+							
 						</div>
 					</div>
 				</div>
+
                 
 			</div>
 				)}
                     
                 </div>
-              
                 </div>
 
                 <style jsx>{

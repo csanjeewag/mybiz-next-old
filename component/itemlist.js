@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import Slider from "react-slick";
-import {ImageUrl,itemUrl,myshopmUrl} from '../constant/main'
+import {ImageUrl,itemUrl,myshopmUrl,websiteUrl} from '../constant/main'
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import FilterItems from "./../component/filterItem";
@@ -191,17 +191,20 @@ class Index extends Component {
 							{c.itemname} - {c.subcategery}
 							</a>
 							<span className="stext-105 cl3">
-							<p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{c.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{c.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</span></p>
+							<p className="font6 m-content-right"><strike className="fontsizeE-9 stext-104">Rs.{c.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9 stext-104">{c.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{c.itemPrice*(100-c.itemdiscount)/100}</span></p>
 							</span>
 
 							<span href={myshopmUrl+c.shop[0].shopurl} className="stext-104 cl4 hov-cl1 trans-04 js-name-b2">
+
 							<span style={{color:'#8283a5',fontSize:'11px'}}> <i className="zmdi zmdi-pin"></i> {c.shop[0].shopName}/{c.shop[0].town}</span>
-							<span href={myshopmUrl+c.shop[0].shopurl} style={{fontSize:'11px'}} className="flex-c-m cl0 bg1 bor1 hov-btn1 p-lr-5 trans-04 float-right">
-							Shop
 							</span>
-							</span>
+
 							<div>
 							
+							<div className="fb-share-button" data-href={websiteUrl+itemUrl+c.urlname} data-layout="button_count" data-size="small"><a  target="_blank" href={websiteUrl+itemUrl+c.urlname} className="fb-xfbml-parse-ignore">Share</a></div>
+							<a href={myshopmUrl+c.shop[0].shopurl} style={{fontSize:'11px'}} className="flex-c-m cl0 bg1 hov-btn1 stext-104 p-lr-15 bor1 trans-04 float-right pt-1 pb-1">
+							<i className="zmdi zmdi-store"></i>&nbsp; Shop
+							</a>
 							</div>
 						</div>
 
@@ -255,7 +258,7 @@ class Index extends Component {
 									{this.state.item.images?this.state.item.images.map((x,i)=>
 								<div key={i} className="item-slick3" >
 								<div className="wrap-pic-w pos-relative">
-								<Link href={itemUrl+this.state.item.urlname+'?ide='+this.state.item._id}>
+								<Link href={itemUrl+this.state.item.urlname}>
 									<img className="lazyload" src={ImageUrl+x} alt="IMG-PRODUCT" style={{maxHeight:'600px',height:'auto',width:'100%'}} />
 								</Link>
 									<a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href={ImageUrl+x}>
@@ -278,10 +281,13 @@ class Index extends Component {
 							{this.state.item.itemlongname}
 						</h4>
 						<div >
-						<a href={myshopmUrl+this.state.item.shop[0].shopurl} className="flex-c-m stext-101 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right">
+
+						<div className="fb-share-button" data-href={websiteUrl+itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} data-layout="button_count" data-size="large"><a  target="_blank" href={websiteUrl+itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} className="fb-xfbml-parse-ignore">Share</a></div>
+						
+						<a href={myshopmUrl+this.state.item.shop[0].shopurl} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1">
 							07x xxxx
 						</a>
-						<a href={itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} className="flex-c-m stext-101 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right">
+						<a href={itemUrl+this.state.item.urlname+'?ide='+this.state.item._id} className="flex-c-m stext-104 cl0 bg1 bor1 hov-btn1 p-lr-15 trans-04 float-right py-1">
 							view item
 						</a>
 						</div>
@@ -344,8 +350,8 @@ class Index extends Component {
 										</div>
 									</div>*/}
 
-									<button className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" onClick={()=>this.addtocart(this.state.item)}>
-										Add to favorites
+									<button className="flex-c-m stext-104 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" onClick={()=>this.addtocart(this.state.item)}>
+										Add to Favorites
 									</button>
 								</div>
 							</div>	
@@ -381,6 +387,7 @@ class Index extends Component {
 		</div>
 	</div>
 
+	<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
 
             </div>
            );

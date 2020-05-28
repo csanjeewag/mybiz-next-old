@@ -11,8 +11,6 @@ import Errorpage from '../../layouts/error';
 class Index extends Component {
 
 
-
-    
     render() { 
         
 
@@ -36,9 +34,8 @@ class Index extends Component {
         {this.props.item&&this.props.item._id?<ItemDetail item={this.props.item}/>:null}
         </div>
           }  
+
         <Footer/>
-
-
   
                   </Layout>
            );

@@ -66,8 +66,6 @@ class Layout extends Component {
   <div >
 <Head>
 
-<script>var ezoicId = 195199; </script>
-<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>  
 
  <meta name="google-signin-client_id" content="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"/>
  <meta name="p:domain_verify" content="57df324b59ede0dc20995948826c45ad"/>
@@ -97,7 +95,7 @@ class Layout extends Component {
                   <link rel="stylesheet" type="text/css" href="css/main.css"/>  
 {/*********** */}
 
-<meta property="og:site_name" content="OnShop"></meta>
+<meta property="og:site_name" content="OnShop.lk"></meta>
       </Head>
      
         <div className="desktopmobile">
@@ -132,12 +130,17 @@ class Layout extends Component {
   <script src="js/indexpage.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="lazysizes.min.js" async></script>
+  <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=639750616597961&autoLogAppEvents=1"></script>
 {/*********** */}
 
  <style global jsx>
    {`
 
-
+.bor1{
+  background:#344cf1;
+  border-radius: 10px;
+  color:white;
+}
    
    .projects div {
     animation-name: fade-in;
