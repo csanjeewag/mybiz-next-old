@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
+import useSWR from 'swr';
 import Layout from '../layouts/MainLayout';
-import Allcatagery from '../components/Allcatagery';
-import NavBar from '../layouts/Navbar';
-import FilterItem from '../layouts/filterItem';
 import {Url,web,WebUrl} from '../constant/main';
-import fetch from 'isomorphic-unfetch';
-/** */
 import Header from '../component/header';
 import TopSlide from '../component/topslide';
+import Loading2 from './../component/loading2';
 import Homecategory from '../component/homeCategory';
 import Footer from '../component/footer';
+
+function HomeSwr() {
+  const url = `/api/types`;
+  const fetcher = (...args) => fetch(...args).then(res => {if(res.status==200){return res.json()}else{return res.status} });
+  const { data, error } = useSWR(url, fetcher);
+
+  if(!data){
+    return <Loading2/>
+  }
+  else if(data>200){
+    return null
+  }
+  else{
+   return <Homecategory catageries={data} topic="categories" />
+  }
+
+}
+
 class Index extends Component {
 
     
@@ -32,8 +47,7 @@ class Index extends Component {
                 </Head>
         <Header/>
        <TopSlide/>
-        <Homecategory catageries={this.props.types} topic="categories" />
-        
+        <HomeSwr/>
         <Footer/>
 
         <style jsx>{
@@ -48,7 +62,7 @@ class Index extends Component {
       }
     
 }
-
+/*
 Index.getInitialProps = async function(context) {
     const { id } = context.query;
     
@@ -62,5 +76,6 @@ Index.getInitialProps = async function(context) {
 
 
   }
-
+  <Homecategory catageries={types} topic="categories" />
+*/
 export default Index; 
