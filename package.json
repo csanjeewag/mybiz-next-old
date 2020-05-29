@@ -32,6 +32,7 @@
     "react-router-dom": "^5.1.2",
     "react-slick": "^0.26.1",
     "resize-optimize-images": "^1.1.0",
+    "slick-carousel": "^1.8.1",
     "swr": "^0.2.2"
   }
 }

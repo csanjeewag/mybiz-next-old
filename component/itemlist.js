@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Cookie from "js-cookie";
 import FilterItems from "./../component/filterItem";
 
+
   function Arrow(props) {
 	const { className, style, onClick } = props;
 	return (
@@ -70,12 +71,38 @@ class Index extends Component {
 		this.setState({
 			item:item
 		});
-
+		$('.js-modal1').addClass('show-modal1');
 	}
 	componentDidMount(){
 		this.setState({
 			item:this.props.items&&this.props.items.length>0?this.props.items[0]:{}
 		});
+		$(document).ready(function() {
+			$('.js-hide-modal1').on('click',function(){
+				$('.js-modal1').removeClass('show-modal1');
+			});
+			$('.js-show-filter').on('click',function(){
+				$(this).toggleClass('show-filter');
+				$('.panel-filter').slideToggle(400);
+		
+				if($('.js-show-search').hasClass('show-search')) {
+					$('.js-show-search').removeClass('show-search');
+					$('.panel-search').slideUp(400);
+				}    
+			});
+		
+			$('.js-show-search').on('click',function(){
+				$(this).toggleClass('show-search');
+				$('.panel-search').slideToggle(400);
+		
+				if($('.js-show-filter').hasClass('show-filter')) {
+					$('.js-show-filter').removeClass('show-filter');
+					$('.panel-filter').slideUp(400);
+				}    
+			});
+			
+			
+		})
 	if(this.props.items&&this.props.items.length>0&&Cookie.getJSON('faverite-item')){
 
 		this.props.items.forEach(element => {
@@ -387,7 +414,6 @@ class Index extends Component {
 		</div>
 	</div>
 
-	
             </div>
            );
       }

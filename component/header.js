@@ -10,6 +10,76 @@ import Loading from './loading';
 import {Url,NavLink,wesitename,logoUrl,myProfileUrl,myshopmUrl,myoderUrl,createshopUrl, helpUrl,filteritemUrl} from './../constant/main';
 
 
+
+const Notfication=(props)=>{
+
+	const deletenotification=(id)=>{
+	 fetch(`${Url}deletenotification/${id}`);
+   //  props.loadnotifications.bind(this);
+	 }
+   
+	 return(
+		 <div className="dropdown-menu dropdown-menu-notification notification">
+		 
+		 {props.notfication.map((x,i)=>
+   
+		 <div key={i} className="row rownotication col-12 notificationmsg alert">
+			 <div className="d-flex bd-highlight">
+			 <div className="p-1 bd-highlight"> {x.imageUrl?<img src={x.imageUrl} alt="Avatar" className="avatar float-left lazyload"/>:null}</div>
+			 <div className="p-1 flex-grow-1 bd-highlight">
+			 <Link href={x.link?x.link:'#'}>
+			 <a className=" topicColor fontsizeE-8 font1 float-left p-0 content pointer" onClick={deletenotification.bind(this,x._id)}> {x.content}</a>
+			 </Link>
+			 <span className=" fontsizeE-6 float-right footercontent"> {x.name} </span>
+			 </div>
+			 <div onClick={deletenotification.bind(this,x._id)} className="py-1 px-0 bd-highlight pointer"><span aria-hidden="true" className="fontsizeE-8 font1 float-right"><i data-dismiss="alert" aria-label="Close">x</i></span></div>
+		 </div>
+		 </div>
+		 )}
+ 
+	   <style jsx>
+		   {`
+					 .notification{
+						 width:250px;
+						 border-radius:  0 0 10px 10px;
+						 background : #b5c6d9f0;
+						 overflow: auto;
+						 margin-left : -100px;
+						 
+					 }
+					 .rownotication{
+						 margin : 0;
+					 }
+					 .notificationmsg{
+						 width:248px;
+						 padding: 0 5px 0 5px;;
+						 marging:0;
+						 border-bottom: 1px solid #ececec;
+					 }
+					 .avatar {
+						 vertical-align: middle;
+						 width: 30px;
+						 height: 30px;
+						 border-radius: 50%;
+					   }
+					 .content{
+						 padding:0;
+						 marging:0;
+					 }
+					 .footercontent{
+						 padding:0;
+						 marging:0;
+					 }
+				  
+		   `}
+	   </style>
+		   
+		   </div>
+					  
+ 
+	 )
+ }
+
 class Index extends Component {
 
     constructor() {
@@ -19,8 +89,7 @@ class Index extends Component {
         user:{},
         notfication:[],
 		notficationcount :0,
-		cartitemcount:0,
-		
+		cartitemcount:0
 
   }
 	}
@@ -39,6 +108,10 @@ class Index extends Component {
 
     componentDidMount(){
 		$('.load').hide();
+        if(Cookie.getJSON('user')){
+            this.loadnotifications()
+        }
+
         if(Router.query.signin=='true'){
         this.showsignup();
         }
@@ -60,12 +133,60 @@ class Index extends Component {
 				$('.notification-side-bar').slideDown(1000)
 			})
 
-		});
-		if(Cookie.getJSON('user')){
-			this.loadnotifications();
-		}
+            $('.togglemenuC').click(function(){
+                    $('div.navbar-collapse').removeClass('show');
+                    $('.menuClose').fadeOut(10);
+                    $('.menuOpen').fadeIn(100);
+                 
+            });
+            $('.togglemenuO').click(function(){
+                $('.menuOpen').fadeOut(10);
+                $('.menuClose').fadeIn(100);
+             
+            });
+          
+            // Transition effect for navbar 
+            $(window).scroll(function() {
+              // checks if window is scrolled more than 500px, adds/removes solid class
+              if($(this).scrollTop() > $(window).height()/3) { 
+                  $('.navbar').addClass('SolidNav').removeClass('navbar-bar');
+              }
+              else {
+                  $('.navbar').removeClass('SolidNav').addClass('navbar-bar');
+              }
+             
+            });
+            
+            function checkMobile() {
+                var windowwidth = $(window).width();
+
+                if(windowwidth<600){
+                    $('.nav-link-main').css({'background-color':'#03468f','opacity':'0.9','padding-left':'20px'});
+
+                    $(window).scroll(function() {
+                        if($(this).scrollTop() > $(window).height()/4) { 
+                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.9','padding-left':'20px'});
+                        }else{
+                            $('.nav-link-main').css({'background-color':'#03468f','opacity':'0.9','padding-left':'20px'});
+                        }
+                        
+                      });
+                }
+                  
+               
+            }
+            checkMobile();
+            $(window).resize(checkMobile);
+    });
     }
 
+    show(){
+        if($('#collapsibleNavbar').is(":visible")){
+            $('#collapsibleNavbar').slideUp(500);
+        }else{
+            $('#collapsibleNavbar').slideDown(500);
+        }
+    }
     logout(){
 		swal({
 			title: "Are you sure?",
@@ -92,10 +213,10 @@ class Index extends Component {
 		this.refs.mycart.loaditems();
 		
 	}
-	
 	searchitems=()=>{
 		
 		var seach= $('#searchitem').val();
+		alert('seach')
 		//Router.push('/filter?searcha='+seach)
 	}
 	
@@ -112,7 +233,7 @@ class Index extends Component {
 			{/* Topbar */}
 			<div className="top-bar">
 				<div className="content-topbar flex-sb-m h-full container">
-					<div className="left-top-bar stext-104">
+					<div className="left-top-bar">
 						onshop.lk, online shopping store
 					</div>
 
@@ -164,7 +285,7 @@ class Index extends Component {
 
 					{/* Icon header */}
 					<div className="wrap-icon-header flex-w flex-r-m">
-						<div  className="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+						<div className="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i className="zmdi zmdi-search"></i>
 						</div>
 
@@ -172,7 +293,7 @@ class Index extends Component {
 							<i className="zmdi zmdi-favorite"></i>
 						</div>
 
-						<a onClick={this.shownotfication} className=" icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+						<a className=" icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 						<i className="zmdi zmdi-notifications"></i>
 						</a>
 					</div>
@@ -215,7 +336,7 @@ class Index extends Component {
 		<div className="menu-mobile">
 			<ul className="topbar-mobile">
 				<li>
-					<div className="left-top-bar stext-104">
+					<div className="left-top-bar">
 						onShop.lk, online shopping store
 					</div>
 				</li>
@@ -278,7 +399,6 @@ class Index extends Component {
 	<div className="load" >
             <Loading />
             </div>
-	
     <Cart ref="mycart"/>
 	<Notfications notfication={this.state.notfication} loadnotification={this.loadnotifications}/>
 
