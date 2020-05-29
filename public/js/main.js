@@ -42,7 +42,7 @@
 
 
     /*==================================================================
-    [ Fixed Header ]*/
+    [ Fixed Header ]
     var headerDesktop = $('.container-menu-desktop');
     var wrapMenu = $('.wrap-menu-desktop');
 
@@ -75,8 +75,9 @@
     });
 
 
-    /*==================================================================
-    [ Menu mobile ]*/
+    /*==================================================================*/
+    
+    /*[ Menu mobile ]*/
     $('.btn-show-menu-mobile').on('click', function(){
         $(this).toggleClass('is-active');
         $('.menu-mobile').slideToggle();

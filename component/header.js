@@ -11,75 +11,6 @@ import {Url,NavLink,wesitename,logoUrl,myProfileUrl,myshopmUrl,myoderUrl,creates
 
 
 
-const Notfication=(props)=>{
-
-	const deletenotification=(id)=>{
-	 fetch(`${Url}deletenotification/${id}`);
-   //  props.loadnotifications.bind(this);
-	 }
-   
-	 return(
-		 <div className="dropdown-menu dropdown-menu-notification notification">
-		 
-		 {props.notfication.map((x,i)=>
-   
-		 <div key={i} className="row rownotication col-12 notificationmsg alert">
-			 <div className="d-flex bd-highlight">
-			 <div className="p-1 bd-highlight"> {x.imageUrl?<img src={x.imageUrl} alt="Avatar" className="avatar float-left lazyload"/>:null}</div>
-			 <div className="p-1 flex-grow-1 bd-highlight">
-			 <Link href={x.link?x.link:'#'}>
-			 <a className=" topicColor fontsizeE-8 font1 float-left p-0 content pointer" onClick={deletenotification.bind(this,x._id)}> {x.content}</a>
-			 </Link>
-			 <span className=" fontsizeE-6 float-right footercontent"> {x.name} </span>
-			 </div>
-			 <div onClick={deletenotification.bind(this,x._id)} className="py-1 px-0 bd-highlight pointer"><span aria-hidden="true" className="fontsizeE-8 font1 float-right"><i data-dismiss="alert" aria-label="Close">x</i></span></div>
-		 </div>
-		 </div>
-		 )}
- 
-	   <style jsx>
-		   {`
-					 .notification{
-						 width:250px;
-						 border-radius:  0 0 10px 10px;
-						 background : #b5c6d9f0;
-						 overflow: auto;
-						 margin-left : -100px;
-						 
-					 }
-					 .rownotication{
-						 margin : 0;
-					 }
-					 .notificationmsg{
-						 width:248px;
-						 padding: 0 5px 0 5px;;
-						 marging:0;
-						 border-bottom: 1px solid #ececec;
-					 }
-					 .avatar {
-						 vertical-align: middle;
-						 width: 30px;
-						 height: 30px;
-						 border-radius: 50%;
-					   }
-					 .content{
-						 padding:0;
-						 marging:0;
-					 }
-					 .footercontent{
-						 padding:0;
-						 marging:0;
-					 }
-				  
-		   `}
-	   </style>
-		   
-		   </div>
-					  
- 
-	 )
- }
-
 class Index extends Component {
 
     constructor() {
@@ -128,55 +59,38 @@ class Index extends Component {
         })
         $(document).ready(function() {
 		
-			//notification
-			$('.js-show-notification').click(function(){
-				$('.notification-side-bar').slideDown(1000)
-			})
-
-            $('.togglemenuC').click(function(){
-                    $('div.navbar-collapse').removeClass('show');
-                    $('.menuClose').fadeOut(10);
-                    $('.menuOpen').fadeIn(100);
-                 
-            });
-            $('.togglemenuO').click(function(){
-                $('.menuOpen').fadeOut(10);
-                $('.menuClose').fadeIn(100);
-             
-            });
+			var headerDesktop = $('.container-menu-desktop');
+			var wrapMenu = $('.wrap-menu-desktop');
+		
+			if($('.top-bar').length > 0) {
+				var posWrapHeader = $('.top-bar').height();
+			}
+			else {
+				var posWrapHeader = 0;
+			}
+			
+		
+			if($(window).scrollTop() > posWrapHeader) {
+				$(headerDesktop).addClass('fix-menu-desktop');
+				$(wrapMenu).css('top',0); 
+			}  
+			else {
+				$(headerDesktop).removeClass('fix-menu-desktop');
+				$(wrapMenu).css('top',posWrapHeader - $(this).scrollTop()); 
+			}
+		
+			$(window).on('scroll',function(){
+				if($(this).scrollTop() > posWrapHeader) {
+					$(headerDesktop).addClass('fix-menu-desktop');
+					$(wrapMenu).css('top',0); 
+				}  
+				else {
+					$(headerDesktop).removeClass('fix-menu-desktop');
+					$(wrapMenu).css('top',posWrapHeader - $(this).scrollTop()); 
+				} 
+			});
           
-            // Transition effect for navbar 
-            $(window).scroll(function() {
-              // checks if window is scrolled more than 500px, adds/removes solid class
-              if($(this).scrollTop() > $(window).height()/3) { 
-                  $('.navbar').addClass('SolidNav').removeClass('navbar-bar');
-              }
-              else {
-                  $('.navbar').removeClass('SolidNav').addClass('navbar-bar');
-              }
-             
-            });
-            
-            function checkMobile() {
-                var windowwidth = $(window).width();
-
-                if(windowwidth<600){
-                    $('.nav-link-main').css({'background-color':'#03468f','opacity':'0.9','padding-left':'20px'});
-
-                    $(window).scroll(function() {
-                        if($(this).scrollTop() > $(window).height()/4) { 
-                            $('.nav-link-main').css({'background-color':'darkblue','opacity':'0.9','padding-left':'20px'});
-                        }else{
-                            $('.nav-link-main').css({'background-color':'#03468f','opacity':'0.9','padding-left':'20px'});
-                        }
-                        
-                      });
-                }
-                  
-               
-            }
-            checkMobile();
-            $(window).resize(checkMobile);
+         
     });
     }
 
