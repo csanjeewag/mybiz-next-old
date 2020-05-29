@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
-import SubNavBar from './../layouts/SubNavbar';
 import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl,web,websiteUrl,myshopmUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
-//import Footer from './../components/Footer';
 import ErrorPage from './../layouts/error';
-import Router from 'next/router';
 import Slider from "react-slick";
-/** */
-import Header from '../component/header';
+import Header from './../component/header';
 import Footer from '../component/footer';
+
 
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;

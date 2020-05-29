@@ -197,7 +197,7 @@ class Index extends Component {
 			
 			</div>
 
-			<div className="row isotope-grid">
+			<div className="row isotope-grid projects">
 			
 				{this.props.items&&this.props.items.length>0?this.props.items.map((c,i)=>
 				<div key={i} className={"col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item "+c.subcategery}>
