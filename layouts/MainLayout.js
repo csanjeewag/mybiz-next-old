@@ -70,7 +70,7 @@ class Layout extends Component {
  <meta name="google-signin-client_id" content="511880674901-gfn6v2n1ej65rrlnnv29odgbjkpkhpcj.apps.googleusercontent.com"/>
  <meta name="p:domain_verify" content="57df324b59ede0dc20995948826c45ad"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Nunito+Sans:ital@1&display=swap" rel="stylesheet"></link>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet"></link>
 <link rel="icon" href={WebUrl+"special/icon2.jpg"}></link>
 
 {/**new theme */}
@@ -203,27 +203,30 @@ class Layout extends Component {
    .btn{
     font-size : 0.9rem;
    }
-   
+   .right-top-bar a{
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+   }
    .stext-104{
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    } 
    .stext-101 {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    }
    .mtext-105 {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    }
    .stext-101 {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    }
    .stext-102 {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    }
    .stext-111{
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    }
    .stext-106{
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
    }
    .ltext-101{
     font-family: 'Nunito Sans', sans-serif;
@@ -232,7 +235,7 @@ class Layout extends Component {
     font-family: 'Nunito Sans', sans-serif;
    }
    .mtext-103{
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #333336;
     font-weight: bold;
    }

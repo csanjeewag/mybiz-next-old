@@ -203,7 +203,10 @@ class Layout extends Component {
    .btn{
     font-size : 0.9rem;
    }
-   
+   .right-top-bar a{
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+   }
    .stext-104{
     font-family: 'Noto Sans TC', sans-serif;
    } 

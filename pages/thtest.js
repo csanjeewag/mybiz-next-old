@@ -1,27 +1,33 @@
-import React, { Component } from 'react';
-import Link from 'next/link';
-import Cookie from "js-cookie";
-import Router from 'next/router';
-import Cart from './../component/cart';
-import Notfications from './../component/notification';
-import $ from 'jquery';
-import SignUp from './../component/signup';
-import Loading from './../component/loading';
+import React, { Component, lazy, Suspense } from 'react';
+
 import Layout from './../layouts/MainLayout'
+
+const AvatarComponent = lazy(() => import('./../component/loading'));
 
 
 class Index extends Component {
 	
 
-    componentDidMount(){
-
-
-
-    }
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          details: false
+        }
+      }
+      
+      showDetails() {
+        this.setState({ details: true });
+      }
+      
+      renderLoader = () => <div className="loader"></div>;
+      
 
 	responsefacebook = (res) => {}
    
     render() { 
+
+        const { details } = this.state;
         
           return ( 
             <Layout id="header">
@@ -36,6 +42,17 @@ class Index extends Component {
 <h1>gk</h1>
 <iframe src="https://www.facebook.com/plugins/share_button.php?href=https://onshop.lk/shop/Gift-Handmade-items-Roo-Creation--in-Kelaniya" width="96" height="20" style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 <iframe src="https://www.facebook.com/plugins/share_button.php?href=https://onshop.lk&layout=button_count&size=small&appId=639750616597961&width=96&height=20" width="96" height="20"  style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+          
+
+<div className="App">
+        { !details && <button onClick={() => this.showDetails()}>CLICK ME</button> }
+        { details &&   
+          <Suspense fallback={this.renderLoader()}>
+            <AvatarComponent />
+          </Suspense> 
+        }
+         
+      </div>
             </Layout>
            );
       }
