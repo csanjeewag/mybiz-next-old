@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import Link from 'next/link';
 import $ from 'jquery';
-import SignUp from './../components/signup';
+import SignUp from './../component/signup';
 import {Url,NavLink,wesitename,myProfileUrl,myshopmUrl,myoderUrl,createshopUrl} from './../constant/main';
 import Cookie from "js-cookie";
 import Router from 'next/router';

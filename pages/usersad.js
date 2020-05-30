@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
-import SubNavbar from './../layouts/SubNavbar';
 import Footer from './../component/footer';
 import {Url,web,WebUrl} from './../constant/main';
 import fetch from 'isomorphic-unfetch';
@@ -165,8 +164,7 @@ class Index extends Component {
 
     
     render() { 
-        
-        const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:'',visible:false };
+   
           return ( 
            <Layout>
                    <Head>

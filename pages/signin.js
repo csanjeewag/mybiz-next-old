@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import { GoogleLogin } from 'react-google-login';
-import SubNavBar from './../layouts/SubNavbar';
-import SignUp from './../components/signup';
+import SignUp from './../component/signup';
 class Index extends Component {
 
   componentDidMount= ()=> {

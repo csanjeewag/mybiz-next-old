@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
-import SubNavBar from './../layouts/SubNavbar';
+import SubNavBar from './../component/header';
 import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
-import Footer from './../components/Footer';
+import Footer from './../component/footer';
 import ErrorPage from './../layouts/error';
 
 

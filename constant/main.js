@@ -18,7 +18,7 @@ export const web ={
     webCreateshop:'You are able to join with on the onshop.lk as seller, to sell your items. It is easy, first join and create shop account. Overtime we will help you.',
     webCreateItem:'You are able to join with on the onshop.lk as seller, to sell your items. It is easy, first join and create shop account. Then add items to your shop. Overtime we will help you.',
     webcategories:'Here are lots of categories such as phones, laptop, photography, home items, electric devices, furniture, saloons, handmade gift items, cosmetics.',
-    webImage : WesSite+'special/back1.jpg',
+    webImage : WesSite+'special/back2.jpg',
     webKeyword: `onshop.lk, sri lanka, online shopping, mobile, laptop, furniture, cosmetic, gift item, Electrical, home accessories,
     Photography, Cameras,Beauty, Saloon, Jewellery, ornaments, cake, bakery
     `,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
-import Layout from './../layouts/MainLayout';
 import { GoogleLogin } from 'react-google-login';
 import $ from 'jquery';
 import fetch from 'isomorphic-unfetch';
