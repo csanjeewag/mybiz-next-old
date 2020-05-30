@@ -19,6 +19,7 @@ class Index extends Component {
         this.state = {
             urlname:'',
             shopName: '',
+            promocode:'',
             shoplongName: '',
             categery :'',
             district:'',
@@ -107,6 +108,21 @@ class Index extends Component {
             this.signinuser();
            }
     };
+
+    promocodecheck=()=>{
+        if(this.state.promocode==961102){
+            swal("promotion code is valid!", "You are given valuable promotion code. Then you are given 3 years free account. But you should add atleast 10 items to shop, and share your items on facebook.", "success");       
+ 
+        }
+        else if(this.state.promocode==960225)
+        {
+            swal("promotion code is valid!", "You are given valuable promotion code. Then you are given 3 years free account. But you should invite two seller, and share your items on facebook.", "success");       
+ 
+        }else{
+            swal("sorry! invalid", "Don not worry, This is not requred, If you need promotion code take a massage to onshop.lk facebook page.", "warning");       
+ 
+        }
+    }
  
     handleChangedetails= evt =>{
         var shopd = this.state.shopDetail;
@@ -438,8 +454,19 @@ class Index extends Component {
                          <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createShop.locationMsg}
                         </div>
+                            
+                        
 
-                            <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
+                        <div className="field-wrap col-lg-4 col-md-6 col-sm-12">
+                                <label  className=" stext-111 pl-2">promotion code</label>
+                                <div className="bor8 m-b-2 how-pos4-parent">
+                                <input placeholder="if you have code enter." className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '} type="text" required  name="promocode" value={this.state.promocode} onChange={this.handleChange} onBlur={this.promocodecheck} />
+                                <i className="zmdi zmdi-code zmdi-hc-lg how-pos4 pointer-none"></i>
+                                </div>
+                        
+                            </div>
+
+                            <div className="field-wrap col-lg-4 col-md-6 col-sm-12">
                                 <label  className=" stext-111 pl-2">contact number</label>
                                 <div className="bor8 m-b-2 how-pos4-parent">
                                 <input placeholder="ex: 07x1234567" className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.contact1!=''?'input-error':'')} type="text" required  name="contact1" value={this.state.contact1} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -447,7 +474,7 @@ class Index extends Component {
                                 </div>
                                 <span className="form-error">{this.state.validation.contact1}</span>
                             </div>
-                            <div className="field-wrap col-lg-6 col-md-6 col-sm-12">
+                            <div className="field-wrap col-lg-4 col-md-6 col-sm-12">
                                 <label  className=" stext-111 pl-2">contact number 2</label>
                                 <div className="bor8 m-b-2 how-pos4-parent">
                                 <input placeholder="ex: 07x7654321" className={'stext-111 cl2 plh3 size-116 p-l-62 p-r-30 '+(this.state.validation.contact2!=''?'input-error':'')} type="text" required  name="contact2" value={this.state.contact2} onChange={this.handleChange} onBlur={this.validationform}/>
@@ -480,7 +507,7 @@ class Index extends Component {
                                {/* file upload */}
                                <br/>
                           <div className="content col-12">
-                        <h5 className="fontcolorOrange cl2 txt-left p-b-30">cover images for shop</h5>
+                        <h5 className="fontcolorOrange cl2 txt-left p-t-30">cover images for shop</h5>
 
                         <div  className=" alert alert-secondary pointer col-lg-11 col-10 mx-auto" role="alert">
                         {createShop.imageMsg}
