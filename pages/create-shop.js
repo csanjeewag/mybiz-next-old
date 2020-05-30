@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
-import SubNavBar from '../layouts/SubNavbar';
 //import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
@@ -333,21 +332,15 @@ class Index extends Component {
        return district.length>2?this.props.location[index].town:[];
     }
       
-
-    showsidebar(){
-        this.refs.child.showSidebar();
-      }
     
     signinuser(){
-        this.refs.navbar.showsignup();
+        this.refs.navbar.showsignup('seller');
+      // $('#logreg-forms').slideDown(500);
     }
     
     render() { 
         
 
-          
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:'',visible:false };
-        //////////////
           return ( 
             <Layout>
 
@@ -363,7 +356,7 @@ class Index extends Component {
                 <meta name="description" content={web.webContent}></meta>
                 </Head>
 
-                <Header ref="navbar" sidenavconst={sidenavconst} />
+                <Header ref="navbar"/>
                 <div className="ismobile_disable p-t-80"></div>
                 <section className="bg0 p-t-20 p-b-116">
 		<div className="container">

@@ -337,7 +337,7 @@ class Index extends Component {
       }
     
     signinuser(){
-        this.refs.navbar.showsignup();
+        this.refs.navbar.showsignup('seller')
     }
     
     render() { 

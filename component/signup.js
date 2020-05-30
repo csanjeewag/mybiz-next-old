@@ -20,7 +20,7 @@ class Index extends Component {
             givenName:'',
             familyName:'',
             token:'',
-            isseller:false,
+            isseller:true,
             login:false
         };
     }
@@ -48,7 +48,7 @@ class Index extends Component {
     // This triggers everytime the input is changed
     if(evt.target.name=='isseller'){
         this.setState({
-            [evt.target.name]: evt.target.checked,
+            [evt.target.name]: true,
         });
     }
     else{
@@ -293,20 +293,20 @@ render(){
 						<div className="tab-pane fade show active" id="signupTab" role="tabpanel">
                         <h2 className="h3 mb-3 font1 topicColor fontsizeE1 pl-2" > Sign up</h2>
                         <form>
-            <div className="form-check">
+            {/*<div className="form-check">
                 <input type="checkbox" className="form-check-input" name="isseller" value={this.state.isseller} onChange={this.handleChange} />
                 <label className="form-check-label"  className="font1 fontsizeE-9">Seller Account</label>
-            </div>
-            {this.state.isseller?
+  </div>*/}
+        
                 <div className="col-lg-12">
                         <label className="stext-111 pl-2">Your city</label>
 						<div className="bor8 m-b-20 how-pos4-parent">
 							<input className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="address" placeholder="ex: Nugegoda" value={this.state.address} onChange={this.handleChange}/>
 							<i className="how-pos4 pointer-non zmdi zmdi-pin"></i>
 						</div>
-                        </div>:null}
+                        </div>
 
-            {this.state.isseller?
+            
               <div className="col-lg-12">
               <label className="stext-111 pl-2">Phone Number</label>
               <div className="bor8 m-b-20 how-pos4-parent">
@@ -314,8 +314,7 @@ render(){
                   <i className="how-pos4 pointer-non zmdi zmdi-phone"></i>
               </div>
               </div>
-            :null}
-
+            
                     
             <small id="emailHelp" className="form-text text-muted fontsizeE-7">If you register as seller, you should provide city and contact. Otherwise that are not compulsory.</small>
            <div className="social-login row col-12 fontsizeE-9">
