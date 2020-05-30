@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
-import SubNavBar from './../layouts/SubNavbar';
 import  {Url,ImageUrl,adcreateitemUrl,adupdateshopUrl,itemUrl,adupdateitemUrl, myshopmUrl,adminUrl,createcategorUrl,updatecategoryUrl,web} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";

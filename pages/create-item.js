@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
-import SubNavBar from '../layouts/SubNavbar';
 //import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';

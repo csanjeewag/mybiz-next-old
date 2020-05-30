@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
 import Cartitem from '../component/Cartitem';
-import SubNavBar from '../layouts/SubNavbar';
-//import Footer from '../component/Footer';
 import Cookie from "js-cookie";
 import {Url,ImageUrl,web,WebUrl,websiteUrl,myoderUrl} from './../constant/main';
 /** */

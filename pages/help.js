@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from './../layouts/MainLayout';
-//import SubNavBar from './../layouts/SubNavbar';
-//import Footer from './../components/Footer';
 import {Url,web,websiteUrl,helpUrl} from './../constant/main';
 import {help} from './../constant/page';
 /** */

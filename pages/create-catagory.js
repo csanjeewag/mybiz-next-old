@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
-import SubNavBar from '../layouts/SubNavbar';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
 import Cookie from "js-cookie";
@@ -292,14 +291,6 @@ class Index extends Component {
     
     render() { 
         
-
-        //side navbar link
-        const sidenavlink = [
-            {id:1,link:'/',linkname:'home'},
-          ];
-          
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink,visible:false };
-        //////////////
           return ( 
             <Layout>
                       <Head>

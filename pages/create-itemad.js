@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/MainLayout';
-import SubNavBar from '../layouts/SubNavbar';
 //import Footer from './../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import $ from 'jquery';
@@ -374,26 +373,14 @@ class Index extends Component {
     
     render() { 
         
- 
-        //side navbar link
-        const sidenavlink = [
-            {id:1,link:'/',linkname:'home'},
-            {id:1,link:'/menu',linkname:'menu'},
-            {id:1,link:'/',linkname:'menu2'},
-            {id:1,link:'/',linkname:'menu3'},
-            {id:1,link:'/',linkname:'menu4'},
-            {id:1,link:'/',linkname:'menu5'},
-          ];
-          
-            const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:sidenavlink,visible:false };
-        //////////////
+
           return ( 
             <Layout>
                       <Head>
                 <title> {web.wetopic}</title>
     
                 </Head>
-                <Header sidenavconst={sidenavconst}/>
+                <Header />
                 <div className="ismobile_disable p-t-80"></div>
                 <section className="bg0 p-t-20 p-b-116">
 		<div className="container">

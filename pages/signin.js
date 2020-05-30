@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './../layouts/MainLayout';
 import { GoogleLogin } from 'react-google-login';
 import SignUp from './../component/signup';
+import Header from './../component/header';
 class Index extends Component {
 
   componentDidMount= ()=> {
@@ -24,7 +25,7 @@ render(){
         const sidenavconst = {topic : 'Categeries',topiclink:'All ',sidenavlink:sidenavlink};
   return(
 <Layout>
-<SubNavBar sidenavconst={sidenavconst}/>
+<Header />
 
 <SignUp ref="signup" showsignup={this.props.showsignup} />
 
