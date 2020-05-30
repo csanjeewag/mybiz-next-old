@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server/index.js"
+    "start": "next start",
+    "prod": "next export"
   },
   "author": "",
   "license": "ISC",
@@ -18,11 +19,12 @@
     "google-sign-in": "^3.0.3",
     "history": "^4.10.1",
     "isomorphic-unfetch": "^3.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
     "jwt-simple": "^0.5.6",
+    "mapbox-gl": "^1.10.1",
     "mongoose": "^5.9.2",
-    "next": "^9.2.2",
+    "next": "^9.4.4",
     "prop-types": "^15.7.2",
     "randomstring": "^1.1.5",
     "react": "^16.13.0",

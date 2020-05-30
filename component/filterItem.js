@@ -6,7 +6,6 @@ import {Url,filteritemUrl} from './../constant/main';
 import Router from 'next/router';
 
 
-import Cookie from "js-cookie";
 
 const HoverCategory = (props)=>{
     return(
@@ -24,7 +23,7 @@ const HoverCategory = (props)=>{
         {props.types.map((x,i)=>
         <div key={i}>
         <ul className="list-group sub-list " id={'sublist-'+x.type} >
-          <li className="stext-102 topic-sub" >{x.name}</li>
+          {/*<li className="stext-102 topic-sub" ></li>*/}
           {x.subtype.map((y,i)=>
            <li key={i} className=" font6 sublist-item" id={y.type} onClick={props.submitcategory.bind(this,props.selecttype,y.type)}>{y.name}</li> 
             )}
@@ -37,7 +36,7 @@ const HoverCategory = (props)=>{
         </div>
         <style jsx>
                 {`
-                @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+               
                 .topic-sub{
                     font-size: 0.9em;
                     display: block;
@@ -47,7 +46,7 @@ const HoverCategory = (props)=>{
                     background-image: none;
                     border: none;
                     border: 1px solid #3f4041;
-                    color: darkblue;
+                    color: black;
                     border-radius: 0;
                     transition: border-color 0.5s ease;
                 }
@@ -84,8 +83,8 @@ const HoverCategory = (props)=>{
                     background: white;
                     background-image: none;
                     border: none;
-                    border: 1px solid #3f4041;
-                    color: darkblue;
+                    //border: 1px solid #3f4041;
+                    color: black;
                     border-radius: 0;
                     transition: border-color 0.5s ease;
                 }
@@ -97,8 +96,8 @@ const HoverCategory = (props)=>{
                     background: lightgray;
                     background-image: none;
                     border: none;
-                    border: 1px solid #3f4041;
-                    color: darkblue;
+                    //border: 1px solid #3f4041;
+                    color: black;
                     border-radius: 0;
                     transition: border-color 0.5s ease;
                 }
@@ -128,7 +127,7 @@ const HoverLocation = (props)=>{
         {props.location.map((x,i)=>
         <div key={i}>
         <ul className="list-group sub-list" id={'sublist-'+x.district} >
-          <li className="stext-102 topic-sub " >{x.district}</li>
+          {/*<li className="stext-102 topic-sub " >{x.district}</li>*/}
           {x.town.map((y,i)=>
            <li onClick={props.submitlocation.bind(this,props.selectlocation,y)}  key={i} className=" font6 sublist-item" id={y} >{y}</li> 
           )}
@@ -141,17 +140,17 @@ const HoverLocation = (props)=>{
         </div>
         <style jsx>
                 {`
-                @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+                
                 .topic-sub{
                     font-size: 0.9em;
                     display: block;
                     width: 100%;
                     padding: 5px 5px;
-                    background: darkgray;
+                    background: lightgray;
                     background-image: none;
                     border: none;
-                    border: 1px solid #3f4041;
-                    color: darkblue;
+                    //border: 1px solid #3f4041;
+                    color: black;
                     border-radius: 0;
                     transition: border-color 0.5s ease;
                 }
@@ -188,8 +187,8 @@ const HoverLocation = (props)=>{
                     background: white;
                     background-image: none;
                     border: none;
-                    border: 1px solid #3f4041;
-                    color: darkblue;
+                    //border: 1px solid #3f4041;
+                    color: black;
                     border-radius: 0;
                     transition: border-color 0.5s ease;
                 }
@@ -201,8 +200,8 @@ const HoverLocation = (props)=>{
                     background: lightgray;
                     background-image: none;
                     border: none;
-                    border: 1px solid #3f4041;
-                    color: darkblue;
+                    //border: 1px solid #3f4041;
+                    color: black;
                     border-radius: 0;
                     transition: border-color 0.5s ease;
                 }
@@ -371,8 +370,11 @@ class Index extends Component {
                 <option value="d">all district</option>
                 {this.state.location.map((x,i)=><option key={i} value={x.district}>{x.district}</option>)}                      
                 </select>
-                <HoverLocation gettown ={(district)=>this.gettows(district)} handleHover_list={this.handleHover_list} handleHoverout_list={this.handleHoverout_list} selectlocation={this.state.selectlocation} location={this.state.location} handleHover={this.handleHover} submitlocation={this.submitlocation} />
-               
+
+                <div >
+                <HoverLocation  gettown ={(district)=>this.gettows(district)} handleHover_list={this.handleHover_list} handleHoverout_list={this.handleHoverout_list} selectlocation={this.state.selectlocation} location={this.state.location} handleHover={this.handleHover} submitlocation={this.submitlocation} />
+                </div>
+
                 <select className={'stext-102 inputf1'} type="text" required  name="town" value={this.state.town} onChange={this.handleChange}>
                 <option value="d">all cities</option>
                 {this.gettows(this.state.district).map((x,i)=><option key={i} value={x}>{x}</option>)}                      
@@ -418,8 +420,8 @@ class Index extends Component {
                 background: white;
                 background-image: none;
                 border: none;
-                border: 1px solid #3f4041;
-                color: darkblue;
+                //border: 1px solid #3f4041;
+                color: black;
                 border-radius: 0;
                 transition: border-color 0.5s ease;
             }
