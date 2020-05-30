@@ -2364,12 +2364,14 @@ input.num-product::-webkit-inner-spin-button {
   font-family: 'Poppins', sans-serif;;
   font-size: 18px;
   line-height: 1.333333;
+  font-weight: bold
 }
 
 .mtext-102 {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  font-weight: bold
 }
 
 .mtext-103 {
@@ -2384,12 +2386,14 @@ input.num-product::-webkit-inner-spin-button {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  font-weight: bold
 }
 
 .mtext-105 {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   line-height: 1.5;
+  font-weight: bold
 }
 
 .mtext-106 {

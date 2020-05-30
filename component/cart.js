@@ -64,7 +64,7 @@ class Index extends Component {
 
 					<div className="header-cart-item-txt">
 						<a href={itemUrl+x.urlname+'?ide='+x._id} className="header-cart-item-name hov-cl1 trans-04 stext-104">
-							{x.itemname} <span className="hov-btn1 bg1 bor1 p-lr-5">view</span>
+							{x.itemname} <span style={{color:'white'}} className="hov-btn1 bg1 bor1 p-lr-5">view</span>
 						</a>
 						<span className="header-cart-item-info">
 						<p className="font6 m-content-right"><strike className="fontsizeE-9">Rs.{x.itemPrice}.00</strike><span className="fontcolorOrange fontsizeE-9">{x.itemdiscount}%</span><span className="fontcolorred fontsizeE1">&nbsp;Rs.{x.itemPrice*(100-x.itemdiscount)/100}</span></p>

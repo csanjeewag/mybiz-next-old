@@ -18,7 +18,7 @@ class Index extends Component {
                 
                 <div className="col-lg-11 col-sm-12 mx-auto">
                 <div>
-                    <h2 className="stext-104  subtopicColor menu2-topic fontsizeE1-5">{this.props.topic}</h2>
+                    <h2 style={{fontSize:'1.5em'}} className="stext-104 subtopicColor menu2-topic">{this.props.topic}</h2>
                     
                 </div>
                 <div className="menu2 row projects">
