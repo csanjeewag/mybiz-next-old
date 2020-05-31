@@ -23,8 +23,8 @@ class Index extends Component {
                 <title> {wesitename+' '+this.props.item.itemname+' '+this.props.item.shop[0].shopName+' '+this.props.item.shop[0].town}</title>
                 <meta property="og:url"           content={websiteUrl+itemUrl+this.props.pathname} />
                 <meta property="og:type"          content={web.webtypeA} />
-                <meta property="og:title"         content={wesitename+' '+this.props.item.itemname+' '+this.props.item.shop[0].shopName+' '+this.props.item.shop[0].town} />
-                <meta property="og:description"   content={this.props.item.content1} />
+                <meta property="og:title"         content={'('+wesitename+'), '+this.props.item.itemname+', '+this.props.item.shop[0].shopName+' '+this.props.item.shop[0].town} />
+                <meta property="og:description"   content={'Rs:'+this.props.item.itemPrice+', '+this.props.item.content1} />
                 <meta property="og:image"         content={ImageUrl+this.props.item.images[0]}/>
                 
                 <meta name="keywords" content={this.props.item.urlname.split('-').join(',')+',sri lanka'}></meta>
