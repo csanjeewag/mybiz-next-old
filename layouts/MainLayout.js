@@ -127,7 +127,6 @@ class Layout extends Component {
 	{/*<script src="vendor/sweetalert/sweetalert.min.js"></script>*/}
 	{/*<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>*/}
 	<script src="js/main.js"></script>
-  <script src="js/indexpage.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   
 {/*********** */}

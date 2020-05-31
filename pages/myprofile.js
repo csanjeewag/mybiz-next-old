@@ -536,8 +536,35 @@ class Index extends Component {
       
       }
 
+    loadmsg(){
+
+  
+      if(this.props.items&&this.props.items.length<5){
+        swal({
+          title: "You items less than 5",
+          text: "you should add atleast 5 items from your shop. click here to add new items, or click add new item button bellow.",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+  
+        .then((ok) => {
+          if (ok) {
+          Router.push(createitemUrl+'?id='+this.props.shop._id+'&shopname='+this.props.shop.shopName+'&shopDistrict='+this.props.shop.district+'&shopTown='+this.props.shop.town+'&shopurl='+this.props.shop.urlname)
+          } else {
+            swal("Ok, add items later!");
+          }
+        });
+      }else if(this.props.items&&this.props.items.length<10){
+        swal("Thank you you added "+this.props.items.length+", But we expect atleast 10 items, if you have items add them.(click add new item)");
+      }
+
+    }
 
     componentDidMount(){
+
+
+        this.loadmsg();
 
         if(Cookie.getJSON('user')){
             fetch(`${Url}viewbyusername/${Cookie.getJSON('user')._id}`)
@@ -588,11 +615,11 @@ class Index extends Component {
           return ( 
             <Layout>
                 <Head>
-                <div className="ismobile_disable p-t-80"></div>
                 <title> {web.wetopic}</title>
               
                 </Head>
             <Header/>
+            <div className="ismobile_disable p-t-80"></div>
         {this.props.error?<ErrorPage error={errormsg} />:
     <div>
              <div className="col-lg-11 col-sm-12 mx-auto">
