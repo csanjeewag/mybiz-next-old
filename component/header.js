@@ -199,6 +199,12 @@ class Index extends Component {
 
 					{/* Icon header */}
 					<div className="wrap-icon-header flex-w flex-r-m">
+					{this.state.isuserlogin&&this.state.user.isseller?
+						<Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}>
+							<div className="icon-header-item cl2 hov-cl1 trans-04 p-l-7 p-r-7"><i className="zmdi zmdi-store"></i></div>
+						</Link>
+						:<Link  href={`${createshopUrl}`}><div className="icon-header-item cl2 hov-cl1 trans-04 p-l-7 p-r-7"><i className="zmdi zmdi-account-add"></i></div></Link>
+							}
 						<div className="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i className="zmdi zmdi-search"></i>
 						</div>
@@ -219,20 +225,26 @@ class Index extends Component {
 		<div className="wrap-header-mobile">
 			{/* Logo moblie */}		
 			<div className="logo-mobile">
-			<Link href="/"><img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'30px'}} /></Link>
+			<Link href="/"><img className="lazyload" src={logoUrl} alt="onshop.lk" style={{height:'25px'}} /></Link>
 			</div>
 
 			{/* Icon header */}
 			<div className="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					{this.state.isuserlogin&&this.state.user.isseller?
+						<Link  href={`${myProfileUrl}?id=${this.state.isuserlogin?this.state.user._id:''}`}>
+							<div className="icon-header-item cl2 hov-cl1 trans-04 p-l-7 p-r-7"><i className="zmdi zmdi-store"></i></div>
+						</Link>
+						:<Link  href={`${createshopUrl}`}><div className="icon-header-item cl2 hov-cl1 trans-04 p-l-7 p-r-7"><i className="zmdi zmdi-account-add"></i></div></Link>
+							}
+				<div className="icon-header-item cl2 hov-cl1 trans-04 p-l-7 p-r-7 js-show-modal-search">
 					<i className="zmdi zmdi-search"></i>
 				</div>
 
-				<div className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify={this.state.cartitemcount}>
+				<div className="icon-header-item cl2 hov-cl1 trans-04 p-r-7 p-l-7 icon-header-noti js-show-cart" data-notify={this.state.cartitemcount}>
 					<i className="zmdi zmdi-favorite"></i>
 				</div>
 
-				<a className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+				<a className="icon-header-item cl2 hov-cl1 trans-04 p-r-7 p-l-7 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 					<i className="zmdi zmdi-notifications"></i>
 				</a>
 			</div>
