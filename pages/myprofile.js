@@ -583,11 +583,12 @@ class Index extends Component {
     
     render() { 
 
-      const sidenavconst = {topic : 'Categeries',topiclink:'All Categeriess',sidenavlink:[], visible:false };
+  
     const errormsg= {msg:'Sorry, You have not shop',errormsg:'You already login to onshop.lk as seller, but did not add shop. So add a shop. is there any problem contact support board via facebook page'}
           return ( 
             <Layout>
                 <Head>
+                <div className="ismobile_disable p-t-80"></div>
                 <title> {web.wetopic}</title>
               
                 </Head>

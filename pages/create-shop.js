@@ -118,7 +118,7 @@ class Index extends Component {
             swal("promotion code is valid!", "You are given valuable promotion code. Then you are given 3 years free account. But you should invite two seller, and share your items on facebook.", "success");       
  
         }else{
-            swal("sorry! invalid", "Don not worry, This is not requred, If you need promotion code take a massage to onshop.lk facebook page.", "warning");       
+            //swal("sorry! invalid", "Don not worry, This is not requred, If you need promotion code take a massage to onshop.lk facebook page.", "warning");       
  
         }
     }
