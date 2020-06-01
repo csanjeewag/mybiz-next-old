@@ -102,6 +102,24 @@ class Index extends Component {
 			});
 			
 			
+			//filter item
+			var posts = $('.isotope-item');
+			posts.show();
+			$('.datafilter').click(function() { 
+				$('.datafilter').removeClass('how-active1');
+				$( this ).addClass('how-active1');
+				var customType = $( this ).data('filter');
+				if(customType=='*'){
+					posts.show();
+				}else{
+					posts.hide().filter(function () {
+						return $(this).data('cat') == customType;
+						})
+					.show();
+				}
+				
+			});
+			
 		})
 	if(this.props.items&&this.props.items.length>0&&Cookie.getJSON('faverite-item')){
 
@@ -152,12 +170,12 @@ class Index extends Component {
 
 			<div className="flex-w flex-sb-m p-b-52">
 				<div className="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+					<button className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1 datafilter" data-filter="*">
 						All Products
 					</button>
 
 					{this.props.selectcatagery?this.props.selectcatagery.subtype.map((x,i)=>
-					<button key={i} className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter={'.'+x.type}>
+					<button key={i} className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 datafilter" data-filter={x.type}>
 										{x.name}
 					</button>
 				
@@ -200,7 +218,7 @@ class Index extends Component {
 			<div className="row isotope-grid projects">
 			
 				{this.props.items&&this.props.items.length>0?this.props.items.map((c,i)=>
-				<div key={i} className={"col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item "+c.subcategery}>
+				<div key={i} className={"col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item "+c.subcategery} data-cat={c.subcategery}>
 		
 				<div className="block2">
 					<div className="block2-pic hov-img0">
