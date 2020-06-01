@@ -142,12 +142,12 @@ class Index extends Component {
 	.secondlayer{
 		background: #000000ab;
 		height: 200px;
-		border: solid 2px white;
+		border: solid 1px #ffffff00;
 	}
 	.secondlayer:hover{
 		background: #000000bf;
 		height: 200px;
-		border: solid 1px white;
+		border: solid 1px #ffffff00;
 	}
 	.thirdlayer{
 		margin:15px;

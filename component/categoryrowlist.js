@@ -58,32 +58,23 @@ class Index extends Component {
             {this.props.catageries.map((c,i) => 
               <div key={i}>
               <div className="col-12 p-b-30 m-lr-auto">
-              <Link href={`${categoryUrl+c.type}?=ide${c._id}`} > 
-              <div  className="block1 wrap-pic-w">
-                  <img className="imagebackground lazyload" src={ImageUrl+c.mainimage} />
-
-                  <a className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                  <div className="block1-txt-child1 flex-col-l">
-                          <span className="block1-name ltext-102 trans-04 p-b-8">
-                              
-                          </span>
-
-                          <span className="block1-info stext-102 trans-04">
-                          
-                          </span>
-                      </div>
-
-                      <div className="block1-txt-child2 p-b-4 trans-05">
-                          <div className="block1-link stext-101 cl0 trans-09">
-                              view
-                          </div>
-                      </div>
-                  </a>
-                  <div className="card-inner">
-                  <h3 className="topicColor fontsizeE-9 p-2 ">{c.name}</h3>  
-                  </div>
-              </div>
-              
+              <Link href={`${categoryUrl+c.type}`} > 
+              <div>
+					<div  className="block1 wrap-pic-w">
+						<img className="imagebackground lazyload" src={ImageUrl+c.mainimage}  width="100%" height="120px" />
+					</div>
+					<div  className="block1 wrap-pic-w upperlayer">
+						<div className="secondlayer">
+						<div className="thirdlayer">
+						<h6 className="topic">{c.name}</h6>
+				
+						</div>
+						
+						</div>
+						
+					</div>
+					 
+				   </div>
               </Link>
           </div>
           </div> )}
@@ -95,10 +86,44 @@ class Index extends Component {
 
 <style jsx>
     {`
-    .imagebackground{
+      .imagebackground{
         #background: #efededad;
         opacity: 1;
-    }
+	}
+	.upperlayer{		
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 120px;
+		width: 100%;
+		padding-right: 15px;
+		padding-left: 15px;
+		border: none;
+	}
+	.secondlayer{
+		background: #00000099;
+		height: 120px;
+		border: solid 1px #ffffff00;
+	}
+	.secondlayer:hover{
+		background: #000000bf;
+		height: 120px;
+		border: solid 1px #ffffff00;
+	}
+	.thirdlayer{
+		margin:15px;
+		border: solid 1px #ffffff00;
+		height:130px;
+	}
+	.topic{
+		color: #fff;
+		position: relative;
+		padding: 30px 0 0 0;
+		text-align : center;
+		font-weight: 800;
+		font-size: 12px;
+		text-shadow: 3px 6px 3px black;
+	}
     `}
 </style>
 
