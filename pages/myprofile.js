@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import Layout from './../layouts/MainLayout';
 import $ from 'jquery';
-import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl,web,websiteUrl,myshopmUrl} from './../constant/main';
+import  {Url,ImageUrl,createitemUrl,updateshopUrl,itemUrl,updateitemUrl,myProfileUrl,web,websiteUrl,myshopmUrl,createshopUrl} from './../constant/main';
 import Link from 'next/link';
 import Cookie from "js-cookie";
 import ErrorPage from './../layouts/error';
@@ -556,8 +556,15 @@ class Index extends Component {
           }
         });
       }else if(this.props.items&&this.props.items.length<10){
-        swal("Thank you you added "+this.props.items.length+", But we expect atleast 10 items, if you have items add them.(click add new item)");
+        swal("Thank you, you added "+this.props.items.length+", But we expect atleast 10 items, if you have items add them.(click add new item)");
       }
+
+      if(this.props.error){
+        swal("Sorry!","You have not shop. your sign up is complete, but you should create shop now. (click here to make a shop)","warning");
+        Router.push(createshopUrl)
+ 
+      }
+
 
     }
 
