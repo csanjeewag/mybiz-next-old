@@ -59,7 +59,7 @@ class Index extends Component {
 
 		<div className="row projects">
             {this.props.catageries.map((c,i) => 
-                	<div key={i}  className="col-md-6 col-xl-3 p-b-30 m-lr-auto pointer">
+                	<div key={i}  className="col-md-6 col-lg-4 col-xl-3 p-b-30 m-lr-auto pointer">
 						<Link  href={`${categoryUrl+c.type}`} > 
 					<div>
 					<div  className="block1 wrap-pic-w">

@@ -127,6 +127,10 @@ class Index extends Component {
 		this.refs.mycart.loaditems();
 		
 	}
+	shownotification=()=>{
+		$('.notification-side-bar').show(100);
+		
+	}
 	searchitems=()=>{
 		
 		var seach= $('#searchitem').val();
@@ -213,7 +217,7 @@ class Index extends Component {
 							<i className="zmdi zmdi-favorite"></i>
 						</div>
 
-						<a className=" icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+						<a onClick={this.shownotification}  className=" icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 						<i className="zmdi zmdi-notifications"></i>
 						</a>
 					</div>
@@ -240,11 +244,11 @@ class Index extends Component {
 					<i className="zmdi zmdi-search"></i>
 				</div>
 
-				<div className="icon-header-item cl2 hov-cl1 trans-04 p-r-7 p-l-7 icon-header-noti js-show-cart" data-notify={this.state.cartitemcount}>
+				<div onClick={this.showcart} className="icon-header-item cl2 hov-cl1 trans-04 p-r-7 p-l-7 icon-header-noti js-show-cart" data-notify={this.state.cartitemcount}>
 					<i className="zmdi zmdi-favorite"></i>
 				</div>
 
-				<a className="icon-header-item cl2 hov-cl1 trans-04 p-r-7 p-l-7 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
+				<a onClick={this.shownotification} className="icon-header-item cl2 hov-cl1 trans-04 p-r-7 p-l-7 icon-header-noti js-show-notification" data-notify={this.state.notficationcount}>
 					<i className="zmdi zmdi-notifications"></i>
 				</a>
 			</div>
