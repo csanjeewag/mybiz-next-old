@@ -357,3 +357,43 @@ exports.viewforfavorite = function(req,res) {
  
     
    }
+
+
+   exports.viewallAgregate = function(req,res){
+    
+   // models.aggregate([
+       // { $merge: { into: "types", on: "_id", whenMatched: "replace", whenNotMatched: "insert" } }
+     //   { "$group": { "_id": "$categery", "count": { "$sum": 1 } } },
+      //  { "$project": { "_id": 0 } }
+      //  { "$match": { "itemname": "Chocolate cake " } },
+      //  { "$project": { "itemname": 1,"itemlongname":1 } },
+       // {"$addFields": { "just": "check" }},
+     /* { $lookup: {
+        from: "shops", // collection name in db
+        localField: "categery",
+        foreignField: "categery",
+        as: "shopdetails"
+    }}*/
+        
+  /*  ])
+    .exec((err, data) => {
+        if (err){
+            return   res.status(404).json(err);
+        } 
+        else{
+            return   data.length>0?res.status(200).send(data):res.status(201).send('err');
+        }
+    })*/
+    
+    models.find({},function(error,data){
+        if(error){
+            return   res.status(404).json('error');
+            
+        }else{
+            
+            var error = {msg:'405 Not Found!',errormsg:'Sorry, there are no items!'};
+            return   data.length>0?res.status(200).send(data):res.status(201).send(error);
+        }
+    }).sort({mIndex:1, sIndex:1,createDate:-1})
+
+   }

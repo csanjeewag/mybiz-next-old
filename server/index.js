@@ -341,6 +341,13 @@ server.get("/api/location/id", (req, res) => {
 
 /*************************************************************************** item api ************************************/
 
+//agreagate testing
+server.get("/api/allitems", (req, res) => {
+
+  itemsRepository.viewallAgregate(req,res);
+
+});
+
 server.get("/api/itembyid/:id", (req, res) => {
 
   itemsRepository.viewall({'_id':req.params.id,isvalid:true,isvalidA:true},res);

@@ -147,7 +147,7 @@ class Index extends Component {
 
 				<p className="stext-107 cl6 txt-center">
 					{/** Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-Copyright &copy;All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://onshop.lk" target="_blank">onshop.lk</a>
 {/** Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
 
 				</p>
