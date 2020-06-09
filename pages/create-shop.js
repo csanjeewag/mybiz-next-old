@@ -262,7 +262,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {if(data.status==200){swal("Welcome to onshop.lk!", "Now you shoud add items to your shop.", "success");Router.push(myProfileUrl+'?id='+Cookie.getJSON('user')._id);}else{swal("Sorry", data.msg, "error");} $('button').attr("disabled", false); $('.load').hide();})
+            .then(data => {$('.load').hide(); if(data.status==200){swal("Welcome to onshop.lk!", "Now you shoud add items to your shop.", "success");Router.push(myProfileUrl+'?id='+Cookie.getJSON('user')._id);}else{swal("Sorry", data.msg, "error");} $('button').attr("disabled", false);})
             .catch(error => console.log(error))
     
         }

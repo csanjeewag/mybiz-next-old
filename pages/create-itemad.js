@@ -295,7 +295,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {$('button').attr("disabled", false); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{swal("Sorry!", data.msg, "warning");}$('.load').hide();})
+            .then(data => {$('button').attr("disabled", false); $('.load').hide(); if(data.status==200){Router.push(itemUrl+jsonbody.urlname) }else{swal("Sorry!", data.msg, "warning");}})
             .catch(error => console.log(error))
     
         }

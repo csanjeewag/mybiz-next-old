@@ -292,7 +292,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {$('button').attr("disabled", false); if(data.status==200){swal("Item added", "New item added to your shop. you can new item now. Thank you.", "success");Router.push(itemUrl+jsonbody.urlname) }else{swal("Sorry", data.msg, "error");}$('.load').hide();})
+            .then(data => {$('button').attr("disabled", false); $('.load').hide(); if(data.status==200){swal("Item added", "New item added to your shop. you can new item now. Thank you.", "success");Router.push(itemUrl+jsonbody.urlname) }else{swal("Sorry", data.msg, "error");}})
             .catch(error => console.log(error))
     
         }

@@ -244,7 +244,7 @@ class Index extends Component {
                 }
             )
             .then(response => { return response.json(); } )
-            .then(data => {alert(data.msg); if(data.status==200){Router.push(myProfileUrl+'?id='+Cookie.getJSON('user')._id);}$('button').attr("disabled", false); $('.load').hide();})
+            .then(data => {alert(data.msg);$('.load').hide(); if(data.status==200){Router.push(myProfileUrl+'?id='+Cookie.getJSON('user')._id);}$('button').attr("disabled", false);})
             .catch(error => console.log(error))
     
         }
